@@ -102,3 +102,41 @@ Updated:
 - `.gitignore`
 
 Key outcome: the bibliography is grouped into seven planned full-text ingest batches, ready to match against PDF locations later.
+
+## [2026-05-14] ingest | Batch 1 core ISM and TIGRESS foundations
+
+Ingested the first full-text publication batch from `/Users/changgoo/Dropbox/mypaper`, copying PDFs into `raw/sources/papers/` and generating `.txt` companions with `pdftotext -layout`.
+
+Created source pages:
+
+- [[2006-kim-kim-ostriker-spiral-shock-turbulence]]
+- [[2008-kim-kim-ostriker-spiral-shocks-thermal-instability]]
+- [[2010-kim-kim-ostriker-vertical-spiral-shocks]]
+- [[2011-kim-kim-ostriker-star-formation-regulation]]
+- [[2013-kim-ostriker-kim-3d-star-formation-regulation]]
+- [[2013-kim-basu-decaying-mhd-turbulence]]
+- [[2015-kim-ostriker-magnetized-disk-star-formation]]
+- [[2017-kim-ostriker-tigress-framework]]
+- [[2018-kim-ostriker-tigress-winds]]
+- [[2020-kim-kim-ostriker-tigress-spiral-arms]]
+- [[2020-mao-ostriker-kim-clouds-star-formation]]
+- [[2024-jeffreson-galactism]]
+
+Created synthesis:
+
+- [[batch-1-core-ism-tigress-foundations]]
+
+Updated:
+
+- [[multiphase-ism]]
+- [[tigress]]
+- [[stellar-feedback]]
+- [[star-formation-regulation]]
+- [[supernova-feedback]]
+- [[observational-ism-diagnostics]]
+- [[publication-map]]
+- [[publication-ingest-plan]]
+- [[index]]
+- [[overview]]
+
+Key outcome: the wiki now has a full-text foundation for pressure-regulated star formation, multiphase ISM equilibrium, TIGRESS, and the local-to-galaxy connection through winds.

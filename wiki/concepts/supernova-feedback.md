@@ -5,6 +5,8 @@ created: 2026-05-14
 updated: 2026-05-14
 sources:
   - wiki/sources/mypapers-bibliography.md
+  - wiki/sources/2017-kim-ostriker-tigress-framework.md
+  - wiki/sources/2018-kim-ostriker-tigress-winds.md
 tags:
   - astrophysics
   - supernovae
@@ -25,6 +27,8 @@ The bibliography contains a dedicated cluster on supernova remnants, momentum in
 
 - [[publication-ingest-plan]] places supernovae, bubbles, and feedback coupling in the second full-text batch.
 - Supernova feedback connects directly to [[multiphase-ism]], [[stellar-feedback]], [[galactic-winds]], and [[cosmic-rays]].
+- [[2017-kim-ostriker-tigress-framework]] implements supernova feedback with resolved energy injection when possible and terminal momentum injection otherwise.
+- [[2018-kim-ostriker-tigress-winds]] shows that clustered supernovae launch hot winds and warm fountains in the solar-neighborhood TIGRESS model.
 
 ## Related Pages
 
@@ -37,4 +41,3 @@ The bibliography contains a dedicated cluster on supernova remnants, momentum in
 
 - How do ambient density structure and phase structure change terminal momentum and hot gas production?
 - How do clustered supernovae and superbubbles set wind loading?
-

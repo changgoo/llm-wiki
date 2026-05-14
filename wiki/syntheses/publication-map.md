@@ -133,4 +133,4 @@ The cleaned bibliography forms a coherent astrophysics research corpus centered 
 
 ## Manifest Status
 
-All 72 records are currently `bib-only`. Full-text ingest should begin after PDF locations are provided and `.txt` companions are generated with `pdftotext -layout`.
+Batch 1 is full-text ingested in [[batch-1-core-ism-tigress-foundations]]. The remaining records are currently `bib-only`. Full-text ingest should continue batch by batch after PDF paths are matched and `.txt` companions are generated with `pdftotext -layout`.

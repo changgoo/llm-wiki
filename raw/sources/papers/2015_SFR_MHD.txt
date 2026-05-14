@@ -1,0 +1,1091 @@
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                 doi:10.1088/0004-637X/815/1/67
+© 2015. The American Astronomical Society. All rights reserved.
+
+
+
+
+ VERTICAL EQUILIBRIUM, ENERGETICS, AND STAR FORMATION RATES IN MAGNETIZED GALACTIC
+             DISKS REGULATED BY MOMENTUM FEEDBACK FROM SUPERNOVAE
+                                                                  Chang-Goo Kim and Eve C. Ostriker
+            Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA; cgkim@astro.princeton.edu, eco@astro.princeton.edu
+                                         Received 2015 July 28; accepted 2015 October 29; published 2015 December 10
+
+                                                                  ABSTRACT
+             Recent hydrodynamic (HD) simulations have shown that galactic disks evolve to reach well-deﬁned statistical
+             equilibrium states. The star formation rate (SFR) self-regulates until energy injection by star formation feedback
+             balances dissipation and cooling in the interstellar medium (ISM), and provides vertical pressure support to balance
+             gravity. In this paper, we extend our previous models to allow for a range of initial magnetic ﬁeld strengths and
+             conﬁgurations, utilizing three-dimensional, magnetohydrodynamic (MHD) simulations. We show that a quasi-
+             steady equilibrium state is established as rapidly for MHD as for HD models unless the initial magnetic ﬁeld is very
+             strong or very weak, which requires more time to reach saturation. Remarkably, models with initial magnetic
+             energy varying by two orders of magnitude approach the same asymptotic state. In the fully saturated state of the
+             ﬁducial model, the integrated energy proportions Eturb: Eth: dEmag: Emag are 0.35:0.39:0.15:0.11, while the
+             proportions of midplane support Pturb: Pth : dPmag : Pmag are 0.49:0.18:0.18:0.15. Vertical proﬁles of total effective
+             pressure satisfy vertical dynamical equilibrium with the total gas weight at all heights. We measure the “feedback
+             yields” hc º Pc SSFR (in suitable units) for each pressure component, ﬁnding that hturb ~ 3.5 - 4 and
+             hth ~ 1.1 - 1.4 are the same for MHD as in previous HD simulations, and dhmag ~ 1.3 - 1.5. These yields can
+             be used to predict the equilibrium SFR for a local region in a galaxy based on its observed gas and stellar surface
+             densities and velocity dispersions. As the ISM weight (or dynamical equilibrium pressure) is ﬁxed, an increase in η
+             from turbulent magnetic ﬁelds reduces the predicted SSFR by ~20 - 30% relative to the HD case.
+             Key words: galaxies: ISM – galaxies: kinematics and dynamics – galaxies: magnetic ﬁelds – galaxies: star
+             formation – magnetohydrodynamics (MHD) – turbulence
+
+
+                                1. INTRODUCTION                                       of the cold and warm medium differ by about two orders of
+                                                                                      magnitude (Field et al. 1969; Wolﬁre et al. 1995, 2003). The
+   The diffuse atomic interstellar medium (ISM), the mass
+                                                                                      inhomogeneous, multiphase structure of the diffuse atomic ISM
+reservoir in galaxies from which molecular clouds and stars are
+                                                                                      is observed to be ubiquitous (e.g., Heiles & Troland 2003;
+born, is highly turbulent (e.g., Elmegreen & Scalo 2004) and
+                                                                                      Dickey et al. 2009; Roy et al. 2013; Murray et al. 2015). In
+strongly magnetized (e.g., Beck 2001). The roles of turbulence
+                                                                                      addition to the warm and cold phases, the hot phase that is
+and magnetic ﬁelds in the context of star formation have been                         created by supernovae (SNe) is an essential ISM component
+emphasized many times (see Shu et al. 1987; Mac Low &                                 (Cox & Smith 1974; McKee & Ostriker 1977; Ferrière 2001).
+Klessen 2004; McKee & Ostriker 2007, for reviews).                                    This phase contains very little mass, but is of great dynamical
+Additionally, the importance of turbulence and magnetic ﬁelds                         importance because the expansion of high-pressure SN
+on large scales is clear from comparison of each componentʼs                          remnants and superbubbles is the main driver of turbulence
+pressure to the vertical weight of the ISM disk (e.g., Boulares                       in the surrounding denser phases of the ISM (and also drives
+& Cox 1990; Ferrière 2001). In the solar neighborhood,                                galactic winds; de Avillez & Breitschwerdt 2004; Joung & Mac
+representing fairly typical conditions among star-forming                             Low 2006; Joung et al. 2009; Hill et al. 2012; Creasey
+galactic disks, turbulent and magnetic pressures are roughly                          et al. 2013; Li et al. 2015).
+comparable to each other (e.g., Heiles & Troland 2005), and                              Owing to the huge difference between cooling and
+about three times larger than the thermal pressure in diffuse gas                     dynamical times and correspondingly large range of spatial
+(e.g., Jenkins & Tripp 2011). Therefore, turbulence and                               scales, directly modeling the multiphase ISM is numerically
+magnetic ﬁelds provide most of the vertical support to the                            quite challenging. However, increasing computational
+gas layer, and are essential to include in models of the vertical                     resources, combined with robust algorithms for evolving gas
+structure in galactic disks. Moreover, the magnetic ﬁeld has a                        dynamics and thermodynamics simultaneously, have enabled
+signiﬁcant random component (see Haverkorn 2015 for recent                            the development of highly sophisticated ISM models in the last
+review), which presumably is related to observed turbulent                            decade. Direct numerical simulations of vertically stratiﬁed
+velocities. This implies an intriguing additional dimension to                        galactic disks with SN-driven turbulence and stiff source terms
+models in which the star formation rate (SFR) is connected to                         to follow heating and cooling include those of de Avillez &
+the vertical dynamical equilibrium of the ISM disk via                                Breitschwerdt (2004, 2005), Joung & Mac Low (2006), Joung
+turbulence driven by star formation feedback (Ostriker                                et al. (2009), Hill et al. (2012), Gent et al. (2013a), Kim et al.
+et al. 2010; Kim et al. 2011; Ostriker & Shetty 2011).                                (2011, 2013), Hennebelle & Iffrig (2014), and Walch et al.
+   Another important characteristic of the diffuse atomic ISM is                      (2014). Among those, only Kim et al. (2013, hereafter Paper I)
+its multiphase nature, which emerges naturally as a conse-                            and Hennebelle & Iffrig (2014) have a time-dependent SFR
+quence of thermal instability with a realistic treatment of                           and SN rate self-consistently set by the self-gravitating
+cooling and heating (Field 1965). The temperature and density                         localized collapse of gas.
+
+                                                                                  1
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                      Kim & Ostriker
+
+   The time-dependent response of the SFR to large-scale ISM              equilibrium of the ISM and star formation in disk systems, as
+dynamics and thermodynamics is key to self-consistent                     developed in our previous work (Ostriker et al. 2010; Kim et al.
+regulation of turbulent and thermal pressures, since both the             2011; Ostriker & Shetty 2011). This includes a list of the
+turbulent driving rate (from SNe) and thermal heating rate                parameters to be measured for detailed investigation. The
+(from far-UV-emitting massive stars) are proportional to the              equilibrium theory assumes a quasi-steady state that satisﬁes
+SFR. If heating rates and turbulent driving rates drop due to a           force balance between vertical gravity and pressure support,
+low SFR, the increased mass of cold, dense gas subsequently               and energy balance between gains from star formation
+leads to a rebound in the SFR. The opposite is also true, with an         feedback and losses in the dissipative ISM. We shall test the
+excessively high SFR checked by the ensuing reduction in the              validity of these assumptions and quantify the relative
+mass of gas eligible to collapse. Within less than an orbital             contributions to the vertical support from turbulent, thermal,
+time, the SFR self-regulates such that the ISM achieves a                 and magnetic terms. We shall also measure the efﬁciency of
+statistical equilibrium state. In this state, there are balances          feedback (feedback yield) for each support term.
+between (1) vertical gravity and the combined pressure forces,               Using the temporally and horizontally averaged momentum
+(2) turbulent driving and dissipation, and (3) cooling and                equation, it is straightforward to show that vertical dynamical
+heating (see Ostriker et al. 2010; Kim et al. 2011; Ostriker &            equilibrium requires a balance between the total momentum
+Shetty 2011 for analytic theory, and Kim et al. 2011; Shetty &            ﬂux difference between surfaces at z=0 and zmax,
+Ostriker 2012; Paper I for numerical conﬁrmations). Paper I               and the weight of the gas: DPtot = . In magnetized,
+successfully reproduces important aspects of the diffuse atomic           turbulent galactic disks, the vertical momentum ﬂux consists
+ISM, demonstrating self-regulated SFRs and vertical equili-               of thermal (Pth º rvth2 ), turbulent (Pturb º rvz2 ), and magnetic
+brium following the analytic theory for a range of galactic               (Pmag º ∣ B ∣2 8p - Bz2 4p ) terms (e.g., Boulares &
+conditions including those of the solar neighborhood as well as           Cox 1990; Piontek & Ostriker 2007; Ostriker & Shetty 2011).1
+regions with higher and lower total ISM surface density. In               Note that the magnetic term includes both pressure and tension,
+addition, the warm/cold ratios and properties of 21 cm                    and can be rewritten as Pmag = r (vA2 2 - vA,           2
+                                                                                                                                    z ) , where
+emission/absorption for H I (including column density and
+                                                                          vA º (∣ B ∣ 4pr )
+                                                                                     2       1 2
+                                                                                                  is the Alfvén velocity from the total
+spin temperature distributions) are in agreement with observa-
+tions (Kim et al. 2014).                                                  magnetic ﬁeld and vA, z = ∣ Bz ∣ (4pr )1 2 is from its z compo-
+   Despite the success of hydrodynamic (HD) models in                     nent. We hereafter refer to Pmag as the magnetic “support” to
+Paper I, the dynamical role of magnetic ﬁelds cannot be                   distinguish it from the usual magnetic “pressure”
+ignored. For example, Hennebelle & Iffrig (2014) have run                 (Pmag º ∣ B ∣2 8p ), while the thermal and turbulent “supports”
+                                                                          are equivalent to the thermal and turbulent “pressures,”
+magnetized ISM disk models with self-gravity and SN
+feedback, showing a factor-of-two decrement in the SFR                    respectively. If we choose zmax where the gas density is
+compared to the HD case. However, a systematic exploration of             sufﬁciently small, Pth (zmax ), Pturb (zmax )  0 by deﬁnition, but
+                                                                          Pmag (zmax ) can in general be nonzero and signiﬁcant. We thus
+the effect of magnetic ﬁelds is still lacking. In this paper, a set
+of three-dimensional, magnetohydrodynamic (MHD) simula-                   have
+tions is carried out, to test the effects of different initial                  DPtot = Pth,0 + Pturb,0 + DPmag º r 0 s 2z (1 + ) ,                       (1 )
+magnetic ﬁeld strengths and conﬁgurations.
+   The remainder of the paper is organized as follows. In                 where s 2z º vth2 + vz2 is the sum of thermal and turbulent
+Section 2, we begin by reviewing the analytic theory and                  velocity dispersions, and
+previous simulation results to identify and explain the proper-
+ties and parameters we will measure here. Section 3 sum-                                                                 DPmag
+                                                                                                             º                                            (2 )
+marizes our numerical methods and model parameters. Our                                                                   r 0 s 2z
+basis is the ﬁducial solar neighborhood model from
+Paper Iwith gas surface density of 10 M pc-2 , but here we              is the relative contribution to the vertical support from
+slightly alter the initial and boundary conditions to minimize            magnetic to kinetic (thermal plus turbulent) terms. If
+early vertical oscillations that were exaggerated in Paper I.             B (zmax )  0, DPmag  (∣ B0 ∣2 2 - Bz2,0 ) 4p. Here and here-
+Section 4 contains our main new results. Time evolution of disk           after, we use the subscript “0” to indicate quantities evaluated
+diagnostics in Section 4.1 shows that a quasi-steady state is             at the midplane (z=0).
+achieved. In Section 4.2, we analyze temporally and horizon-                 The weight of the gas under self- and external gravity is
+tally averaged vertical proﬁles to conﬁrm vertical dynamical              respectively deﬁned by
+equilibrium. Finally, Section 4.3 presents the measurements of
+“feedback yields,” exploring the mutual relationship between
+                                                                                                             z max       d Fsg          pG S2
+measured SFR surface density and the various midplane
+                                                                                         sg =        ò0             r
+                                                                                                                          dz
+                                                                                                                                 dz =
+                                                                                                                                          2
+                                                                                                                                                           (3 )
+pressure supports. We compare the numerical results with
+                                                                          and
+analytic expectations including magnetic terms. In Section 5,
+we summarize and discuss the model disk properties at                                                z max
+
+saturation in comparison to observations and previous simula-
+                                                                                     ext =     ò0             rgext (z) dz º z d gext (H ) S .            (4 )
+tions, especially focusing on the level of mean and turbulent                               ¥
+magnetic ﬁelds.                                                           Here, S º       ò-¥ rdz is the gaseous surface density,
+                                                                          H º S (2r0 ) is the gaseous diskʼs effective scale height, and
+              2. THE EQUILIBRIUM THEORY
+                                                                          1
+                                                                             More generally, radiation and cosmic-ray pressure terms could also
+   Before describing the results of our new simulations, it is            contribute (see Ostriker & Shetty 2011), but are not included in the present
+informative to summarize the analytic theory for mutual                   numerical simulations.
+
+                                                                      2
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                              Kim & Ostriker
+               zmax                                       zmax
+                                                                             From the right-hand side of Equation (5) combined with
+z d º (1 2)   ò0   r ∣ gext (z ) gext (H )∣ dz ò
+                                                0
+                                                  rdz is a dimen-
+                                                                             Equations (9) and (8), the predicted midplane pressure
+sionless parameter that characterizes the vertical distribution of           in dynamical equilibrium can be obtained. In observed
+gas and the shape of the external gravity proﬁle. For example,               (relatively face-on) galactic disks, the gas and stellar surface
+with linear external gravity proﬁle (gext µ z ), density following           densities Σ and S* together with sz and s* may be
+exponential, Gaussian, and sech2 distributions gives                         considered basic observables (although the stellar scale height
+z d = 1 2, 1 p, and (ln 2) 2, respectively.                                  H* = s 2 (pG S* ) instead may be estimated in other ways if s*
+                                                                                      *
+    We now specialize to the case of a galactic disk with a                  is not directly measured; e.g., Leroy et al. 2008). The magnetic
+midplane density of stars + dark matter equal to rsd , for which             term vA2 2 - vA,  z in s eff is more difﬁcult to measure directly.
+                                                                                             2        2
+
+the external gravity near the midplane is gext = 4pGrsd z.                   We shall show, however, that if the model disk is fully
+Vertical dynamical equilibrium can be expressed as                           saturated,  = (vA2 2 - vA,   2
+                                                                                                             z ) s z appears to be insensitive to
+                                                                                                                   2
+
+                                                                             the initial magnetic geometry or strength. This implies that the
+                   r 0 s 2z (1 + ) = sg (1 + c) ,               (5 )       predicted equilibrium midplane pressure support may similarly
+where                                                                        be obtained from observables using Equations (5), (9), (10),
+                                                                             and (11) if estimates of  and z d from simulations are adopted.
+                              ext  4z r                                        To test the validity of vertical dynamical equilibrium, for our
+                        cº         = d sd                         (6 )
+                              sg     r0                                     simulations we will compare full vertical proﬁles of the total
+                                                                             (turbulent, thermal, and magnetic) support with the vertical
+is the ratio of external to self-gravity. By substituting from               proﬁles of the weight of the gas. These proﬁles are based on
+Equation (3) for sg and from Equation (6) for χ in                          horizontal and temporal averages of the simulation outputs at
+Equation (5), we can solve to obtain                                         all values of z, including the midplane. In equilibrium, the
+                                                                             weight and total support proﬁles must match each other.
+                       1+        ⎛ 1 +  ⎞1 2
+          H = Hsg          = Hext ⎜       ⎟ ,                     (7 )          Due to the highly dissipative nature of the ISM, continuous
+                       1+c        ⎝1 + 1 c⎠                                  energy injection is necessary to maintain thermal as well as
+                                                                             turbulent kinetic and magnetic components of the vertical
+where Hsg º s 2z pG S and Hext º sz (8pGz d rsd )1 2 are the                 support at a given level. Massive young stars inject prodigious
+scale heights for thecases dominated by self- and external                 energy, providing the feedback that is key to self-regulation of
+gravity, respectively. By deﬁning                                            the SFR. When the system is out of equilibrium, with not
+                                                                             enough massive young stars, lack of energy injection leads the
+                             Hsg2       8z d rsd s 2z
+                      Cº            =                 ,           (8 )       entire ISM to become dynamically and thermally cold. A cold
+                             2
+                            Hext         pG S2                               disk is highly susceptible to gravitational collapse; it forms new
+                                                                             stars that supply the “missing” feedback and restore equili-
+Equation (7) can also be solved for χ to obtain                              brium. In the opposite case, with too many massive stars, the
+                            2 C ( 1 + )                                     ISM becomes dynamically and thermally hot, quenching
+                   c=                        .                    (9 )       further star formation by suppressing gravitational instability.
+                        1 + 1 + 4 C ( 1 + )
+                                                                             Simulations of local model disks show that the SFR converges
+If we neglect dark matter and consider a stellar disk with                   to the quasi-steady value predicted by theory, in which the
+surface density S* and vertical stellar velocity dispersion s*               vertical support produced by feedback matches the require-
+such that rsd  pG S2 (2s 2 ), we have                                       ments set by vertical dynamical equilibrium. The ISM state and
+                     *    *                                                  SFR predicted by the feedback-regulated theory are expected to
+                                ⎛ s S ⎞2                                     hold in real galaxies provided all equilibria can be established
+               C (1 + ) = 4z d ⎜ eff * ⎟ .               (10)               in less than the diskʼs secular evolution timescale.
+                                ⎝ s S ⎠
+                                    *                                           In Paper I(see also Kim et al. 2011; Shetty & Ostriker 2012),
+Here,                                                                        we showed that the balance between energy gains and losses is
+                                                                             established within one vertical crossing time, the turbulence
+           ⎛              v2       ⎞1 2
+    seff º ⎜ vth2 + vz2 + A - vA,       = sz (1 + )1 2                      dissipation timescale. We then quantiﬁed the efﬁciency of
+                                  z⎟
+                               2
+                                                                 (11)
+           ⎝              2        ⎠                                         energy conversion to each support component for a given SFR
+                                                                             by measuring the “feedback yield.”
+is the effective vertical velocity dispersion including magnetic                Using a suitable normalization2, we deﬁne yield parameters
+terms for gaseous support, and we have assumed                               hc as
+that B (zmax )  0.
+                                                                                                                 Pc,3
+   We shall show from results of our simulations in Section 4.1                                         hc º                                        (12)
+that seff ~ 5–6 km s-1 and z d ~ 0.4–0.5 are quite insensitive to                                              SSFR,-3
+the initial magnetization (see Tables 1 and 2). In Paper I, we
+also found relatively little variation in sz, even with variations           where                Pc,3 º Pc,0 10 3kB cm-3 K                 and
+by a factor of 10 in Σ and by two orders of magnitude in                     SSFR,-3 º SSFR 10 3 M kpc-2 yr-1. The subscript “c”
+                                                                                                 -
+
+rsd S2 , the input parameter that controls the ratio of external to          denotes “turb,” “th,” or “mag” for the respective component
+self-gravity. In this paper, we ﬁx Σ and rsd to isolate the effect           of vertical support (Pturb, Pth , or Pmag ). For magnetic pressure,
+of magnetic ﬁelds. Further investigations would therefore be                 the support is further divided into turbulent and mean
+needed to investigate constancy or variation of seff and z d with            components, dPmag and Pmag , respectively (see Section 4.1
+Σ and rsd , which we defer to future work.
+   In simulations, Σ and rsd (as well as a seed magnetic ﬁeld)               2
+                                                                                Dimensionally, η has units of velocity. To obtain η in km s-1, the values
+are input parameters, and sz,  , and z d are measured outputs.              reported in this paper should be multiplied by 209.
+
+                                                                         3
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                 Kim & Ostriker
+
+for deﬁnitions). Ostriker et al. (2010) and Ostriker & Shetty           shear parameter q º -d ln W d ln R = 1 for a ﬂat rotation
+(2011) respectively showed that hth and hturb are expected to be        curve. In the ẑ direction, we adopt outﬂow boundary conditions
+nearly independent of SSFR . In Paper I(see also Kim                   to allow magnetic ﬂux loss at the vertical boundaries; this is in
+et al. 2011), which omitted magnetic ﬁelds but covered a wide           contrast to Paper I, where we adopted periodic vertical
+range of disk conditions such that 0.1 < SSFR,-3 < 10, we               boundary conditions (except for the gravitational potential) to
+                                                                        prevent any mass loss. In order to minimize mass loss at the
+obtained hturb = 4.3S-                       -0.14
+                       SFR,-3 and hth = 1.3SSFR,-3 . The values
+                        0.11
+                                                                        vertical boundaries, we double the vertical domain size to
+(and weak SSFR dependence) of these numerically calibrated              Lz = 1024 pc compared to Paper I. Shearing-periodic bound-
+yield parameters are in very good agreement with analytic               ary conditions are employed in the horizontal directions, with
+expectations.                                                           L x = L y = 512 pc the same as in Paper I. The spatial
+   The MHD simulations of this paper allow us to study the              resolution is set to 2 pc as in Paper I. We adopt a linear
+evolution and saturated-state properties of magnetic ﬁelds in           external gravity proﬁle gext = -4pGrsd zzˆ , where rsd is the
+star-forming, turbulent, differentially rotating galactic disks         midplane volume density of stellar disk plus dark matter.
+with vertical stratiﬁcation. ISM turbulence driven by star                 In order to explore the independent effect of the magnetic
+formation feedback can generate and deform magnetic ﬁelds.              ﬁelds, we ﬁx the background gravity and gas surface density
+The small-scale turbulent dynamo, combined with buoyancy                parameters to rsd = 0.05 M pc-3 and S = 10 M pc-2 for all
+and sheared rotation, creates turbulent magnetic ﬁelds and              models. Initial proﬁles of the gas density are set by an
+modiﬁes mean magnetic ﬁelds, both of which can provide                  exponential function as r = r0 exp (-∣ z ∣ H ), with midplane
+vertical support to the ISM. We shall consider three different          density r0 = S 2H and scale height set using sz = 4 km s-1
+initial magnetic ﬁeld strengths (as well as two initial vertical        in Equations (7) and (8), also using z d = 1 2 and  as
+proﬁles), and directly measure the saturated-state magnetic ﬁeld        described below. The initial thermal pressure has the same
+strengths and feedback yields, while also testing how                   proﬁle as the density with midplane thermal pressure of
+magnetization affects the thermal and turbulent feedback yield          Pth,0 kB = 3000 cm-3 K. We vary the plasma beta at the
+components.                                                             midplane b 0 º Pth,0 Pmag,0 = 8pPth,0 B02 with two different
+                                                                        vertical ﬁeld distributions: uniform plasma beta with
+                3. METHODS AND MODELS                                   B = B0 exp ( - ∣ z ∣ 2H ) yˆ (Models MA) and uniform magnetic
+   In this paper, we extend our previous three-dimensional HD           ﬁelds with B = B0 yˆ (Models MB). The sufﬁxes of magnetized
+simulations from Paper Ito include magnetic ﬁelds. We solve            models denote the values of b 0 = 1, 10, and 100. The initial
+ideal MHD equations in a local, shearing box with self- and             magnetic energy is then largest for Model MB1 and smallest
+external gravity, thermal conduction, and optically thin cool-          for Model MA100. For comparison, we also present the results
+ing. To solve the MHD equations, we utilize Athena (Stone               from an unmagnetized counterpart (Model HL) as well as the
+et al. 2008) with the van Leer integrator (Stone & Gardiner             previous Model QA10 from Paper I(here, renamed HS). These
+2009), HLLD solver, and second-order spatial reconstruction.            hydrodynamic models differ in the size of the vertical domain
+We also consider feedback from massive young stars using                (“S”=small, Lz = 512 pc; “L”=large, Lz = 1024 pc).
+time-varying heating rate and momentum feedback from SNe.                  For our initial conditions, we have z d = 1 2 and C = 2.37
+The probability of massive star formation is calculated based           for all models. With vertically stratiﬁed magnetic ﬁelds
+on a predicted local SFR (Ṁ*) in cells with density exceeding a        (Models MA;  = 1 b 0 ), c = 1.12, 1.13, 1.19, and 1.73
+threshold, assuming an efﬁciency per free-fall time  ff = 1%           for b 0 = ¥ , 100, 10, and 1, respectively, while c = 1.12
+(e.g., Krumholz & Tan 2007), and adopting a total mass in new           for all MB models ( = 0). The scale height is
+stars per massive star of m* = 100 M. When a massive star              H = 77 [(1 + )(1 + 1 c )]1 2 pc and nH,0 = r0 1.4 mH =
+forms (i.e., when a uniform random number in (0, 1) is less             1.9 [(1 + )(1 + 1 c )]-1 2 cm-3. The midplane magnetic
+than the probability M˙ *Dt /m*), we immediately inject total           ﬁeld strength is
+radial momentum p = 3 ´ 10 5 M km s-1 in a surrounding
+                     * SFR surface density is then calculated
+10 pc sphere. The global                                                                          ⎛ Pth,0 k B ⎞1 2
+from                                                                              B0 = 3.2b - 1 2
+                                                                                                  ⎜             ⎟ mG.                (14)
+                                                                                            0
+                                                                                                  ⎝ 3000 cm-3 K ⎠
+                                *m*
+                     SSFR =                 ,                (13)           In contrast to Paper I, we drive turbulence for torb in
+                               L x L y tbin                             order to provide turbulent support at early stages before SN
+                                                                        feedback generates sufﬁcient turbulence. We utilize diver-
+where * denotes the total number of massive stars in the time          gence-free turbulent velocity ﬁelds following a Gaussian
+interval (t - tbin, t ), and tbin = 10 Myr is the UV-weighted           random distribution with a power spectrum of the form
+lifetime of OB stars (e.g., Parravano et al. 2003). The heating         ∣ dvk2 ∣ µ k 6 exp (-8k k pk ) where the peak driving is at
+rate is proportional to the mean FUV intensity, which is                k pk L x 2p = 4 and 128  kL x 2p  1. A new turbulent
+assumed to be linearly proportional to the SFR surface density,         velocity perturbation ﬁeld is generated every 10 Myr, with
+G µ JFUV µ SSFR . See Paper Ifor more details and other                total energy injection rate of E˙ turb = 500L  to the turbulence.
+source terms.                                                           This perturbation corresponds to the saturation level of one-
+   The models in this paper are magnetically modiﬁed versions           dimensional velocity dispersion ~4 km s-1. Turbulence is
+of the ﬁducial simulation QA10 from Paper I, with conditions            driven at full strength up to torb 2, and then slowly turned off
+similar to the solar neighborhood. Our simulation domain is a           from torb 2 to torb. The spatially uniform photoelectric heating
+local Cartesian grid far from the galactic center, with center          rate is set to a constant for the ﬁrst torb 2 (G = 0.8G0 , where
+rotating at an angular velocity of W = 28 km s-1 kpc-1 (the             G0 = 2 ´ 10-26 erg s-1 from Koyama & Inutsuka 2002). From
+corresponding orbital time is torb = 2p W = 219 Myr ) and               torb 2 to torb this imposed heating is slowly turned off and
+
+                                                                    4
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                                             Kim & Ostriker
+
+replaced by the self-consistent heating rate that is proportional                                     where the summation is over all grid zones (indices ijk) and the
+to the SFR surface density (Γ=0.4Γ0SSFR,-3).                                                        volume element is DV = (2 pc)3 . We also calculate the
+   By initially driving turbulence, and allowing smooth changes                                       horizontally averaged vertical proﬁle as
+from early to saturated stages in the thermal and turbulent
+supports, the current models minimize abrupt early collapse                                                                                åi,j qDxDy
+that was seen in the models of Paper I that were initialized                                                                q (z ; t ) º                    ,                    (16)
+without turbulence (as reproduced in model HS here). There,                                                                                     Lx L y
+the initial vertical collapse also triggered a strong burst of star
+formation, leading to exaggerated vertical oscillations. How-                                         where the summation is only over horizontal planes (indices ij)
+ever, we shall show that these and other differences in                                               at each vertical coordinate z (index k).
+numerical treatment (including initial turbulence driving,                                                 We use a horizontal average to obtain the mean magnetic
+vertical boundary conditions, and domain size) make little or                                         ﬁeld, B (z ). The turbulent magnetic ﬁeld is then deﬁned by
+no differences in the physical quantities (see Section 4.1) and                                       dB = B - B . Note that in our simulations the mean ﬁeld is
+averaged vertical distributions (see Section 4.2). Since some                                         dominated by the ŷ-component with small x̂-component and
+magnetized models saturate slowly, we run magnetized models                                           negligible ẑ -component. The turbulent magnetic pressure is
+longer to achieve a quasi-steady state for the turbulent magnetic                                     given by dPmag º ∣ dB ∣2 8p and the mean magnetic pressure is
+ﬁelds. For the purpose of computing time-averaged quantities,                                         given by Pmag º ∣ B ∣2 8p.
+the saturated stages are considered from t1 = 3torb to t2 = 4torb                                          Figures 1 and 2 plot the time evolution of selected
+for magnetized models and from t1 = 1.5torb to t2 = 2torb for                                         diagnostics that describe overall disk properties and energetics.
+unmagnetized models. Note that four orbits is still not long                                          In Figure 1, we plot (a) SFR surface density SSFR , (b) midplane
+enough for complete saturation of the mean magnetic ﬁeld in                                           number density nH,0 = r0 (1.4 mH ), and (c) mass-weighted
+the cases of initially strongest and weakest magnetizations.                                          mean height á ∣ z ∣ M . Figure 2 plots mass-weighted means of (a)
+                                                                                                      three-dimensional turbulent velocity ádv 2ñ1M 2 , (b) sound speed
+                   4. SIMULATION RESULTS                                                              ávth2ñ1M 2 , and (c) turbulent ádvA2ñ1M 2 and (d) mean ávA2ñ1M 2 Alfvén
+             4.1. Time Evolution and Saturated State                                                  velocities. Here, we subtract the azimuthal velocity arising
+                                                                                                      from the background shear (not the horizontal average) for
+   In this section, we shall show that model disks achieve a                                          turbulent velocity, dv º v + qWxyˆ . The mean and standard
+quasi-steady state, using evolution of diagnostics that describe                                      deviations of values from Figure 1 are listed in Table 1. Time
+the average disk properties at a given time. Volume- and mass-                                        averages are taken over the “saturated state” time interval
+weighted means for quantities qijk (t ) are respectively calculated                                   of (t1, t2 ). We also list in Table 1 the mean and standard
+using                                                                                                 deviation of H = S 2r0, z d = á ∣ z ∣ M 2H , and c = 4z d rsd r0.
+                       åqDV                            årqDV                                          In Table 2, we report the mean and standard deviations
+        á qñV (t ) º             ,     á qñM (t ) º          ,                         (15)           of the velocities shown in Figure 2, as well as
+                       Lx L y Lz                       årDV
+                                                                                                      sz = [ávth2ñM + ávz2ñM ]1 2 and seff = [s 2z + ávA2ñM 2 - ávA,2
+                                                                                                                                                                      zñM ]
+                                                                                                                                                                           1 2.
+
+
+
+                                                                                          Table 1
+                                                                               Mean Disk Properties at Saturation
+
+Model            SSFR                   nH,0                      á ∣ z ∣ ñM                  H                  zd                   χ                     ass,R             ass,M
+HS            1.59±0.38            1.96±0.56          61.5±10.4                  73.8±21.1           0.42±0.14          1.23±0.54            0.22±0.07            L
+HL            1.46±0.28            2.15±0.41          60.6±6.3                   67.3±12.9           0.45±0.10          1.21±0.35            0.25±0.10            L
+MA100         0.91±0.16            2.87±0.45          47.1±3.1                   50.3±7.9            0.47±0.08          0.94±0.22            0.22±0.13       0.23±0.07
+MA10          0.81±0.16            2.87±0.35          47.4±4.2                   50.4±6.2            0.47±0.07          0.95±0.18            0.22±0.09       0.27±0.07
+MB10          0.74±0.15            2.85±0.31          47.6±3.6                   50.7±5.5            0.47±0.06          0.95±0.16            0.21±0.09       0.32±0.08
+MA1           0.75±0.16            3.00±0.37          48.2±4.2                   48.2±6.0            0.50±0.08          0.96±0.19            0.23±0.10       0.22±0.10
+MB1           0.56±0.14            2.97±0.43          55.1±4.3                   48.7±7.0            0.57±0.09          1.10±0.24            0.17±0.09       0.27±0.10
+
+Note. The mean and standard deviation are taken over t torb = 1.5–2 for HD models and t torb = 3–4 for MHD models. See Sections 2 and 4.1 for the deﬁnition of
+each quantity. SSFR is in units of 10-3 M kpc-2 yr-1,nH,0 is in units of cm-3,á ∣ z ∣ M and H are in units of pc.
+
+                                                                                            Table 2
+                                                                                   Saturated State Velocities
+
+Model                   ádv 2ñ1M 2                   ávth2ñ1M 2                          ádvA2ñ1M 2                   ávA2ñ1M 2                      sz                       seff
+HS                  7.31±0.65                    3.89±0.20                              L                           L                       5.96±0.36                5.96±0.36
+HL                  6.95±0.53                    3.89±0.16                              L                           L                       5.67±0.27                5.67±0.27
+MA100               5.22±0.55                    3.16±0.13                         3.07±0.13                 1.93±0.17                  4.36±0.28                4.78±0.27
+MA10                5.10±0.55                    3.07±0.16                         3.18±0.10                 2.47±0.17                  4.27±0.29                4.83±0.25
+MB10                4.89±0.55                    3.01±0.15                         3.19±0.12                 2.74±0.13                  4.17±0.30                4.81±0.27
+MA1                 4.94±0.52                    3.05±0.17                         3.15±0.14                 3.16±0.15                  4.21±0.28                4.97±0.24
+MB1                 4.46±0.45                    3.09±0.17                         3.19±0.16                 5.39±0.22                  4.11±0.27                5.78±0.22
+
+Note. The mean and standard deviation are taken over t torb = 1.5–2 for HD models and t torb = 3–4 for MHD models. See Sections 2 and 4.1 for the deﬁnition of
+each quantity. All velocities are in units of km s−1. See Figure 3 for detailed statistical information about energies related to each velocity component.
+
+                                                                                                  5
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                  Kim & Ostriker
+
+
+
+
+Figure 1. Time evolution of (a) SFR surface density SSFR , (b) midplane number density nH,0 , and (c) mass-weighted mean thickness á ∣ z ∣ M . Physical model
+parameters differ only in the initial magnetic energy, increasing from zero in HS and HL to a maximum in MB1 (see Section 3).
+
+
+
+   Comparing Models HS (yellow) and HL (black), Figure 1                             The magnetized models also achieve a quasi-steady state,
+shows distinct differences at early stages (t < torb), but no                     but not so rapidly as the unmagnetized models. Even after
+systematic differences in mean values of physical quantities at                   saturation of thermal and turbulent velocities (both dv and dvA )
+later stages. In Model HS, initial vertical collapse at                           as well as the midplane density and scale height at ~2torb,
+t ~ 20 Myr triggers an abrupt increase in nH,0 and hence                          clear secular evolution continues for the mean Alfvén velocity
+SSFR , which then produces feedback that causes a strong                          (or mean magnetic ﬁelds; see Figure 2(d)). The models
+reduction in nH,0 and SSFR , leading to further bounces. These                    with initially strongest magnetic ﬁelds (MA1 and MB1) slowly
+exaggerated vertical oscillations are a direct consequence of the                 lose energy from the mean magnetic ﬁeld as buoyant magnetic
+lack of turbulence in the initial conditions and early evolution,                 ﬁelds escape through the vertical boundaries. Conversely, the
+before feedback has developed. In contrast to Model HS,                           mean magnetic energy of models with initially weakest
+                                                                                  magnetic ﬁelds (MA100 and MA10) slowly grows. We note,
+Model HL (and all magnetized models) shows no strong
+                                                                                  however, that since our horizontal dimension is only 512 pc
+oscillation at early stages, although more limited vertical
+                                                                                  and is assumed to be periodic, magnetic energy loss
+oscillation emerges and persists at later times. The early driven
+                                                                                  might be somewhat overestimated in our simulations compared
+turbulence and constant heating in Model HL (and magnetized                       to the case in which azimuthal ﬁelds are anchored at larger
+models) prevent strong, global vertical oscillations, keeping the                 scales. In principle, if numerical reconnection in our models is
+midplane density and the thickness of the disk more or less                       faster than realistic small-scale reconnection (which is
+constant. Without initial vertical collapse, there is no bursting                 uncertain) should be, we might also overestimate the growth
+star formation; rather, the SFR in Model HL remains moderate.                     of mean magnetic ﬁelds in weak-ﬁeld models. Notwithstanding
+After one orbit time, when the turbulence driving and heating                     these potential numerical effects, the interesting tendency
+are fully self-consistent with feedback from the star formation,                  seen in Figure 2(d) is that ávA2ñ1M 2 converges toward
+all diagnostics in the unmagnetized models quickly saturate.                      similar values for cases with widely varying initial magnetic
+The convergence of Models HS and HL to the same saturated                         ﬁelds.
+state, despite their completely different early evolution,                           The magnetized models show distinguishably different ﬁnal
+conﬁrms the robustness of our previous work.                                      saturated states compared to the unmagnetized models. The
+
+                                                                             6
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                   Kim & Ostriker
+
+
+
+
+           Figure 2. Time evolution of mass-weighted rms (a) turbulent kinetic, (b) thermal, (c) turbulent Alfvén and (d) mean Alfvén velocities.
+
+SFR surface density and turbulent and thermal velocity                           MB10. As seen in Figure 2 and Table 2, the saturated-state
+dispersions are lower in the magnetized models, while                            values of ádv 2ñ1M 2 , ávth2ñ1M 2 , and ádvA2ñ1M 2 , are essentially indis-
+variations among the set of magnetized models are small. This                    tinguishable for all magnetized models, whereas ávA2ñ1M 2 values
+is completely consistent with expectations from the equilibrium                  show some variations as they have not yet reached asymptotic
+theory, in which (1) the sum of all pressures must offset a given                values.
+ISM weight, so the addition of magnetic pressure reduces the                        In Figure 3, we summarize the saturated-state energy ratios
+need for turbulent and thermal pressure, and (2) an increase in                  with “box-and-whisker” plots omitting outliers, and with the mean
+“feedback yields” due to magnetic ﬁelds implies that a lower                     values (red squares). From left to right in each panel, the initial
+SFR is needed for equilibrium. We examine this issue in detail                   degree of magnetization increases. Panels show the fraction of
+in Section 4.3.                                                                  total energy in each component: turbulent kinetic, thermal,
+   Similarities and differences among models are clearest in the                 turbulent magnetic, and mean magnetic. The turbulent kinetic
+energetics. In Figure 2, we clearly see the saturation of                        energy is deﬁned by Eturb º åDVr ∣ dv ∣2 2, and the thermal
+turbulent and thermal velocity dispersions for all models                        energy is Eth = åDVPth (g - 1), where g = 5 3 in our
+immediately after torb. The turbulent Alfvén velocity also                       simulations. The mean and turbulent magnetic energies are given
+converges rapidly except in Model MA100, which converges                         by Emag º åDV ∣ B ∣2 8p and dEmag º åDV ∣ dB ∣2 8p.
+after 3torb. Model MB10 achieves a quasi-steady state earliest                   Since dB = 0 by deﬁnition, Emag = Emag + dEmag. Note
+among the magnetized models since it has initial magnetic                        that these energies are integrated over the whole volume,
+energy comparable to that of the ﬁnal state. We thus                             which compared to the midplane (see Section 4.2 and
+consider Model MB10 as the ﬁducial run. All other magnetized                     Table 3) increases the relative proportion of thermal to turbulent
+models converge toward the same saturated state as Model                         energy.
+
+                                                                             7
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                                 Kim & Ostriker
+
+
+
+
+Figure 3. Box-and-whisker plot of the energy ratios (a) turbulent (kinetic) E turb E tot , (b) thermal E th E tot , (c) turbulent magnetic dEmag E tot , and (d) mean magnetic
+Emag E tot , averaged over (t1, t2 ). The bottom and top of the rectangular box denote the ﬁrst (Q1) and third (Q3) quartiles, respectively, while the red line within the box
+is the median (second quartile; Q2) of the data. The lower/upper whisker reaches to 1.5 ´ (Q3 - Q1 ) or the minimum/maximum of the data, whichever is larger/
+smaller.
+
+
+                                                                                Table 3
+                                                           Vertical Support and Feedback Yield at Saturation
+
+Model                  Pturb                   Pth                   dPmag                   Pmag                    hturb                    hth                   dhmag
+HS                5.24±3.05             1.78±0.40                  L                       L                 3.30±2.08             1.12±0.37                  L
+HL                5.15±2.61             1.61±0.29                  L                       L                 3.53±1.91             1.10±0.29                  L
+MA100             3.40±2.42             1.24±0.18             0.94±0.21             0.46±0.15            3.72±2.73             1.35±0.31             1.03±0.29
+MA10              3.38±2.66             1.14±0.20             1.04±0.18             0.73±0.18            4.17±3.38             1.41±0.36             1.29±0.33
+MB10              2.85±1.46             1.04±0.18             1.03±0.17             0.87±0.23            3.83±2.12             1.40±0.38             1.38±0.37
+MA1               3.02±2.11             1.05±0.16             1.10±0.22             0.91±0.29            4.00±2.92             1.39±0.37             1.46±0.43
+MB1               2.18±1.12             0.83±0.16             1.16±0.18             1.83±0.45            3.92±2.23             1.49±0.47             2.08±0.61
+
+Note. The mean and standard deviation are taken over t torb = 1.5–2 for HD models and t torb = 3–4 for MHD models. The vertical support terms at the midplane
+(Pturb, Pth, dPmag , and Pmag ) are given in units of 10 3kB cm-3 K. See Equation (12) for thedeﬁnition of η and Figure 9 for detailed statistical information about
+feedback yields.
+
+
+   For the unmagnetized models, the turbulent kinetic and                                 has been found for saturation of small-scale dynamo simulations
+thermal energies are nearly in equipartition. For Model MB10,                             at large Reynolds number (e.g., Haugen et al. 2004, see
+which is the most saturated magnetized model, the total energy is                         Section 5 for details). Although the mean magnetic energy is not
+portioned into kinetic (35%), thermal (39%), turbulent magnetic                           yet fully saturated (see Figure 2(d)) for all models, there is a
+(15%), and mean magnetic (11%) terms. Thus, kinetic, thermal,                             clear trend of convergence toward the saturated state of Model
+and magnetic components are each close to 1 3 of the total                                MB10. Figure 2 and Table 2 show that component energies in
+energy. The ratio between turbulent kinetic and turbulent                                 the magnetized models are nearly the same except for the mean
+magnetic energies is about Eturb:δEmag=7:3, similar to what                             magnetic term, which still reﬂects initial mean ﬁeld strengths.
+
+                                                                                      8
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                               Kim & Ostriker
+
+   It is of interest to characterize the angular momentum                                          4.2. Vertical Dynamical Equilibrium
+transport by both turbulence and magnetic ﬁelds in our models.                           In this subsection, we investigate the vertical dynamical
+We measure the R–f component of Reynolds and Maxwell                                  equilibrium of model disks using horizontally and temporally
+stresses as a function of z, Rxy º rvx dvy and Mxy º Bx By 4p ,                       averaged proﬁles of Pturb, Pth , dPmag , and Pmag , in comparison
+respectively.3 Since the stresses are non-negligible only within                      to proﬁles of the ISM weight . We also compare midplane
+one gas scale height, it is most informative to calculate the                         values.
+mass-weighted mean values of the stresses normalized by                                  Figure 5 plots time evolution of horizontally averaged
+the mean midplane thermal pressure, the “ass-parameters”                              midplane support terms: (a) Pturb, (b) Pth , (c) dPmag , and (d)
+of Shakura & Sunyaev (1973): ass,R = Rxy M Pth,0 and                                  Pmag . The mean and standard deviation values over (t1, t2 ) are
+ass,M = Mxy M Pth,0 (see Table 3 for Pth,0 ). As listed in                            summarized in Table 3. Table 3 also lists the feedback yields
+Table 1, the ass-parameters are comparable to each other and                          for each support component in the units of Equation (12).
+∼0.2–0.3. Although the ratio between Reynolds and Maxwell                             Similar to Figures 1 and 2, convergence of each support term
+                                                                                      except the mean magnetic ﬁeld is evident after t torb > 3,
+stresses is completely different from the case of turbulence
+                                                                                      regardless of initial magnetic ﬁeld strength. The mean magnetic
+driven by magnetorotational instability (where the Maxwell
+                                                                                      support Pmag in Figure 5(d) more gradually converges toward
+stress dominates), the total stress ∼0.4–0.5 is similar (e.g.,
+                                                                                      the value of the ﬁducial run, Model MB10.
+Hawley et al. 1995; Kim et al. 2003; Piontek & Ostriker 2005).                           Figures 6(a)–(d) plots vertical proﬁles of the four individual
+Note that gravitational stress in our simulations is generally                        support terms averaged over (t1, t2 ) and the horizontal
+lower, with ass ~ 0.05. This is also true for other simulations                       direction. Panel (e) shows the ratio of the kinetic (turbulent
+in which turbulence is driven by gravitational instability                            + thermal) to the thermal term, a º (Pturb + Pth ) Pth ; and panel
+combined with sheared rotation, which give ass less than 0.1                          (f) shows the ratio of total magnetic to kinetic term,
+(e.g., Shi & Chiang 2014). The total stress gives ass ~ 0.4–0.5,                       º (d Pmag + Pmag ) (Pturb + Pth ). Note that the shape of
+implying that the gas accretion time tacc ~ R2W (ass vth2 ) =                         vertical proﬁles of the Reynolds and Maxwell stress are
+390 Gyr for vth = 3 km s-1 using R=8 kpc.                                           respectively similar to those of Pturb and dPmag (see Figures 6(a)
+   To illustrate the overall saturated-state disk structure, in                       and (c)).
+Figure 4 we display surface density (top) and magnetic ﬁeld                              First of all, Figure 6 conﬁrms that Models HS and HL agree
+lines (bottom) for Models (a) MA100, (b) MB10, and (c) MB1                            very well not only for the mean and midplane values, but also
+at t torb = 3. As shown in Figures 2 and 3, the strength of the                       for the overall proﬁles. The periodic vertical boundary
+mean magnetic ﬁeld increases from MA100 to MB10 to MB1                                conditions in Model HS introduce a small anomaly near the
+(from left to right in Figure 4). Averaged over the saturation                        vertical boundaries.
+period (t torb = 3–4), the mean and turbulent magnetic                                   In the presence of magnetic support, the turbulent and
+ﬁeld values at the midplane are B = (-0.26, 1.2, 0) mG                                thermal terms are both reduced. However, the relative
+and dBrms = (1.3, 1.6, 1.1) mG          for Model MA100,                              contribution between turbulent and thermal terms remains
+                                                                                      similar (Figure 6(e)): a ~ 4 within one scale height, decreasing
+B = (-0.30, 1.7, 0) mG and dBrms = (1.4, 1.7, 1.2) mG
+                                                                                      to a ~ 1 at high-∣ z ∣. This is an important consequence of self-
+for Model MB10, and B = (-0.15, 2.5, 0) mG and                                        regulation by star formation feedback, explained in the
+dBrms = (1.4, 1.8, 1.2) mG for Model MB1. For all models,                             equilibrium theory (see Section 4.3). The turbulent magnetic
+the azimuthal (ŷ ) component is the largest of B . However, this                     support in all magnetized models converges to very similar
+component exceeds the turbulent components only for model                             proﬁles (Figure 6(c)), while the mean magnetic support still
+MB1; for model MB10 it is comparable to the largest turbulent                         shows differences (Figure 6(d)), especially for two extreme
+component, and for model MB100 it is smaller than the largest                         cases (Models MA100 and MB1). For all models except MB1,
+turbulent component. As a result, ﬁeld lines are more complex                         Figure 6(f) shows that the midplane value  0 ~ 0.2–0.5, while
+and random in Model MA100 (dEmag > Emag) and more                                      becomes very small at high-∣ z ∣; Model MB1 has  ~ 0.3–1.
+aligned in a preferential direction (along ŷ) in Model MB1                              Figure 7 presents vertical proﬁles of the horizontally
+(dEmag < Emag ). The dominance of the mean magnetic ﬁelds at                          averaged density from different thermal components
+all heights in Model MB1 is also evident.                                             of gas, for each model. We separately plot the proﬁles
+   Despite the strong distinctions in the structure of ﬁeld lines,                    of cold (nc; T < 184 K ), intermediate-temperature (ni;
+the surface density maps look quite similar for all models. In                        184 K < T < 5050 K ), and warm (nw; T > 5050 K ) phases,
+particular, there is no visually prominent evidence of alignment                      as well as the whole medium (nH = nc + n i + n w ) and
+of dense ﬁlaments either perpendicular or parallel to the mean                        combined non-cold (n i + w ; T > 184 K ) components. The
+magnetic ﬁeld direction. However, traces of the shear are                             distribution of cold medium is mostly limited to one gas scale
+evident in the overall pattern of striations (consistent with                         height, while the warm medium extends to high ∣ z ∣ with a dip
+trailing wavelets), particularly for Model MB1. More quanti-                          near the midplane. The intermediate-temperature gas is not as
+tative analysis of the morphology of ﬁlaments and magnetic                            concentrated toward the midplane as the cold medium, but does
+                                                                                      not extend to high ∣ z ∣. Decomposition into cold (nc) and non-
+ﬁeld lines may be obtained using maps of synthetic 21 cm
+                                                                                      cold (n i + w ) components gives two smooth proﬁles that
+emission, dust emission, and polarization (e.g., Soler
+                                                                                      resemble the results for two-component ﬁts to observed H I
+et al. 2013; Planck Collaboration et al. 2015). We defer this
+                                                                                      gas from 21 cm emission.
+interesting study to future work.                                                        Because most of cold medium resides within one gas scale
+                                                                                      height (and we do not consider runaway O stars), most of SN
+3
+   We conﬁrm that the other off-diagonal terms of stress tensors are one or two       explosions occur there. The Pturb and α proﬁles in Figure 6 are
+orders of magnitude smaller.                                                          peaked near the midplane, with scale heights similar to the cold
+
+                                                                                  9
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                             Kim & Ostriker
+
+
+
+
+Figure 4. Gas and magnetic structure in Models (a) MA100, (b) MB10, and (c) MB1 at t torb = 3. Top: surface density in units of M pc-2 . Bottom: 3D visualization
+of magnetic ﬁeld lines, with vertical slices of hydrogen number density shown by the color scale on box boundaries. Model MB1 shows ﬁeld lines preferentially along
+ŷ within ∣ z ∣ < 300 pc since its mean magnetic ﬁelds are still dominant. From right to left, randomness of the magnetic ﬁeld structure increases as the mean ﬁeld
+strength decreases, since the turbulent ﬁeld strengths are all similar at this time. Differences in the magnetic ﬁeld produce no clear signature in surface density maps,
+however, with similar cloudy structure in all cases.
+
+
+medium scale height. The value of α is close to unity at                                   Figure 8 shows that vertical equilibrium is remarkably well
+∣ z ∣ > 100 pc, implying that much of the turbulent energy                              satisﬁed (thick blue and red lines overlap almost completely).
+dissipates very efﬁciently within the driving layer without                             In the present simulations, the magnetic scale height is not very
+propagating to high ∣ z ∣. Thermal pressure is ﬂat in the central                       different from the gas scale height, especially for the turbulent
+layer, implying that the two-phase medium is well-mixed and                             component. Thus, similarly to the gas pressure terms we can
+in pressure equilibrium. Beyond the turbulent, two-phase layer,                         simply replace DPmag  Pmag,0 in Equations (1) and (2).4
+the ISM is mostly warm gas and is supported mainly by                                   Since the weight of the gas (rhs of Equation (5)) is more or less
+thermal pressure.                                                                       the same for all of the present models (c ~ 1 within 25% from
+     In order to check vertical dynamical equilibrium quantita-                         Table 1), the additional support from both the mean and
+tively, for each model we calculate the weight of the gas                               turbulent magnetic ﬁelds necessarily implies a reduction in the
+using the horizontally and temporally averaged density                                  turbulent and thermal pressures compared to unmagnetized
+and gravitational potentials, with sg (z ) and ext (z ) as                            models. Although external gravity dominates the weight at
+in Equations (3) and (4) except integrated between z and                                high-∣ z ∣, self- and external gravity contributions are almost the
+zmax. Figure 8 plots the vertical proﬁles for the total                                 same close to the midplane. Within the turbulent driving layer,
+                                                                                        turbulent pressure dominates other support terms for all
+support DPtot (z ) = Ptot (z ) - Ptot (zmax ) (blue) and the weight
+                                                                                        models, while the thermal pressure dominates at high-∣ z ∣. The
+ (z ) = sg (z ) + ext (z ) of the ISM (red). We also plot each
+                                                                                        turbulent and mean magnetic support terms are as important as
+component of the vertical support shown in Figure 8 along with                          the thermal pressure at the midplane. Only for Model MB1, the
+the individual weights, to show the relative importance of the                          mean magnetic support is substantial at all z. Table 3 includes
+contributing terms in each model.                                                       the midplane values of the contribution to vertical support from
+4
+                                                                                        each component.
+   Note, however, that in observations the mean magnetic ﬁeld has a scale
+height much larger than that of the warm/cold ISM. This may be due to effects
+(not included in the present models) that help drive magnetic ﬂux out of
+galaxies, including a hot ISM and cosmic rays. For this reason, Equations (1)                                    4.3. Regulation of SFRs
+and (2) are most generally written in terms of differences in the magnetic
+support, and also allow for differences in radiation and cosmic-ray pressure              We compute the feedback yield (ratio of midplane support to
+across the warm/cold ISM layer (Ostriker & Shetty 2011).                                surface density of SFR) for each component at saturation, and
+
+                                                                                  10
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                             Kim & Ostriker
+
+
+
+
+Figure 5. Time evolution of horizontally averaged components of support at the midplane: (a) turbulent kinetic Pturb, (b) thermal Pth, (c) turbulent magnetic dPmag , and
+(d) mean magnetic Pmag .
+
+
+report values in Table 3 in the units of Equation (12). These                           et al. 2009; Lemaster & Stone 2009). Table 3 includes hmag for
+yields are a quantitative measure of the efﬁciency of feedback                          reference. However, it should be kept in mind that the mean
+for controlling star formation. Figure 9 presents a box-and-                            magnetic ﬁeld support is less directly related to the SFR than
+whisker plot for each component feedback yield. As shown in                             the other terms. Mean magnetic ﬁelds arise from the mean-ﬁeld
+Figure 9, the individual feedback yields except hmag are quite                          dynamo, which depends on the turbulent magnetic ﬁeld and
+similar for all models. Notably, the magnetized models and                              therefore indirectly on the SFR, but also depends on other
+unmagnetized models have comparable value for both turbulent                            physical effects in a complex manner that is not well
+and thermal feedback yields, hturb ~ 3.5–4 and hth ~ 1.1–1.4.                           understood. From the present simulations, we simply note that
+The agreement of hturb between HD and MHD models stems                                  hmag is comparable to dhmag for the saturated models.
+from the similarity in dissipation timescales for HD and MHD                               The theoretical idea of near-linear relationships between
+turbulence (e.g., Mac Low et al. 1998; Stone et al. 1998).                              SFRs and turbulent and thermal pressures for self-regulated
+   Except for models MA100 and MB1, the magnetic ﬁeld and                               equilibrium ISM states was introduced and initially quantiﬁed
+especially the turbulent magnetic energy become fairly well                             by Ostriker et al. (2010), Ostriker & Shetty (2011), and Kim
+saturated, due to efﬁcient generation from the small-scale                              et al. (2011). In the present simulations, our momentum
+turbulent dynamo. The resulting turbulent magnetic feedback                             feedback prescription for SNe injects radial momentum of
+yield for these models is dhmag ~ 1.3–1.5, providing a ratio                            p = 3 ´ 10 5 M km s-1 within a 10 pc sphere (see
+hturb dhmag ~ 3–4. This is equivalent to the energy ratios of                            *
+                                                                                        Paper Ifor details); other work conﬁrms this value for the
+Eturb dEmag ~ (1.5–2) found in driven turbulence MHD                                    momentum from a single SN of energy 10 51 erg, insensitive to
+simulations (e.g., Stone et al. 1998; Haugen et al. 2004; Cho                           the mean value of the ambient density or cloudy structure in the
+
+                                                                                  11
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                    Kim & Ostriker
+
+
+
+
+Figure 6. Temporally and horizontally averaged vertical proﬁles of (a) Pturb, (b) Pth, (c) dPmag , (d) Pmag , (e) a º (Pturb + Pth ) Pth, and
+(f)  º (d Pmag + Pmag ) (Pturb + Pth ).
+
+
+
+ambient ISM (see Kim & Ostriker 2015 and references within).               energy-containing scale), the expected saturation level for
+Our adopted value for the total mass of new stars formed per               turbulent pressure is Pturb,0 » Pdriv, giving hturb = 3.6. Direct
+SN is m* = 100 M (e.g., Kroupa 2001). For these feedback                  calibration in Paper Igives Pturb,0 Pdriv = 1.20S-
+                                                                                                                             SFR,-3(see also
+                                                                                                                               0.11
+
+parameters, the momentum ﬂux/area in the vertical direction is             Kim et al. 2011). Here, including results from both previous
+then      Pdriv = (p 4m* ) SSFR = 3.6 ´ 10 3SSFR,-3 kB cm-3 K              and current simulations, we obtain Pturb,0 Pdriv = 0.9–1.1 from
+                    *
+(Ostriker & Shetty 2011); this is the effective turbulent driving          all HD and MHD models. Thus, the turbulent pressure is
+rate in the vertical direction. If dissipation of turbulence occurs        consistent with theoretical predictions and insensitive to
+in approximately a vertical crossing time over H (the main                 magnetization.
+
+                                                                      12
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                     Kim & Ostriker
+
+
+
+
+Figure 7. Vertical saturated-state density proﬁles of cold (blue; T < 184 K ), intermediate-temperature (green; 184 K < T < 5050 K ), and warm (red; T > 5050 K )
+gas phases. The proﬁles of total density (black) and combined non-cold phases (yellow; T > 184 K ) are also shown.
+
+
+   As the SFR varies in our simulations, the time-varying heating                   Pmin,3 = 0.7SSFR,-3 and Pmax,3 = 2.2SSFR,-3 (see Koyama &
+rates move the thermal equilibrium curves up and down in the                        Inutsuka 2002; Kim et al. 2008). The geometric mean of these
+density–pressure phase plane. To maintain a two-phase medium                        two pressures is representative of the expected thermal pressure in
+within the midplane layer, the actual thermal pressure of gas must                  a two-phase medium (e.g., Wolﬁre et al. 1995, 2003), yielding
+change to be self-consistent with the changing heating rate.                        Ptwo,3 º (Pmin,3 Pmax,3 )1 2 = 1.2SSFR,-3 . Ostriker et al. (2010)
+Speciﬁcally, for a two-phase medium the range of the midplane                       argued that the self-consistent expected midplane pressure for a
+thermal pressure is between the minimum and maximum                                 star-forming disk in equilibrium is Pth ,0 ~ Ptwo, corresponding to
+pressures of the cold and warm medium, Pmin and Pmax,                               hth = 1.2 for the thermal feedback yield. Here, we obtain
+respectively. Our adopted cooling and heating formalism gives                       Pth ,0 Ptwo = 1.0–1.3 for all HD and MHD models, consistent
+
+                                                                              13
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                        Kim & Ostriker
+
+
+
+
+Figure 8. Proﬁles of saturated-state vertical support (blue) and gas weight (red). Total support and total weight are shown in thick lines. Thin blue solid, dotted,
+dashed, dotted–dashed lines denote turbulent kinetic, thermal, turbulent magnetic, and mean magnetic support, respectively. Thin red dotted and dashed lines denote
+the weight of the ISM under self- and external gravity, respectively.
+
+with the theory in Ostriker et al. (2010) and with the numerical                     equipartition level with turbulent kinetic energy. In our
+results in Paper I(see also Kim et al. 2011), Pth ,0 Ptwo = 1.09                    simulations, the saturation level of turbulent magnetic energy
+S- 0.14
+  SFR,-3 .                                                                           is ~40% or slightly less than that of the turbulent kinetic energy
+   In addition to the turbulent and thermal pressures, the                           (see Figure 3). If turbulent kinetic and magnetic components are
+turbulent magnetic support is also directly related to the SFR.                      all isotropic so that Pturb = (1 3) r ∣ dv ∣2 = (2 3) Eturb and
+As demonstrated in Figures 2 and 5, the small-scale turbulent                        d Pmag = (1 3)∣ dB ∣2 8p = (1 3) dEmag, then Eturb ~ 2dEmag
+dynamo generates turbulent magnetic ﬁelds efﬁciently. The                            (Figure 3) would give Pturb ~ 4d Pmag . We ﬁnd Pturb,0 ~ Pdriv~
+turbulent magnetic energy is expect to saturate at roughly                           3dPmag,0 , except for Model MB1, see Table 3. In idealized,
+
+                                                                                14
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                           Kim & Ostriker
+
+
+
+
+Figure 9. Feedback yields, deﬁned in Equation (12): (a) hturb, (b) hth, (c) dhmag, and (d) hmag. The box-and-whisker plot is as in Figure 3. Note that the mean (square
+symbol) and median (red line) of hturb are different since the spikes in time evolution of Pturb (see Figure 5(a)) caused by SN feedback affect the mean more than the
+median.
+
+
+driven MHD turbulence simulations, Eturb dEmag ~ 1–2.5 for                             Pmag , because the evolution timescale for the mean ﬁeld is
+various initial magnetic ﬁelds, Mach number, and compressi-                            much longer than that for the turbulent ﬁeld (see Figure 2). In
+bility of gas (e.g., Haugen et al. 2004; Cho et al. 2009; Lemaster                     addition, the mean ﬁeld level may in principle be affected by
+& Stone 2009). Our simulations are generally consistent with                           numerical parameters including the horizontal box size and
+saturation energy levels from idealized driven turbulence                              effective numerical resistivity. Thus, it remains uncertain
+experiments in a periodic box, keeping in mind that identical                          whether the mean magnetic support should be considered as
+results are not expected in view of differences in the setup. (That                    directly related to the SFR or not. Models MA10, MB10, and
+is, rather than an idealized periodic box with spectral driving of                     MA1 appear closest to saturation in their mean magnetic ﬁeld,
+turbulence, our simulations incorporate complex physics to                             and have Pmag,0 Pdriv ~ 0.3, which would correspond to
+model realistic galactic disks including vertical stratiﬁcation,                       hmag ~ 1. For reference, Models MA100 and MB1, respec-
+compressibility, spatially localized turbulent driving, self-
+                                                                                       tively, have Pmag,0 Pdriv ~ 0.14 and 0.9, with the caveat that
+consistent evolution of mean ﬁelds, self-gravity, the presence
+of cooling and heating, and so on.)                                                    these models are not asymptotically converged.
+   Our simulations are suggestive, but not conclusive, with                               Figure 10 plots SSFR as functions of three midplane
+respect to the asymptotic equilibrium state of the mean                                (effective) pressures: (a) total pressure Ptot º Pturb + Pth +
+magnetic support and its connection to SFRs. The mean ﬁelds                            dPmag + Pmag , (b) total “feedback” pressure Pfb º Pturb +
+for all models appear to be converging to the same level of                            Pth + d Pmag , and (c) kinetic pressure Pturb + Pth .
+support as the turbulent ﬁelds (e.g., as in Model MB10; see                            We also plot as a solid line the ﬁtting result from HD
+Figures 2 and 5), which as shown above have dPmag µ SSFR .                             models in Paper Ifor a wide range of Σ and rsd , SSFR,-3 =
+Note that the mean magnetic ﬁeld is anisotropic and dominated                          2.1 [(Pturb + Pth ) 10 4kB cm-3 K)]1.18 . The vertical dotted line
+by the azimuthal component, so Pmag = Emag in contrast to                              in panel (a) denotes the total ISM weight when c = 1 (as in
+d Pmag = (1 3) dEmag for the isotropic case. However, longer-                          Table 1), Ptot,DE = 0 = pGS2 (1 + c) 2  6.6 ´ 10 3kB cm-3 K.
+term simulations would be needed to conﬁrm convergence of                              As shown in Figure 8, vertical dynamical equilibrium indeed
+
+                                                                                 15
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                            Kim & Ostriker
+
+
+
+
+Figure 10. SFR surface density as a function of midplane values of the effective pressure: (a) total pressure Ptot º Pturb + Pth + d Pmag + Pmag , (b) feedback pressure
+Pfb º Pturb + Pth + d Pmag , and (c) kinetic pressure Pturb + Pth . The solid line denotes the ﬁt from a wide parameter space of HD models in Paper I (see text). The
+vertical dotted line in (a) is the midplane pressure required for the vertical dynamical equilibrium, Ptot,DE = pG S2 (1 + c ) 2 = 6.6 ´ 10 3kB cm-3 K for c = 1. The
+dashed line in (b) is the relationship between SSFR and Pfb using Equation (12) with total feedback yield for the ﬁducial run, MB10, hturb + hth + dhmag = 6.6.
+
+
+holds so that the total midplane pressure adjusts to match this                        simulations for a wider range of these parameters, for
+weight. We note that the total midplane pressure and weight                            magnetized models, would be needed to conﬁrm the robustness
+are very similar for all models (c ~ 1 agrees within 25% for                           of this conclusion.
+all cases), since we ﬁx Σ and rsd , and seff and z d are                                  In short, the presence of the magnetic ﬁelds will reduce the
+insensitive to the model parameters. The vertically aligned                            SFR by increasing the total efﬁciency of feedback
+symbols in Figure 10(a) show graphically the consistency of                            (hturb + hth + dhmag ) and reducing the required dynamical
+Ptot ,0 and 0 in all models, and also make clear that the                             equilibrium pressure from feedback (Ptot,DE - DPmag ). The
+inclusion of magnetic terms reduces SSFR for the same Ptot ,0.                         general relationship between the SFR surface density and the
+   Since the mean magnetic ﬁeld can supply vertical support                            midplane pressure including magnetic terms can then be
+without star formation (at least on timescales comparable to the                       written as
+diskʼs vertical crossing time), the total support requirement
+from star formation feedback for the vertical equilibrium                                                            ⎛ h turb + h th + dh mag ⎞-1
+can be reduced to Pfb = Ptot,DE - DPmag (where we assume                                   SSFR = 10-3 M kpc-2 yr-1⎜                         ⎟
+dPmag (zmax )  0, as turbulent ﬁelds are driven only within the                                                     ⎝            5           ⎠
+star-forming layer, but we keep Pmag (zmax ) for generality,                                        ⎛ Ptot,DE - DPmag ⎞
+allowing for the possibility that the mean ﬁelds are carried into                                 ´⎜                      ⎟.                                      (17)
+                                                                                                    ⎝ 5 ´ 10 3k B cm-3 K ⎠
+the halo by winds). Thus, it is interesting to plot SSFR as a
+function of midplane values of Pfb instead of Ptot , which we                          If DPmag is asymptotically proportional to SSFR (which would
+show in Figure 10(b). In the presence of magnetic ﬁelds, even
+                                                                                       be true if the mean-ﬁeld dynamo arises from feedback-driven
+with very weak mean ﬁelds, star formation feedback can
+generate turbulent magnetic ﬁelds at a signiﬁcant level in a very                      ﬂuctuations in the magnetic and velocity ﬁelds, similar to the
+short time. The additional support from turbulent magnetic                             small-scale turbulent dynamo), a relationship of the form
+ﬁelds enhances overall feedback yield with dhmag ~ 1–2 on                              SSFR µ Ptot,DE with larger total efﬁciency of feedback would
+top of hturb + hth ~ 4–5. Thus, the feedback pressure is                               also hold. Alternatively, DPmag may be negligible compared to
+larger by 20%–40% at a given SFR for a magnetized                                      Ptot,DE if the scale height of the mean magnetic ﬁeld is large
+medium than for an unmagnetized medium. The dashed line                                compared to that of the neutral ISM.
+in panel (b) represents SSFR,-3 = Pfb,3 (hturb + hth + dhmag )
+with hturb + hth + dhmag = 6.6, the feedback yield for Model                                            5. SUMMARY AND DISCUSSION
+MB10. As expected, the symbols and the dashed line in                                     In Paper I, we developed realistic galactic disk models with
+Figure 10(b) for magnetized models fall systematically below                           cooling and heating, self-gravity, sheared galactic rotation, and
+(or to the right of) the solid line, which was based on                                self-consistent star formation feedback using direct momentum
+simulation results from HD models with lower total η than                              injection by SNe and time-varying heating rates. Here, we
+MHD models.                                                                            extend the ﬁducial solar-neighborhood-like model of Paper Ito
+   Figure 10(c) shows another important property of self-                              include magnetic ﬁelds with varying initial ﬁeld strengths and
+regulated star-forming ISM disks. Since hturb and hth are nearly                       distributions. We also alter the initial and boundary conditions
+unchanged with and without magnetic ﬁelds, the same                                    from the original model to minimize artiﬁcial initial vertical
+relationship between kinetic midplane pressure Pturb + Pth and                         oscillations. We show in Section 4.1 that the overall evolution
+SFR holds as we found in Paper I(solid line). However, the                            remains the same in HD models irrespective of differences in
+present work considers only a single value of Σ and rsd , and                          initial and boundary conditions, conﬁrming the robustness of
+
+                                                                                  16
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                             Kim & Ostriker
+
+results in Paper I. In both HD and MHD models, the time                         compressible simulations. Lemaster & Stone (2009)
+evolution of ISM properties reaches a saturated equilibrium                     obtained similar results for various Mach numbers from
+state within ~torb, except for the mean magnetic ﬁeld, which                    isothermal, compressible MHD simulations (see also Ryu
+continues to secularly evolve over several torb (see Figures 1                  et al. 2008). Nearly irrespective of the Mach number, the
+and 2). In what follows, we summarize the main results derived                  ratios of magnetic energy to total (kinetic+magnetic)
+from analyzing the time evolution of mean ISM properties and                    energy in ﬂuctuations are 30%–40%.5 With stronger
+ﬁnal saturated-state vertical proﬁles, with careful consideration               initial ﬁeld, saturation is achieved more rapidly.
+of the slow variation of mean magnetic ﬁelds.                                         The small-scale dynamo provides a fast and
+                                                                                universal mechanism for magnetic ﬁeld ampliﬁcation
+   1. Generation and saturation of magnetic ﬁelds—Turbulent
+                                                                                (Brandenburg & Subramanian 2005; Beresnyak &
+      motions in our simulations quickly develop and saturate.
+                                                                                Lazarian 2015). Thus, we expect that qualitatively similar
+      The same is true for turbulent magnetic ﬁelds (see
+                                                                                processes will occur in our simulations in spite of their
+      Figure 2(c)). Beyond ~torb, saturated levels of turbulent
+                                                                                greater physical complexity, including compressibility,
+      kinetic and magnetic energies are similar for all
+                                                                                vertical stratiﬁcation, SN-driven turbulence, self-gravity,
+      MHD models except Model MA100, which has a very
+                                                                                and multiphase gas with cooling and heating. In early
+      weak initial ﬁeld. Model MA100 converges to the
+                                                                                phases t < torb, rapid growth and saturation of the
+      same levels of Eturb and dEmag as other models by
+                                                                                turbulent magnetic energy are induced by driven
+      ~3torb. The ﬁnal saturated state has mass-weighted mean
+                                                                                turbulence (see Figure 2). After torb, turbulence is driven
+      ádv 2ñ1M 2 » 5 km s-1 and ádvA2ñ1M 2 » 3 km s-1 for all
+                                                                                entirely by SN feedback, with a rate that depends on the
+      MHD models, corresponding to Eturb dEmag ~ 2.5.
+                                                                                SFR. Vertical dynamical equilibrium (see below) dictates
+            The growth of magnetic ﬁelds in turbulent ﬂows is
+                                                                                the turbulent pressure level, and hence SFR, that is self-
+      believed to be a consequence of turbulent dynamo action,
+                                                                                consistently reached in these disk systems. The ﬁnal
+      which generally refers to mechanisms of energy conver-
+                                                                                saturated-state turbulent magnetic energy level is about
+      sion from kinetic to magnetic. Dynamos are classiﬁed
+                                                                                half of turbulent kinetic energy, as expected in small-
+      into large-scale (mean ﬁeld) dynamos and small-scale
+                                                                                scale dynamo simulations.
+      (ﬂuctuation or turbulent) dynamos. The former and latter
+                                                                             2. Vertical structure of the diffuse ISM—The vertical
+      respectively generate magnetic ﬁelds with scales larger
+                                                                                distribution and gravitational support of the diffuse ISM
+      and smaller than the turbulence injection scale. In many
+                                                                                in the Milky Way has been investigated many times
+      spiral galaxies, there are signiﬁcant large-scale, regular
+                                                                                under the assumption of vertical dynamical equilibrium6
+      azimuthal magnetic ﬁelds (e.g., Beck 2001), which
+                                                                                (Boulares & Cox 1990; Lockman & Gehman 1991;
+      may result from the so-called a - W dynamo driven by
+                                                                                Kalberla & Kerp 1998). In Section 4.2, we validate that
+      turbulence and differential rotation (e.g., Beck et al.
+                                                                                vertical dynamical equilibrium is satisﬁed in turbulent,
+      1996). Our initial conditions with mean ﬁelds in the ŷ
+                                                                                star-forming, magnetized galactic disks, extending results
+      direction are motivated by observed preferentially
+                                                                                from previous multiphase ISM simulations with various
+      azimuthal (or spiral-arm aligned) ﬁelds. Self-consistent
+                                                                                physical ingredients (Piontek & Ostriker 2007; Koyama
+      growth of mean ﬁelds from the very weak primordial
+                                                                                & Ostriker 2009; Kim et al. 2010, 2011, 2013; Hill
+      magnetic ﬁelds is an important and active research area
+                                                                                et al. 2012). At the midplane, vertical support is
+      (see Gressel et al. 2008; Gent et al. 2013b for recent
+      simulations with SNe). Although growth of mean                            dominated by the turbulent (kinetic) pressure except in
+      magnetic ﬁelds is not the main focus of this paper, some                  Model MB1 with very strong mean magnetic ﬁelds (see
+      hints can be found in the evolution of mean ﬁelds in cases                Figure 8 and Table 3). Thermal and turbulent magnetic
+      with initially weak ﬁelds (Models MA100 and MA10 in                       supports are comparable to each other and about 2–3
+      Figure 2(d)).                                                             times smaller than the turbulent pressure. Compared to
+            More straightforward results from our simulations                   HD models, MHD disk models can maintain smaller
+      are the saturation properties of turbulent magnetic ﬁelds,                turbulent and thermal pressures owing to additional
+      which can be understood in the context of small-scale                     vertical support from the turbulent and mean magnetic
+      dynamos. It is broadly known that turbulent conductive                    ﬁelds. Despite the different magnetization, the total
+      ﬂows can amplify their own magnetic ﬁelds through                         effective velocity dispersion seff varies by only ~25%
+      random ﬁeld line stretching, twisting, and folding (e.g.,                 over all models (see Table 2), resulting in similar
+      Zeldovich et al. 1983; Brandenburg & Subrama-                             variation in χ and hence dynamical equilibrium midplane
+      nian 2005). Recently, Cho et al. (2009) have quantiﬁed                    pressure Ptot,DE = 0 = sg,0 (1 + c ).
+      three stages of evolution using a comprehensive set of                          Our models demonstrate that vertical dynamical
+      nonlinear simulations for incompressible MHD turbu-                5
+                                                                             Federrath et al. (2011) investigated the growth of magnetic energy in forced
+      lence (see also Schekochihin & Cowley 2007; Beres-                 turbulence from very weak initial ﬁelds with a variety of Mach numbers and
+      nyak 2012). The magnetic energy grows exponentially                two different forcing schemes (solenoidal and compressive). Their ratios of
+      until it reaches equipartition at the kinetic energy               magnetic to kinetic energy at saturation are 0.4–0.6 for subsonic, solenoidally
+      dissipation scale. Then, growth becomes linear until the           driven turbulence but only 1% or less for supersonic turbulence. However, their
+                                                                         saturated magnetic energy is not measured at ﬁnal saturation but at the end of
+      entire energy spectrum reaches equipartition up to the             the exponential growth stage. Based on our results (slow convergence of
+      energy injection scale. The saturation amplitude of                turbulent magnetic energy in Model MA100), the low saturation level in the
+      turbulent magnetic energy for small-scale incompressible           supersonic (or transonic) cases they report may also be due to their extremely
+                                                                         weak initial mean ﬁelds.
+      dynamos approaches ~40% of the total energy at large               6
+                                                                             We prefer to use the term “vertical dynamical equilibrium” instead of
+      Reynolds number (Cho et al. 2009). Haugen et al. (2004)            “hydrostatic equilibrium” since the gas is not “static”—turbulent pressure
+      obtained ~30% of the total energy from their                       arising from large-scale gas motions is crucial to the vertical force balance.
+
+                                                                    17
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                  Kim & Ostriker
+
+     equilibrium is indeed a good assumption even though                     and dwarf galaxies have arrived at similar conclusions
+     disks are magnetized and highly dynamic. However,                       (Ianjamasimanana et al. 2012; Stilp et al. 2013).
+     practical application of vertical equilibrium in observa-               In this paper, we show that the contribution from
+     tions is not simple. Even in the solar neighborhood,                    turbulent magnetic ﬁelds to  (or, equivalently,
+                                                                             [dvA2 2 - dvA,  z ] s z ) is »0.3 and insensitive to the mean
+                                                                                           2       2
+     uncertainty is substantial. For example, Boulares & Cox
+     (1990) calculated the total equilibrium pressure based on               magnetic ﬁeld strength for saturated models (except
+     observations of the vertical gas distribution and gravity               Model MB1). This suggests that if the total velocity
+     (e.g., Bienayme et al. 1987; Kuijken & Gilmore 1989),                   dispersion sz can be measured accurately, an estimate of
+     and taking the difference from observed thermal+turbu-                  seff needed to compute C and χ and therefore the total
+     lent pressure they inferred signiﬁcant contributions from               midplane pressure may be obtained using a typical value
+     non-thermal (cosmic-ray and magnetic) pressures. How-                   of  ~ 0.3 even if the observed magnetic ﬁeld strength is
+     ever, Lockman & Gehman (1991) have argued that local                    not measured.
+     (high-latitude) H I 21 cm emission data can be ﬁtted with                     The density structure in our simulations is well
+     three-component Gaussians, and that non-thermal vertical                characterized by two components, a cold medium and a
+     support is not necessary to explain the H I distribution.               non-cold one (see Figure 7). For the present models,
+     Considering the large observed scale height of non-                     we ﬁnd scale heights of cold and non-cold components
+     thermal pressure terms, the vertical support of H I within              are H ~ 30 pc and 110 pc, respectively. Lockman
+     ∣ z ∣ < 1 kpc (which depends on the pressure gradient, not              & Gehman (1991) have used three-component Gaussians
+     pressure itself) can be explained solely by thermal                     to ﬁt H I emission line observations near the
+     +turbulent terms. Later, Kalberla & Kerp (1998)                         Sun, obtaining vertical scale heights equivalent to
+     simultaneously analyzed the distribution of emission at                 H ~ 80–130 pc, ~150–300 pc,             and ~600–750 kpc
+     21 cm from warm/cold H I with Hα from diffuse ionized                   (see also Dickey & Lockman 1990). A recent Herschel
+     gas, soft X-rays for the hot medium, and synchrotron                    galactic survey of [C II], along with ancillary H I, 12CO,
+     radiation combined with γ-ray emission probing mag-                     13CO, and C18O data, shows that the equivalent vertical
+
+     netic ﬁelds and cosmic rays. They concluded that within                 scale heights of [C II] sources with CO and without CO,
+     400 pc of the midplane, cosmic-ray support is not                       which trace colder/denser versus warmer/more diffuse
+     required, and turbulent magnetic ﬁelds contribute with                  gas, respectively, are ~70 pc and 170 pc (Langer
+      ~ 1 3 (a = 1 3 in their notation). The contribution                   et al. 2014; Velusamy & Langer 2014). Our simulations
+     of turbulent magnetic support compared to thermal                       agree with both of these observational studies in the sense
+     +turbulent kinetic pressure in our simulations is ~25%                  that the warmer component has ∼2–3 times the scale
+     from Table 3, in good agreement with this result. In our                height of the colder component. However, our measured
+     simulations, the mean magnetic ﬁeld has a relatively                    H values are somewhat lower than observed solar-
+     small scale height (Figure 6) and vertical support slightly             neighborhood values, as are our measured values of sz
+     less than that of the turbulent magnetic ﬁeld. In contrast,             and SSFR . Simulations currently underway that include a
+     observations indicate that magnetic ﬁelds extend into the               hot ISM suggest that H, sz, and SSFR may increase.
+     halo in equipartition with the pressures of cosmic rays              3. Feedback efﬁciencies and star formation laws—One of the
+     and hot gas. The decline in mean magnetic ﬁelds with                    important conclusions of this study is that the feedback
+     height in our present simulations may be due to the                     yields for turbulent and thermal pressure are unchanged by
+     absence of a hot medium and cosmic rays; this issue will                the presence of magnetic ﬁelds. This is mainly because the
+     be addressed in future work.                                            HD and MHD turbulent energy dissipation rates are
+            Adoption of vertical equilibrium is useful to estimate           similar. The dissipation timescale is always of the order of
+     the midplane pressure in external galaxies. The pressure                the crossing time at the driving scale (or main energy-
+     cannot be measured directly except for nearby edge-on                   containing scale) for both HD turbulence (Kaneda
+     disks, and even in that case requires deprojection and an               et al. 2003) and MHD turbulence (Mac Low et al. 1998;
+     assumption for the turbulent velocity dispersion (Yim                   Stone et al. 1998; Cho et al. 2009; Lemaster & Stone
+     et al. 2011, 2014). As outlined in Section 2, to get                    2009), and both compressible and incompressible ﬂows.
+     the total dynamical equilibrium pressure (or the total                  Turbulent magnetic ﬁelds saturate at a similar timescale to
+     weight of the gas; see Equation (5)), one may need to                   turbulent velocities. Balancing turbulent driving with
+     determine Σ, S*, s*, and seff (or sz and  ), assuming the              turbulent dissipation therefore leads to direct proportion-
+     parameter z d ~ 0.4–0.5 is nearly constant. In several                  ality between SSFR and the turbulent kinetic and magnetic
+     systematic studies of nearby galaxies (Blitz & Roso-                    pressures. Similarly, balancing heating and cooling leads
+     lowsky 2004, 2006; Kasparova & Zasov 2008; Leroy                        to a direct proportionality between SSFR and the thermal
+     et al. 2008), seff and/or H* µ s 2 S* are assumed to be                 pressure. turbulent kinetic and magnetic pressures. Deﬁn-
+                                         *
+     constant to determine the total midplane pressure.                      ing “yield” as the ratio of pressure to SSFR (in convenient
+     Observational measurements have suggested that H I                      units; see Equation (12)), we obtain turbulent, thermal, and
+     velocity dispersions are nearly constant with                           turbulent           magnetic           feedback          yields
+     sz ~ 5–10 km s-1, especially for the atomic gas-domi-                   as hturb ~ 3.5–4, hth ~ 1.1–1.4, and dhmag ~ 1.3–1.5,
+     nated regime, using single Gaussian ﬁtting (Petric &                    respectively. Since the ISM weight and therefore total
+     Rupen 2007) and intensity-weighted second velocity                      pressure are nearly the same irrespective of magnetization,
+     moments (Tamburro et al. 2009). Recent studies of global                the addition of magnetic terms to the total η reduces SSFR
+     H I kinematics analysis to obtain “superproﬁles” (aver-                 for MHD compared to HD simulations at a given Σ and
+     aged H I proﬁles for the entire galaxy) in nearby spiral                rsd .
+
+                                                                     18
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                     Kim & Ostriker
+
+
+
+
+Figure 11. Box-and-whisker plots of the logarithms of the midplane support components (top: (a)–(d)) and the energy ratios (bottom: (e)–(h)) over the interval
+(torb, 2torb ). From left to right, we show the turbulent kinetic, thermal, turbulent magnetic, and mean magnetic components. We label the original MB10 model as
+“MB10,” while the smaller box counterparts at three different resolutions are labeled “1pc,” “2pc,” and “4pc.”
+
+           Correlations between the estimated ISM equilibrum                               having DPmag µ SSFR . Even if a mean-ﬁeld dynamo
+      pressure Ptot,DE and the molecular content and SFR have                              secularly leads to a well-deﬁned asymptotic ratio between
+      been identiﬁed empirically (e.g., Wong & Blitz 2002; Blitz                           DPmag and SSFR , the long timescale to reach this may
+      & Rosolowsky 2006; Leroy et al. 2008). In particular, the P                          mean that DPmag is not well correlated with the recent
+      −SSFR relation has much less scatter than the classical                              SFR. If the vertical scale height of the mean ﬁeld is larger
+      Kennicutt–Schmidt relationship (Kennicutt & Evans 2012)                              than that of the star-forming gas, however, the support from
+      between gas surface density Σ and SSFR for the atomic-                               DPmag would be small even if the mean ﬁeld pressure is
+      dominated regime (e.g., Bigiel et al. 2008, 2010). As                                non-negligible, which would reduce scatter in SSFR
+      argued in our previous work (e.g., Ostriker et al. 2010; Kim                         versus Ptot,DE.
+      et al. 2011, Paper I), this is because the total midplane
+      pressure is directly related to the SFR, whereas ISM                            This work was supported by grants AST-1312006 from the
+      properties (and the SFR) can vary considerably at a given                     National Science Foundation and NNX14AB49G from NASA.
+      value of Σ depending on the gravitational potential                           We thank E. Blackman and J.-M. Shi for discussions of
+      conﬁning the disk. As shown in Ostriker & Shetty (2011,                       dynamos, and the referee for helpful comments on the
+      see also Shetty & Ostriker 2012), in the starburst regime                     manuscript.
+      where self-gravity dominates the potential, both pressure
+      and surface density correlate well with SFR surface
+      density, giving SSFR µ Ptot,DE µ S2 (shallower reported                                               APPENDIX
+      slopes are arguably due to too-high assumed ratios of CO                                       NUMERICAL CONVERGENCE
+      to H2 at high Σ; see Narayanan et al. 2012). In the atomic-                      We adopt a standard spatial resolution of Δ = 2 pc
+      dominated regime, as modeled in this paper, the dynamical                     throughout this paper. Here, we present a convergence study
+      equilibrium pressure depends on both sg µ S2 and                             for physical properties in the saturated state. Since a simulation
+      ext µ S rsd (see Equations (3) and (4)). In outer disks                      with Δ = 1 pc for the same box size would be too
+      where rsd varies more than Satomic ~ 6–10 M pc-2 ,                           computationally expensive for our current facilities, we instead
+      simple Kennicutt–Schmidt laws fail.                                           have rerun Model MB10 with Δ = 1, 2, and 4 pc using a
+           As demonstrated in this paper, there can also be scatter                 smaller horizontal box (L x = L y = 256 pc) and halved the
+      introduced in SSFR versus Ptot,DE if support from the mean                    turbulence driving period (tdrive = 0.5torb) and ﬁnal
+      magnetic ﬁeld contributes substantially without itself                        time (tend = 2torb ).
+
+                                                                               19
+The Astrophysical Journal, 815:67 (20pp), 2015 December 10                                                                                         Kim & Ostriker
+
+   Figure 11 summarizes the midplane support components and                            Ianjamasimanana, R., de Blok, W. J. G., Walter, F., & Heald, G. H. 2012, AJ,
+the energy ratios for (torb, 2torb ) with box-and-whisker plots.                           144, 96
+We plot the quantities by taking the logarithms for clearer                            Jenkins, E. B., & Tripp, T. M. 2011, ApJ, 734, 65
+                                                                                       Joung, M. K. R., & Mac Low, M.-M. 2006, ApJ, 653, 1266
+presentation of temporal ﬂuctuations. We label the original                            Joung, M. R., Mac Low, M.-M., & Bryan, G. L. 2009, ApJ, 704, 137
+MB10 model (full box with D = 2 pc) as “MB10” and the                                  Kalberla, P. M. W., & Kerp, J. 1998, A&A, 339, 745
+smaller box counterparts at three different resolutions as “1 pc,”                     Kaneda, Y., Ishihara, T., Yokokawa, M., Itakura, K., & Uno, A. 2003, PhFl,
+“2 pc,” and “4 pc.” Although the smaller box increases                                     15, L21
+                                                                                       Kasparova, A. V., & Zasov, A. V. 2008, AstL, 34, 152
+temporal ﬂuctuations as expected, all components except the                            Kennicutt, R. C., & Evans, N. J. 2012, ARA&A, 50, 531
+mean magnetic component show statistically converged results.                          Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2008, ApJ, 681, 1148
+   The mean magnetic component in the 1 pc simulation is                               Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2010, ApJ, 720, 1454
+systematically reduced, and has the largest temporal ﬂuctua-                           Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2011, ApJ, 743, 25
+tion, also causing a slightly smaller saturated value of the                           Kim, C.-G., & Ostriker, E. C. 2015, ApJ, 802, 99
+                                                                                       Kim, C.-G., Ostriker, E. C., & Kim, W.-T. 2013, ApJ, 776, 1 (Paper I)
+turbulent magnetic component. Considering that the mean                                Kim, C.-G., Ostriker, E. C., & Kim, W.-T. 2014, ApJ, 786, 64
+magnetic component always shows the slowest convergence, it                            Kim, W.-T., Ostriker, E. C., & Stone, J. M. 2003, ApJ, 599, 1157
+is possible that with a longer integration time, the mean                              Koyama, H., & Inutsuka, S.-i 2002, ApJL, 564, L97
+magnetic ﬁeld in the 1 pc model would approach that of the                             Koyama, H., & Ostriker, E. C. 2009, ApJ, 693, 1346
+                                                                                       Kroupa, P. 2001, MNRAS, 322, 231
+other models. However, it is also possible that it would remain                        Krumholz, M. R., & Tan, J. C. 2007, ApJ, 654, 304
+at this reduced level. Since the evolution of mean magnetic                            Kuijken, K., & Gilmore, G. 1989, MNRAS, 239, 651
+ﬁelds is not the main focus of this paper, we defer further study                      Langer, W. D., Pineda, J. L., & Velusamy, T. 2014, A&A, 564, A101
+of the mean magnetic component to future work, which will                              Lemaster, M. N., & Stone, J. M. 2009, ApJ, 691, 1092
+                                                                                       Leroy, A. K., Walter, F., Brinks, E., et al. 2008, AJ, 136, 2782
+include more comprehensive investigation of the mean ﬁeld
+                                                                                       Li, M., Ostriker, J. P., Cen, R., Bryan, G. L., & Naab, T. 2015,
+dynamo.                                                                                    arXiv:1506.07180
+                                                                                       Lockman, F. J., & Gehman, C. S. 1991, ApJ, 382, 182
+                             REFERENCES                                                Mac Low, M.-M., & Klessen, R. S. 2004, RvMP, 76, 125
+                                                                                       Mac Low, M.-M., Klessen, R. S., Burkert, A., & Smith, M. D. 1998, PhRvL,
+Beck, R. 2001, SSRv, 99, 243                                                               80, 2754
+Beck, R., Brandenburg, A., Moss, D., Shukurov, A., & Sokoloff, D. 1996,                McKee, C. F., & Ostriker, E. C. 2007, ARA&A, 45, 565
+   ARA&A, 34, 155                                                                      McKee, C. F., & Ostriker, J. P. 1977, ApJ, 218, 148
+Beresnyak, A. 2012, PhRvL, 108, 035002                                                 Murray, C. E., Stanimirović, S., Goss, W. M., et al. 2015, arXiv:1503.01108
+Beresnyak,      A.,     &      Lazarian,      A.     2015,    Lazarian,     A.,        Narayanan, D., Krumholz, M. R., Ostriker, E. C., & Hernquist, L. 2012,
+   de Gouveia Dal Pino, E. M., & Melioli, C. Astrophysics and Space                        MNRAS, 421, 3127
+   Science Library Vol. 407, Magnetic Fields in Diffuse Media (Berlin:                 Ostriker, E. C., McKee, C. F., & Leroy, A. K. 2010, ApJ, 721, 975
+   Springer), 163                                                                      Ostriker, E. C., & Shetty, R. 2011, ApJ, 731, 41
+Bienayme, O., Robin, A. C., & Creze, M. 1987, A&A, 180, 94                             Parravano, A., Hollenbach, D. J., & McKee, C. F. 2003, ApJ, 584, 797
+Bigiel, F., Leroy, A., Walter, F., et al. 2008, AJ, 136, 2846                          Petric, A. O., & Rupen, M. P. 2007, AJ, 134, 1952
+Bigiel, F., Leroy, A., Walter, F., et al. 2010, AJ, 140, 1194                          Piontek, R. A., & Ostriker, E. C. 2005, ApJ, 629, 849
+Blitz, L., & Rosolowsky, E. 2004, ApJL, 612, L29                                       Piontek, R. A., & Ostriker, E. C. 2007, ApJ, 663, 183
+Blitz, L., & Rosolowsky, E. 2006, ApJ, 650, 933                                        Planck Collaboration, Ade, P. A. R., Aghanim, N., et al. 2015,
+Boulares, A., & Cox, D. P. 1990, ApJ, 365, 544                                             arXiv:1502.04123
+Brandenburg, A., & Subramanian, K. 2005, PhR, 417, 1                                   Roy, N., Kanekar, N., Braun, R., & Chengalur, J. N. 2013, MNRAS, 436,
+Cho, J., Vishniac, E. T., Beresnyak, A., Lazarian, A., & Ryu, D. 2009, ApJ,                2352
+   693, 1449                                                                           Ryu, D., Kang, H., Cho, J., & Das, S. 2008, Sci, 320, 909
+Cox, D. P., & Smith, B. W. 1974, ApJL, 189, L105                                       Schekochihin, A. A., & Cowley, S. C. 2007, in Turbulence and Magnetic
+Creasey, P., Theuns, T., & Bower, R. G. 2013, MNRAS, 429, 1922                             Fields in Astrophysical Plasmas, ed. S. Molokov, R. Moreau &
+de Avillez, M. A., & Breitschwerdt, D. 2004, A&A, 425, 899                                 H. K. Moffatt (Berlin: Springer), 85
+de Avillez, M. A., & Breitschwerdt, D. 2005, A&A, 436, 585                             Shakura, N. I., & Sunyaev, R. A. 1973, A&A, 24, 337
+Dickey, J. M., & Lockman, F. J. 1990, ARA&A, 28, 215                                   Shetty, R., & Ostriker, E. C. 2012, ApJ, 754, 2
+Dickey, J. M., Strasser, S., Gaensler, B. M., et al. 2009, ApJ, 693, 1250              Shi, J.-M., & Chiang, E. 2014, ApJ, 789, 34
+Elmegreen, B. G., & Scalo, J. 2004, ARA&A, 42, 211                                     Shu, F. H., Adams, F. C., & Lizano, S. 1987, ARA&A, 25, 23
+Federrath, C., Chabrier, G., Schober, J., et al. 2011, PhRvL, 107, 114504              Soler, J. D., Hennebelle, P., Martin, P. G., et al. 2013, ApJ, 774, 128
+Ferrière, K. M. 2001, RvMP, 73, 1031                                                   Stilp, A. M., Dalcanton, J. J., Warren, S. R., et al. 2013, ApJ, 765, 136
+Field, G. B. 1965, ApJ, 142, 531                                                       Stone, J. M., & Gardiner, T. 2009, New A, 14, 139
+Field, G. B., Goldsmith, D. W., & Habing, H. J. 1969, ApJL, 155, L149                  Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B. 2008,
+Gent, F. A., Shukurov, A., Fletcher, A., Sarson, G. R., & Mantere, M. J. 2013a,            ApJS, 178, 137
+   MNRAS, 432, 1396                                                                    Stone, J. M., Ostriker, E. C., & Gammie, C. F. 1998, ApJL, 508, L99
+Gent, F. A., Shukurov, A., Sarson, G. R., Fletcher, A., & Mantere, M. J. 2013b,        Tamburro, D., Rix, H.-W., Leroy, A. K., et al. 2009, AJ, 137, 4424
+   MNRAS, 430, L40                                                                     Velusamy, T., & Langer, W. D. 2014, A&A, 572, A45
+Gressel, O., Elstner, D., Ziegler, U., & Rüdiger, G. 2008, A&A, 486, L35               Walch, S. K., Girichidis, P., Naab, T., et al. 2014, arXiv:1412.2749
+Haugen, N. E., Brandenburg, A., & Dobler, W. 2004, PhRvE, 70, 016308                   Wolﬁre, M. G., Hollenbach, D., McKee, C. F., Tielens, A. G. G. M., &
+Haverkorn, M. 2015, Lazarian, A., de Gouveia Dal Pino, E. M., & Melioli, C.                Bakes, E. L. O. 1995, ApJ, 443, 152
+   Astrophysics and Space Science Library Vol. 407, Magnetic Fields in                 Wolﬁre, M. G., McKee, C. F., Hollenbach, D., & Tielens, A. G. G. M. 2003,
+   Diffuse Media (Berlin: Springer), 483                                                   ApJ, 587, 278
+Hawley, J. F., Gammie, C. F., & Balbus, S. A. 1995, ApJ, 440, 742                      Wong, T., & Blitz, L. 2002, ApJ, 569, 157
+Heiles, C., & Troland, T. H. 2003, ApJ, 586, 1067                                      Yim, K., Wong, T., Howk, J. C., & van der Hulst, J. M. 2011, AJ, 141, 48
+Heiles, C., & Troland, T. H. 2005, ApJ, 624, 773                                       Yim, K., Wong, T., Xue, R., et al. 2014, AJ, 148, 127
+Hennebelle, P., & Iffrig, O. 2014, A&A, 570, A81                                       Zeldovich, I. B., Ruzmaikin, A. A., & Sokolov, D. D. (ed.) 1983, Magnetic
+Hill, A. S., Joung, M. R., Mac Low, M.-M., et al. 2012, ApJ, 750, 104                      Fields in Astrophysics, Vol. 3 (London: Gordon & Breach)
+
+
+
+
+                                                                                  20
+

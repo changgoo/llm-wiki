@@ -33,6 +33,8 @@ Outputs:
 
 ### Batch 1: Core ISM And TIGRESS Foundations
 
+Status: complete.
+
 Papers: 12.
 Purpose: establish the core pages for multiphase ISM dynamics, TIGRESS, vertical equilibrium, turbulence, and star formation regulation.
 
@@ -52,6 +54,8 @@ Initial source list:
 - `2024ApJ...975..113J` (2024) - Learning the Universe: GalactISM Simulations of Resolved Star Formation and Galactic Outflows across Main-sequence and Quenched Galactic Environments
 
 ### Batch 2: Supernovae, Bubbles, And Feedback Coupling
+
+Status: planned.
 
 Papers: 12.
 Purpose: build the feedback-coupling layer around supernova remnants, superbubbles, stellar wind bubbles, and momentum/energy injection.

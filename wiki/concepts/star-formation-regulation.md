@@ -5,6 +5,10 @@ created: 2026-05-14
 updated: 2026-05-14
 sources:
   - wiki/sources/mypapers-bibliography.md
+  - wiki/sources/2011-kim-kim-ostriker-star-formation-regulation.md
+  - wiki/sources/2013-kim-ostriker-kim-3d-star-formation-regulation.md
+  - wiki/sources/2015-kim-ostriker-magnetized-disk-star-formation.md
+  - wiki/syntheses/batch-1-core-ism-tigress-foundations.md
 tags:
   - astrophysics
   - star-formation
@@ -25,6 +29,8 @@ Many papers in the bibliography study pressure-regulated and feedback-modulated 
 
 - [[publication-map]] groups foundational star formation regulation papers with TIGRESS and multiphase ISM work.
 - Later planned batches connect this topic to radiation, chemistry, metallicity, and cosmological subgrid modeling.
+- [[2011-kim-kim-ostriker-star-formation-regulation]] and [[2013-kim-ostriker-kim-3d-star-formation-regulation]] show that SFR surface density is tightly linked to total midplane pressure.
+- [[2015-kim-ostriker-magnetized-disk-star-formation]] shows that magnetic support modifies pressure partitioning without removing the basic pressure-regulated picture.
 
 ## Related Pages
 
@@ -37,4 +43,3 @@ Many papers in the bibliography study pressure-regulated and feedback-modulated 
 
 - Which regulation laws remain valid across metallicity, environment, and galaxy type?
 - How should resolved ISM calibration inform cosmological simulation prescriptions?
-

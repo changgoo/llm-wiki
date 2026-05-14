@@ -1,0 +1,1129 @@
+The Astrophysical Journal, 720:1454–1471, 2010 September 10                                                                         doi:10.1088/0004-637X/720/2/1454
+ 2010. The American Astronomical Society. All rights reserved. Printed in the U.S.A.
+C
+
+
+
+
+                            GALACTIC SPIRAL SHOCKS WITH THERMAL INSTABILITY IN VERTICALLY
+                                              STRATIFIED GALACTIC DISKS
+                                                       Chang-Goo Kim1 , Woong-Tae Kim1 , and Eve C. Ostriker2
+    1 Department of Physics and Astronomy, FPRD, Seoul National University, Seoul 151-742, Republic of Korea; kimcg@astro.snu.ac.kr, wkim@astro.snu.ac.kr
+                                  2 Department of Astronomy, University of Maryland, College Park, MD 20742, USA; ostriker@astro.umd.edu
+                                                         Received 2010 May 11; accepted 2010 June 23; published 2010 August 23
+
+                                                                                        ABSTRACT
+              Galactic spiral shocks are dominant morphological features and believed to be responsible for substructure formation
+              within spiral arms in disk galaxies. They can also contribute a substantial amount of kinetic energy to the interstellar
+              gas by tapping the (differential) rotational motion. We use numerical hydrodynamic simulations to investigate
+              dynamics and structure of spiral shocks with thermal instability (TI) in vertically stratified galactic disks, focusing
+              on environmental conditions (of heating and the galactic potential) similar to the Solar neighborhood. We initially
+              consider an isothermal disk in vertical hydrostatic equilibrium and let it evolve subject to interstellar cooling and
+              heating as well as a stellar spiral potential. Due to TI, a disk with surface density Σ0 ⩾ 6.7 M pc−2 rapidly turns
+              to a thin dense slab near the midplane sandwiched between layers of rarefied gas. The imposed spiral potential
+              leads to a vertically curved shock that exhibits strong flapping motions in the plane perpendicular to the arm. The
+              overall flow structure at saturation is comprised of the arm, postshock expansion zone, and interarm regions that
+              occupy typically 10%, 20%, and 70% of the arm-to-arm distance, in which the gas resides for 15%, 30%, and
+              55% of the arm-to-arm crossing time, respectively. The flows are characterized by transitions from rarefied to
+              dense phases at the shock and from dense to rarefied phases in the postshock expansion zone, although gas with
+              too-large postshock-density does not undergo this return phase transition, instead forming dense condensations.
+              If self-gravity is omitted, the shock flapping drives random motions in the gas, but only up to ∼2–3 km s−1
+              in the in-plane direction and less than 2 km s−1 in the vertical direction. Time-averaged shock profiles show
+              that the spiral arms in stratified disks are broader and less dense compared to those in unstratified models, and
+              that the vertical density distribution is overall consistent with local effective hydrostatic equilibrium. Inclusion
+              of self-gravity increases the dense gas fraction by a factor of ∼2 and raises the in-plane velocity dispersion to
+              ∼5–7 km s−1 . When the disks are massive enough, with Σ0 ⩾ 5 M pc−2 , self-gravity promotes formation of
+              bound clouds that repeatedly collide with each other in the arm and break up in the postshock expansion zone.
+              Key words: galaxies: ISM – instabilities – ISM: kinematics and dynamics – methods: numerical – stars: formation
+              Online-only material: color figures
+
+
+                                 1. INTRODUCTION                                                    Since shock compression within the arms is the first step
+                                                                                                 toward star formation in grand-design spiral galaxies, under-
+   Spiral arms in disk galaxies are regions of ongoing active                                    standing structural and dynamical evolution of these gas flows
+star formation, sharply outlined by bright young star complexes.                                 is essential to a host of fundamental problems, such as global
+They usually span the entire optical disks and sometimes extend                                  star formation rates, the nature of the Hubble sequence, galaxy
+even to outer gaseous disks (e.g., Dickey et al. 1990; Boomsma                                   evolution, etc. Since the pioneering work of Roberts (1969) who
+et al. 2008; Bertin & Amorisco 2010, and references therein).                                    obtained one-dimensional stationary shock profiles, there have
+Such large-scale spiral patterns may be the manifestation of                                     been numerous studies of the structure of galactic spiral shocks
+spiral density waves which propagate with a constant pattern                                     under the simplifying assumption that the gas remains isother-
+speed through stellar disks (Lin & Shu 1964, 1966), or may be                                    mal (e.g., Woodward 1975, 1976; Lubow et al. 1986; Martos &
+transient features driven, for example, by tidal interactions with                               Cox 1998; Kim & Ostriker 2002; Gómez & Cox 2002, 2004;
+companion galaxies (e.g., Toomre & Toomre 1972; Hernquist                                        Wada & Koda 2004; Boley & Durisen 2006; Kim & Ostriker
+1990; Salo & Laurikainen 2000; Oh et al. 2008; Dobbs et al.                                      2006; Dobbs & Bonnell 2006). In particular, Woodward (1975)
+2010). Regardless of the origin of spiral features, it is widely ac-                             and Kim & Ostriker (2002) showed that the one-dimensional
+cepted that the interstellar medium (ISM) is strongly compressed                                 shock profiles found by Roberts (1969) represent stable equi-
+when it encounters stellar arms, forming narrow dust lanes in                                    libria when the fluid quantities are allowed to vary only in the
+optical images (e.g., Elmegreen et al. 2006; Shetty et al. 2007).                                direction perpendicular to the arms. The growth of axisymmet-
+The densest parts of the shocked layers subsequently undergo                                     ric self-gravitating modes is limited by postshock expansion
+gravitational collapse and produce downstream secondary struc-                                   (Lubow et al. 1986).
+tures, such as OB star complexes and giant H ii regions (e.g.,                                      When the direction parallel to the arm is included in models,
+Baade 1963; Elmegreen & Elmegreen 1983), filamentary                                             on the other hand, isothermal spiral shocks in two dimensions
+gaseous spurs (also referred to as “feathers;” e.g., Scoville et al.                             are prone to various kinds of instabilities. Balbus (1988)
+2001; Kennicutt 2004; Willner et al. 2004; La Vigne et al. 2006;                                 showed that when self-gravity is included, spiral arms are
+Gordon 2007; Corder et al. 2008), and giant molecular asso-                                      unstable to transient swing instability. When magnetic fields are
+ciations or atomic superclouds (e.g., Elmegreen & Elmegreen                                      included, spiral arms are subject to magneto-Jeans instability,
+1983; Vogel et al. 1988; Rand & Kulkarni 1990; Koda et al.                                       in which embedded parallel magnetic fields that exchange
+2009).                                                                                           angular momentum limit the stabilizing effect of galaxy rotation,
+
+                                                                                          1454
+No. 2, 2010                             SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                      1455
+encouraging non-axisymmetric perturbations to grow into giant         with insufficient resolution, however, they were unable to cap-
+clouds and other arm substructures (Elmegreen 1994; Kim &             ture TI in the postshock transition zone, which is the thermally
+Ostriker 2002, 2006; Shetty & Ostriker 2006). Wada & Koda             unstable regime.
+(2004) showed that spiral shocks in two-dimensional thin disk            In Kim et al. (2008, hereafter Paper II), we used high-
+models are unstable to a vorticity-generating wiggle instability      resolution one-dimensional simulations to study dynamical and
+and develop arm substructures (see also Dobbs & Bonnell               thermodynamical evolution of gas flows across spiral arms with
+2006), although these in-plane modes appear to be suppressed          ISM heating, cooling, and thermal conduction. We found that
+by embedded magnetic fields (Shetty & Ostriker 2006; Dobbs            even with TI, a quasi-steady state develops with the following
+& Price 2008) or by vertical shear and mixing when all the three      recurring cycle: both warm and cold phases in the interarm
+dimensions are included in models (Kim & Ostriker 2006).              region are shocked and immediately transform to denser cold
+   While steady in-plane shock solutions are subject to instabil-     gas in the arm, which subsequently evolves to be TI-unstable
+ity, shock models that include the vertical degree of freedom do      due to postshock expansion in a transition zone, and separates
+not even have steady solutions. Instead, the shock front in verti-    back into warm and cold phases. For a model with the initial
+cally stratified disks moves back and forth relative to the mean      number density of 2 cm−3 , the gas stays in the arm, transition,
+position (Kim & Ostriker 2006). These shock “flapping” mo-            and interarm zones for 14%, 22%, and 64% of the arm-
+tions arise mainly because the vertical oscillation period of the     to-arm crossing time, respectively. The gas mass in the TI-
+gas is, in general, incommensurate with the arm-to-arm crossing       unstable temperature range was ∼25%–30% of the total, and
+time, so that the gas streamlines are not closed. Kim et al. (2006,   mostly located in the transition zone, suggesting that postshock
+hereafter Paper I) showed that the shock flapping is able to feed     expanding flows are important for producing intermediate-
+random gas motions on the scale of disk scale height that persist     temperature gas. Paper II also found that TI in association
+despite dissipation. The induced gas velocity dispersions reach       with one-dimensional spiral shocks can drive random gas
+a sonic level, suggesting that spiral shocks may be a consid-         motions at ∼1.5 km s−1 in the interarm and transition zones;
+erable source of the ISM turbulence. Motions driven by shock          these velocities are ∼5–7 times larger than those from pure
+flapping motions destroy any coherent vortical structures that        TI alone (e.g., Kritsuk & Norman 2002; Piontek & Ostriker
+would otherwise grow near the spiral shocks, suppressing the          2004).
+wiggle instability. Since gravity is a long-range force and insen-       In this paper, we extend the one-dimensional models of
+sitive to small-scale density structure, however, magneto-Jeans       Paper II into two dimensions, in order to study the effect
+instabilities still grow within the arms in three-dimensional disk    of vertical disk stratification on the dynamics and structure
+models, in spite of non-steady motions induced by shock flap-         of multi-phase galactic spiral shocks. The current work also
+ping (Kim & Ostriker 2006).                                           extends the vertically stratified isothermal models considered in
+   Phase transitions caused by thermal instability (TI) create        Paper I to include the effects of the ISM heating and cooling.
+a multi-phase ISM, with important consequences for galactic           Our key objective is to find how the flapping motions of
+star formation. In the classical picture of the ISM, TI changes       spiral shocks inherent in stratified disks interact with multi-
+an otherwise uniform ISM into warm rarefied material and cold         phase gas produced by TI, to change the shock structure
+dense clouds in a rough pressure balance (e.g., Field 1965; Field     and drive random gas motions in each phase. We also study
+et al. 1969; Meerson 1996; Heiles 2001; Wolfire et al. 2003),         the internal properties of clouds that form in self-gravitating
+while there also exists significant mass in the thermally unstable    models. Although Dobbs & Bonnell (2007, 2008) and Dobbs
+temperature range (e.g., Heiles & Troland 2003). Supernova            & Price (2008) ran smoothed particle hydrodynamics (SPH)
+blast waves create an additional, hot component that is organized     simulations to study shock structure and cloud formation in
+into bubbles or cavities (Cox & Smith 1974; McKee & Ostriker          three dimensions, they used pre-determined cold and warm
+1977), although the total mass contained in the hot phase is          particles and did not allow the transitions between them. Dobbs
+much smaller than that in the cold and warm phases (e.g., Cox         et al. (2008) included ISM heating and cooling in the energy
+2005). Cold atomic clouds transform to molecular clouds if their      equation and thus handled TI self-consistently, focusing on the
+volume density (to produce molecules fast enough) and column          formation of molecular clouds in spiral shocks. Using grid-based
+density (to self-shield molecules against photodissociation) are      three-dimensional simulations, Wada (2008) studied dynamics
+sufficiently high (e.g., Elmegreen 1993; Draine & Bertoldi            of galactic gas flows under the influence of self-gravity, a spiral-
+1996), as in, for instance, shocks in turbulent flows (Glover         arm potential, radiative cooling, star formation, and energy
+& Mac Low 2007; Glover et al. 2010). That the star-forming            feedback from supernova explosions. Although these three-
+molecular clouds strongly correlate with spiral arms (e.g., Stark     dimensional global models are of course more realistic, our
+1979; Solomon et al. 1985; Kenney 1997; Zimmer et al. 2004;           local models are useful for studying the detailed dynamics of
+Shetty et al. 2007) suggests that spiral shocks too should trigger    spiral shocks at high spatial resolution, and allow us to isolate
+phase transitions from warm and diffuse to cold and dense             each effect of the physical processes involved.
+conditions.                                                              This paper is organized as follows. In Section 2, we describe
+   Effects of TI on spiral shocks were first studied by Shu           the basic equations we solve and specify the model parameters.
+et al. (1973), who calculated one-dimensional shock profiles          In Section 3, we present the results of one-dimensional solutions
+consisting of two stable phases in equilibrium. Although they         for vertical disk equilibria including heating and cooling, also
+allowed for phase transitions, they assumed instantaneous ther-       providing simple analytic expressions for the mass fractions
+mal equilibrium, which precluded the existence of transitory          and scale heights. In Section 4, we present the overall evolution,
+thermally unstable gas in their calculations. Using direct time-      structure, and statistical properties of spiral shock flows with
+dependent numerical simulations including ISM heating and             TI in stratified disks, based on the results of two-dimensional
+cooling, Tubbs (1980) and Marochnik et al. (1983) found that          simulations. The effect of self-gravity is discussed in Section 5.
+spiral shocks trigger phase transitions if the initial density is     In Section 6, we summarize our results and discuss their
+large enough. Because of strong numerical diffusion associated        implications.
+1456                                                            KIM ET AL.                                                       Vol. 720
+                 2. NUMERICAL METHODS                                  (1973). To parameterize the spiral arm strength, we employ the
+                                                                       dimensionless parameter
+   The local formulation used in the present study is similar to
+                                                                                                              
+that in Papers I and II. In this section, we explain our numerical                                m     |Φsp |
+method and model parameters.                                                              F ≡                    ,                (7)
+                                                                                                 sin i R02 Ω20
+                      2.1. Basic Equations
+                                                                       corresponding to the ratio of the maximum force due to the
+   We consider a local region centered on a spiral arm that is         spiral potential to the mean radial gravitational force (Roberts
+assumed to be tightly wound with a pitch angle sin i  1               1969).
+and rotating at a constant pattern speed Ωp . We set up a                 The interstellar gas is subject to the net cooling ρ L ≡
+local Cartesian frame, centered at the position (R, φ, z) =            n2 Λ[T ] − nΓ, where n = ρ/(μmH ) is the gas number density
+(R0 , Ωp t, 0), that corotates with the spiral arm. The x- and y-      with μ = 1.27 being the mean molecular weight per particle.
+axes of the local frame are aligned in the midplane parallel           For the cooling rate of the diffuse ISM, we take the fitting
+and perpendicular to the local arm segment, while the z-               formula suggested by Koyama & Inutsuka (2002),
+axis points the direction perpendicular to the galactic plane                                                       
+(Roberts 1969; Paper I). Our simulation domain is a two-                                     −19       −1.184 × 105
+dimensional rectangular region with size Lx ×Lz in the x–z plane            Λ(T ) = 2 × 10 exp
+                                                                                                         T + 1000
+(hereafter XZ plane). We assume that all physical variables are                                                    
+                                                                                                 −28
+                                                                                                     √         −92
+independent of y (quasi-axisymmetric), while allowing nonzero                         + 2.8 × 10       T exp          erg cm3 s−1 , (8)
+velocity in the y-direction in order to handle epicycle motions                                                 T
+associated with galactic rotation self-consistently.
+                                                                       with temperature T in degrees Kelvin.
+   In this local frame, the galactic differential rotation is trans-
+                                                                          For the gas heating function, we consider two different cases:
+lated into the background velocity as
+                                                                       (1) a constant heating rate Γ = Γ0 = 2.0 × 10−26 erg s−1 and
+  v0 = R0 (Ω0 − Ωp ) sin i x̂ + [R0 (Ω0 − Ωp ) − q0 Ω0 x]ŷ,    (1)    (2) a density-dependent heating rate
+
+where Ω0 = Ω(R0 ) and q0 ≡ −(d ln Ω/d ln R)|R0 denotes the                                    Γ = Γ0 exp(n/n0 )3 ,                     (9)
+local shear rate in the absence of the spiral potential (Kim
+& Ostriker 2002, 2006). Under the local approximation (i.e.,           with n0 = 20 cm−3 . The first, uniform heating rate corresponds
+Lx  R0 and |v|  R0 Ω0 ), the equations of hydrodynamics              to the mean heating rate due to the photoelectric effect on
+expanded in the local frame are                                        small grains and polycyclic aromatic hydrocarbons (PAHs),
+                                                                       photodissociations of hydrogen molecules, and ionizations by
+                      ∂ρ                                               cosmic rays and X-rays (e.g., Koyama & Inutsuka 2002). The
+                         + ∇ · (ρvT ) = 0,                      (2)    second, density-modified heating rate that increases stiffly with
+                      ∂t
+                                                                       n is to treat the effect of star formation feedback in a very simple
+∂vT               1                                                    way. Without such a feedback, high-density clouds produced
+    + vT · ∇vT = − ∇P − q0 Ω0 v0x ŷ − 20 × v − ∇(Φs + Φext ),         inside spiral arms in our self-gravitating models would undergo
+ ∂t               ρ                                                    catastrophic collapse, preventing further computation. In the
+                                                          (3)          real ISM, gravitational collapse leads to new-born stars which
+            ∂e                 γ                                       will in turn disperse the parent clouds by injecting radiative and
+               + vT · ∇e = −      P ∇ · vT − ρ L,               (4)    mechanical energies. Investigating the details of star formation
+            ∂t               γ −1                                      and consequent feedback processes is a very active current
+                                                                       research area. Most previous works have adopted simplified
+                        ∇ 2 Φs = 4π Gρ,                         (5)
+                                                                       feedback prescriptions that depend on gas-consumption rate,
+(e.g., Roberts 1969; Shu et al. 1973; Kim & Ostriker 2006),            star formation efficiency, type of energy injection, etc., with
+where vT ≡ v0 + v is the total velocity in the local frame, Φs         considerable uncertainties in the parameters (e.g., Springel et al.
+is the self-gravitational potential of the gas, Φext is the external   2005; Joung & Mac Low 2006; Shetty & Ostriker 2008; Koyama
+stellar potential, and ρ L(ρ, T ) is the net cooling function. Other   & Ostriker 2009a). More realistic feedback prescriptions will be
+symbols have their usual meanings. We adopt an ideal gas-law           considered in a subsequent paper.
+P = (γ − 1)e with γ = 5/3.                                                Figure 1 plots the equilibrium cooling curves in the density
+   The external stellar potential Φext varies in both the x- and       versus pressure plane. The solid line corresponds to the uniform
+z-directions and is separable into two parts as                        heating rate, while the dashed curve is for the modified heating
+                                                                     rate. The dotted lines indicate isotherms. The modified heating
+                                               2π x                    rate changes the equilibrium curve dramatically only for high-
+              Φext = 2π Gρ∗ z2 + Φsp cos              ,          (6)
+                                                Lx                     density gas, while making a negligible difference for low-
+                                                                       density material. The equilibrium pressure has a local maximum
+where ρ∗ is the unperturbed midplane stellar density, Φsp is           Pmax /kB = 5.0 × 103 K cm−3 at ncrit,1 = 1.0 cm−3 for both
+the amplitude of the spiral potential, and Lx = 2π R0 sin i/m          heating rates, while attaining a local minimum at ncrit,2 =
+is the arm-to-arm separation for an m-armed spiral. The first          8.7 cm−3 with Pmin /kB = 1.6 × 103 K cm−3 for the constant
+term in Equation (6) adopts a constant density ρ∗ for the stellar      heating rate, and at ncrit,2 = 6.9 cm−3 with Pmin /kB = 1.7 ×
+disk vertically; this is a reasonable assumption given that most       103 K cm−3 for the modified heating rate. Under the constant
+of the gas is located within one stellar scale height of the           heating rate, the gas temperature along the equilibrium curve
+midplane. The second term is a local analog of a logarithmic           is a monotonically decreasing function of density, although
+spiral potential considered in Roberts (1969) and Shu et al.           it is insensitive to n at the low-density end with n < ncrit,1 .
+No. 2, 2010                                       SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                     1457
+                                                                                                                         Table 1
+                                                                                                           Models Without Spiral Arms (F = 0%)
+
+                                                                                      Modela    Σ0 (M pc−2 )     fD (%)   fR (%)    HD (pc)    HR (pc)   Have (pc)
+                                                                                       (1)           (2)            (3)      (4)       (5)        (6)        (7)
+                                                                                      NU.S02           2             0      100         0        126         126
+                                                                                      NU.S05           5             0      100         0        119         119
+                                                                                      NU.S10          10            71       29         2        125          67
+                                                                                      NU.S20          20            86       14         4        127          48
+                                                                                      NM.S02           2             0      100         0        126         126
+                                                                                      NM.S05           5             0      100         0        119         119
+                                                                                      NM.S10          10            69       31         4        125          70
+                                                                                      NM.S20          20            85       15         9        130          50
+                                                                                      SM.S02           2             0      100         0        121         121
+                                                                                      SM.S05           5             0      100         0        107         107
+                                                                                      SM.S10          10            82       18         4        100          43
+                                                                                      SM.S20          20            94        6         7         84          21
+
+                                                                                      Note. a The prefixes NU refers to the non-self-gravitating models with the
+                                                                                      uniform heating rate, NM for the non-self-gravitating models with the modified
+                                                                                      heating rate, and SM for the self-gravitating models with the modified heating
+                                                                                      rate.
+
+
+                                                                                      in our presentation. For spiral arm parameters, we take pattern
+                                                                                      speed Ωp = 0.5 Ω0 , pitch angle sin i = 0.1, and azimuthal
+                                                                                      wavenumber m = 2. The corresponding arm-to-arm separation
+Figure 1. Thermal equilibrium curves in the density-pressure plane. Solid and
+dashed lines correspond to the uniform heating rate and the density-modified          is Lx = 2π R0 sin i/m = 2.5 kpc, which is set equal to the size
+heating rate, respectively, while dotted lines indicate isotherms with T in Kelvin.   of the simulation box along the x–direction. We fix the spiral
+                                                                                      arm strength to F0 = 5%.
+                                                                                         Our initial gaseous disks, in the absence of the spiral-arm per-
+This is not the case under the density-modified heating rate
+                                                                                      turbations, are taken to be isothermal and in vertical hydrostatic
+where the equilibrium temperature increases with density when
+                                                                                      equilibrium under the linear stellar gravity gz = −4π Gρ∗ z
+n > ncrit,3 = (1/3)1/3 n0 = 13.9 cm−3 in order to model
+                                                                                      (see Equation (6)). The corresponding density distribution is a
+feedback. We thus classify the gas into two components based
+                                                                                      Gaussian profile
+on its density rather than temperature: rarefied component if
+n < ncrit,1 and dense component if n > ncrit,1 . Note that                                                                       
+                                                                                                                               z2
+thermally unstable gas with ncrit,1 < n < ncrit,2 belongs to                                              ρ(z) = ρ0 exp − 2 ,                        (10)
+the dense phase according to our classification.                                                                              2hg
+   As Equation (4) indicates, we explicitly ignore the effect of
+thermal conduction in the present work. Paper I found that large                      with a scale height
+translational motions in a finite difference scheme give rise to                                                      c                      −1/2
+numerical diffusion that tends to suppress the growth of TI,                                       cR                     R             ρ∗
+                                                                                        hg =                = 128 pc                                  ,
+similarly to thermal conduction. The amount of numerical con-                                  (4π Gρ∗ )1/2           7 km s−1    0.056 M pc−3
+ductivity in our models is typically Kn = 109 erg s−1 cm−1 K−1                                                                                       (11)
+for the background velocity v0x = 13 km s−1 , grid spacing                            where cR = 7 km s−1 is the isothermal sound speed of the
+Δx = 2.5 pc, and the perturbation wavelength λ = 20 pc.                               initial disks and ρ∗ = 0.056 M pc−3 is the stellar density near
+Inclusion of physical conductivity larger than Kn would resolve                       the solar neighborhood (Holmberg & Flynn 2000). We take
+the wavelengths of the most unstable TI. But, this would in turn                      Lz = 7.5 hg = 960 pc as the vertical size of the simulation
+reduce the time step greatly, making computation essentially                          domain (i.e., |z| ⩽ Lz /2).
+unpractical.3 We note that by neglecting the thermal conduction                          Tables 1 and 2 summarize the model parameters and some
+term in the energy equation, some of our results may depend on                        simulation outcomes for models with and without spiral po-
+the numerical resolution, although the mass fractions appear to                       tential perturbations, respectively. Column 1 labels each run.
+be insensitive to the resolution (Paper I).                                           The prefixes NU and NM stand for non-self-gravitating mod-
+                                                                                      els (“N”) with the uniform heating rate (“U”) and the modified
+          2.2. Model Parameters and Numerical Methods                                 heating rate (“M”), respectively, while the prefix SM indicates
+                                                                                      self-gravitating models (“S”) with the modified heating rate
+   We consider a simulation box located near the Solar neigh-                         (“M”). As will be discussed below, Column 2 gives the ini-
+borhood at galactocentric radius of R0 = 8 kpc. We adopt                              tial gas surface density   Σ0 . Columns  3 and 4 give the mass
+the galactic rotational velocity of R0 Ω0 = 208 km s−1 with                                                          
+                                                                                      fractions, fa ≡        ρa dxdz/ ρdxdz (with a = D or R),
+a flat rotation curve (q0 = 1). The corresponding angu-                               of dense and rarefied components, respectively. Here, the an-
+lar velocity is Ω0 = 26 km s−1 kpc−1 , and orbital period is                          gle brackets       denote a time average over t/torb = 5–8 for
+torb ≡ 2π/Ω0 = 2.4 × 108 yr, which we use as the time unit                            non-self-gravitating models and over t/torb = 8–11 for self-
+3
+                                                                                      gravitating
+                                                                                                 models.    Columns
+                                                                                                                      5 and 6 give the scale heights,
+   We have run some simulations by including density-dependent thermal
+                                                                                      Ha ≡        ρa z2 dxdz/ ρa dxdz 1/2 , of the dense and rarefied
+conductivity Kn = 108 erg s−1 cm−1 K−1 (1 + 0.05 cm−3 /n)−1 (Koyama &
+Ostriker 2009a), and confirmed that this level of thermal conduction does not         components, respectively. Column 7 gives the average scale
+make a significant difference in the results.                                         height of the whole gas Have ≡ (fD HD2 + fR HR2 )1/2 .
+1458                                                                   KIM ET AL.                                                                  Vol. 720
+                                  Table 2
+                     Models With Spiral Arms (F = 5%)
+
+Model     Σ0 (M pc−2 )    fD (%)    fR (%)    HD (pc)   HR (pc)   Have (pc)
+ (1)           (2)           (3)       (4)       (5)       (6)        (7)
+NU.S02           2           11        89        25       129        122
+NU.S05           5           62        38        10       130         81
+NU.S10          10           81        19         7       130         57
+NM.S02           2           12        88        28       130        122
+NM.S05           5           60        40        20       132         84
+NM.S10          10           81        19        25       135         64
+SM.S02           2           26        74        14       124        107
+SM.S05           5           91         9        21       121         42
+SM.S10          10           95         5        43       123         51
+
+Note. Model name prefixes are as in Table 1.
+
+
+   We integrate the time-dependent partial differential
+Equations (2)–(5) using a modified version of the Athena code
+(Gardiner & Stone 2005, 2008; Stone et al. 2008; Stone &
+Gardiner 2009). Athena employs a single-step, directionally
+unsplit Godunov scheme for magnetohydrodynamics in multi-
+spatial dimensions. Among the various schemes contained in
+Athena, we take a piecewise linear method for spatial recon-
+struction, HLLE Riemann solver to compute the fluxes (Harten                   Figure 2. Distributions of number density along the vertical direction for one-
+et al. 1983; Einfeldt et al. 1991), and van Leer algorithm for di-             dimensional non-self-gravitating models NU.S10 (solid), NM.S10 (dotted),
+                                                                               and self-gravitating model SM.S10 (dashed) without spiral-arm potential
+rectionally unsplit integration (Stone & Gardiner 2009). Since                 perturbations. The midplane densities are n(0) = 32, 15, and 20 cm−3 for
+our simulations involve strong shocks for the dense medium                     models NU.S10, NM.S10, and SM.S10, respectively. The interface between the
+(with typical Mach numbers ∼7–10), we adopt the first-order                    midplane dense layer and the surrounding rarefied medium occurs at almost
+flux correction when the net mass flux out of a cell exceeds the               the same density ntrans ∼ 0.25–0.35 cm−3 , corresponding to Ptrans /kB ∼
+initial mass of the cell in order to avoid an occurrence of negative           2000–2200 cm−3 K.
+density (see, e.g., Lemaster & Stone 2009). Our models employ
+a 1024 × 512 zones over the simulation box, corresponding to
+the resolution of Δx = 2.4 pc and Δz = 1.9 pc.                                 study the effect of TI on vertical disk structure. We run one-
+   We adopt the shearing-periodic boundary condition at the x-                 dimensional simulations with physical quantities varying only
+boundaries (Hawley et al. 1995). In the z-direction, we use the                with z. We consider an initially isothermal disk with Σ0 = 2, 5,
+outflow condition for the velocity and the vacuum condition                    10, or 20 M pc−2 , and evolve it subject to TI.
+for the gravitational potential (e.g., Koyama & Ostriker 2009a).                  For disks with large surface density (models with Σ0 ⩾
+For the density and pressure at the z-boundaries, we linearly                  10 M pc−2 ), TI grows rapidly (torb ), transforming the ini-
+extrapolate the logarithmic density, while keeping temperature                 tially constant-temperature gas into thermally bistable phases.
+fixed, whenever dρ/dz < 0. This produces a balance between                     The cold, dense gas falls toward the midplane to form a dense
+the vertical pressure gradient and the gravitational source term               slab, while the warm, rarefied gas rises up buoyantly. The in-
+at the boundaries, similarly to the “conducting” boundary in                   fall is supersonic relative to the dense medium. At early time,
+Parrish & Stone (2005). When dρ/dz > 0, on the other                           the dense slab surrounded by the upper rarefied gas undergoes
+hand, we switch to the continuous boundary condition for the                   vertical expansions and contractions a few times. As the kinetic
+density and pressure to reduce artificial mass inflow due to                   energy dissipates through shocks at the interfaces, the whole
+the extrapolation. Under our boundary conditions, the gas can                  configuration evolves toward vertical hydrostatic equilibrium
+freely escape from the vertical boundary; we have checked                      typically within ∼0.6torb . Figure 2 shows density profiles for
+that the total mass is nonetheless conserved within 2% for                     S10 models with Σ0 = 10 M pc−2 . Solid and dotted lines are
+all models. Because of the very short cooling time, energy                     for non-self-gravitating NU and NM models, respectively, while
+updates from the net cooling functions are made implicitly based               the dashed line is for the self-gravitating SM models. The dif-
+on Newton–Raphson iterations (Piontek & Ostriker 2004). To                     ference between models NU.S10 and NM.S10 is not significant
+solve for the gravitational potential in our simulation domain,                since the maximum midplane density is not much larger than
+we adopt a method introduced by Koyama & Ostriker (2009a)                      n0 = 20 cm−3 , below which the heating rate is almost density
+which, by using the fast Fourier transform technique, is much                  independent. For model SM.S10, self-gravity compresses the
+more efficient than a hybrid method involving Green’s functions                midplane slab further at the expense of the rarefied medium at
+(e.g., Kim et al. 2002).                                                       |z| > HD . Nevertheless, the phase transition between dense and
+                                                                               rarefied components turns out to occur at almost the same den-
+  3. VERTICAL EQUILIBRIA WITHOUT SPIRAL ARMS                                   sity ntrans ∼ 0.25–0.35 cm−3 , corresponding to the transition
+                                                                               pressure Ptrans /kB ∼ 2000–2200 cm−3 K for all models that are
+   While our main objective is to investigate the overall dynam-               unstable to TI. Note that Ptrans /kB is above the minimum pres-
+ics and structure of spiral shocks in vertically stratified disks              sure for a cold medium with our adopted cooling and heating
+under the influence of TI, in this section we focus on the quasi-              functions, Pmin /kB = 1600–1700 cm−3 K.
+static vertical equilibria with heating and cooling in the absence                Once vertical hydrostatic equilibrium is attained, we measure
+of the spiral arm potential (i.e., F = 0). This allows us to                   the mass fractions fD and fR , and the scale heights HD and HR
+No. 2, 2010                                    SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                1459
+                                                                                densest gas in these models is unable to overcome Pmax to turn
+                                                                                into the dense component, for this case.
+                                                                                   Figure 3 also shows that for the models that reach a two-
+                                                                                phase equilibrium, self-gravity reduces the rarefied-gas fraction
+                                                                                in mass as well as its scale height compared to those in non-self-
+                                                                                gravitating counterparts. Self-gravity also makes the density
+                                                                                profile of the rarefied component deviate significantly from
+                                                                                a Gaussian profile. A thin midplane dense slab, containing
+                                                                                the majority of the gas mass, exerts a uniform gravity on the
+                                                                                rarefied gas lying above it, providing an additional confining
+                                                                                force. In the Appendix, we describe a simple way to estimate
+                                                                                fR and HR as functions of the total gas density, assuming
+                                                                                that the rarefied component can be characterized by a fixed
+                                                                                sound speed cR and that its self-gravity is negligible. The
+                                                                                resulting theoretical predictions, with cR = 7 km s−1 , for self-
+                                                                                gravitating and non-self-gravitating cases are plotted in Figure 3
+                                                                                as dashed and solid curves, respectively. These are overall in
+                                                                                good agreement with the numerical results. Small discrepancies
+                                                                                between the theoretical and numerical values of HR for disks
+                                                                                with Σ0 = 5 M pc−2 arise from the fact that the rarefied
+                                                                                gas in these models has larger midplane pressure than in any
+                                                                                other models.4 In view of the thermal equilibrium curve shown
+                                                                                in Figure 1, this implies that the rarefied medium in S05
+                                                                                models is coldest, corresponding to cR ≃ 6.3 km s−1 , making
+Figure 3. (a) Mass fraction and (b) scale height of the rarefied component
+as functions of total surface density Σ0 from one-dimensional simulations       the scale height smaller than the theoretical estimate based on
+without spiral arms. Symbols represent the numerical results for non-self-      cR = 7 km s−1 .
+gravitating models NU (asterisks), NM (diamonds), and self-gravitating models
+SM (squares). Solid and dashed curves are the theoretical estimates for                    4. NON-SELF-GRAVITATING MODELS
+two-phase equilibrium with and without self-gravity, respectively, for which
+PR (0)/k = Ptrans /kB = 2100 K cm−3 and cR = 7 km s−1 are adopted. Vertical        Now we turn to our main theme, nonlinear gas flows with
+dot-dashed lines mark Σmin = 2.1 M pc−2 and Σmax = 6.7 M pc−2 ; for           TI across spiral arms in a stratified disk. In this section, we
+Σmin < Σ < Σmax , both single-phase and two-phase equilibria are possible.
+                                                                                study overall evolution, structure, and statistical properties such
+                                                                                as density and random velocity distributions of spiral shocks
+                                                                                for non-self-gravitating models. Effects of self-gravity will be
+                                                                                discussed in the next section.
+of the dense and rarefied components, respectively; these values
+are listed in Table 1. Figure 3 plots fR and HR as functions                                           4.1. Overall Evolution
+of the initial surface density Σ0 . The results of NU and NM
+models are denoted by asterisks and diamonds, respectively,                        We begin by describing evolution of our fiducial models
+while open squares are for SM models. Models with low                           NU.S10 and NM.S10 with Σ0 = 10 M pc−2 that employ the
+surface density (Σ0 = 2 M pc−2 ) do not experience TI and                      uniform and density-modified heating rates, respectively. We
+thus establish a single-phase equilibrium consisting only of the                slowly turn on the spiral potential amplitude such that it attains
+rarefied medium. Since the warm gas is nearly isothermal at                     full strength F0 = 5% at t/torb = 1.5. Snapshots of volume
+cR ≈ 7 km s−1 and self-gravity is weak in these models, the                     density in logarithmic color scale at early epochs t/torb = 1.50,
+equilibrium density profiles in low Σ models are approximately
+                                                        √
+                                                                                2.24, and 2.40 are shown in Figures 4 and 5, respectively.
+given √by Equation (10), with surface density Σ = ρ0 hg 2π =                    Figure 6 plots the gas distribution in the n-P /kB plane for
+ρ0 cR / 2Gρ∗ . Since the midplane pressure PR (0) = cR2 ρ0 of the               both models at t/torb = 2.40. Initially, the disk is in hydrostatic
+rarefied gas cannot exceed Pmax along the thermal equilibrium                   equilibrium with a constant sound speed of cR = 7 km s−1 . Since
+curve shown in Figure 1, the surface density for a single-phase                 the initial disk is out of thermal equilibrium, it quickly evolves
+equilibrium with only a rarefied component is constrained to be                 into a two-phase equilibrium configuration, as explained in
+less than Σmax = Pmax /(2Gρ∗ cR2 )1/2 = 6.7 M pc−2 . Similarly,                Section 3. As F increases, both the dense gas near the midplane
+                                                                                and the rarefied gas at high |z| respond to the growing spiral
+the condition PR (0) = Pmin yields Σmin = 2.1 M pc−2 as the
+                                                                                potential and form a shock front near the potential minimum.
+minimum surface density for a two-phase equilibrium in which
+                                                                                   Since the gas flows at this time are fairly horizontal with-
+dense and rarefied components coexist. The two vertical dot-
+                                                                                out much vertical mixing, as evidenced by the instantaneous
+dashed lines in Figure 3 mark Σmin and Σmax . Below Σmin , only a
+                                                                                streamlines shown in Figures 4(a) and 5(a), the shock profile
+rarefied phase is possible, whereas above Σmax , both dense and
+                                                                                at each height is very similar to those of the one-dimensional
+rarefied phases must be present.
+                                                                                cases studied in Paper II. The shock strength and gas phase in
+   For Σmin < Σ0 < Σmax , both single (rarefied) phase and two-
+                                                                                the postshock regions depend on the mean density and temper-
+phase equilibria can be realized. Which type of equilibrium
+                                                                                ature at that height. Near the midplane at |z| < HD (= 7 and
+emerges depends, of course, on the initial disk conditions.
+                                                                                25 pc for models NU.S10 and NM.S10, respectively), the dense
+In the case of our models with Σ0 = 5 M pc−2 , the initial
+midplane density and pressure are n(0) = 0.5 cm−3 and                           4  For example, the midplane pressure of the rarefied component is
+P (0)/kB = 3770 K cm−3 , smaller than than ncrit,1 and Pmax /kB .               PR (0)/kB = 3500 and 2500 cm−3 K for models NM.S05 and NM.S10,
+Since cooling and heating occur almost isobarically, even the                   respectively.
+1460                                                                       KIM ET AL.                                                                 Vol. 720
+
+
+
+
+Figure 4. Density snapshots for model NU.S10 at t/torb = 1.50, 2.24, and 2.40.     Figure 5. Density snapshots for model NM.S10 at t/torb = 1.50, 2.2, and 2.40.
+A few instantaneous streamlines are drawn as solid lines in (a). The shock front   A few instantaneous streamlines are drawn as solid lines in (a). Compared with
+alternates between convex (b) and concave (c) shapes, seen from the upstream       model NU.S10, the density-modified heating rate thickens the dense midplane
+direction, due to quasi-periodic flapping. Three dense condensations located       layer and prohibits the formation of dense condensations. Color bar labels
+near x/Lx = −0.3, 0, and 0.14 in (b) have moved to x/Lx = −0.12, 0.14, and         log(n/1 cm−3 ).
+0.35 in (c), respectively. Color bar labels log(n/1 cm−3 ).                        (A color version of this figure is available in the online journal.)
+(A color version of this figure is available in the online journal.)
+
+                                                                                   ∼(Gρ∗ )−1/2 , is in general not commensurate with the interval
+                                                                                   between arm crossings, the streamlines of the rarefied gas are
+slab is so cold that the shock is very strong with a typical Mach                  not closed. This causes the shock front to sway back and forth
+number M ∼ 10, resulting in a far denser postshock region. In                      around its mean position in the direction perpendicular to the
+the high-|z| regions (|z| > 130 pc), on the other hand, the gas is                 arm (e.g., Kim & Ostriker 2006; Paper I). During the course
+warm and has a low mean density (<0.1 cm−3 ) enough to remain                      of the flapping motions, the shock front has a convex shape
+warm even after the shock compression. It is the mid-altitude                      (seen from upstream) when the postshock regions are maximally
+rarefied medium (at HD < |z| < 130 pc) that is able to achieve                     compressed (Figure 4(b)), while it becomes concave when
+a postshock pressure larger than Pmax and thus undergoes a                         the gas in the postshock regions is in full vertical expansion
+phase transition to the dense component after experiencing iso-                    (Figure 4(c)). These flapping motions of the shock front,
+baric cooling (Mufson 1974; Inoue & Inutsuka 2008; Paper II).                      alternating between convex and concave shapes, occur quasi-
+Since the shock is stronger at lower |z| in a stratified disk and                  periodically with a period of ∼0.5 torb and have an amplitude
+since a stronger shock tends to move downstream (e.g., Kim &                       of Δx/HR ∼ 1 at |z| = HR (= 130 pc in model NU.S10).
+Ostriker 2002), the shock front when it first develops is natu-                    The shock flapping motions are able to tap some of the kinetic
+rally curved in the XZ plane. Figures 4(a) and 5(a) show that                      energy in galaxy rotation to supply random kinetic energy for
+the shock front is concave when seen from the upstream direc-                      the gas. We will quantify the amplitudes of random gas motions
+tion, with mean slopes of |dxsp (z)/dz| ≈ 0.83 at |z| < 130 pc                     driven by flapping in Section 4.3.
+and 0.13 at |z| > 130 pc, where xsp (z) is the shock location                         One of the special features of galactic spiral shocks is
+at z.                                                                              that gas experiences acceleration after the maximum shock
+   The dense gas produced at the shock at moderate z begins                        compression, forming a postshock expansion zone (e.g., Balbus
+falling toward the midplane under the influence of the external                    1988; Kim & Ostriker 2006; Papers I & II). Any parcel of
+gravity as it moves downstream. The reduction of the velocity                      gas becomes gradually less dense as it moves downstream in
+in the direction normal to the concave shock front also helps                      the expansion zone. In model NU.S10, the shock compression
+the downward motion of the gas. On the other hand, the dense                       and subsequent cooling is so strong that the shocked dense
+gas near the midplane has a large pressure and thus slightly                       gas in the midplane can reach n > 103 cm−3 (see also model
+expands vertically after the shock. The vertical expansion is                      SC20 in Paper II). With such a large postshock density, this gas
+more extreme in NM models than in NU models. The falling                           can still remain dense, with n > ncrit,2 , even after emerging
+gas collides with the expanding gas, reducing the rising motion                    from the expansion zone located at x/Lx ∼ 0–0.3. This TI-
+of the latter. The streamlines shown in Figures 4(a) and 5(a)                      stable dense gas travels almost ballistically in the interarm
+illustrate these motions at early time.                                            region, reenters the arm, and combines with other dense gas
+   The rarefied gas which crosses the shock at high |z| also                       to produce a few condensations. Figures 4(b) at time t/torb =
+falls toward the midplane as it follows galaxy rotation. This                      2.24 shows three large condensations located at x/Lx ∼
+builds up thermal pressure at low |z|, so the flow rebounds to                     −0.3, 0, and 0.14, which are stretched horizontally due to
+high-altitude regions. Since the period of vertical oscillation,                   the expanding background velocity. The condensations move
+No. 2, 2010                                     SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                    1461
+
+
+
+
+Figure 6. Distribution of gas in the density-pressure plane for models (a) NU.S10 and (b) NM.S10 at t/torb = 2.4, with grayscale indicating the mass fraction in
+logarithmic scale. The thermal equilibrium curves are the same as in Figure 1.
+
+
+                                                                                      Figure 7 plots the temporal evolution of the mass fractions
+                                                                                   of dense phase (solid lines) and rarefied phase (dashed lines),
+                                                                                   respectively, for models NU.S10 (thick lines) and NM.S10 (thin
+                                                                                   lines). At early time, fD increases rapidly as the gas cools
+                                                                                   and collapses toward the midplane to form a dense layer that
+                                                                                   bounces appreciably at t/torb ∼ 0.1. The mass fractions flatten
+                                                                                   at t/torb ∼ 0.6 when vertical hydrostatic equilibrium is estab-
+                                                                                   lished, well before the effect of the spiral potential becomes
+                                                                                   substantial. As the spiral potential attains its full strength at
+                                                                                   t/torb = 1.5, fD increases slightly due to the phase transition
+                                                                                   of the rarefied to dense phases occurring at the shock fronts.
+                                                                                   Although the flows are fully nonlinear with strong unsteady
+                                                                                   motions and phase transitions, there is no noticeable secular
+                                                                                   variation in the mass fractions, which remains at fD ∼ 0.8 af-
+                                                                                   ter t/torb = 5; the associated temporal fluctuation amplitudes
+                                                                                   are about 6%–9% relative to the mean values. We thus con-
+                                                                                   clude that in a statistical sense, the spiral shocks in our mod-
+                                                                                   els have reached a quasi-steady state at t/torb > 5. Compared
+                                                                                   with models without spiral arms discussed in Section 3, the
+                                                                                   shock compression and associated phase transitions decrease
+                                                                                   the rarefied gas fraction by 46% for S10 models. In fact, all
+                                                                                   of the non-self-gravitating models with spiral arms have com-
+                                                                                                                                                 −2
+                                                                                                                           √ gas, ∼1.9 M pc −2,
+                                                                                   parable total surface density of rarefied
+Figure 7. Mass fractions of the dense (fD ) and rarefied (fR ) components as       lower than the value ΣR = Ptrans /(cR 2Gρ∗ ) ≈ 2.8 M pc
+functions of time for models NU.S10 (thick) and NM.S10 (thin). Initially,          that would be predicted using a uniform surface density. Note
+fD increases rapidly as the gas cools due to TI and flattens to fD ∼ 0.7 at        that both NU and NM models have almost the same dense and
+t/torb ∼ 0.6 when hydrostatic equilibrium is attained before the effect of the
+spiral potential becomes significant. The presence of the spiral arm at full       rarefied mass fractions since the modified heating rate does not
+strength increases this to a saturated value of fD  0.8 at t/torb  5. The mass   affect the rarefied medium much.
+fractions of model NU (unmodified heating) and NM (modified heating) are              The evolution of S02 and S05 models is qualitatively similar
+quite similar.                                                                     to that of S10 models in that phase transitions occur at the
+                                                                                   shock and in the postshock expansion zone, although the
+nearly horizontally to appear at x/Lx = −0.12, 0.14, and 0.35                      former with low postshock density do not produce much dense
+when t/torb = 2.40 (Figure 4(c)). In model NU.S10, the dense                       gas even under the uniform heating rate. When the spiral
+condensations stay in the arm (−0.05 < x/Lx < 0.05) for about                      potential is absent, the equilibrium disks of these models
+∼0.15 torb , in the expansion zone (0.05 < x/Lx < 0.25) for                        consist entirely of the rarefied gas with the midplane pressure
+about ∼0.30 torb , and in the interarm region for the remainder                    P (0)/kB ∼ 3500–4000 cm−3 K for S05 models and P (0)/kB ∼
+(∼0.55 torb ) of the cycle. The width and residence time of each                   1500–2000 cm−3 K for S02 models. But, the shock compression
+zone are insensitive to the model parameters.                                      increases the pressure by about a factor of 3, corresponding to
+   With the density-modified heating rate, on the other hand,                      a typical Mach number M ≈ v0x /cR ∼ 2 for the rarefied
+the postshock dense gas in model NM.S10 has a moderate                             medium,5 making the midplane postshock pressure larger than
+density (∼30–40 cm−3 ), so that the postshock expansion is able                    Pmax . As a result, the dense medium in S05 models comprises
+to take it to the thermally unstable regime (ncrit,1 < n < ncrit,2 ).
+Subsequently, the expanding dense gas suffers from TI and                          5  For adiabatic shocks, the pressure jump condition is
+separates back into dense and rarefied gas in the interarm region.                 P2 /P1 = 1 + M2 (1 − 1/s), where the subscripts 1 and 2 denote preshock and
+The large thermal pressure also prevents the formation of dense                    postshock values, respectively, and s = [(γ + 1)M2 ]/[2γ + (γ − 1)M2 ] is the
+condensations in this model.                                                       density shock jump factor.
+1462                                                                  KIM ET AL.                                                                  Vol. 720
+
+
+
+
+Figure 8. Density distributions averaged over t/torb = 5–8 of our non-self-gravitating models. S05 and S10 models contain midplane dense gas in both arm and
+interarm regions, while S02 models have the dense phase only in the arm regions. Compared to NU models, the arm regions in NM models are broader and thicker.
+Color bar labels log(n/1 cm−3 ).
+(A color version of this figure is available in the online journal.)
+
+
+
+about 60% of the total mass, undergoing TI in the postshock                       (e.g., Martos & Cox 1998). Table 2 lists the time-averaged
+expansion zone. In S02 models, the postshock pressure barely                      values of the mass fractions and scale heights of dense and
+exceeds Pmax , so that the shocked dense gas, comprising about                    rarefied components, as well as the overall average scale
+10% of the total, easily disperses to return to the rarefied gas                  height.
+in the interarm region. Flapping motions of spiral shocks are                        Figure 9 plots the mass-weighted probability distribution
+correspondingly weaker in these models, with Δx/HR ∼ 0.7                          functions (PDFs), averaged over t/torb = 5–8, of gas density and
+and 0.3 for S05 and S02 models, respectively.                                     temperature for models NU.S10 and NM.S10. The PDFs are in
+                                                                                  general bimodal, as is expected for a bistable cooling function.
+                4.2. Time-averaged Shock Structure                                For model NU.S10, the dense and rarefied peaks are centered
+   To visualize spiral shock structure in each model, we construct                at (n, T ) ∼ (200 cm−3 , 30 K) and ∼(0.2 cm−3 , 7100 K), respec-
+a time-averaged distribution of number density n . Here, the                      tively, mostly distributed near the thermal equilibrium curves.
+angle brackets      denote a time average over t/torb = 5–8.                      Only a small fraction of the gas is in the thermally unstable
+Figure 8 displays n for all the non-self-gravitating models in                    regime. The dense portion of the PDF in model NU.S10 is
+logarithmic color scale. It is apparent that S05 and S10 models                   well fitted by a lognormal distribution (thin solid line) with a
+possess a thin dense layer everywhere near the midplane, while                    standard deviation of Δ(ln n) = 1.2, which is one of the char-
+the dense gas is found only inside the arm regions in S02                         acteristics of near-isothermal turbulence (cf., Wada & Norman
+models. The shock compression factors in the time-averaged                        2007; Wada 2008). With enhanced heating, on the other hand,
+density profiles are ∼7–10, which is larger than the adiabatic                    model NM.S10 shows a sharp density cutoff in the density PDF
+shock jump due to enhanced radiative cooling in the shocked                       at n ∼ 50 cm−3 and has a dense peak shifted to n ∼ 20 cm−3 .
+gas (cf., Mufson 1974; Inoue & Inutsuka 2008; Paper II). The                      Because of the stiff equation of state, the dense gas in model
+shock transition layer in S05 and S10 models is relatively broad                  NM.S10 is not as cold as in model NM.S10. This not only
+because of rather strong flapping motions of the shocks, while                    thickens the midplane dense slab, but also sets an upper limit on
+S02 models exhibit relatively sharp discontinuities. Compared                     the gas density, which in turn prevents the formation of dense
+to NU models, arms in NM models have larger pressure and                          condensations. In model NM.S10, all the postshock dense gas
+are more expanded vertically, similar to “hydraulic jumps” that                   becomes thermally unstable in the expansion zone and separates
+occur when the equation of state is stiffer than isothermal                       into dense and rarefied gas in the interarm region.
+No. 2, 2010                                       SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                    1463
+
+
+
+
+Figure 9. Mass-weighted density (top) and temperature (bottom) proba-
+bility density functions, averaged over t/torb = 5–8, in models NU.S10
+(solid) and NM.S10 (dotted). While the broad dense peak centered at
+(n, T ) ∼ (200 cm−3 , 30 K) in model NU.S10 is compressed and shifted
+to ∼(20 cm−3 , 180 K) in model NM.S10, the rarefied peak at (n, T ) ∼                 Figure 10. Time-averaged profiles of surface density from our two-dimensional
+(0.2 cm−3 , 7100 K) is unchanged. The thin line in the top panel is a lognormal fit   simulations under the uniform heating rate (solid) and the density-modified
+to the dense peak in model NU.S10, with a standard deviation of Δ(ln n) = 1.2.        heating rate (dotted) for models with (a) Σ0 = 10 M pc−2 , (b) 5 M pc−2 ,
+                                                                                      and (c) 2 M pc−2 . Dashed lines give the results of one-dimensional models
+                                                                                      (which do not have shock flapping) with the uniform heating rate. Stronger
+   Paper II showed that for one-dimensional models, the density                       shock flapping motions in two-dimensional models make the arms broader and
+                                                                                      less peaked compared with the one-dimensional counterparts.
+profiles of multi-phase spiral shocks are more symmetric and
+have a wider arms than isothermal counterparts. This is because
+the strength of spiral shocks in the multi-phase models fluctuates                    & Ostriker (2009b) explicitly demonstrated that turbulent, multi-
+depending on whether the incoming gas is warm or cold,                                phase disks are in effective hydrostatic equilibrium, provided
+resulting in slight oscillations of the shock fronts in the direction                 that the turbulent pressure arising from random gas motions is
+perpendicular to the arm. In addition, spiral shocks in the XZ                        taken into account. When a spiral potential is present, the gas
+plane undergo flapping motions, which can further widen the                           surface density and velocity dispersions depend upon the dis-
+arms. To see this, we plot in Figure 10 the time-averaged surface                    tance x from the minimum of the spiral potential. It is interesting
+                             ∞
+density profiles Σ(x) = −∞ ρ dz after taking a boxcar average                         to study whether “local” effective hydrostatic equilibrium is still
+with window of 8 pc. The solid and dotted lines are for NU                            established at each x.
+and NM models, respectively. Shown also as dashed lines are                              From the time-averaged density distribution, we measure the
+the density profiles n(x)/n0 from one-dimensional simulations                         density-weighted vertical scale height H (x), sound speed cs (x),
+(i.e., without vertical stratification) under the uniform heating                     and vertical velocity dispersion δuz (x) via
+rate; the initial number density n0 of the one-dimensional                                                                     
+counterpart was chosen equal to the density-weighted mean                                                  ρ z2 dz                 P dz
+density nave = Σ0 /(2π 1/2 μmH Have ), with the average disk                                  H (x) = 
+                                                                                                 2
+                                                                                                                   , cs (x) = 
+                                                                                                                        2
+                                                                                                                                        , and
+                                                                                                             ρ dz                  ρ dz
+thickness Have listed in Column 7 of Table 2. For S05 and S10                                            
+models for which the shock flapping motions are appreciable,                                               ρ[vz − vz ]2 dz
+                                                                                              δu2z (x) =                    .                       (12)
+the arms are considerably wider and less centrally peaked than in                                                ρ dz
+the one-dimensional models. Due to the flapping motions, dense
+condensates formed in the NU.S10 model oscillate slightly in                          In the absence of self-gravity, the “estimated” vertical scale
+the x-direction when they pass through the shock, resulting                           height is given by
+in broader arms than in the NM.S10 model. For S02 models,
+the one-dimensional shock consists only of the warm rarefied                                                                 cs2 + δu2z
+                                                                                                                 2
+                                                                                                                Hest (x) =                                   (13)
+gas, while the two-dimensional shocks contain a small amount                                                                 4π Gρ∗
+(∼10%) of dense gas due to an additional compression in the
+z-direction; the difference in profiles is therefore slight.                          for effective hydrostatic equilibrium (Koyama & Ostriker
+   In studies of galactic disk structure, it has been the customary                   2009b). Figure 11 plots H (x) (solid lines) and Hest (x) (dot-
+to assume effective hydrostatic equilibrium in the vertical direc-                    ted lines) for NU and NM models as functions of x. The mea-
+tion. Using numerical simulations without spiral arms, Koyama                         sured vertical scale height is overall in excellent agreement with
+1464                                                                      KIM ET AL.                                                                     Vol. 720
+
+
+
+
+Figure 11. Vertical scale heights of the time-averaged density distributions in
+(a) NU and (b) NM models as functions of x. The simulation results (solid) are    Figure 12. Temporal changes of the density-weighted velocity dispersions δvx ,
+overall in good agreement with the theoretical estimates (dotted) for effective   δvy , and δvz of the rarefied (left) and dense (right) components in models
+vertical hydrostatic equilibrium.                                                 NU.S10 (solid) and NM.S10 (dashed). The large-amplitude fluctuations of the
+(A color version of this figure is available in the online journal.)              velocity dispersions, with periods of ∼0.5torb , are due to incomplete subtraction
+                                                                                  of the arm streaming motions associated with the shock flapping.
+
+the estimated value at all horizontal locations. For all models,                  calculate the density-weighted velocity dispersions using
+cs is about 5–7 times larger than δuz . This implies that the
+disks with spiral arms, in time-averaged sense, are effectively in                                                             1/2
+                                                                                                            ρ[vi − vi ]2 dxdz
+vertical hydrostatic equilibrium, with the main support provided                                δvi (t) =                          .       (14)
+by thermal pressure (in these models without stellar feedback).                                                   ρdxdz
+Unsteady motions associated with shock flapping and move-                         Figure 12 plots δvi (t) for the dense and rarefied components
+ments of dense condensations are mostly horizontal, affecting                     in models NU.S10 and NM.S10 as solid and dashed curves,
+the vertical force balance relatively little. A small mismatch be-                respectively, for a time span of t/torb = 5–8. Figure 13 plots
+tween H and Hest near x/Lx = −0.1 in S02 models arises from                       the mean values δv i along with their standard deviations
+the fact that shocks in these models exhibit weak flapping mo-                    Δδvi = ( δvi2 − δv i 2 )1/2 for all the non-self-gravitating
+tions and retain sharp discontinuities in the time-averaged con-                  models; the values of δv i and Δδvi are listed in Table 3.
+figurations. In this case, the ∂ ρvx vz /∂x term in the momentum                     Figure 12 shows that the density-weighted velocity disper-
+equation has a non-negligible contribution to the vertical force                  sions for the dense component exhibit large-amplitude fluctua-
+balance, which was ignored in the derivation of Equation (13).                    tions, with periods roughly of ∼0.5 torb . The standard deviations
+                                                                                  of the fluctuations are Δδvi ∼ (0.2–0.5) δv i for the dense com-
+                       4.3. Velocity Dispersions                                  ponent; deviations are only Δδvi ∼ (0.1–0.2) δv i for the rar-
+                                                                                  efied phase. These variations of δvx and δvy are caused mostly
+   Paper I showed that two-dimensional (isothermal) spiral                        by oscillations of the shock front relative to the mean position.
+shocks exhibit strong flapping motions in the XZ plane and                        With large spatial variations of streaming velocities across the
+are able to generate a sonic level of random gas motions in the                   arm, the small offset of the shock position as well as the instan-
+arm regions. On the other hand, Paper II showed that in one-                      taneous locations of dense condensates result in large values of
+dimensional spiral shocks with TI, random gas motions amount                      Δδvi . We thus regard the local minima of δvi , approximately
+to only ∼1–2 km s−1 . In this subsection, we quantify the level                   equal to σi ≡ δv i − Δδvi , as the upper limits to the level of
+of random gas motions driven by shock flapping motions and                        random gas motions.
+TI in our two-dimensional models.                                                    Figure 13 shows that for NU models, δvx and δvy increase
+   The velocity field of gas moving across spiral arms is a com-                  with Σ0 . This is mainly because the shock compression and as-
+bination of several different components including streaming                      sociated phase transition are stronger with larger Σ0 , leading to
+motions, oscillations of the shock fronts themselves, and ran-                    stronger flapping motions. Nevertheless, σx ∼ σy ∼ 2–3 km s−1
+dom motions. Since streaming velocities that are ordered and                      for both dense and rarefied components, insensitive to Σ0 . This
+vary with x are much larger than the true random motions of the                   indicates that the portion of kinetic energy in the shock flapping
+gas, it is important to subtract the former from the total velocity               motions that goes into random gas motions is quite limited. The
+as cleanly as possible. For this purpose, we first construct time-                remaining portion is simply associated with the horizontal shock
+averaged templates of the velocity field vi (with i = x, y, or                    oscillations near the midplane. Since the shock flapping motions
+z) for the dense and rarefied components separately. We then                      at low |z| are mostly horizontal, the random vertical motions of
+No. 2, 2010                                     SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                   1465
+                                                                            Table 3
+                                                               Induced Random Velocity Dispersions
+
+            Model            Σ0                           Dense Component                                         Rarefied Component
+                                             δvx               δvy                  δvz                δvx              δvy               δvz
+                        (M pc−2 )         (km s−1 )         (km s−1 )            (km s−1 )          (km s−1 )        (km s−1 )         (km s−1 )
+           NU.S02            2           3.04 ± 1.53       3.28 ± 1.23       1.44 ± 0.34            2.62 ± 0.58     2.25 ± 0.29        1.61 ± 0.17
+           NU.S05            5           3.12 ± 0.87       3.20 ± 0.92       0.61 ± 0.14            3.04 ± 0.34     2.75 ± 0.33        1.64 ± 0.14
+           NU.S10           10           4.26 ± 1.75       3.60 ± 1.89       0.41 ± 0.08            3.47 ± 0.81     2.94 ± 0.41        1.72 ± 0.14
+           NM.S02            2           3.07 ± 1.24       3.24 ± 1.20       1.52 ± 0.43            2.79 ± 0.40     2.45 ± 0.18        1.82 ± 0.11
+           NM.S05            5           2.99 ± 0.66       3.20 ± 0.81       1.03 ± 0.29            3.17 ± 0.59     2.69 ± 0.46        1.74 ± 0.11
+           NM.S10           10           3.18 ± 0.62       3.51 ± 1.08       1.11 ± 0.40            3.07 ± 0.42     2.63 ± 0.33        1.69 ± 0.12
+           SM.S02            2           4.47 ± 1.33       3.97 ± 1.49       0.72 ± 0.18            3.04 ± 0.50     2.49 ± 0.19        1.85 ± 0.14
+           SM.S05            5           6.36 ± 1.79       6.95 ± 2.11       0.75 ± 0.10            6.07 ± 1.44     5.50 ± 1.45        2.20 ± 0.14
+           SM.S10           10          10.52 ± 5.55       8.41 ± 3.91       3.60 ± 1.71           10.60 ± 2.94     7.92 ± 1.78        4.96 ± 1.26
+
+           Note. Model name prefixes are as in Table 1.
+
+                                                                                        For NM models, the dense gas in the immediate postshock re-
+                                                                                        gion is overpressured due to the strong heating and thus expands
+                                                                                        vertically, enhancing σz compared to those in NU models.
+
+                                                                                                     5. SELF-GRAVITATING MODELS
+                                                                                           We now explore the formation of self-gravitating clumps
+                                                                                        and their internal properties. For NU models, we find that the
+                                                                                        inclusion of self-gravity always results in catastrophic collapses
+                                                                                        of self-gravitating clouds that form in the postshock region,
+                                                                                        preventing us from continuing simulations further. For this
+                                                                                        reason, we present the results of self-gravitating models only
+                                                                                        with the density-modified heating rate (“SM” models). Instead
+                                                                                        of running self-gravitating models from t = 0, we make use of
+                                                                                        the “saturated-state” data sets of NM models at t/torb ∼ 4.8 and
+                                                                                        restart them by slowly turning on the gaseous self-gravity over
+                                                                                        a time interval of 1.5 torb .
+                                                                                           Neglecting the effect of the rarefied medium, the gravitational
+                                                                                        susceptibility of a midplane dense layer in NM models can be
+                                                                                        measured by the average Toomre stability parameter
+                                                                                                                                              −1
+                                                                                                      1 κcD     0.27                  Σ0
+                                                                                                QD =          =                                      ,   (15)
+                                                                                                     fD π GΣ0    fD               10 M pc−2
+
+                                                                                        where cD = 1 km s−1 is the mean sound speed of the dense
+                                                                                        gas. With the inclusion of self-gravity, the dense layer in model
+Figure 13. Mean values (symbols) and standard deviations (errorbars) of the             SM.S10 has QD = 0.34 and thus is quite unstable, initiating
+density-weighted velocity dispersions, averaged over t/torb = 5–8, of the               the collapse of high-density regions. Due to the stiff equation of
+rarefied (left) and dense (right) components in all non-self-gravitating models
+under the uniform heating rate (top) and the density-modified heating rate
+                                                                                        state, however, the collapsing clouds soon reach an equilibrium
+(bottom). Allowing for the incomplete subtraction of the arm streaming motions,         state with only a moderate central density 30 cm−3 , which is
+the random gas motions are σx ∼ σy ∼ 2–3 km s−1 for both dense and rarefied             only 1.5 times larger than the average density of the dense gas
+components, and σz ∼ 1.7 km s−1 for the rarefied component, insensitive to Σ0 ,         in model NM.S10. As these clouds follow galaxy rotation, they
+in both NU and NM models, while σz ∝ Σ−0.8 0    for the dense component in NU           merge together in regions of converging streaming velocities,
+models.                                                                                 eventually resulting in two big condensations. Figure 14 shows
+                                                                                        the density snapshots in logarithmic color scale of model
+                                                                                        SM.S10 at t/torb = 7.32, 7.48, and 7.69. Two clouds are widely
+the dense gas in NU models are forced predominantly by the                              separated from each other during traversal of the interarm region
+impact of rarefied gas arriving from high altitudes. The fact that                      (Figure 14(a)). After one cloud enters the spiral shock, it loses
+the rarefied gas has σz ∼ 1.7 km s−1 , almost independent of                            most of its x-momentum, and the second cloud can then collide
+Σ0 , suggests the flapping motions drives more-or-less constant                         with it when it enters the shock at high speed (Figure 14(b)).
+vertical motions at high |z|; this is because the total mass of                         Since the two clouds are on their own epicyclic orbits before the
+rarefied gas is almost the same in all models, equivalent to a sur-                     collision, however, they retain quite different v y even after the
+face density of 1.9 M pc−2 . Since the fraction of the rarefied                        collision, preventing them from merging into a single entity. Due
+component decreases with increasing Σ0 (see Table 2), the ratio                         to the Coriolis force, the two clouds subsequently have different
+of vertical kinetic energy in the rarefied gas to the mass of dense                     v x , so that the merged entity elongates in the expansion zone
+gas decreases with Σ0 . This causes σz of the dense medium to de-                       (Figure 14(c)), and separates back into two pieces in the interarm
+crease with increasing Σ0 , roughly as σz ∝ Σ−0.8
+                                                0    in NU models.                      region.
+1466                                                                      KIM ET AL.                                                                 Vol. 720
+                                                                                   not sufficiently strong to have a major effect. For the SM.S05
+                                                                                   and SM.S10 models, however, the stronger self-gravity make a
+                                                                                   larger difference to shock flapping, in turn driving larger veloc-
+                                                                                   ity dispersions. Correcting for streaming, the velocity disper-
+                                                                                   sions of both dense and rarefied phases in model SM.S05 reach
+                                                                                   σx ∼ σy ∼ 4–5 km s−1 , about twice larger than those in model
+                                                                                   NM.S05. In model SM.S10, the dense gas velocity dispersions
+                                                                                   are σx ∼ σy ∼ 4–5 km s−1 , while the rarefied gas has the ve-
+                                                                                   locity dispersions up to ∼7 km s−1 . Note that these in-plane
+                                                                                   velocity dispersions in multi-phase, self-gravitating models are
+                                                                                   similar to those in the isothermal self-gravitating models with
+                                                                                   F = 5% studied in Paper I.
+                                                                                      Since the self-gravitating clumps produced in models SM.S05
+                                                                                   and SM.S10 move almost ballistically, the position of the largest
+                                                                                   surface density at a given time does not always correspond to
+                                                                                   the minimum of the spiral potential. In fact, the clumps are near
+                                                                                   the potential minimum (|x|/Lx < 0.1) only for Δt/torb = 0.35,
+                                                                                   making the definition of the arm regions rather ambiguous. In
+                                                                                   addition, due to accretion onto the clumps, the rarefied medium
+                                                                                   in these models amounts to less than 10% of the total mass, much
+                                                                                   smaller than the observed mass fraction of the warm gas near
+                                                                                   the solar neighborhood (Heiles 2001; Heiles & Troland 2003).
+Figure 14. Density snapshots of self-gravitating model SM.S10 at t/torb = 7.32,    For these reasons, these clumps are unlike real self-gravitating
+7.48, and 7.69 in logarithmic color scale. Two clouds are separate from each       clouds in spiral galaxies. Nevertheless, we believe these model
+other in the interarm regions (a), temporarily merge together at the shock (b),    clouds may provide clues to the internal properties and virial
+and then break up back into two pieces in the postshock expansion zone (c).
+The boxes surrounding the clouds A and B in (a) are enlarged in Figure 15 to
+                                                                                   balance of real interstellar clouds, in that they represent a
+show the interval velocity structure. Color bar labels log(n/1 cm−3 ).             limiting situation in which internal turbulent feedback from star
+(A color version of this figure is available in the online journal.)               formation is absent.
+                                                                                      Keeping in mind the caveats mentioned above, we proceed
+                                                                                   as follows to calculate the cloud properties. To define the
+   The dense layer in model SM.S05 has QD = 0.9 and is thus                        boundary of the dense clumps, we choose the threshold density
+marginally unstable. With the aid of shock compression, the                        nth = 21 cm−3 , corresponding to Pmax in the thermal equilibrium
+dense gas in the postshock region collapses and eventually forms                   curve. Using a CLUMPFIND algorithm (e.g., Williams et al.
+two self-gravitating clumps. In this model, the collision of these                 1994), we find the interior of each cloud with n > nth . We then
+clumps at the shock and subsequent break up in the expansion                       measure the mean density ρcl ≡ ρ, the averaged sound speed
+zone is similar to model SM.S10. With QD = 12, on the                              ccl ≡ (P /ρ)1/2 and the mean one-dimensional internal velocity
+other hand, the dense layer in model SM.S02 is gravitationally
+stable and does not form dense clumps. Compared with model                         dispersion σcl ≡       i (vi − vi )
+                                                                                                              2      2 1/2 1/2
+                                                                                                                          /3 of each cloud, where
+NM.S02, self-gravity in model SM.S02 increases the fraction of                     the overlines denote the mass-weighted average. We then count
+the dense phase by about a factor of 2, which in turn decreases                    the total number of pixels Ncl on the XZ plane occupied by
+its vertical velocity dispersion by a similar factor.                              each cloud, and calculate the cloud size Rcl ≡ (Ncl ΔxΔz/π )1/2 .
+   The presence of self-gravity leads to stronger shock flapping                   Assuming a spherical shape, we calculate the total mass Mcl ≡
+motions than in the NU models, increasing the velocity disper-                     4πρcl Rcl3 /3 and the virial ratio of each cloud via
+sion. In model SM.S02, the in-plane velocity dispersions of the
+dense component increases by a factor of ∼1.2–1.5 compared                                                         5 σcl2 + ccl2 Rcl
+                                                                                                             α≡                      ,                    (16)
+to model NU.S02; for low surface density, the self-gravity is                                                           GMcl
+
+
+
+
+Figure 15. Shapes and random velocity fields of the clouds A and B shown in Figure 14(a) for model SM.S10. The velocity vectors are distributed quite randomly,
+indicative of (subsonic) turbulent motions within the clouds. The arrow outside the clump in each panel corresponds to the velocity of 5 km s−1 . The clouds are
+gravitationally bound with virial parameter of α ∼ 2.
+No. 2, 2010                                SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                             1467
+                                                                       Table 4
+                                           Average Properties of Clumps Produced in Self-Gravitating Models
+
+                Model            ccl                 σcl                Rcl              ncl                Mcl             α
+                              (km s−1 )           (km s−1 )            (pc)            (cm−3 )           (106 M )
+               SM.S05        3.69 ± 0.67        0.96 ± 0.24        44.9 ± 7.6        27.4 ± 0.8        0.36 ± 0.15     2.34 ± 0.25
+               SM.S10        5.06 ± 0.63        1.53 ± 0.61        60.7 ± 6.0        29.8 ± 1.6        0.91 ± 0.29     2.31 ± 0.32
+
+
+
+which is the ratio of the total kinetic energy to the gravitational           vertical hydrostatic equilibrium but out of thermal equilibrium.
+potential energy for a uniform spherical cloud (e.g., Bertoldi                We slowly turn on the amplitude of the spiral arm potential such
+& McKee 1992; McKee & Ostriker 2007); note that central                       that it attains a full strength at 1.5 orbital times. Magnetic fields
+concentration would decrease α. Figure 15 gives an example                    are neglected in the present work.
+of the shapes and internal velocities of two clumps shown in                     Our main results and their astronomical implications are as
+Figure 14(a). Note that the velocity vectors are distributed quite            follows.
+randomly, indicative of (subsonic) turbulent motions within the                 1. Two-phase disk equilibria without spiral arms. In the
+clouds.                                                                            absence of spiral-arm potential perturbations (and other
+   Table 4 summarizes the average properties of the clouds                         sources of turbulence), the vertical structure of equilib-
+that form in models SM.S05 and SM.S10. The typical size                            rium disks depends on the disk surface density Σ0 . When
+and mass of the clouds are found to be Rcl ∼ 45–60 pc and                          Σ0 > Σmax ≡ Pmax /(2Gρ∗ cR2 )1/2 → 6.7 M pc−2 (for So-
+Mcl ∼ (4–9) × 105 M , respectively, with the clouds in model                      lar neighborhood conditions), the disk experiences TI and
+SM.S05 somewhat smaller and less massive than in model                             evolves toward an equilibrium configuration with a thin slab
+SM.S10. Overall, α ∼ 2 for all the clouds, suggesting that                         of dense gas (n > 1 cm−3 ) near the midplane sandwiched
+they are (marginally) gravitationally bound. The mean sound                        between layers of rarefied gas (with n < 1 cm−3 ). Here,
+speed inside the clouds is ccl = 3.7–5.1 km s−1 , ∼3–4 times                       Pmax /kB = 5000 cm−3 K is the maximum pressure allowed
+larger than the one-dimensional internal velocity dispersions                      for the thermally-stable rarefied gas with our adopted heat-
+σcl = 0.9–1.8 km s−1 . This indicates that the major support                       ing and cooling functions, cR ≈ 7 km s−1 is its density-
+against self-gravity comes predominantly from the thermal                          weighted sound speed, and ρ∗ = 0.056 M pc−3 is the
+energy, a consequence of the density-modified heating rate                         stellar density near the Solar neighborhood. In our models,
+we adopt. The relatively low value of the internal turbulent                       the transition between the dense and rarefied phases occurs
+velocity dispersion suggests that the interaction of a dense,                      approximately at Ptrans /kB ≈ 2100 cm−3 K, insensitive to
+gravitationally-bound cloud with its surroundings can drive only                   Σ0 , as long as the disk is unstable to TI. Without self-gravity,
+a modest level of internal turbulence.                                             the vertical distribution of the rarefied gas in equilibrium is
+                                                                                   well fitted by a Gaussian profile whose surface density is
+              6. SUMMARY AND DISCUSSION                                            fixed to ΣR = ΣNG ≡ Ptrans /(2Gρ∗ cR2 )1/2 → 2.8 M pc−2 .
+                                                                                   When self-gravity is included, the gravity from the mid-
+   While stellar spiral arms in disk galaxies provide smoothly                     plane dense layer compresses the overlying rarefied com-
+varying low-amplitude gravitational potential perturbations, the                   ponent further, forcing overpressured rarefied gas to trans-
+response of the interstellar gas to them is quite dramatic.                        form to the dense phase. The resulting surface density of the
+Spiral shocks compress the ISM and the high post-shock                             rarefied gas is reduced to ΣR = F ΣNG , with the reduction
+densities may trigger growth of arm substructures and star                         factor F defined by Equation (A5). When Σ0 < Σmin ≡
+formation. In addition, radiative cooling and heating of the                       Pmin /(2Gρ∗ cR2 )1/2 → 2.1 M pc−2 , the disk has too low
+gas makes the ISM inherently inhomogeneous, producing two                          a pressure to produce the dense component; equilibrium
+phases that differ in density and temperature by about two                         consists only of the rarefied gas. When Σmin < Σ0 < Σmax ,
+orders of magnitude. Moreover, the vertical stellar gravity tends                  either a single rarefied disk or a two-phase disk is possi-
+to produce stratification of the cold and warm gas due to                          ble, depending on the initial conditions. Our S02 and S05
+differential buoyancy; this stratification can be modified by                      models with Σ0 = 2 and 5 M pc−2 , respectively, that start
+vertical turbulence, however. Interactions of these processes                      from a warm isothermal configurations all end up with a
+may significantly affect the gas flows and shock structures,                       single-component rarefied disk, in the absence of spiral
+compared with results from our previous work (and that of other                    perturbations.
+groups), which employed an isothermal approximation (Paper I)                   2. Shock flapping motions in vertically stratified disks. Spiral-
+or neglected the vertical degree of freedom (Paper II). In this                    arm potential perturbations lead to spiral shocks in the gas,
+paper, we have conducted nonlinear hydrodynamic simulations                        which are vertically curved and non-stationary, showing
+in a two-dimensional slice perpendicular to a local segment of a                   strong flapping motions perpendicular to the arms. Simi-
+spiral arm that is tightly wound (with a pitch angle sin i = 0.1)                  larly to the one-dimensional cases studied in Paper II, the
+and rotates rigidly (with a pattern speed Ωp /Ω0 = 0.5). To                        shock compression and postshock expansion in two dimen-
+handle the Coriolis force arising from the galaxy rotation self-                   sions allow phase transitions, but only if the gas density
+consistently, we allow for gas motions parallel to the arm (i.e.,                  at the shock and/or the postshock expansion zone reaches
+perpendicular to the domain of the simulation). We consider                        the thermally-unstable range (1 cm−3  n  7–9 cm−3 ).
+two different forms of gas heating; the usual constant heating                     In model NU.S10 with Σ0 = 10 M pc−2 and the uniform
+rate (for NU models) and the density-modified heating rate                         heating rate, the shocked dense gas has large enough den-
+(for NM and SM models), which mimics the effect of star                            sity that the postshock expansion is unable to return it to
+formation feedback in a very simple way, to limit runaway                          the thermally unstable regime. As a consequence, there is
+collapse. We start from initially isothermal disks that are in                     a large amount of interarm dense gas entering the shock
+1468                                                            KIM ET AL.                                                        Vol. 720
+    in this model, which collides with other dense gas in the              be compared to fR ∼ 30% when the spiral potential is
+    arm, producing dense condensations. In other models with               absent. Despite the shock flapping motions, most of the
+    lower surface density or the density-modified heating rate,            gas is found close to thermal equilibrium, with a small
+    the shocked gas re-expands and becomes thermally unsta-                fraction thermally unstable. The density and temperature
+    ble, returning to either the dense or the rarefied phase in the        PDFs are thus bimodal. For model NU.S10, the dense and
+    interarm region.                                                       rarefied peaks are located at (n, T ) ∼ (200 cm−3 , 30 K) and
+    The shock flapping motions in our models arise due to the              ∼(0.2 cm−3 , 7100 K), respectively, and the dense part of
+    fact that the arm crossing time of gas is incommensurate               the density PDF is described by a lognormal distribution.
+    with the vertical oscillation period, so that steady flows             The time-averaged structure can be well represented by
+    are not possible. Seen from the upstream side, the shock               local vertical hydrostatic equilibrium, supported mainly
+    is convex when the postshock regions are maximally                     by the thermal pressure rather than gas random motions.
+    compressed, and concave when the postshock vertical                    This indicates that the vertical hydrostatic balance is a
+    expansion is strongest. These non-steady motions of shock              reasonable approximation even in the presence of spiral
+    fronts are commonly seen in numerical simulations with                 shocks. The profiles of surface density perpendicular to the
+    sufficient resolution (e.g., Martos & Cox 1998; Gómez &               arm are more-or-less symmetric with a shock compression
+    Cox 2002, 2004; Kim & Ostriker 2006; Paper I; Wada                     factor of ∼7–10, and have broad arm regions whose width
+    2008), although simulations with low resolution (Tubbs                 correlates with the strength of the shock flapping motions.
+    1980) or particles (e.g., Dobbs et al. 2008) do not capture            The fractional widths of the arm, postshock expansion zone,
+    the flapping motions clearly.                                          and interarm region are typically 10%, 20%, and 70% of
+    It is interesting to note that radio continuum images of               the arm-to-arm distance, where the gas stays for 15%, 30%,
+    the 5 kpc arm (or the Scutum arm) toward the galactic                  and 55% of the arm-to-arm crossing time, respectively. The
+    longitude l = 30◦ –32◦ in the Milky Way shows a bow                    shock flapping motions in the XZ plane make the arm wider
+    shock feature in the warm ionized medium with temperature              than in one-dimensional spiral shocks where the arm takes
+    ∼104 K (Sofue 1985), similarly to a convex shock front seen            up only 1% of the arm-to-arm distance (Paper II).
+    in Figure 4(b). The radio emission from the bow shock                  The dense gas produced from TI and shock compression
+    is presumably thermal radiations from ionized gas, with                tends to sink toward the midplane to form a thin slab,
+    emission measure of ∼7000 pc cm−6 . The curvature of the               while high-altitude regions are dominated by warm rarefied
+    observed bow shock, as measured by the longitudinal offset             gas. The thickness of the dense slab is HD ∼ 10–40 pc,
+    Δl of the shock at latitude b relative to the shock front at           depending on the total gas content, heating rate, and
+    the midplane, is Δl/b ∼ 0.5 for b = 0.◦ 5. This value is               presence/absence of self-gravity, while the scale      √ height
+    about a half of the maximum curvature of the shock front               of the rarefied gas is HR ∼ 130 pc ≈ cR / 4π Gρ∗
+    |xsp (HR ) − xsp (0)|/HR ∼ 0.85 in our S10 models, where               insensitive to the parameters. For model NM.S10, the
+    xsp (z) denotes the shock position at height z. This strongly          thickness ratio of the dense to rarefied components is
+    suggests that the bow shock associated with the 5 kpc arm              about 5, which is not much different from the results of
+    is most likely a cross section of a galactic spiral shock              Dobbs et al. (2008) who reported that the warm gas extends
+    that is undergoing flapping motions. Velocity information              vertically up four times more than the cold gas. With high
+    is needed to determine whether the 5 kpc arm regions are               density and pressure, the dense slab would transform to
+    currently being compressed or expanding in the course of               molecular clouds if the appropriate chemical reactions for
+    the flapping motions.                                                  molecule formation were included (e.g., Dobbs & Bonnell
+    In this paper, for consistency with our local approximation            2007; Dobbs & Price 2008). Thin distributions of the cold
+    we have considered tightly wound arms with a very small                dense gas are in fact common in numerical simulations
+    pitch angle i ∼ 5.◦ 8, and a pattern speed Ωp /Ω0 = 0.5.               of galactic disks with TI where turbulence is driven by
+    Observed spiral arms of external galaxies are often more               magnetorotational instability (Piontek & Ostriker 2007),
+    loosely wound with i ∼ 10◦ –30◦ (e.g., Seigar et al.                   stellar feedback via H ii regions (Koyama & Ostriker
+    2008) and span a wide range of galactocentric radii with               2009a, 2009b), or supernovae explosions (Korpi et al.
+    differing Ωp /Ω0 . For fixed F, a larger arm pitch angle               1999; de Avillez & Berry 2001; Joung & Mac Low 2006;
+    would imply a larger streaming velocity v0x perpendic-                 Joung et al. 2009). The observed molecular distribution the
+    ular to the arm (see Equation (1)). Spiral shocks would                Milky Way has a scale height of ∼35 pc within the Solar
+    then become correspondingly stronger and shifted farther               circle, somewhat reduced for the most massive clouds (e.g.,
+    downstream (e.g., Roberts 1969; Shu et al. 1973; Kim &                 Malhotra 1994; Bronfman et al. 2000; Stark & Lee 2005).
+    Ostriker 2002), exhibiting larger amplitude flapping mo-               Galactic H ii regions are also within about 30 pc of the
+    tions (Paper I). On the other hand, |v0x | is increasingly small       midplane (Lockman 1977). In the inner Galaxy and near
+    as Ωp approaches Ω0 . Consequently, the spiral shock as well           the solar circle, the scale height of the cold H i layer is about
+    as associated flapping motions would become weaker as one              1.5 times smaller than the warm H i gas (e.g., Falgarone
+    approaches corotation, where the gas would simply con-                 & Lequeux 1973; Crovisier 1978; see also Ferriére 2001),
+    centrate near the potential minimum, without involving a               although the cold and warm phases appear to have a similar
+    shock.                                                                 scale height in the outer Galaxy (e.g., Dickey et al. 2009).
+ 3. Time-averaged shock structure. Within a few orbital times           4. Random gas motions driven by shock flapping motions. The
+    after the development of spiral shocks, gas flows reach                flapping motions of spiral shocks stir the gas and supply
+    a quasi-steady state in the sense that the mass fractions              random kinetic energy. Allowing for incomplete subtraction
+    of dense and rarefied gas do not change appreciably with               of streaming motions in the arm region, the induced density-
+    time. For models with Σ0 = 10 M pc−2 , the quasi-steady               weighted velocity dispersions are σx ∼ σy ∼ 2–3 km s−1
+    mass fraction of the rarefied gas is fR ∼ 19%, which can               for both dense and rarefied components for the non-self-
+No. 2, 2010                             SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                      1469
+    gravitating models, with larger values corresponding to               and σcl ∼ 0.9–1.8 km s−1 , respectively. For models with
+    disks with larger Σ0 . Compared with the results of Paper II          Σ0 = 2 M pc−2 , self-gravity is insufficient to form bound
+    where the vertical coordinate was suppressed, these values            clouds. Nevertheless, self-gravity increases the dense gas
+    are similar to those for the dense gas in the arms and larger         fraction by a factor of ∼2 compared to the non-self-
+    by a factor of ∼2–3 for the interarm rarefied gas. This               gravitating counterpart of this model, which in turn de-
+    implies that it is the rarefied gas that is more efficiently          creases the vertical velocity dispersion of the dense gas by
+    stirred by the shock flapping motions. The self-gravitating           a similar factor.
+    models have larger velocity dispersions, in the range σx ∼            Formation of self-gravitating clouds in our two-
+    σy ∼ 4–5 km s−1 for the dense and σx ∼ σy ∼ 4–7 km s−1                dimensional models requires the production of the dense
+    for the rarefied gas, indicating that self-gravity enhances           gas due to TI, and then additional shock compression. Al-
+    shock flapping and velocity dispersions, especially for               though our present models do not capture the cloud destruc-
+    rarefied gas. These in-plane velocity dispersions in the              tion process, bound clouds created inside spiral arms may be
+    current multi-phase models are similar to those in the                disrupted before they leave the arms if feedback from star
+    isothermal models considered in Paper I.                              formation is sufficiently strong (Shetty & Ostriker 2008;
+    The vertical velocity dispersions of the rarefied gas in NU           Wada 2008). Nevertheless, the presence of high-density,
+    and NM models are σz ∼ 1.7 km s−1 , insensitive to Σ0 .               self-gravitating clouds in the interarm regions opens an
+    In NU models, the vertical motions of the dense gas are               interesting possibility that the spiral shocks—where the
+    excited preferentially by vertical motions of the rarefied            diffuse gas is strongly compressed—do not necessarily co-
+    gas. Since the mass fraction of the rarefied gas decreases            incide with the regions of highest gas density (in gravita-
+    with Σ0 , the vertical velocity dispersions of the dense gas          tionally bound clouds). For example, Patrikeev et al. (2006)
+    in NU models is a decreasing function of Σ0 , varying                 found strongly polarized nonthermal radio emission that
+    roughly as σz ∝ Σ−0.80    . In NM models, the postshock gas           may trace magnetic arms, detected preferentially upstream
+    is overpressured due to enhanced heating and thus expands             of the CO arms in the inner disk of the Whirlpool galaxy
+    vertically, increasing σz compared to NU models.                      M51 (see also, e.g., Fletcher et al. 2010). We note, however,
+    The level of random gas motions in our models are                     that the current unmagnetized models are not yet able to
+    generally smaller than the observed velocity dispersions              provide clues to the relation between gaseous and magnetic
+    ∼7–10 km s−1 for atomic gas in the solar neighborhood                 arms. It will be interesting to see how TI, spiral shocks, and
+    (e.g., Heiles & Troland 2003) and for the larger molecu-              realistic star formation feedback conspire with magnetized
+    lar clouds in the Milky Way (e.g., Stark & Brand 1989;                self-gravitating instabilities to create bound clouds and arm
+    Solomon et al. 1987; Heyer et al. 2009). Thus, we con-                substructures (possibly including separate magnetic arms),
+    clude that other sources of the interstellar turbulence (e.g.,        and to generate turbulence in the gas.
+    Mac Low & Klessen 2004; Elmegreen & Scalo 2004) must
+    exceed that provided by spiral shocks. One of the dominant           The authors are grateful to B.-C. Koo and G. Park for
+    mechanisms is of course supernova explosions (e.g., Korpi         information on galactic spiral arms, and also to the referee
+    et al. 1999; de Avillez & Breitschwerdt 2005; Joung & Mac         for an insightful report. This work was supported in part by
+    Low 2006; Joung et al. 2009). In outer regions of galax-          the Korea Research Foundation Grant funded by the Koran
+    ies where star formation activity is low, the magnetorota-        Government (MOEHRD) (KRF – 2007 – 313 – C00328) and in
+    tional instability (e.g., Sellwood & Balbus 1999; Piontek &       part by by KICOS through the grant K20702020016-07E0200-
+    Ostriker 2005, 2007) and/or cosmic infall of gas (e.g.,           01610 provided by MOST. Simulations were performed by
+    Santillán et al. 2007; Klessen & Hennebelle 2010) may            using the supercomputing resource of the Korea Institute of
+    play an important role in driving the ISM turbulence.             Science and Technology Information through the grant KSC-
+    H ii region expansion and radiation pressure are impor-           2009-S02-0008. The work of ECO is supported by the U.S.
+    tant in injecting energy into the ISM as GMCs are dis-            National Science foundation under grant AST-0908185.
+    persed (e.g., Matzner 2002; Murray et al. 2010). At large
+    scales, self-gravitating instability with galactic rotation and                              APPENDIX
+    shear can drive turbulence at near-sonic levels (e.g., Kim &       TWO-PHASE DISKS IN HYDROSTATIC EQUILIBRIUM
+    Ostriker 2002; Wada & Norman 2002; Kim & Ostriker
+    2007; Agertz et al. 2009).                                           We consider thermally bistable two-phase disks in which a
+ 5. Effect of self-gravity and properties of self-gravitating         cold, dense layer with surface density ΣD with thickness HD
+    clouds. When self-gravity is included, dense gas in SM            is surrounded by a warm, rarefied medium. Since the scale
+    models with Σ0 ⩾ 5 M pc−2 suffers from gravitational             height of the dense layer is very small compared to that of the
+    instability, eventually forming two large clouds in each          rarefied gas, we approximate the former as razor-thin (HD ≈ 0).
+    model. These are separate in the interarm regions, tem-           We further assume that the mass fraction of the rarefied gas is
+    porarily merge in the arm, and then break up into two pieces      small, so that its self-gravity is unimportant. Let ρR (z) denote
+    in the postshock expansion zone. These clouds have a radii        the density distribution of the rarefied gas. In the presence of the
+    ∼45–60 pc and mass ∼(4–9) × 105 M each, and are grav-            external gravity from a stellar disk of uniform density ρ∗ , the
+    itationally bound with a virial parameter of α ∼ 2. In our        condition of vertical hydrostatic equilibrium for the warm gas
+    present models, we have not attempted to include realistic        reads
+    star formation feedback, but instead increase the heating                         d ln ρR
+    rate at high density to prevent collapse. As a consequence,                 cR2           = −4π Gρ∗ z − 2π GΣD sign(z),         (A1)
+                                                                                         dz
+    the main support against self-gravity comes from thermal
+    pressure. The mean thermal sound speed and internal ve-           where cR is the isothermal sound speed of the rarefied gas,
+    locity dispersion of the clouds are ccl ∼ 3.7–5.1 km s−1          assumed to be independent of z. Integrating Equation (A1) over
+1470                                                                 KIM ET AL.                                                                   Vol. 720
+z, one obtains                                                                                            REFERENCES
+                                                                        Agertz, O., Lake, G., Teyssier, R., Moore, B., Mayer, L., & Romeo, A. B.
+                                1                ΣD                            2009, MNRAS, 392, 294
+          ρR (z) = ρR (0) exp − 2             2
+                                             z +    |z|             (A2)
+                               2hg               ρ∗                         Baade, W. 1963, in The Evolution of Stars and Galaxies, ed. C. Payne-
+                                                                               Gaposchkin (Cambridge: Harvard Univ. Press), 218
+                                                                            Balbus, S. A. 1988, ApJ, 324, 60
+where h2g = cR2 /(4π Gρ∗ ) is the Gaussian scale height which               Bertin, G., & Amorisco, N. C. 2010, A&A, 512, 17
+the rarefied gas would have in the absence of self-gravity. The             Bertoldi, F., & McKee, C. F. 1992, ApJ, 395, 140
+surface density, ΣR , of the rarefied medium is then given by               Boley, A. C., & Durisen, R. H. 2006, ApJ, 641, 534
+                                                                            Boomsma, R., Oosterloo, T. A., Fraternali, F., van der Hulst, J. M., & Sancisi,
+                       ∞                                                      R. 2008, A&A, 490, 555
+              ΣR = 2          ρR (z)dz = ΣNG F (s0 ),       (A3)            Bronfman, L., Casassus, S., May, J., & Nyman, L.A. 2000, A&A, 358, 521
+                       HD ≃0
+                                                                            Corder, S., Sheth, K., Scoville, N. Z., Koda, J., Vogel, S. N., & Ostriker, E. C.
+                                                                               2008, ApJ, 689, 148
+                                                                            Cox, D. P. 2005, ARA&A, 43, 337
+where                                                                       Cox, D. P., & Smith, B. W. 1974, ApJ, 189, L105
+                                                   PR (0)
+             ΣNG ≡ (2π )1/2 hg ρR (0) =                            (A4)    Crovisier, J. 1978, A&A, 70, 43
+                                                   2Gρ∗ cR2                 de Avillez, M. A., & Berry, D. L. 2001, MNRAS, 328, 708
+                                                                            de Avillez, M. A., & Breitschwerdt, D. 2005, A&A, 436, 585
+                                                                            Dickey, J. M., Hanson, M. M., & Helou, G. 1990, ApJ, 352, 522
+is the surface density without gas self-gravity,                            Dickey, J. M., Strasser, S., Gaensler, B. M., Haverkorn, M., Kavars, D., McClure-
+                                                                               Griffiths, N. M., Stil, J., & Taylor, A. R. 2009, ApJ, 693, 1250
+                                                  1/2
+                   F (s0 ) ≡ exp(s0 )erfc s0                        (A5)    Dobbs, C. L., & Bonnell, I. A. 2006, MNRAS, 367, 873
+                                                                            Dobbs, C. L., & Bonnell, I. A. 2007, MNRAS, 376, 1747
+is the reduction factor, and                                                Dobbs, C. L., & Bonnell, I. A. 2008, MNRAS, 385, 1893
+                                                                            Dobbs, C. L., Glover, S. C. O., Clark, P. C., & Klessen, R. S. 2008, MNRAS,
+                                                                               389, 1097
+                                 π GΣ2D                                     Dobbs, C. L., & Price, D. J. 2008, MNRAS, 383, 497
+                          s0 ≡           ,                          (A6)
+                                 2cR2 ρ∗                                    Dobbs, C. L., Theis, C., Pringle, J. E., & Bate, M. R. 2010, MNRAS, 403, 625
+                                                                            Draine, B. T., & Bertoldi, F. 1996, ApJ, 468, 269
+                                                                            Einfeldt, B., Munz, C. D., Roe, P. L., & Sjögreen, B. J. 1991, J. Comp. Phys.,
+measures the strength of gravity due to the dense gaseous slab                 92, 273
+relative to the external vertical gravity (see, e.g., Kim et al.            Elmegreen, B. G. 1993, ApJ, 411, 170
+2002). Note that the results of Section 3 suggest that when two-            Elmegreen, B. G. 1994, ApJ, 433, 39
+phase equilibria are established, the interface between dense and           Elmegreen, B. G., & Elmegreen, D. M. 1983, MNRAS, 203, 31
+rarefied media has a constant pressure Ptrans , so that we may take         Elmegreen, B. G., & Scalo, J. 2004, ARA&A, 42, 211
+                                                                            Elmegreen, D. M., Elmegreen, B. G., Kaufman, M., Sheth, K., Struck, C.,
+ρR (0) = PR (0)/cR2 = Ptrans /cR2 since the dense medium has a                 Thomasson, M., & Brinks, E. 2006, ApJ, 642, 158
+very small scale height (e.g., Piontek & Ostriker 2007), such               Falgarone, E., & Lequeux, J. 1973, A&A, 25, 253
+that                                                                        Ferriére, K. M. 2001, Rev. Mod. Phys., 73, 1031
+                              Ptrans F (s0 )                                Field, G. B. 1965, ApJ, 142, 531
+                        ΣR =                .                (A7)          Field, G. B., Goldsmith, D. W., & Habing, H. J. 1969, ApJ, 155, L149
+                                 2Gρ∗ cR2                                   Fletcher, A., Beck, R., Shukurov, A., Berkhuijsen, E. M., & Horellou, C. 2010,
+                                                                               MNRAS, submitted (arXiv:1001.5230)
+The scale height of the rarefied medium is given by                         Gardiner, T. A., & Stone, J. M. 2005, J. Comp. Phys., 205, 509
+                                                                            Gardiner, T. A., & Stone, J. M. 2008, J. Comp. Phys., 227, 4123
+        ∞                                                                 Glover, S. C. O., Federrath, C., Mac Low, M.-M., & Klessen, R. S. 2010,
+             ρR (z)z2 dz                         s0 2
+ HR = −∞
+   2
+           ∞             =  h 2
+                              g  (1 + 2s 0 ) −             , (A8)               MNRAS, 404, 2
+          −∞ ρR (z)dz
+                                                 π F (s0 )                  Glover, S. C. O., & Mac Low, M.-M. 2007, ApJ, 659, 1317
+                                                                            Gómez, G. C., & Cox, D. P. 2002, ApJ, 580, 235
+                                                                            Gómez, G. C., & Cox, D. P. 2004, ApJ, 615, 744
+where Equation (A2) is used.                                                Gordon, K. 2007, Spitzer Press Release (Pasadena, CA: Caltech), http://gallery.
+  The condition of mass conservation requires                                  spitzer.caltech.edu/Imagegallery/image.php?image_name=sig07-025
+                                                                            Harten, A., Lax, P. D., & van Leer, B. 1983, SIAM Rev., 25, 35
+                         Σ0 = ΣD + ΣR                               (A9)    Hawley, J. F., Gammie, C. F., & Balbus, S. A. 1995, ApJ, 440, 742
+                                                                            Heiles, C. 2001, ApJ, 551, L105
+                                                                            Heiles, C., & Troland, T. H. 2003, ApJ, 586, 1067
+so that                                                                     Hernquist, L. 1990, in Dynamics and Interactions of Galaxies, ed. R. Wielen
+                             π G(Σ0 − ΣR )2
+                      s0 =                  .                      (A10)       (Berlin: Springer), 108
+                                 2cR2 ρ∗                                    Heyer, M., Krawczyk, C., Duval, J., & Jackson, J. M. 2009, ApJ, 699, 1092
+                                                                            Holmberg, J., & Flynn, C. 2000, MNRAS, 313, 209
+For self-gravitating cases, we fix ρ∗ = 0.056 M pc−3 and cR =              Inoue, T., & Inutsuka, S. 2008, ApJ, 687, 303
+7 km s−1 , and solve Equations (A7) and (A10) iteratively to find           Joung, M. K. R., & Mac Low, M.-M. 2006, ApJ, 653, 1266
+                                                                            Joung, M. K. R., Mac Low, M.-M., & Bryan, G. L. 2009, ApJ, 704, 137
+ΣR and ΣD = Σ0 −ΣR as functions of Σ0 . The resulting values of             Kenney, J. D. P. 1997, in The Interstellar Medium in Galaxies, ed. J. M. van der
+fR = ΣR /Σ0 and HR are plotted in Figure 3 as dashed lines. For                Hulst (Dordrecht: Kluwer), 33
+non-self-gravitating cases, ΣR = ΣNG = PR (0)/(2Gρ∗ cR2 )1/2                Kennicutt, R. C. 2004, Spitzer Press Release (Pasadena, CA: Caltech),
+and HR = hg corresponding to s0 = 0, plotted as solid lines in                 http://www.spitzer.caltech.edu/news/180-ssc2004-19-First-Peak-at-Spitzer-
+                                                                               s-Legacy-Mysterious-whirlpool-Galaxy
+Figure 3.                                                                   Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2006, ApJ, 649, L13 (Paper I)
+   Note that since ΣD < Σ0 , s0  1 if π GΣ20 /(2cR2 ρ∗ )  1; for          Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2008, ApJ, 681, 1148 (Paper II)
+our models with ρ∗ = 0.056 M pc−3 and Σ0 < 10 M pc−2 ,                    Kim, W.-T., & Ostriker, E. C. 2002, ApJ, 570, 132
+π GΣ20 /(2cR2 ρ∗ ) < 0.2. When s0  1, F (s0 ) ≈ 1, so that HR ≈            Kim, W.-T., & Ostriker, E. C. 2006, ApJ, 646, 213
+                                                                            Kim, W.-T., & Ostriker, E. C. 2007, ApJ, 660, 1232
+hg → 128 pc and ΣR → 2.8 M pc−2 for ρ∗ = 0.056 M pc−3                     Kim, W.-T., Ostriker, E. C., & Stone, J. M. 2002, ApJ, 581, 1080
+and Ptrans /kB = 2100 K cm−3 .                                              Klessen, R. S., & Hennebelle, P. 2010, A&A, in press (arXiv:0912.0288)
+No. 2, 2010                                       SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                       1471
+Koda, J., et al. 2009, ApJ, 700, L132                                                 Santillán, A., Sánchez-Salcedo, F. J., & Franco, J. 2007, ApJ, 662, L19
+Korpi, M. J., Brandenburg, A., Shukurov, A., Tuominen, I., & Nordlund, A.             Scoville, N. Z., Polletta, M., Ewald, S., Stolovy, S. R., Thompson, R., & Rieke,
+   1999, ApJ, 514, L99                                                                   M. 2001, AJ, 122, 3017
+Koyama, H., & Inutsuka, S. 2002, ApJ, 564, L97                                        Seigar, M. S., Kennefick, D., Kennefick, J., & Lacy, C. H. S. 2008, ApJ, 678,
+Koyama, H., & Ostriker, E. C. 2009a, ApJ, 693, 1316                                      L93
+Koyama, H., & Ostriker, E. C. 2009b, ApJ, 693, 1346                                   Sellwood, J. A., & Balbus, S. A. 1999, ApJ, 511, 660
+Kritsuk, A. G., & Norman, M. L. 2002, ApJ, 569, L127                                  Shetty, R., & Ostriker, E. C. 2006, ApJ, 647, 997
+La Vigne, M. A., Vogel, S. N., & Ostriker, E. C. 2006, ApJ, 650, 818                  Shetty, R., & Ostriker, E. C. 2008, ApJ, 684, 978
+Lemaster, M. N., & Stone, J. M. 2009, ApJ, 691, 1092                                  Shetty, R., Vogel, S. N., Ostriker, E. C., & Teuben, P. T. 2007, ApJ, 665, 1138
+Lin, C. C., & Shu, F. H. 1964, ApJ, 140, 646                                          Shu, F. H., Milione, V., & Roberts, W. W. 1973, ApJ, 183, 819
+Lin, C. C., & Shu, F. H. 1966, Proc. Natl. Acad. Sci. USA, 55, 229                    Sofue, Y. 1985, PASJ, 37, 507
+Lockman, F. J. 1977, AJ, 82, 408                                                      Solomon, P. M., Rivolo, A. R., Barrett, J., & Yahil, A. 1987, ApJ, 319, 730
+Lubow, S. H., Balbus, S. A., & Cowie, L. L. 1986, ApJ, 309, 496                       Solomon, P. M., Sanders, D. B., & Rivolo, A. R. 1985, ApJ, 292, L19
+Mac Low, M.-M., & Klessen, R. S. 2004, Rev. Mod. Phys., 76, 125                       Springel, V., Di Matteo, T., & Hernquist, L. 2005, MNRAS, 361, 776
+Malhotra, S. 1994, ApJ, 433, 687                                                      Stark, A. A. 1979, Ph.D. Thesis, Princeton Univ.
+Marochnik, L. S., Berman, B. G., Mishurov, Yu. N., & Suchkov, A. A. 1983,             Stark, A. A., & Brand, J. 1989, ApJ, 339, 763
+   Ap&SS, 89, 171                                                                     Stark, A. A., & Lee, Y. 2005, ApJ, 619, L159
+Martos, M. A., & Cox, D. P. 1998, ApJ, 509, 703                                       Stone, J. M., & Gardiner, T. A. 2009, New Astron., 14, 139
+Matzner, C. D. 2002, ApJ, 566, 302                                                    Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B.
+McKee, C. F., & Ostriker, E. C. 2007, ARA&A, 45, 565                                     2008, ApJS, 178, 137
+McKee, C. F., & Ostriker, J. P. 1977, ApJ, 218, 148                                   Toomre, A., & Toomre, J. 1972, ApJ, 178, 623
+Meerson, B. 1996, Rev. Mod. Phys., 68, 215                                            Tubbs, A. D. 1980, ApJ, 239, 882
+Mufson, S. L. 1974, ApJ, 193, 561                                                     Vogel, S. N., Kulkarni, S. R., & Scoville, N. Z. 1988, Nature, 334, 402
+Murray, N., Quataert, E., & Thompson, T. A. 2010, ApJ, 709, 191                       Wada, K. 2008, ApJ, 675, 188
+Oh, S. H., Kim, W.-T., Lee, H. M., & Kim, J. 2008, ApJ, 683, 94                       Wada, K., & Koda, J. 2004, MNRAS, 349, 270
+Parrish, I. J., & Stone, J. M. 2005, ApJ, 633, 334                                    Wada, K., & Norman, C. A. 2002, ApJ, 566, L21
+Patrikeev, I., Fletcher, A., Stepanov, R., Beck, R., Berkhuijsen, E. M., Frick, P.,   Wada, K., & Norman, C. A. 2007, ApJ, 660, 276
+   & Horellou, C. 2006, A&A, 458, 441                                                 Williams, J. P., de Geus, E. J., & Blitz, L. 1994, ApJ, 428, 693
+Piontek, R. A., & Ostriker, E. C. 2004, ApJ, 601, 905                                 Willner, S. P., et al. 2004, ApJS, 154, 222
+Piontek, R. A., & Ostriker, E. C. 2005, ApJ, 629, 849                                 Woodward, P. R. 1975, ApJ, 195, 61
+Piontek, R. A., & Ostriker, E. C. 2007, ApJ, 663, 183                                 Woodward, P. R. 1976, ApJ, 207, 484
+Rand, R. J., & Kulkarni, S. R. 1990, ApJ, 349, L43                                    Wolfire, M. G., McKee, C. F., Hollenbach, D., & Tielens, A. G. G. M. 2003, ApJ,
+Roberts, W. W. 1969, ApJ, 158, 123                                                       587, 278
+Salo, H., & Laurikainen, E. 2000, MNRAS, 319, 377                                     Zimmer, P., Rand, R. J., & McGraw, J. T. 2004, ApJ, 607, 285
+

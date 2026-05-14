@@ -1,0 +1,1573 @@
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                             https://doi.org/10.3847/1538-4357/ab9b87
+© 2020. The American Astronomical Society. All rights reserved.
+
+
+
+
+Local Simulations of Spiral Galaxies with the TIGRESS Framework. I. Star Formation
+                               and Arm Spurs/Feathers
+                        1
+                                                 Woong-Tae Kim1,2   , Chang-Goo Kim2         , and Eve C. Ostriker2
+                      Department of Physics & Astronomy, Seoul National University, Seoul 08826, Republic of Korea; wkim@astro.snu.ac.kr
+           2
+             Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA; cgkim@astro.princeton.edu, eco@astro.princeton.edu
+                                 Received 2020 February 17; revised 2020 June 7; accepted 2020 June 9; published 2020 July 21
+
+                                                                             Abstract
+              Spiral arms greatly affect gas ﬂows and star formation in disk galaxies. We use local three-dimensional simulations
+              of the vertically stratiﬁed, self-gravitating, differentially rotating interstellar medium (ISM) subject to a stellar
+              spiral potential to study the effects of spiral arms on star formation and formation of arm spurs/feathers. We adopt
+              the TIGRESS framework of Kim & Ostriker to handle radiative heating and cooling, star formation, and ensuing
+              supernova (SN) feedback. We ﬁnd that more than 90% of star formation takes place in spiral arms, but the global
+              star formation rate (SFR) in models with spiral arms is enhanced by less than a factor of 2 compared to the no-arm
+              counterpart. This results from a quasi-linear relationship between the SFR surface density SSFR and the gas surface
+              density Σ, and supports the picture that spiral arms do not trigger star formation but rather concentrate star-forming
+              regions. Correlated SN feedback produces gaseous spurs/feathers downstream from arms in both magnetized and
+              unmagnetized models. These spurs/feathers are short lived and have magnetic ﬁelds parallel to their length, in
+              contrast to the longer-lived features with perpendicular magnetic ﬁelds induced by gravitational instability. SN
+              feedback drives the turbulent component of magnetic ﬁelds, with the total magnetic ﬁeld strength sublinearly
+              proportional to Σ. The total midplane pressure varies by a factor of ∼10 between arm and interarm regions but
+              agrees locally with the total vertical ISM weight, while SSFR is locally consistent with the prediction of pressure-
+              regulated, feedback-modulated theory.
+              Uniﬁed Astronomy Thesaurus concepts: Interstellar medium (847); Magnetohydrodynamical simulations (1966);
+              Disk galaxies (391); AGN host galaxies (2017); Star formation (1569); Spiral galaxies (1560); Galaxy magnetic
+              ﬁelds (604); Superbubbles (1656)
+
+
+                                    1. Introduction                                    strongest among various mechanisms that contribute to driving
+                                                                                       turbulence in the ISM (e.g., Mac Low & Klessen 2004) and is a
+   Spiral arms are of paramount importance in dynamical and
+                                                                                       major agent for regulating galactic star formation rates (SFRs;
+chemical evolution of disk galaxies (e.g., Buta & Combes 1996;
+                                                                                       e.g., Ostriker et al. 2010; Kim et al. 2011; Ostriker &
+Kormendy & Kennicutt 2004; Sellwood 2014). They not only                               Shetty 2011).
+exert nonaxisymmetric torques to drive secular migration of                               One of the long-standing issues with disk galaxies is whether
+stars and gas clouds (e.g., Roškar et al. 2008; Bovy et al. 2012;                      spiral arms trigger star formation or just organize star-forming
+Daniel & Wyse 2015, 2018), but also compress gas to aid the                            regions into an arm shape. The conventional wisdom was that
+formation of giant molecular clouds (GMCs) in them (e.g.,                              spiral arms enhance SFRs by compressing gas clouds above the
+Elmegreen & Elmegreen 1983; Rand 1993; Elmegreen 1994;                                 threshold density for gravitational collapse (e.g., Roberts 1969;
+see also Dobbs & Baba 2014). They are also sites of active star                        Shu et al. 1973; Roberts et al. 1975). Cepa & Beckman (1990)
+formation (e.g., Elmegreen & Elmegreen 1986; Foyle et al.                              argued in favor of this notion based on arm versus interarm star
+2010; Elmegreen 2011; Leroy et al. 2017; Schinnerer et al.                             formation efﬁciency (SFE) in atomic gas in M74 and M109 and
+2017a) and are associated with spurs or feathers that extend                           typical arm/interarm molecular density contrasts (see also Lord
+nearly perpendicularly from arm to interarm regions3 (e.g.,                            & Young 1990; Knapen et al. 1996; Seigar & James 2002).
+Sandage 1961; Lynds 1970; Elmegreen 1980; Scoville et al.                              However, there does not in fact seem to be a threshold for star
+2001; La Vigne et al. 2006; Muraoka et al. 2009; Schinnerer                            formation in molecular gas (Schruba et al. 2011), and
+et al. 2017a, 2017b; Puerari et al. 2014; Koo et al. 2017;                             Elmegreen & Elmegreen (1986) found no obvious correlation
+Elmegreen et al. 2018; Elmegreen & Elmegreen 2019).                                    between the mean SFRs and the arm strength, indicating that
+   Massive stars formed inside spiral arms—and in arm spurs/                           spiral arms are not needed to trigger star formation. A more
+feathers—profoundly affect the physical properties of the                              recent study of Foyle et al. (2010) for galaxies M51 and M74
+surrounding interstellar medium (ISM) by supplying feedback                            showed that the SFE within molecular gas is almost similar
+in the form of stellar winds and radiation during their lifetime                       (within ∼10%) in the arm and interarm regions. Given that
+and via supernova (SN) explosions at their death (e.g., McKee                          the SFR is not correlated with the atomic gas but with the
+& Ostriker 2007; Krumholz et al. 2014). SN feedback appears                            molecular gas (Bigiel et al. 2008; Leroy et al. 2008, 2013), the
+                                                                                       existing observational results favor the idea of star formation
+3
+   More precisely, in the observational literature the term “feathers” has been        organization (rather than triggering) by spiral arms.
+used to refer to dust features seen as dark against a bright background, while            Another interesting issue regarding spiral arms is what
+“spurs” indicate luminous stellar features in optical light (see, e.g., La Vigne       mechanism accounts for the formation of gaseous spurs/
+et al. 2006; Schinnerer et al. 2017a). Spurs most likely correspond to dense
+feathers with recent star formation. In this paper, we use the two terms               feathers. A number of processes have been put forward to
+interchangeably.                                                                       explain spur/feather formation (see, e.g., Shu 2016 and
+
+                                                                                   1
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                   Kim, Kim, & Ostriker
+
+references therein). For example, Balbus (1988) argued that              that stellar feedback somehow affects the formation and
+swing ampliﬁcation of hydrodynamic perturbations inside                  evolution of interarm feathers. These diverse results on spur/
+spiral arms is responsible for spurs/feathers, while the presence        feather formation in numerical simulations indicate that there is
+of magnetic ﬁelds appears essential to promote the fast                  no consensus as to how star formation and feedback inﬂuence
+growth of self-gravitating perturbations in spiral arms (e.g.,           these features.
+Elmegreen 1994; Kim & Ostriker 2002, 2006; Shetty &                         In this paper, we run local three-dimensional (3D) simula-
+Ostriker 2006, 2008; Lee & Shu 2012; Lee 2014). In particular,           tions of vertically stratiﬁed, self-gravitating, differentially
+Kim & Ostriker (2002, 2006) ran magnetodydrodynamic                      rotating, magnetized, galactic gaseous disks under the inﬂuence
+(MHD) simulations of local shearing-box models under an                  of a stellar spiral potential. To handle star formation and SN
+isothermal approximation and showed that elongated spur                  feedback, we adopt the Three-phase Interstellar medium in
+structures grow via magneto-Jeans instability (MJI), in which            Galaxies Resolving Evolution with Star formation and Super-
+magnetic ﬁelds remove angular momentum from self-gravita-                nova feedback (TIGRESS) algorithms developed by Kim &
+tionally contracting regions. In these simulations, gaseous spurs        Ostriker (2017). The TIGRESS framework features multi-
+undergo gravitational fragmentation into bound clumps within             physics modules including gas accretion to sink particles and
+one or two orbits. When driven by MJI, the mean spacing                  delayed SN feedback in the form of thermal energy and/or
+between spurs along the arm is determined by the Jeans length            momentum, and allows self-consistent simulations of the three-
+at the density peak of spiral arms.                                      phase star-forming ISM. The present study extends the model
+   There have also been mechanisms proposed for spur/feather             setup of Kim & Ostriker (2017) by including a local stellar
+formation that do not rely on gaseous self-gravity and magnetic          spiral-arm potential. Our work also extends the isothermal
+ﬁelds. Wada & Koda (2004) ran non-self-gravitating simula-               models of Kim & Ostriker (2002, 2006) by considering
+tions and showed that hydrodynamic spiral shocks are unstable            radiative cooling and heating, star formation, and stellar
+to clump-forming, wiggle instability (WI; see also Renaud                feedback (SNe and FUV heating).
+et al. 2013), which later turns out to arise due to the generation          This work has several objectives. First, we want to
+of potential vorticity (PV) at perturbed shock fronts that gas           understand the role of spiral arms on galactic star formation,
+passes through periodically (Kim et al. 2014, 2015; Sormani              addressing the issue of star formation triggering or organization
+et al. 2017). Using smoothed particle hydrodynamics (SPH)                by spiral arms. Second, we wish to investigate the effects of SN
+simulations, Dobbs & Bonnell (2006) found that changes of                feedback on gaseous spur formation and evolution. The
+angular momenta at shock fronts make the orbits of cold                  TIGRESS framework is essential for both objectives. In
+                                                                         addition, the spiral structure imposes spatial variations in mean
+particles crowded, resulting in clumps and feathers behind
+                                                                         properties that reﬂect a temporal sequence as gas ﬂows from
+the shocks.
+                                                                         arm to interarm conditions and back. Once the simulation
+   Although the numerical studies mentioned above were useful
+                                                                         reaches a quasi-steady state, it is interesting to calculate proﬁles
+to understand the physical processes involved in spiral shocks
+                                                                         of various physical quantities such as the mean gas surface
+and structure formation inside spiral arms, almost all of them
+                                                                         density, SFR, magnetic ﬁeld strength, and midplane stresses as
+were limited to isothermal models without considering star
+                                                                         functions of the distance downstream from the spiral-arm peak,
+formation and SN feedback. Realistically, the dominant                   and to explore correlations among these physical variables.
+pressure in the ISM is not thermal pressure but turbulent                   The remainder of the paper is organized as follows. In
+pressure. Because SN feedback drives turbulence and also                 Section 2, we describe our numerical methods and the models
+creates larger-scale structures including superbubbles (e.g.,            we consider, including brieﬂy summarizing the TIGRESS
+McCray & Snow 1979; Tomisaka et al. 1981), it may also                   framework for treating star formation and SN feedback. In
+control spur/feather formation, at least partially. Indeed,              Section 3, we present the temporal and morphological
+Schinnerer et al. (2017a) found that feathers in M51 are deeply          evolution of our models, with a focus on spur formation. In
+associated with massive star clusters and suggested that their           Section 4, we present the spatial proﬁles and correlations of
+shape and evolution should be inﬂuenced by stellar feedback.             various physical quantities as well as the temporal variations of
+Therefore, it is necessary to explore how spiral-arm substruc-           volume-integrated quantities including SFR and mass fractions.
+tures form and evolve in a medium continually stirred by SN              In Section 5, we summarize our results and discuss their
+feedback.                                                                astronomical implications.
+   Several recent works have incorporated stellar feedback in
+global numerical simulations of spiral galaxies and observed
+spur formation (e.g., Renaud et al. 2013; Baba et al. 2017;                                         2. Methods
+Pettitt et al. 2017). From a hydrodynamic simulation of a Milky             In this paper we study evolution of the ISM in a vertically
+Way–like galaxy, Renaud et al. (2013) suggested that spurs/              stratiﬁed disk under the inﬂuence of a stellar spiral potential as
+feathers originate from velocity shear near spiral arms. Using           well as star formation and SN feedback. Similar work without a
+N-body/SPH simulations for galaxies with steady or dynamic               spiral potential was reported by Kim & Ostriker (2017), while
+spirals, Baba et al. (2017) found that GMCs formed by cloud–             an isothermal version without star formation and feedback was
+cloud collisions inside arms are sheared into feathers in                studied by Kim & Ostriker (2002, 2006). In this section, we
+interarm regions (see also Dobbs et al. 2017). Pettitt et al.            present the equations we solve, the numerical methods, and the
+(2017) ran models in which spiral arms are driven by a tidal             model parameters we adopt.
+encounter with a companion galaxy (see also Tress et al. 2020).
+They found that spurs/feathers are much larger and stronger in
+                                                                                               2.1. Basic Equations
+outer arms (bridges to the companion) that have higher SFRs
+than inner arms. They also found that feathers are located in              We consider a Cartesian box that is corotating with a local
+between young star clusters in the interarm regions, suggesting          segment of a stellar spiral potential. The spiral potential is
+
+                                                                     2
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                     Kim, Kim, & Ostriker
+
+assumed to be tightly wound with a pitch angle sin i  1 and               dark matter halo with mass density ρdm, and the stellar spiral
+rigidly rotating at a constant pattern speed Ωp about the center           arm with amplitude Φarm(0).
+of a galaxy. The local Cartesian frame is centered at a position             For the net cooling function in Equation (4), we take
+(R0, f0=Ωpt, z0=0) in the galactic plane and inclined
+such that x̂ and ŷ point toward the directions perpendicular                                 r  = nH2L(T ) - nH G ,                     (10)
+and parallel to the arm, respectively, while ẑ corresponds to the
+direction perpendicular to the galactic plane (e.g., Roberts 1969;         where nH=ρ/(1.4271 mH) is the number density of hydrogen
+Balbus 1988). This local spiral-arm frame is advantageous for              nuclei. In the equation of state P = ρkBT/(μmH), we allow
+capturing the essential physics associated with rotational shear           the mean molecular weight μ to vary with T from μato=1.295
+and the spiral potential while affording much higher resolution            (for fully neutral gas) to μion=0.618 (for fully ionized gas).
+than global models of spiral galaxies. Our simulation domain is            For the cooling rate Λ(T), we adopt the ﬁtting formula of
+a rectangular parallelepiped with size Lx×Ly×Lz, where                 Koyama & Inutsuka (2002) for T<104.2 K (see also Kim et al.
+Lx=2πR0(sin i ) m is equal to the arm-to-arm distance for an             2008), and for T>104.2 K we adopt the collisional ionizat-
+m-armed spiral. In this local frame, the background velocity               ion equilibrium cooling function at solar metallicity from
+arising from galactic differential rotation is given by                    Sutherland & Dopita (1993).
+   v0 = R 0 (W0 - Wp) sin ixˆ + [R 0 (W0 - Wp) - qW0 x ] yˆ ,   (1 )          The major heating source for warm and cold gas is the
+                                                                           photoelectric effect of dust grains exposed to far-ultraviolet
+where Ω0=Ω(R0) is the angular velocity at R0 in the inertial             (FUV) radiation. The FUV radiation includes the metagalactic
+frame and q º -(d ln W d ln R)∣R0 = 1 is the shear parameter               radiation as well as the one emitted from young massive stars.
+for a ﬂat rotation curve (e.g., Kim & Ostriker 2002).                      To allow for the heating by young stars formed in our
+   The ideal MHD equations expanded in the local frame read                simulations, we calculate the mean FUV luminosity ΣFUV from
+                                                                           all star particles averaged over the simulation domain and use it
+                  ¶r
+                       +  · (rv) = 0,                          (2 )       to evaluate the time-varying heating rate Γ as
+                  ¶t
+                                                                            G    m (T ) - m ion ⎡        S      1 - E2 (t^ 2) ⎤
+         ¶(rv)       ⎡       ⎛     B2 ⎞    BB ⎤                                =                ⎢0.0024 + FUV                 ⎥. (11)
+               +  · ⎢rvv + ⎜P +      ⎟ -    ⎥                             G0    mato - m ion ⎣         SFUV,0      t^       ⎦
+          ¶t         ⎣       ⎝     8p ⎠    4p ⎦
+           =- 2r W0 ´ (v - v0) - qW0 rv0x yˆ                               Here, τ⊥=κFUVΣ with κFUV=103 cm 3 g−1 the UV optical
+            - r  (Fself + Fext ) ,                             (3 )       depth in the global plane-parallel approximation, and E2 is the
+                                                                           exponential integral function of order 2; this form represents
+        ¶E       ⎡⎛           B2 ⎞      B (B · v ) ⎤                       global attenuation in the plane-parallel approximation. For the
+           +  · ⎢⎜E + P +       ⎟v -              ⎥
+        ¶t       ⎣⎝          8p ⎠           4p ⎦                           normalization factors in Equation (11), we take the heating rate
+           =- rv ·  (Fself + Fext ) - r  ,                    (4 )       Γ0=2×10−26 erg s−1 in the solar neighborhood (Koyama &
+                                                                           Inutsuka 2002), the interstellar radiation ﬁeld ΣFUV,0=2.1×
+                   ¶B
+                        =  ´ (v ´ B) ,                         (5 )       10−4 erg s−1 cm−2 (Draine 1978), and the contribution of the
+                   ¶t                                                      metagalactic FUV amounting to 0.24% (Sternberg et al. 2002).
+                  2 Fself = 4pG (r + rsp).                     (6 )       The photoelectric heating is completely turned off at high
+                                                                           temperature (T105 K ), where μ=μion. While we do not
+Here,  is the identity matrix, E=ρv2/2+P/(γ−1)+B2/8π              include heating by photoionization, it would not make a
+is the total energy density, r is the net cooling rate per unit           signiﬁcant difference in T compared to photoelectric heating.
+volume per unit time, Φext is the external gravitational potential,
+and Φself is the self-gravitational potential of gas with density ρ                      2.2. Star Formation and Feedback
+and star particles with density ρsp. The other symbols have their
+usual meaning. The ﬁrst two terms on the right-hand side of                   We adopt the TIGRESS framework of Kim & Ostriker
+                                                                           (2017) to treat star formation and SN feedback. Here we brieﬂy
+Equation (3) denote, respectively, the Coriolis force and the term
+                                                                           summarize the TIGRESS algorithms: the reader is referred to
+counterbalancing the advection of the y velocity along the x               Kim & Ostriker (2017) for the complete description. We note
+direction in the background ﬂow.                                           from the outset that in the present work, we consider SN
+   The external gravitational potential Φext in Equation (3)               feedback alone while ignoring early feedback (e.g., stellar
+consists of three parts as Φext=Φ*+Φdm+Φarm, where                   winds, ionizing radiation). This implicitly assumes that the
+                           ⎡⎛                     ⎤                        dynamical time in the surrounding clouds is longer than
+                                     z2 ⎞
+                                         1 2
+           F*(z) = 2pG S*z* ⎜1 + 2 ⎟ - 1⎥ ,
+                           ⎢                                    (7 )       ∼4 Myr , so that SN feedback dominates early feedback, which
+                           ⎢⎣⎝       z ⎠          ⎥⎦                       is valid for the moderate-density environment under
+                                      *
+                                                                           consideration.
+                                     ⎛       z2 ⎞                             In TIGRESS, star formation is modeled by creating a sink/
+            Fdm (z) = 2pGrdm R 02 ln ⎜1 + 2 ⎟ ,                 (8 )
+                                     ⎝      R0 ⎠                           star particle when a cell meets three conditions simultaneously:
+                                                                           (1) its density exceeds the Larson–Penston threshold density,
+                                         ⎛ 2px ⎞                           (2) it lies at a local potential minimum, and (3) its velocity is
+                Farm (x ) = Farm (0) cos ⎜     ⎟,               (9 )       converging in all three directions (Gong & Ostriker 2013).
+                                         ⎝ Lx ⎠
+                                                                           The initial mass of the sink particle is set equal to the difference
+respectively representing the ﬁxed gravitational potentials from           between the gas mass in the surrounding 33 cell control volume
+the stellar disk with surface density Σ* and scale height z*,              prior to sink formation and the mass in this region based on
+
+                                                                       3
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                     Kim, Kim, & Ostriker
+
+the extrapolation of the surrounding density ﬁeld. Each sink             as above. When M becomes less than 0.027 even for the
+particle is allowed to accrete mass and momentum from the                prescribed maximum value (∼128 pc) of Rsnr, we inject ESN in
+surrounding gas over time, at a rate based on the ﬂuxes through          kinetic form only, corresponding to the free expansion of the
+the surfaces of the control volume centered at the sink particle.        ejecta.
+When star particles are actively accreting, physical quantities             It turns out that in our simulations, the fraction of SN
+such as density and velocity (except magnetic ﬁelds) in the              feedback in the free-expansion, Sedov–Taylor, and momen-
+cells inside the control volume are set as ghost zones based on          tum-conserving phase is, on average, ∼13%, 57%, and 30%,
+the surrounding active cells. Sink particles represent star              respectively, indicating that ∼70% of SN feedback is resolved.
+clusters with stellar populations that average over the initial          The fraction of the resolved feedback is slightly higher for
+mass function (IMF), with an age that reﬂects the accretion              unmagnetized and/or weaker-arm models. SNe in the interarm
+history. The immediate formation of a sink particle implicitly           region tend to explode at lower density and ∼5% more of these
+assumes that the timescale for gravitational collapse and star           SN events are resolved compared to those in the arm region.
+formation is shorter than the dynamical time of the surrounding          The resolved fraction of SN events is ∼30% higher for clusters
+gas and that the star formation efﬁciency is high. Particles are         than runaway stars.
+merged if their control volumes overlap with each other, with               We integrate Equations (2)–(5) using a modiﬁed version of
+physical quantities set by mass-weighted averages.                       the Athena code that utilizes a directionally unsplit Godunov
+   Sink/star particles age with time, with the mass-weighted             scheme to solve the ideal MHD equations, including the
+mean age tm updated to account for accreted gas. Particles are           constrained transport algorithm to preserve  · B = 0 within
+categorized into three species depending on tm relative to the           machine precision (Stone et al. 2008). For hydrodynamic
+mean SN onset time tSN∼4 Myr (determined stochastically                variables, we employ shearing-sheet boundary conditions in the
+for each particle) and the feedback lifetime tlife=40 Myr : (1)        horizontal direction (Hawley et al. 1995) and outﬂow (diode-
+“growing” particles if 0<tm<tSN, (2) “feedback” particles            like) boundary conditions in the vertical direction. The Poisson
+if tSN<tm<tlife, and (3) “passive” particles if tlife<tm.          equation (Equation (6)) is solved based on the FFT method
+Growing particles are treated as sinks that contribute to the            with shearing-sheet boundary conditions in the horizontal
+overall FUV radiation radiation ﬁeld and exert gravity.                  direction (e.g., Gammie 2001) and vacuum boundary condi-
+Feedback particles do not accrete and merge, but exert gravity           tions in the vertical direction (Koyama & Ostriker 2009).
+and supply FUV radiation and SN feedback. Passive particles                 The Appendix presents the equations of motion that sink/
+neither accrete nor supply feedback, but merely exert gravity            star particles obey in the local spiral-arm coordinates. We
+                                                                         integrate Equation (A9) using a “kick–drift–kick” scheme for a
+on the gas and other particles.
+                                                                         symplectic integrator suggested by Quinn et al. (2010), with the
+   For feedback particles with mass msp, the number of SN
+                                                                         time t in the last term of Equation A9(a) set equal to tm for each
+events expected over the time step Δt is drawn from the
+                                                                         particle. By applying the shearing-sheet boundary conditions in
+population synthesis model STARBURST99 (Leitherer et al.
+                                                                         the horizontal plane (e.g., Huber & Pfenniger 2001; Kim &
+1999), which is roughly SN ~ msp Dt (m*tlife ), where m*=
+                                                                         Ostriker 2007), we ensure that particles leaving the simulation
+95.5 M is the mass of a star cluster per SN for a fully sampled
+                                                                         domain from one x face reenter with shifted y positions through
+Kroupa (2001) IMF. In each time step, we generate a uniform              the opposite x face.
+random number SN Î (0, 1) and turn on SN feedback only if
+SN > SN . We also consider SN events from runaway OB                                         2.3. Model Parameters
+stars, by taking a binary fraction fbin≡2/3. If the event is
+determined to occur in a binary, we spawn a massless particle               The simulation domain is centered on a location corresp-
+with initial velocity distribution taken from Eldridge et al.            onding to a distance R0=8 kpc from the galactic center,
+(2011) and let it explode after a certain delay time (to ensure          rotating with an angular speed of Ω0=30 km s-1 kpc-1. Our
+the entire SN rate is the same).                                         simulation domain has a size of Lx=π kpc and Ly=Lz=
+   The mode of SN feedback that is implemented for any given             2Lx. The domain is resolved by 256×512×512 cells,
+event depends on the local density in the region around the SN.          corresponding to a physical size Δx=12.3 pc, which is
+We start by adopting an initial radius Rsnr=3Δx (for grid              marginally good enough to obtain converged results for
+resolution Δx) for the feedback region and compute the ratio of          statistical properties such as SFR, velocity dispersions, scale
+the mass Msnr within this region to the expected shell formation         heights, etc. (Kim & Ostriker 2017). For models that include
+mass Msf = 1679 M (nH cm-3)-0.26 (Kim & Ostriker 2015a).                spiral-arm forcing, we take the pattern speed Ωp=Ω0/2, pitch
+Here, Msnr is deﬁned by the sum of the gas mass within the initial       angle sin i = 0.125, and the arm number m=2.
+SN remnant radius Rsnr and the ejecta mass Mej=10 M.                     For all models, the initial surface density is spatially uniform and
+If M º Msnr Msf > 1, we regard the Sedov–Taylor stage of                equal to Σ0=13 M pc-2 . To specify Φ* and Φdm in
+this SN to be unresolved and inject a radial momentum                    Equations (7) and (8), we adopt the solar neighborhood values of
+psnr = 2.8 ´ 10 5 M km s-1(nH cm-3)-0.17 that represents the            Σ*=42 M pc−2, z*=245 pc, and ρdm=6.4×10−3 M pc−3
+ﬁnal postcooling value appropriate for the momentum-conserving           from Zhang et al (2013).
+stage, as calibrated from resolved numerical simulations (e.g.,             Two key dimensionless parameters that characterize our
+Iffrig & Hennebelle 2015; Kim & Ostriker 2015a; Martizzi et al.          models are
+2015; Walch & Naab 2015). If 0.027 < M < 1, we regard the
+                                                                                                    m ⎛ ∣Farm (0)∣ ⎞
+SN remnant as being in the Sedov–Taylor phase and add the SN                                 º          ⎜          ⎟,                     (12)
+energy ESN=1051 erg in both thermal (∼72%) and kinetic                                           sin i ⎝ R 02 W20 ⎠
+(∼28%) forms to the surrounding medium within Rsnr. If
+                                                                                                         8pP0
+M < 0.027, we increase Rsnr until M  0.027 and inject                                           bº         ,                            (13)
+ESN within the increased Rsnr in both thermal and kinetic forms,                                          B02
+
+                                                                     4
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                                Kim, Kim, & Ostriker
+
+
+
+
+Figure 1. Snapshots of the gas surface density of model F20B10 at (a) t=98 Myr , (b) t=256 Myr , and (c) t=562 Myr . Star particles younger than 40 Myr are
+projected onto the x–y plane. The color and size of the circles indicate the age and mass of the star particles, respectively. The spiral potential builds up a dense ridge of
+gas near the potential minimum where most star formation takes place. SN feedback compresses the gas downstream, forming gaseous spurs jutting out
+perpendicularly from the arm. The squared section in (b) is zoomed in Figure 9 to display the conﬁgurations of velocity and magnetic ﬁelds around a spur.
+
+
+
+
+                                                                               Table 1
+                                                          Model Parameters and Selected Simulation Outcomes
+
+Model                                  β                 log SSFR                  log Pthm kB               log Ptrb kB               log Pmag kB              log Ptot kB
+(1)                    (2)             (3)                   (4)                         (5)                      (6)                        (7)                     (8)
+F00B10                 0.0             10              −2.56±0.13                3.77±0.08               3.64±0.13                3.94±0.07              4.29±0.03
+F10B10                 0.1             10              −2.47±0.13                3.74±0.09               3.79±0.08                3.99±0.05              4.34±0.03
+F20B10                 0.2             10              −2.38±0.20                3.75±0.13               3.89±0.11                3.95±0.10              4.36±0.05
+F00Binf                0.0             ¥               −2.27±0.19                3.85±0.13               3.91±0.12                     L                   4.19±0.12
+F10Binf                0.1             ¥               −2.31±0.17                3.78±0.15               3.88±0.14                     L                   4.15±0.11
+F20Binf                0.2             ¥               −2.20±0.11                3.80±0.09               4.01±0.14                     L                   4.22±0.10
+
+Note. Column 1: model name. Column 2: arm strength. Column 3: plasma parameter. Column 4: logarithm of the SFR surface density (Me pc−2 Myr−1). Columns
+5–8: logarithm of the midplane thermal, turbulent, magnetic, and total stresses over kB, respectively (cm−3 K). Quantities in Columns 4–8 are averaged over the
+simulation domain and t=200–600 Myr .
+
+
+
+where P0(z) is the initial pressure proﬁle (see below) and                                  Initially, the disks are vertically stratiﬁed with density ρ0(z).
+B0 = B0 (z ) yˆ is the initial magnetic ﬁeld proﬁle, threading the                        For ρ0(z), we take a double exponential
+gas parallel to the spiral arm. The  parameter represents the
+                                                                                                       r 0 (z ) = r 1 (z ) + r 2 (z )
+ratio of the radial force due to the spiral arm to the mean radial                                                                                                      (14)
+                                                                                                                = r10 e-F0,tot / s1 + r 20 e-F0,tot / s 2 ,
+                                                                                                                                    2                    2
+gravitational force (Roberts 1969), while the plasma parameter
+β measures the (inverse of the) magnetic pressure relative to the
+initial thermal pressure. To study the effect of the arm strength                         where F0,tot (z ) = F*(z ) + Fdm (z ) + 2pG S0 ∣z∣ is the total
+and magnetic ﬁelds on the gas evolution and star formation, we                            gravitational potential under the assumption that the gaseous
+run six models that differ in the combination of  and β.                                 disk is razor thin (without spiral-arm forcing). With
+   Table 1 lists the model parameters and some of the                                     ρ10=2.85 mH cm-3, ρ20=10−5ρ10, σ1=7 km s-1, and
+simulation results. Models with β=10 have B0(0)=2.6 μG                                σ2=10σ1, ρ1 and ρ2 in Equation (14) represent the warm
+initially at the midplane. For models with a spiral arm ( ¹ 0 ),                         and hot media, respectively, of the ISM in the Milky Way. We
+we turn on the arm potential slowly and make it achieve the full                          set the initial pressure proﬁle to P0 (z ) = s12 r1 + s 22 r 2 .
+strength at t=200 Myr . All simulations are run until t=                                  Our initial disks described above are initially out of thermal
+700 Myr .                                                                                 equilibrium, so that they would instantly experience cooling
+
+                                                                                      5
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                           Kim, Kim, & Ostriker
+
+
+
+
+Figure 2. Streamline plots of the vertically integrated magnetic ﬁelds x = ò rBx dz S and  y = ò rBy dz S overlaid on the gas surface density Σ of model F20B10
+at (a) t=98 Myr , (b) t=256 Myr , and (c) t=562 Myr . The color of the streamlines corresponds to the logarithm of the strength  = ( 2x +  2y)1 2 . Overall, the
+magnetic ﬁelds are parallel to the arm and stronger in the arm than interarm region.
+
+
+and heating. The cold gas would collapse toward the midplane                            Figure 3 plots the distribution of sink/star particles younger
+and form a thin dense layer and undergo an extreme burst of                             than 40 Myr , gas number density nH, temperature T, velocity vx
+star formation. To prevent this spurious collapse and star                              perpendicular to the arm, and magnetic ﬁeld strength B = ∣B∣
+formation, we initially generate pseudo-star particles that                             in the (top) z=0 and (bottom) y=3.7 kpc planes of model
+survive only for an initial 40 Myr span, which stir the disk                            F20B10 at t=256 Myr when the spiral potential is strong and
+by injecting SN feedback similarly to the feedback particles.                           star formation is active.
+The creation rate of the pseudo-star particles is set to the                               Pseudo-star particles introduced initially provide density and
+value equivalent to the SFR surface density of SSFR =                                  velocity perturbations to the gaseous medium that would
+5×10−3 M pc-2 Myr-1, approximately the quasi-steady                                  otherwise be uniform in the x–y plane. Due to the background
+value of the solar neighborhood model in the absence of a                               shear and self-gravity, the perturbations rotate kinematically
+spiral arm (Kim & Ostriker 2017). The initial locations of the                          with time and are ampliﬁed as they swing from leading to
+pseudo-star particles are chosen randomly in the horizontal                             trailing conﬁgurations (e.g., Kim & Ostriker 2001). Dense
+direction and follow an exponential distribution in the vertical                        trailing ﬁlaments tend to have stronger magnetic ﬁelds than the
+direction with scale height of 10 pc. These particles are initially                     surrounding underdense regions. In addition to swing ampli-
+assigned background shearing velocity v0 as well as random                             ﬁcation, some ﬁlaments become denser and colder as they
+velocities with a one-dimensional dispersion of 10 km s-1.                              collide with neighbors. Filaments that achieve sufﬁcient density
+                                                                                        undergo gravitational collapse and spawn star particles
+                               3. Evolution                                             (Figure 1(a)). Newly created star particles heat up cold gas to
+                                                                                        the warm phase. Subsequent SN feedback creates hot gas
+  In this section, we focus on the temporal and morphological                           bounded by expanding shells of the cold/warm gas around the
+changes of gaseous structures that form due to spiral                                   star particles.4 Supershells created by clustered SNe expand to
+compression and star formation feedback. Physical quantities                            ∼1 kpc in diameter before being distorted signiﬁcantly by the
+averaged over space and time and their correlations will be                             background shear or undergoing collisions with neighboring
+presented in Section 4.                                                                 shells. Collisions of expanding, shearing shells produce high-
+                                                                                        density clumps susceptible to new star formation. Because the
+           3.1. Overall Evolution of the Fiducial Model                                 strength of the spiral potential is growing slowly, the early
+   We ﬁrst describe the evolution of our ﬁducial model                                  phase (t100 Myr ) of evolution is similar to that of the
+F20B10 with  = 0.2 and β=10. Figure 1 plots snapshots                                TIGRESS run without the spiral structure presented in Kim &
+of the gas surface density S = ò rdz , together with the                                Ostriker (2017).
+projected distributions of young star particles in the x–y plane,
+at a few selected epochs in model F20B10. Figure 2 displays                             4
+streamline plots of the vertically integrated in-plane magnetic                            Following the convention of Kim & Ostriker (2017), we classify the
+                                                                                        gas into ﬁve phases according to its temperature: cold (T<184 K ),
+ﬁelds (x , y) = ò r (Bx , By ) dz S overlaid on the surface                           unstable (184 K <T<5050 K ), warm (5050 K <T<2×104 K ), ionized
+density distribution at the same epochs as in Figure 1.                                 (2×104 K <T<5×10 K ), and hot (T>5×105 K ).
+
+                                                                                   6
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                               Kim, Kim, & Ostriker
+
+
+
+
+Figure 3. Snapshots at t=256 Myr of model F20B10. The top row panels show slices through the midplane, z=0, and the bottom row panels show vertical slices
+that cut through the disk perpendicular to the spiral arm at y=3.7 kpc . Individual panels show (a) projected positions of sink/star particles, (b) gas number density nH
+together with velocity vectors (vx, vy) in the top panel and (vx, vz) in the bottom panel, (c) temperature T, (d) velocity vx perpendicular to the arm, and (e) magnetic ﬁeld
+strength B. In (a), only the sink/star particles with age younger than 40 Myr are shown, with their color and size representing age and mass, respectively. In (b), the
+amplitudes of the velocity vectors are indicated by the red arrows.
+
+   As the strength of the spiral potential increases further, material
+is preferentially gathered toward the potential minimum. These
+converging motions of the gas inevitably result in the formation of
+a dense ridge of gas located at x∼0.2 kpc roughly parallel to the y
+direction, which occurs at t∼162 Myr in model F20B10.
+Magnetic ﬁelds are overall parallel to the ridge and stronger in the
+regions with larger gas density, while being slightly inclined in the
+interarm region (Figure 2). The arm density is naturally
+inhomogeneous along its length due to collisions of shearing
+ﬁlaments and shells. It is in the high-density regions along the
+ridge where most star formation takes place, although some
+clusters also form in downstream gaseous spurs after they develop.
+   Star formation is usually clustered, as indicated by the
+distributions of star particles shown in Figure 1(b). Clustered
+star formation forms superbubbles ﬁlled with weakly magnetized,
+rareﬁed hot gas bounded by strongly magnetized, dense shells
+(Figure 3). Strong SN feedback from the star particles expels the
+gas away from the star-forming sites. Gas motions induced by
+feedback are limited, however, by the high-density ridge slightly
+to the right (downstream) of the potential minimum. Gas pushed
+by feedback toward the upstream side of the galaxy rotation                               Figure 4. Normalized histograms of the mass-weighted positions of star
+collides with the gas that is ﬂowing into the arm, reinforcing the                        particles in the x direction with ages tm<10 Myr (red ﬁlled),
+high-density ridge. Large-scale spiral shocks produced by these                           10 Myr <tm<40 Myr (blue hatched), and 40 Myr <tm<100 Myr (green
+                                                                                          stars) in model F20B10 at t=256 Myr . For reference, we show the
+gas collisions, as delineated by sharp discontinuities of vx at                           normalized surface density áSñ áSñm averaged along the y direction plotted as
+x∼−0.6–0 kpc, are evident in Figure 3(d). Apparently, the                               a gray solid line. The horizontal dotted line indicates áSñ áSñm = 1. The
+shock fronts are not straight in the y direction and consist of                           youngest cohort of stars coincides with the peak gas surface density of the arm.
+
+                                                                                     7
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                     Kim, Kim, & Ostriker
+
+
+
+
+Figure 5. Instantaneous distribution in the density–pressure plane of the gas in (a) the arm region at −0.1 kpc <x<0.8 kpc and (b) the interarm region at
+x<−0.1 kpc or x>0.8 kpc of model F20B10 at t=256 Myr . The color represents the mass fraction of the gas. In each panel, the black solid line denotes the
+thermal equilibrium curve for instantaneous heating rate 6Γ0, while blue dashed lines indicate the minimum (2×104 K) and mean (1.2×106 K) temperatures of the
+ionized-hot phase.
+
+numerous small-scale curved shocks. The shocked gas is soon                         model F20B10 at t=256 Myr . For comparison, we also plot the
+pushed back by the ram pressure of the interarm gas toward the                      y-averaged surface density áSñ = ò Sdy L y normalized to the
+potential minimum, suggesting that the spiral shocks oscillate
+                                                                                    mean value áSñm º ò áSñdx L x as a gray solid line. As
+with large amplitudes along the x direction. On the other hand,
+gas pushed downstream by SN explosions can easily leave the                         expected, younger star particles tend to be crowded closer to the
+arm region, supplying the interarm region.                                          density peak located at x∼0.3–0.5 kpc : the mass-weighted mean
+   New star particles produced in the arm climb out of the arm                      locations of the star particles with tm<10 Myr , 10 Myr
+potential well as they follow their epicycle orbits downstream                      <tm<40 Myr , and 40 Myr <tm<100 Myr are at xm=
+(see the Appendix). They inject SN feedback in both arm and                         0.42, 0.59, and 1.1 kpc , respectively, with the standard deviations
+interarm regions. The mean speed of star particles perpendicular                    of σ(xm)=0.47, 0.87, and 1.4 kpc, respectively.5 These
+to the arm is v0x∼15 km s-1, so that the SN feedback is                           correspond roughly to dxm/dtm∼10 pc Myr −1and dσ(xm)/
+concentrated mostly in a zone within ∼v0xtlife=0.6 kpc from the                   dtm∼14 pc Myr −1 at t=256 Myr . When averaged over
+star-forming sites. Feedback from spatially uncorrelated star                       t=200–600 Myr , we ﬁnd the mean age gradient dxm/
+particles tends to simply increase random velocity dispersions of                   dtm∼8.7±3.9 pc Myr −1 and the dispersion dσ(xm)/dtm∼
+the surrounding gas.                                                                15.2±9.3 pc Myr −1, insensitive to  and β. This shows that
+   The boundaries of distorted superbubbles typically take the form                 older stars tend to be found farther away from the ridge and
+of dense structures attached to the arm in the surface density maps,                spread out more widely than younger stars.
+as shown in Figure 1. Due to the velocity acquired during the                          We note, however, that older star particles are not always
+superbubble expansion, swept-up gas in the midplane moves in the                    found downstream from younger star particles. This is because
+positive or negative y direction, with velocities ∼20–30 km s-1                     star formation sometimes occurs away from the ridge, and
+relative to the local background. Relatively weak ﬁlaments are                      because some particles move in the negative x direction on their
+quickly swept/washed out by expansions of newly created bubbles                     epicycle orbits, mixing particles with different ages.
+nearby. Filaments strong enough to survive interactions with small                     Based on the mean surface density, we deﬁne “arm” and
+bubbles undergo collision with a neighboring one, forming even                      “interarm” regions as the regions with áSñ áSñm greater or
+denser, longer structures that extend almost over the whole length                  smaller than unity, respectively (see Figure 4). In model
+of the interarm region. Figure 1(b) displays three large-scale gas                  F20B10, the arm region is at −0.1 kpc <x<0.8 kpc ,
+structures located at y∼1.6, 4.0, and 5.7 kpc, with the peak                      varying slightly with time, and the rest of the domain is
+surface densities of ∼15, 22, and 20 M pc-2 measured at                            regarded as the interarm region.
+x=1 kpc , respectively. Such large-scale structures may be                           Figure 5 plots the mass-weighted probability distribution
+observed as gas and dust spurs/feathers in real spiral galaxies.                    functions (PDFs) in the pressure–density plane for the gas in
+In our simulations, strong spurs can produce star formation at their                the (a) arm and (b) interarm regions at t=256 Myr of model
+densest parts, usually close to the arm, but sometimes deep in the                  F20B10. Two dashed diagonal lines mark the minimum
+interarm region.                                                                    (2×104K) and mean (1.2×106K) temperatures for the
+   Because star particles form mostly in the dense ridge and age as                 ionized-hot phase. At this time, the majority of the gas is close
+they move downstream, one can naturally expect an age gradient                      to the instantaneous thermal equilibrium curve indicated by the
+along the direction perpendicular to the arm. Figure 4 plots the                    black solid line with Γ=6Γ0.
+normalized histograms of the mass-weighted x positions of star
+particles with age tm<10 Myr (red ﬁlled), 10 Myr <tm<40                       5
+                                                                                       In calculating xm and σ(xm), we add Lx to the x coordinate for the star
+Myr (blue hatched), and 40 Myr <tm<100 Myr (green stars) in                     particles located at x<0, consistent with the periodic boundary condition.
+
+                                                                               8
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                               Kim, Kim, & Ostriker
+
+
+
+
+Figure 6. Distributions of (a) gas density and (b) gas temperature for model F20B10 at t=256 Myr . Both panels represent vertical slices that cut through the center
+of the spiral arm at x=0.45 kpc . The section marked by a dotted square in the upper panels is enlarged in the lower panels to overlay the velocity vectors (vy, vz) in (c)
+and the magnetic ﬁeld vectors (By, Bz) in (d). The arrows above in (c) and (d) measure the amplitudes of the velocity and magnetic ﬁeld vectors, respectively.
+
+   Including gas at all heights, the mass fractions of the cold-                          volume near the midplane), and most of the cold gas is in the
+unstable, warm, and ionized-hot phases in the arm region are                              arm region. Due to the deeper gravitational potential, the gas in
+0.16, 0.83, and 7.7×10−3, respectively, which change to                                 the arm region tends to be denser and colder, and has higher
+2.6×10−2, 0.95, 2.4×10−2 in the interarm region. The                                  pressure to support its weight against gravity, than in the
+corresponding volume fractions of the cold-unstable, warm,                                interarm region.
+and ionized-hot phases are 2.6×10−3, 0.44, and 0.56 in the                                 Cold and warm gas is lifted to high-∣z∣ regions from the
+arm, and 8.7×10−4, 0.30, and 0.70 in the interarm region,                               midplane due to the vertical momenta of superbubbles which
+respectively. For gas within ∣z∣  1 kpc, the volume fraction of                          drift with the background ﬂows as they expand. Figure 6 plots
+the warm phase is increased to 0.78 and 0.50 in the arm and                               the y–z distributions of the gas density and temperature at
+intearm regions, respectively. For gas at the midplane, the area                          x=0.45 kpc of model F20B10 at t=256 Myr in the upper
+fractions of the warm and ionized-hot phases are 0.71 and 0.26                            panels as well as their zoomed-in views together with velocity
+in the arm, and 0.74 and 0.25 in the interarm regions,                                    and magnetic ﬁeld structures in the lower panels. Apparently,
+respectively. This indicates that gas in both arm and interarm                            the gas distribution near the midplane in spiral arms is highly
+regions is predominantly in the warm phase by mass (also by                               clumpy, characterized by expanding low-density bubbles
+
+                                                                                     9
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                      Kim, Kim, & Ostriker
+
+
+
+
+Figure 7. Distributions of (a) gas density and (b) gas temperature for model F20B10 at t=235 Myr at x=0.90 kpc , downstream from the density peak of the spiral
+arm. Hot gas is vented to high-∣z∣ regions through chimneys located near (y, z)=(0.5, 1) kpc and (6, −0.5) kpc . The red arrow at the bottom of (a) measures the
+amplitudes of velocity vectors.
+
+surrounded by distorted high-density shells. Expansion speeds                        to the spiral arm), they change their directions quite rapidly in
+of hot gas in superbubbles easily exceed the speed of galaxy                         the y–z plane, indicating that the turbulent component of
+rotation, pushing on the surrounding dense shell to drive                            magnetic ﬁelds is as strong as the regular component. We defer
+turbulence in the warm ISM. Expanding superbubbles transport                         a more detailed discussion of the magnetic ﬁelds to Section 4.4.
+the midplane gas to high ∣z∣, causing the height of the regions                         After the spiral potential is fully turned on, the system
+with the largest density (hence highest SFR) to occur at                             reaches a quasi-steady state in the sense that feedback from star
+∣z∣ ~ 40 pc rather than at z=0 (see below).                                        formation in the arm region drives turbulence and heating that
+    Superbubbles usually break out from the cold–warm mid-                           balance dissipation and radiative losses of turbulent and
+plane layer in the interarm region downstream from the densest                       thermal energies. Still, Figure 1 shows that the spiral arm at
+region of the arm, leading to the rise of hot gas to high-∣z∣                        t=562 Myr is less concentrated, harbors less active star
+regions. Figure 7 plots a slice through the density and                              formation, and is associated with less pronounced spurs,
+temperature distributions in the y–z plane at x=0.90 kpc for                       compared to the arm at t=256 Myr . This is caused primarily
+model F20B10 at t=235 Myr . A superbubble centered at (y,                          by the secular reduction in the gas mass over time in our
+z)=(0.5 kpc , 0) breaks out vertically and produces two                            simulations. With no gas inﬂow from outside, continued star
+slightly inclined chimneys through which hot, tenuous gas is                         formation as well as mass loss at the vertical boundaries keep
+vented to high-∣z∣ regions. Because of our periodicity in y, the                     decreasing the gas mass over time. Reduced self-gravity further
+vent toward positive z appears at small y and the vent toward                        lowers the gas density and hence SFR in the arm region.
+negative z appears mostly at large y in the ﬁgure. As previously
+discussed by Kim & Ostriker (2018), superbubbles can drive
+warm gas to large ∣z∣ ~ 1 - 3 kpc . Because this warm gas                                                       3.2. Other Models
+does not achieve the escape velocity (∼200 km s-1), it falls                            The evolution in models with no spiral potential is similar to
+back toward the midplane, creating a warm galactic fountain. In                      that of the “solar neighborhood” TIGRESS run presented in
+contrast, the hot gas in chimneys has high velocities and in our                     Kim & Ostriker (2017), in that most star formation takes place
+simulations is lost through the vertical boundaries located at                       in sheared ﬁlaments distributed across the simulation domain.
+z=±π kpc. In real galaxies, this venting produces a hot                            There is no formation of either dense ridges resembling spiral
+galactic wind.                                                                       arms or gaseous spurs perpendicular to the arms. In contrast,
+    SN/superbubble shell expansions, mutual collisions, and                          models with a spiral potential all form dense arm ridges and
+interactions with the background shear and gravitational                             gaseous spurs, regardless of the presence of magnetic ﬁelds,
+potential drive turbulent motions in the gas. While SN feedback                      similarly to the ﬁducial model. The ridge density and the
+is concentrated primarily in zones immediately downstream                            number of spurs depend on  and β.
+from star-forming regions, the injected energies and momenta                            Figure 8 plots the distributions of the gas surface density in
+are advected by the mean ﬂows to make all of the gas turbulent                       the x–y plane for all models at t=300 Myr . Star particles with
+across the simulation domain. The related gas motions also                           age less than 100 Myr are overlaid as circles. While star
+stretch, twist, and amplify magnetic ﬁelds that tend to be strong                    particles are widely distributed in models without a spiral
+in high-density regions. Figure 6(d) shows that although                             potential (left column), they are concentrated along the dense
+magnetic ﬁelds point on average in the y direction (i.e., parallel                   ridges in models with a spiral potential (middle and right
+
+                                                                               10
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                             Kim, Kim, & Ostriker
+
+
+
+
+Figure 8. Snapshots of gas surface density at t=300 Myr for the (top) magnetized and (bottom) unmagnetized models. Star particles younger than 100 Myr are
+overlaid as circles, with their color and size denoting the age and mass, respectively. In models without spiral potential (left column), star formation occurs in shearing
+ﬁlaments distributed across the simulation domain. In the models with  = 0.1 (middle column), the spiral potential produces a star-forming, dense ridge parallel to
+the arm, and interarm spurs. In the models with  = 0.2 (right column), dense ridges and spurs are more pronounced than in the  = 0.1 counterpart.
+
+
+
+columns). Note that all models with  ¹ 0 possess spurs that                                                   3.3. Spur/Feather Formation
+jut out approximately perpendicularly from the arm and turn to
+trailing conﬁgurations in the interarm region. Weaker spiral-                              As mentioned above, gaseous spurs/feathers form in both
+arm forcing in model F10B10 produces a less pronounced                                   magnetized and unmagnetized models as long as the spiral
+ridge and induces more distributed star formation in the x                               potential is present. To illustrate the structure of large-scale
+direction compared to model F20B10. Without magnetic                                     spurs formed in our simulations, Figure 9 enlarges the square
+support, star formation in unmagnetized models is more active,                           sector marked in Figure 1(b) and plots the in-plane velocity and
+which in turn makes the ridges less dense and broader in the x                           magnetic ﬁelds overlaid on the gas density in the z=0 plane.
+direction compared to the magnetized counterpart.                                        Clearly, the spur at y∼1.6 kpc is bounded by the SN feedback
+
+                                                                                   11
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                            Kim, Kim, & Ostriker
+
+
+
+
+Figure 9. Zoomed-in view of the spur in the region marked by a square in Figure 1(b), from model F20B10 at t=256 Myr . Vector ﬁelds of the perturbed velocity
+(δvx, δvy)≡(vx − v0x, vy − v0y) and the magnetic ﬁeld (Bx, By) are overlaid on the midplane gas number density (color scale). The color (and length) of the vectors
+represents the amplitude of (a) the in-plane perturbed velocity dv = (dvx2 + dvy2 )1 2 and (b) the in-plane magnetic ﬁeld B = (Bx2 + By2 )1 2 . The spur is conﬁned by two
+superbubbles centered at (x, y)=(0.9, 1.2) kpc and (1.1, 2.1) kpc . Magnetic ﬁelds are parallel to the arm at x0.7 kpc and to the spur at x0.7 kpc .
+
+
+
+                                                                                        In the arm region, magnetic ﬁelds have strength ∼10–14 μG
+                                                                                        and are oriented overall parallel to the arm. In the interarm
+                                                                                        region, on the other hand, compression by the expanding
+                                                                                        superbubbles orients magnetic ﬁelds so that they approximately
+                                                                                        follow the direction of the spurs (see also Figure 2), with
+                                                                                        strength ∼4–8 μG. The lifetime of feedback-induced spurs is
+                                                                                        rather short, of order of ∼30 Myr . After cessation of the
+                                                                                        correlated feedback that created a given spur structure, its
+                                                                                        destruction is accomplished primarily by feedback from
+                                                                                        neighboring regions (and sometimes the spur itself).
+                                                                                           Large-scale spurs in our simulations are created by the
+                                                                                        collisions of sheared supershells that in turn form due to clustered
+                                                                                        star formation in the arm region. This implies that the presence of
+                                                                                        spurs requires strong star formation in the arm and spatially
+                                                                                        correlated feedback. Our ﬁducial model possesses prominent
+                                                                                        spurs mostly during the period 200 Myr t300 Myr when
+                                                                                        the spiral potential is fully turned on and the arm has plenty of
+                                                                                        gas available for active star formation. To estimate the typical
+                                                                                        spur spacing in our simulations, we calculate the mean surface
+                                                                                        density averaged over a narrow strip with x Î [0.8, 1.2] kpc
+                                                                                        where spurs are strong and take its Fourier transform along the y
+                                                                                        direction. Figure 10 plots the mean power spectra averaged over
+                                                                                        t=200–300 Myr as a function of the dimensionless y
+Figure 10. Mean power spectra of the integrated surface density                         wavenumber ny=kyLy/(2π), normalized to unity at ny=0, for
+  1.2 kpc
+ò         S(x, y, t ) dx averaged over 200 Myr t300 Myr as a function of          models with a spiral potential. The power spectra in models
+ 0.8 kpc
+the dimensionless wavenumber ny=kyLy/(2π) for models with a spiral arm.               F10B10 and F20B10 are dominated by the modes with ny=2
+Each power spectrum is normalized to unity at ny=0. The short line segment            and 3, corresponding to two and three spurs, respectively, while
+shows the slope of −2.4, which best describes the surface density power in the
+range with 5ny30.
+                                                                                        ny=1 and 2 modes are signiﬁcant in models F10Binf and
+                                                                                        F20Binf. This indicates that the typical spur spacing in our
+                                                                                        magnetized simulations is ∼2–3 kpc , with the smaller value
+regions created by two groups of star particles located at                              corresponding to a stronger arm. In all models, the power spectra
+(x, y)=(0.9, 1.2) kpc and (1.1, 2.1) kpc. The material in the                         have a slope of −2.4 over n y Î [5, 30], which is slightly
+spur moves roughly parallel to the arm with velocities                                  shallower than the two-dimensional (2D) Kolmogorov spectrum
+δvy=vy−v0y∼30 km s-1 relative to the background ﬂows.                             with a slope of −8/3.
+
+                                                                                   12
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                        Kim, Kim, & Ostriker
+
+
+
+
+Figure 11. Proﬁles perpendicular to the arm of the (a) normalized surface density áSñ áSñm , (b) velocity perpendicular to the arm ávxñ, (c) velocity parallel to the
+arm ávyñ, and (d) normalized PV ξ/ξ0. All magnetized models are shown, with  for each model indicated in the key. The solid lines give the (y-averaged)
+mean values over t=200–600 Myr , while the shades indicate the standard deviations. For reference, the dotted and dashed lines in (a)–(c) plot the arm proﬁles
+in a vertically stratiﬁed, isothermal disk without star formation, with sound speed cs=10 and 20 km s-1, respectively, and other parameters as in model
+F20B10.
+
+   With the decrease in the arm gas density, star formation at                        the dense, magnetized arm regions, with the overdensities
+t300 Myr becomes distributed and spatially uncorrelated,                           advected into the interarm region then forming spurs. In those
+and the associated feedback occurs almost randomly in the y                           earlier models, the only physical source driving large-scale
+direction. Bubbles and shells that form are usually small (less                       perturbations was self-gravity (aided by magnetic stresses). In
+than ∼0.5 kpc ) in size and collide with each other to create                         contrast, when correlated SNe are present as in the current
+small ﬁlaments, some of which undergo star formation in the                           work, they are able to drive large-scale velocity ﬂows that
+interarm region. We note that arm star formation can still be                         create (and also destroy) spiral-arm spurs.
+clustered and correlated, but this occurs relatively rarely during
+the late-time evolution of our simulations. When highly
+clustered star formation events do occur at late times, they                          4. Temporal and Spatial Variations of Physical Quantities
+are followed by formation of large-scale spurs.                                          We now investigate the proﬁles of various physical
+   Finally, we note that smaller-scale spurs can form tempora-                        quantities such as surface densities, velocities, SFR, magnetic
+rily as some of the material collected into “superclouds” in the                      ﬁelds etc., as well as correlations among them. For these
+arm moves out into the interam region, where it is sheared out                        proﬁles, the independent variable is the quasi-radial coordinate,
+into trailing ﬁlaments. This process is somewhat reminiscent of                       i.e., the distance perpendicular to the spiral arm. We also
+the spur-formation mechanism originally identiﬁed by Kim &                            present the temporal evolution of volume-integrated quantities
+Ostriker (2002). There, self-gravitating perturbations grew in                        including the SFR and mass fractions.
+
+                                                                                13
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                  Kim, Kim, & Ostriker
+
+
+
+
+Figure 12. PDFs of the mass-weighted positions of star-forming regions in the x direction over t=200–600 Myr for (a) magnetized and (b) unmagnetized models.
+
+
+
+
+Figure 13. PDFs of the mass-weighted positions of star-forming regions in the z direction over t=200–600 Myr for (a) magnetized and (b) unmagnetized models.
+The dashed lines are ﬁts to the PDFs. See text for details.
+
+
+                        4.1. Spiral-arm Proﬁles                                        ávxñ º ò rvx dydz ò rdydz , (c) the density-weighted quasi-
+   It is interesting to compare the averaged arm proﬁles from                          azimuthal velocity ávyñ º ò rvy dydz ò rdydz , and (d) the
+our simulations with the much simpler case of isothermal spiral                        normalized PV x º (d ávyñ dx + 2W0) áSñ relative to the
+shocks without star formation (theory for the latter dates back                        initial value x0 = (2 - q ) W0 S0  W0 S0 (e.g., Balbus 1988;
+to Roberts 1969).6 Figure 11 plots for the magnetized models                           Kim & Ostriker 2002, 2006). The solid lines show the temporal
+the dependence on x of (a) the normalized gas surface density                          averages over t=200–600 Myr , while the shades represent the
+áSñ áSñm , (b) the density-weighted quasi-radial velocity                              standard deviations. For comparison, we also plot examples of
+                                                                                       proﬁles in x for quasi-steady solutions in the isothermal case,
+6                                                                                      including self-gravity (but with no star formation and feed-
+   Roberts (1969) used a quasi-axisymmetric approximation to obtain one-
+dimensional periodic solutions of spiral shocks. While the full velocity ávyñ          back), based on a vertical average of an x–z spiral shock
+shown in Figure 11(c) is not periodic in x, its perturbed part, ávyñ - v0y , is        solution. The cases shown by the black dotted and dashed lines
+periodic. Although the background velocity v0y varies linearly in x                    have sound speed cs=10 and 20 km s-1, respectively, with the
+(Equation (1)), this does not alter the form of the perturbation equations that
+control the (linear or nonlinear) arm proﬁle (see also Shu et al. 1973; Kim            other arm and disk parameters set equal to those of model
+et al. 2014).                                                                          F20B10.
+
+                                                                                  14
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                          Kim, Kim, & Ostriker
+
+
+
+
+Figure 14. Temporal evolution of the global SFR surface density (solid lines; left axis), SSFR , measured using star particles younger than 40 Myr , for (a) magnetized
+and (b) unmagnetized models. Dashed lines (right axis) plot the time variation of the spiral-arm forcing,  , in our spiral-arm models. SSFR rapidly rises initially,
+achieves a peak at t∼60–70 Myr , and then decreases secularly with time. Unmagnetized models have higher SSFR than their magnetized counterparts. The spiral-arm
+forcing enhances SSFR , but by less than a factor of 1.6 on average.
+
+
+
+   In model F00B10 with no arm, the averaged proﬁles are                               removes the region of shear reversal (i.e., dvy/dx>0) that is
+very close to their initial distributions. The mean PV is                              a characteristic feature of simple, one-dimensional isothermal
+enhanced by about ∼20%, most likely due to vorticity                                   spiral shocks. Curved shocks along the dense ridges (see
+generation across numerous curved shocks produced by SN                                Figures 1 and 8) are responsible for the local peak in PV near
+feedback. Also, the presence of magnetic ﬁelds contributes to                          x∼−0.3 kpc in model F20B10.
+the changes of PV (e.g., Webb & Mace 2015).
+   In models with spiral arms, the spiral potential compresses
+the gas toward the potential minimum, increasing (decreasing)                                                     4.2. Star Formation
+the gas surface density in the arm (interarm) region. For a                               Figures 12 and 13 plot the PDFs of the mass-weighted
+steady ﬂow that varies only with x, the mass ﬂux Σvx and PV ξ                         positions of star formation sites in the x and z directions,
+are conserved, leading to the characteristic proﬁles shown for                        respectively, during t=200–600 Myr for the (a) magnetized
+the isothermal models: (1) with the rapid increase of Σ moving                        and (b) unmagnetized models. Star formation in models with
+into the shock, vx rapidly decreases, while in the postshock and                      no arm is widely distributed in the x direction, with large
+interarm region where áSñ steadily decreases, vx steadily                             ﬂuctuations due to stochasticity. The spiral potential gathers the
+increases; (2) in the arm region where S S0 > 2 (2 -                                  star-forming regions close to the arm where the gas is also
+q )  2, the azimuthal shear dvy/dx≈ R0dΩ/dR becomes                                 concentrated. When the arm is deﬁned as the region where the
+positive (e.g., Roberts 1969; Shu et al. 1973; Balbus &                               y-averaged gas surface density exceeds the domain-averaged
+Cowie 1985). Simple isothermal models with stronger spiral-                           value (see Section 3.1 and Figure 11(a)), for example, ∼95%
+arm forcing and lower sound speed also tend to have stronger                          and ∼90% of all star formation occurs inside the arm in models
+shocks with density peaks farther downstream (e.g., Kim &                             F20B10 and F10B10, respectively. The fraction of the arm
+Ostriker 2002; Kim et al. 2014). Some of these features are                           star formation is increased to ∼98% and ∼97% in models
+recovered in the present (much more physically complex)                               F20Binf and F10Binf without magnetic ﬁelds, respec-
+simulations, while others are not.                                                    tively. Most of the interarm star formation occurs in strong
+   Evidently, stronger spiral-arm forcing in the F20B10                               spurs/feathers.
+model compared to F10B10 does result in larger changes in                                 Figure 13 shows that star formation is concentrated toward
+Σ and vx, and places the density peak farther downstream. In                          the midplane, although the most probable locations are at
+terms of the peak density and its location, the spiral-arm                            ∣z∣ ~ 40 pc rather than at z=0 for all models. The PDFs
+proﬁles in model F20B10 are similar to those in the                                   in ∣z∣ are overall described by an exponential function,
+isothermal counterpart with cs=20 km s-1. We ﬁnd, how-                              µexp (-∣z∣ HSF ), with a scale height of HSF=75, 87, and
+ever, that the oscillations of spiral shocks in the x direction                       131 pc in models F00B10, F10B10, and F20B10 and
+(both in time and along y) mentioned in Section 3.1 smear out                         HSF=100, 128, and 163 pc in models F00Binf,
+the averaged proﬁles considerably, especially near x∼0,                             F10Binf, and F20Binf, respectively. Models with stron-
+where the spiral shocks are found. This smearing makes the                            ger arms have higher HSF, and the presence of magnetic ﬁelds
+y-averaged increase in Σ and decrease in vx on the upstream                           tends to reduce HSF by about 30%. This is because a higher
+side of the arm less steep than in the isothermal models. The                         SFR in the unmagnetized models can lift the dense gas to
+smearing, in combination with magnetic and Reynolds                                   higher-∣z∣ regions than in the magnetized models. Due to the
+stresses that break the conservation of angular momentum,                             spiral-arm compression, gas in models with higher  is
+
+                                                                                 15
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                    Kim, Kim, & Ostriker
+
+
+
+
+Figure 15. Histograms over t=200–600 Myr of (top) the local SFR surface density SSFR and (bottom) the gas depletion time τdep for (left) model F00B10, (middle)
+model F10B10, and (right) model F20B10. The color bars represent frequency of occurrence. The solid lines denote the median values. Star formation rates are
+based on star particles younger than 40 Myr .
+
+
+                                                                                      nbin. At a given time, the local SFR surface density in the ith
+                                                                                      bin can then be calculated as
+
+                                                                                                                           Msp, i
+                                                                                                     SSFR (xi ) º                    ,           (15)
+                                                                                                                  40 Myr · w bin L y
+                                                                                      where xi=−Lx/2+(i−0.5)wbin. The global SFR surface
+                                                                                      density across the simulation domain is given by SSFR =
+                                                                                        -1 nbin
+                                                                                      nbin å i = 1 SSFR (xi ).
+                                                                                         Figure 14 plots the temporal variations of the global SFR
+                                                                                      surface density SSFR for (a) magnetized and (b) unmagnetized
+                                                                                      models. For reference, we also indicate (dashed lines) the
+                                                                                      temporal changes of  in models with spiral-arm forcing. In
+                                                                                      all models, SSFR rapidly increases with time initially, as the
+                                                                                      system adjusts from its initial transient state. The value of
+                                                                                      SSFR tops out at around t∼60–70 Myr , independent of 
+                                                                                      and β, when SN feedback and radiative heating self-
+                                                                                      consistently balance turbulence dissipation and cooling. At
+                                                                                      this time, the spiral forcing shown as the dashed lines remains
+                                                                                      weak. The peak value of SSFR ∼1.2×10−2 M pc-2 Myr-1
+                                                                                      in the magnetized models (Figure 14(a)) is similar to SSFR
+                                                                                      in the (magnetized) TIGRESS run of Kim & Ostriker
+                                                                                      (2017), which has the same surface density, external
+Figure 16. 2D histogram of the local SFR surface density SSFR (xi) and the            potential, etc. The peak SSFR in magnetized models is about
+local surface density áSñi over t=200–600 Myr for all models with spiral-arm
+forcing ( ¹ 0 ). The dashed line shows the best ﬁt, Equation (16).
+                                                                                      half that of the unmagnetized models shown in Figure 14(b),
+                                                                                      and as expected, the overall SSFR is higher for unmagnetized
+denser in the arm and can achieve the threshold density for                           models than their magnetized counterparts (see Kim &
+star formation at higher ∣z∣.                                                         Ostriker 2015b). Subsequently, in all models, SSFR exhibits
+   To deﬁne proﬁles of the star formation rate surface density,                       secular decay as well as large-amplitude, quasi-periodic
+ΣSFR, in the direction perpendicular to the arm, at any given                         variations with a period of ∼50 Myr . The secular decay is
+time we select young star particles with age less than 40 Myr                         caused by the decrease in the gas mass in the simulation
+and bin their x positions into nbin=15 partitions with width                        domain (see below), while the quasi-periodic ﬂuctuations
+wbin=Lx/nbin;0.21 kpc. Let Msp,i denote the total mass of                         reﬂect self-regulation cycles of star formation: SN feedback
+the young star particles in the ith bin, with integer i=1, 2, L,                    and heating puff up the disk vertically and thus reduce the
+
+                                                                                 16
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                             Kim, Kim, & Ostriker
+
+
+
+
+Figure 17. Temporal evolution of the mass fractions of gas (thin solid), star particles (thick solid), and gas lost as outﬂows through the vertical boundaries (dotted) for
+(a) magnetized and (b) unmagnetized models.
+
+
+
+                                  Table 2                                                SFR; lower feedback in turn cools down the disks and
+ Mass Fractions, Velocity Dispersions, and Scale Heights of Various Phases
+                                                                                         promotes a new round of star formation and feedback (Kim &
+Model             Phase              log fm            log sz           log H            Ostriker 2017).
+(1)                (2)                 (3)               (4)              (5)               Inclusion of the spiral potential enhances SSFR , but the
+F00B10             total               0           1.05±0.07      2.52±0.03          effect is relatively modest overall, and at some times, SSFR
+                                                                                         can even be larger in models without a spiral potential.
+              cold-unstable     −0.66±0.13       0.72±0.04      1.86±0.05          Column 4 of Table 1 lists the mean SFR surface density and
+                  warm          −0.12±0.04       1.07±0.05      2.55±0.04
+                                                                                         its standard deviation averaged over 200 Myr t600 Myr
+               ionized-hot      −2.26±0.11       1.90±0.08      3.17±0.02
+                                                                                         for all models. The mean SFR of model F20B10 is larger,
+F10B10             total               0           1.12±0.05      2.59±0.04          but only by a factor of 1.6, compared to model F00B10.
+              cold-unstable     −0.72±0.14       0.84±0.03      2.02±0.06
+                                                                                         The SFR enhancement factor is reduced to 1.2 in the
+                  warm          −0.10±0.03       1.12±0.04      2.62±0.05          unmagnetized models. This suggests that triggering of star
+               ionized-hot      −2.23±0.10       1.93±0.08      3.18±0.03          formation by spiral arms is only moderate, and the main
+                                                                                         effect of arms is rather to collect star-forming regions into
+F20B10             total               0           1.16±0.06      2.63±0.04
+                                                                                         narrow ridges.
+              cold-unstable     −0.78±0.14       0.92±0.04      2.12±0.07             The very weak dependence of SSFR on  is, of course, due
+                  warm          −0.09±0.04       1.15±0.05      2.65±0.04          to the regulation of star formation by radiative heating and
+               ionized-hot      −2.15±0.12       1.92±0.07      3.16±0.02          SN feedback: strong star formation in the arm is accompanied
+F00Binf            total               0           1.40±0.07      2.80±0.05          by correspondingly strong feedback that temporarily reduces
+                                                                                         the SFR by injecting energy and momentum, leading to
+              cold-unstable     −0.93±0.14       0.94±0.05      2.02±0.08          SSFR ∝Σ for a ﬁxed external gravity (see below; see also
+                  warm          −0.07±0.02       1.31±0.03      2.81±0.05          Ostriker et al. 2010; Ostriker & Shetty 2011). This is more
+               ionized-hot      −1.72±0.08       2.08±0.07      3.19±0.02
+                                                                                         signiﬁcant in the unmagnetized models where stronger
+F10Binf            total               0           1.43±0.06      2.82±0.08          feedback makes the arm gas more turbulent and thus less
+                                                                                         prone to spiral-arm forcing.
+              cold-unstable     −0.97±0.14       1.01±0.07      2.08±0.10
+                  warm          −0.06±0.02       1.36±0.06      2.83±0.09
+                                                                                            Equation (15) gives SSFR (xi) at any given time, and for each
+               ionized-hot      −1.70±0.12       2.06±0.07      3.18±0.02          radial position bin xi, we can compute a histogram of these
+                                                                                         values. The top panels of Figure 15 plots these histograms over
+F20Binf            total               0           1.44±0.03      2.83±0.07          t=200–600 Myr for the magnetized models. In the lower panels
+              cold-unstable     −1.00±0.14       1.08±0.07      2.16±0.09          of Figure 15, we show histograms of the corresponding gas
+                  warm          −0.06±0.02       1.37±0.05      2.84±0.07          depletion times tdep (xi ) = Mgas, i [w bin L y SSFR (xi )] as a function
+               ionized-hot      −1.71±0.12       2.04±0.06      3.16±0.03                                           xi + w bin 2
+                                                                                         of xi. Here, Mgas, i = L y ò             áSñ dx is the gas mass in the
+                                                                                                                     xi - w bin 2
+Note. The mean values and standard deviations are taken over                             ith bin. The solid lines show the median values (excluding points
+t=200–600 Myr . Column 3: logarithm of the mass fraction. Column 4:                    with zero SSFR or inﬁnite τdep), while the color represents the
+logarithm of the vertical velocity dispersion (km s−1). Column 5: logarithm of           frequency of occurrence. The corresponding distributions for the
+the vertical scale height (pc).                                                          unmagnetized models (not shown) are qualitatively similar,
+
+
+                                                                                   17
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                              Kim, Kim, & Ostriker
+
+
+
+
+Figure 18. Comparison of temporal evolution of gas properties, divided by thermal phase: (top) the mass fractions fm, (middle) the density-weighted vertical velocity
+dispersions σz, and (bottom) the density-weighted scale heights H for (left) magnetized and (right) unmagnetized models. In each panel, we separate cold plus unstable
+(T<5050 K ; blue), warm (5050 K <T<2×104 K ; red), ionized plus hot phases (T>2×104 K ; pink). Thick, intermediate, and thin lines correspond to the
+models with  = 0.2 , 0.1, and 0, respectively.
+
+although they have, on average, twice larger SSFR and three times                     between the SFR surface density and the gas surface density
+smaller τdep than the magnetized counterparts. In model F00B10                        based on proﬁles, we bin áSñ into nbin=15 partitions to calculate
+with no arm, SSFR (x)∼2×10−3 M pc-2 Myr-1 and τdep                                                              -1               xi + w bin 2
+                                                                                      the local mean density áSñi = wbin ò                           áSñ dx in the ith
+(x)∼4.7 Gyr , roughly constant in x. In model F20B10, star                                                                         xi - w bin 2
+formation is concentrated in the arm with a rate SSFR 10−2                         bin. Figure 16 plots 2D histograms of SSFR (xi) and áSñi for all
+M pc-2 Myr-1, which is more than an order of magnitude                               spiral-arm models over t=200–600 Myr , analogous to a
+larger than in the interarm region where star formation is scarce.                    Schmidt–Kennicutt plot (Schmidt 1959; Kennicutt 1989, 1998).
+Correspondingly, the median value of the gas depletion time is                        Because the current models only have a single value of Σ0 and
+∼1 Gyr in the arm, about an order of magnitude shorter than in                        because averaging along y reduces large excursions in áSñi
+the interarm region.                                                                  relative to the mean (while simultaneously increasing scatter in
+   A comparison of Figures 11 and 15 shows that the SFR is                            SSFR (xi)), the ranges of SSFR and áSñ are quite narrow in each of
+higher in regions with higher density. To describe the relationship                   our simulations. Therefore, we have combined all the data from
+
+                                                                                 18
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                      Kim, Kim, & Ostriker
+
+
+
+
+Figure 19. Temporal variations of the density-weighted, total (Btot), turbulent (Btrb), and regular (Breg) components of magnetic ﬁelds averaged over (a) the whole
+simulation domain for all magnetized models, and (b) the arm and interarm regions, separately, for model F20B10. While the turbulent ﬁelds saturate early, the
+regular and total components exhibit a secular growth. The magnetic ﬁelds are stronger in the arm, by about a factor of 2.5, than in the interarm region.
+
+                                                                             Table 3
+                                                          Regular, Turbulent, and Total Magnetic Fields
+
+Model             Component                            Breg                                          Btrb                                       Btot
+
+(1)                   (2)                               (3)                                          (4)                                        (5)
+                                           Arm                   Interarm                Arm                  Interarm               Arm                  Interarm
+F00B10               total                         3.29±0.94                                  3.26±0.43                                 4.70±0.78
+
+                   x comp.                        −0.58±0.13                                  1.77±0.27                                 1.89±0.27
+                   y comp.                        3.22±0.95                                   2.33±0.37                                 4.03±0.81
+                   z comp.                        0.00±0.16                                   1.41±0.23                                 1.43±0.24
+
+F10B10               total             4.85±1.80             2.01±0.88            4.41±0.62           2.53±0.53          6.68±1.56           2.53±0.53
+
+                   x comp.            −0.60±0.15            −0.60±0.14            2.41±0.33           1.49±0.26          2.49±0.33           1.49±0.26
+                   y comp.            4.79±1.82             1.89±0.90             2.90±0.51           1.74±0.42          5.69±1.60           1.74±0.42
+                   z comp.            0.00±0.28             0.00±0.13             2.24±0.46           1.04±0.30          2.25±0.46           1.04±0.30
+
+F20B10               total             4.62±2.17             1.63±0.89            4.85±1.06           2.27±0.70          6.86±2.09           2.27±0.70
+
+                   x comp.            −0.57±0.17            −0.57±0.12            2.74±0.57           1.44±0.38          2.81±0.56           1.44±0.38
+                   y comp.            4.56±2.21             1.49±0.93             3.08±0.73           1.47±0.52          5.61±2.07           1.47±0.52
+                   z comp.            0.03±0.30             −0.02±0.12            2.51±0.65           0.92±0.39          2.53±0.66           0.92±0.39
+
+Note. The mean values and standard deviations are taken over t=200–600 Myr . Columns 3–5: density-weighted regular, turbulent, and total magnetic ﬁelds,
+respectively (μG). The arm and interarm regions are deﬁned as the regions with áSñ áSñm larger and smaller than unity, respectively.
+
+
+models with spiral-arm forcing. Despite the large scatter, there is                   4.3. Mass Fractions, Velocity Dispersion, and Scale Height
+a rough correlation between SSFR (xi) and áSñi . The dashed line is                     Figure 17 plots temporal changes of the mass fractions in gas
+our best ﬁt:                                                                         (thin solid) and star particles (thick solid) in the simulation domain
+                                                                                     together with the fraction of the gas lost through the vertical
+                                         ⎛    áSñi    ⎞1.19
+  SSFR (xi ) = 4.61 ´ 10-3 M pc-2 Myr -1⎜            ⎟ , (16)                       boundaries (dotted), relative to the initial gas mass, for the (a)
+                                         ⎝ 10 M pc-2 ⎠                              magnetized and (b) unmagnetized models. Due to the larger SFRs,
+                                                                                     the increase in the stellar mass and the lost gas mass is larger in the
+for models with  ¹ 0 . We remark that Equation (16) is based                        unmagnetized models. The effect of the spiral potential is
+on a y-averaged binning approach that can encompass quite                            insigniﬁcant (tens of percent) compared to the effect of the
+diverse conditions, resulting in a lot of scatter.                                   magnetic ﬁeld (factor of 2). For instance, model F20Binf has
+
+                                                                               19
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                            Kim, Kim, & Ostriker
+
+
+
+
+Figure 20. Proﬁles perpendicular to the arm of the (a) total, (b) regular, (c) turbulent components of magnetic ﬁelds, and (d) ratio of the turbulent to regular component
+in the magnetized models. The solid lines and colored shades give the mean and standard deviations over t=200–600 Myr , respectively.
+
+converted 46% of its initial gas mass to stars at t=700 Myr , which                   where Θ(T) is an on/off function such that Θ=1 if the gas
+is only 13% larger than in model F00Binf. In comparison, the                            temperature is within the range of the phase and Θ=0
+respective stellar conversion proportions at the same time are 29%                      otherwise. All quantities reach roughly a quasi-steady state
+and 21% for models F20B10 and F00B10. The amount of mass                                after t=100 Myr , although they all ﬂuctuate and a few
+lost in the unmagnetized models is ∼20%–30%, which is decreased                         quantities show modest secular changes associated with the
+to ∼5% in the magnetized models. Model F10Binf experiences
+                                                                                        decrease in the gas mass and SFR.
+massive mass loss around t∼200–220 Myr , which is caused by
+                                                                                           In all models, most of the gas mass is in the warm phase. The
+an explosive star formation event that occurred at t∼ 190 Myr .
+                                                                                        unmagnetized models have less cold-unstable phases and more
+   Figure 18 plots the temporal evolution of key properties of
+the ISM gas, separated by thermal phase. We show the mass                               ionized-hot phases than the magnetized model due to more active
+fractions fm, the density-weighted vertical velocity dispersions                        star formation. The unmagnetized models also have larger
+σz, and the density-weighted scale heights H of the gas in                              velocity dispersions and scale heights for all phases. Overall, the
+different phases for (left) magnetized and (right) unmagnetized                         vertical velocity dispersion and the scale height are smallest
+models. Here, the σz and H of each phase are calculated as                              (σz∼10 km s-1 and H∼0.1 kpc ) for the cold-unstable phase
+      ⎛                         ⎞1 2         ⎛                          ⎞1 2            and largest (σz∼100 km s-1 and H∼1.5 kpc) for the ionized-
+      ⎜
+ sz = ⎜
+          ò rvz2 Q(T ) dxdydz ⎟        ,
+                                             ⎜
+                                           H=⎜
+                                                 ò rz 2Q(T ) dxdydz ⎟          ,
+                                                                                        hot phase. Table 2 lists the time-averaged values and standard
+                              ⎟                                     ⎟                   deviations over t=200–600 Myr for the mass fractions, vertical
+      ⎜
+      ⎝    ò rQ(T ) dxdydz ⎟⎠                ⎜
+                                             ⎝    ò rQ(T ) dxdydz ⎟⎠                    velocity dispersions, and scale heights of each phase, as well as
+                                                                           (17)         the total gas.
+
+
+                                                                                   20
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                             Kim, Kim, & Ostriker
+
+
+
+
+Figure 21. 2D histograms of the (a) total, (b) regular, and (c) turbulent components of magnetic ﬁelds and the gas surface density. Color bars in blue, red, and green
+indicate the frequency of occurrence over t=200–600 Myr for magnetized models with  = 0.2 , 0.1, and 0, respectively. The dashed line in each panel denotes the
+best ﬁts, Equation (20), for the combined data.
+
+
+
+
+Figure 22. Gas weight and midplane pressure for all magnetized models. (a) 2D histograms of the total midplane stress Ptot and the total gas weight tot , and (b)
+proﬁles of the relative contributions to the total gas weight from external gravity (ext ) and self-gravity (self ). The dashed line in (a) corresponds to tot Ptot = 1,
+and color bars indicate the frequency of occurrence over t=200–600 Myr . In (b), the solid lines and colored shades give the mean and standard deviations over
+t=200–600 Myr , respectively.
+
+                           4.4. Magnetic Fields
+   As Figures 2, 6, and 9 show, magnetic ﬁelds in our
+                                                                                                                            ò rdBj 2 dz ,
+                                                                                                                                       1 2
+
+simulations possess a regular component as well as an                                                        Btrb, j (x ) =                                        (19b)
+irregular, turbulent component. Following Kim & Ostriker
+(2015b), we deﬁne the y average of a physical quantity q as                                                                    ò rdz
+                                                                                                                             ò rBj dz ,
+                                                                                                                                     21 2
+                        q (x , z ) º    ò   qdy / L y                       (18)
+                                                                                                              Btot, j (x ) =                                        (19c)
+and calculate the regular ﬁeld B (x, z ) and turbulent ﬁeld                                                                    ò rdz
+dB º B - B . The density-weighted regular, turbulent, and
+                                                                                         respectively. Note that Bj2 = B j2 + dBj 2 by deﬁnition. If the
+total components in the j (=x, y, z) direction are then calculated
+                                                                                         magnetic ﬁelds change their directions rapidly in space, ∣Breg ∣
+as
+                                                                                         would underestimate the total strength signiﬁcantly.
+                                                                                            Figure 19(a) plots the temporal variations of Btot = ∣Btot ∣,
+                       Breg, j (x ) =
+                                        ò rBj dz ,                        (19a)          Btrb = ∣Btrb ∣, and Breg = ∣Breg ∣ averaged over the whole
+                                                                                         computational domain for all magnetized models. SN feedback
+                                         ò rdz                                           creates the turbulent component from the regular component,
+
+                                                                                   21
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                     Kim, Kim, & Ostriker
+
+
+
+
+Figure 23. Proﬁles perpendicular to the arm of (a), (b) the total midplane stress and (c), (d) various midplane stresses for the (left) magnetized and (right)
+unmagnetized models. Blue, red, and green correspond to models with  = 0.2 , 0.1, and 0, respectively. The lines and colored shades represent the mean values and
+standard deviations over t=200–600 Myr . For clarity, only mean values are shown in (c) and (d).
+
+
+while background shear tends to increase the regular component at                   comparable in all directions. Note that Breg,x<0 and
+the expense of the turbulent component. Note that the turbulent                     Breg,y>0 for all models, implying that the mean ﬁelds are
+component saturates at Btrb∼3μG, while the regular (and thus                      trailing and inclined relative to the arm (or y direction). The
+total) component grows secularly with time. The domain-averaged                     inclination angle of the regular magnetic ﬁelds relative to the
+ﬁeld strength is largely independent of the spiral-arm forcing.                     arm is qB º -tan-1(Breg, x Breg, y ) ~ 10 in model F00B10,
+Figure 19(b) plots the temporal changes of the density-weighted                     while θB∼7° in the arm region and θB∼20° in the interarm
+magnetic ﬁelds in the arm region (with áSñ larger than the mean                     regions, insensitive to the arm strength, in models F10B10 and
+value) and interarm region (with áSñ smaller than the mean value)                   F20B10. The mean magnetic ﬁelds follow trailing gaseous
+at t=150–700 Myr for model F20B10. Overall, the magnetic                          spurs or ﬁlaments in the interarm region, while being roughly
+ﬁelds in the arm are about 2.5 times stronger and thus grow more                    parallel to the arm in the arm region (see Figure 2).
+strongly than in the interarm regions.                                                 Figure 20 plots the proﬁles in x (i.e., versus offset from the
+   Table 3 gives the mean values of the regular, turbulent, and                     arm) of the strength of the total, regular, and turbulent ﬁelds, as
+total magnetic ﬁelds averaged over t=200–600 Myr . The                            well as the ratio Btrb/Breg for all magnetized models. The solid
+spatial averages are taken over the whole domain for model                          lines give the mean values over t=200–600 Myr , while the
+F00B10 and over the arm and interarm regions, separately, for                       colored shades represent the standard deviations. In model
+models F10B10 and F20B10. The regular component has                                 F00B10, Btot∼4.7 μG and Breg∼Btrb∼3.3 μG, almost
+∣Breg, y∣ > ∣Breg, x ∣  ∣Breg, z∣. Although the regular ﬁelds are                  constant over x. The spiral-arm forcing compresses magnetic
+dominated by the y component, the turbulent ﬁelds are                               ﬁelds to Breg∼6.8 μG at the arm density peak, insensitive to
+
+                                                                               22
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                         Kim, Kim, & Ostriker
+
+
+
+
+Figure 24. 2D histogram of the total midplane stress Ptot and the gas surface        Figure 25. 2D histogram of the local SFR surface density SSFR (xi) and the
+density áSñ averaged along the y direction for all models with spiral forcing        local midplane stress Ptot(xi) for all models with spiral-arm forcing ( ¹ 0 ).
+( ¹ 0 ). The color bar indicates the frequency of occurrence over                   The color bar indicates the frequency of occurrence over t=200–600 Myr .
+t=200–600 Myr . The dashed line denotes the best ﬁt, Equation (23).                The solid line is Equation (26) of Kim et al. (2013), while the dashed line is our
+                                                                                     best ﬁt, Equation (25).
+the arm strength, which is ∼3 times stronger than the interarm
+regular ﬁelds. In the spiral-arm models, the turbulent comp-                                                     4.5. Midplane Stress
+onent is stronger than the regular component almost every-                              When a disk is in a quasi-steady state, the force balance in
+where, except near the upstream side of the arm region. This is                      the vertical direction requires that the weight of the gas under
+because the turbulent magnetic ﬁelds are generated by the                            the total gravitational ﬁeld should be supported by the total
+random gas motions driven by SN feedback that is most active                         midplane stress. In the presence of magnetic ﬁelds, it is not
+in the feedback zone downstream from the arm. In model                               only the magnetic pressure but also the vertical tension force
+F20B10, Btrb/Breg∼1.4 in the interarm region where the                             ¶ (Bz2 4p ) ¶z that contribute to the magnetic forces, so that the
+velocity dispersion is high due to low gas density.                                  relevant magnetic stress is B2 (8p ) - Bz2 (4p ) (Boulares &
+   Like the SFR, the strength of magnetic ﬁelds is correlated                        Cox 1990; Piontek & Ostriker 2007; Ostriker et al. 2010). We
+with the gas surface density. Figure 21 plots the relationships                      measure the thermal, turbulent, and magnetic stresses at the
+between the gas surface density áSñ and the (a) total, (b)                           midplane to be
+regular, and (c) turbulent components of magnetic ﬁelds over
+t=200–600 Myr for magnetized models. Clearly, magnetic                                                           1              z =Dz
+ﬁelds are stronger in regions with higher gas density. The                                           Pthm =
+                                                                                                                 2DzL y
+                                                                                                                           ∬z=-Dz Pdzdy,                        (21a)
+dashed lines are our best ﬁts
+                                                                                                               1               z =Dz
+                             ⎛
+              Btot = 4.63 mG ⎜
+                                  áSñ     ⎞0.58                                                     Ptrb =
+                                                                                                             2DzL y
+                                                                                                                        ∬z=-Dz rvz2 dzdy,                      (21b)
+                                          ⎟ ,                         (20a)
+                             ⎝ 10 M pc-1 ⎠
+                             ⎛    áSñ     ⎞0.69                                                             1             z =Dz     B 2 - 2Bz2
+              Breg = 2.94 mG ⎜            ⎟ ,                         (20b)                   Pmag =
+                                                                                                          2DzL y
+                                                                                                                    ∬z=-Dz              8p
+                                                                                                                                               dzdy ,           (21c)
+                             ⎝ 10 M pc-1 ⎠
+                                                                                     respectively. Here, Δz=12.3 pc refers to the grid spacing in
+                             ⎛    áSñ     ⎞0.49
+              Btrb = 3.35 mG ⎜            ⎟                           (20c)          the z direction. In Πmag, the tension term is about 17% of the
+                             ⎝ 10 M pc-1 ⎠                                          magnetic pressure term in our simulations. The total midplane
+                                                                                     stress is Ptot=Pthm+Ptrb+Πmag.
+for the combined data of all magnetized models.                                         We also measure the total weight of the gas as
+   We note that even though Breg is dominated by the y                               tot = ext + self , where
+component, the scaling of Breg with áSñ is sublinear, where a
+                                                                                                           1         z= L z / 2
+                                                                                                                              Fext
+linear relation would apply for one-dimensional compression in
+x of a uniform magnetic ﬁeld By. This sublinear scaling is
+                                                                                               ext =
+                                                                                                          2L y
+                                                                                                                 ∬z=-L /2 r d dz
+                                                                                                                           z
+                                                                                                                                              dzdy ,            (22a)
+because magnetic ﬁelds can expand vertically when the gas is
+                                                                                                                    z= L z / 2
+compressed horizontally, and indeed, the enhancement of
+thermal and turbulent pressure from feedback in the arm aids in                               self =
+                                                                                                           1
+                                                                                                          2L y
+                                                                                                                 ∬z=-L /2 r d Fdzself
+                                                                                                                           z
+                                                                                                                                               dzdy ,          (22b)
+this vertical expansion.
+
+                                                                                23
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                     Kim, Kim, & Ostriker
+
+representing the gas weight under the external gravity or self-              It is interesting to explore the relationship between the SFR
+gravity alone, respectively.                                              surface density and the midplane stresses. For this purpose, we
+   Figure 22 plots the relationship between Ptot and tot as well                                                         -1 xi + w bin 2
+                                                                          ﬁrst calculate the average values Pc (xi ) = wbin  òxi - wbin 2 Pc dx
+as the ratios ext tot and self tot as functions of x for the          in the 15 bins, as we did for the SFR surface density in
+magnetized models over t=200–600 Myr : the distributions                Section 4.2. Here, the subscipt “c” denotes “tot,” “thm,” “trb,”
+are similar for the unmagnetized models. As expected,                     and “mag” for the respective midplane stress. We then measure
+Ptot » tot within 12%, demonstrating that the disks are                  the feedback “yields”:
+overall in dynamical equilibrium in the vertical direction. On
+average, self » 0.24tot for the magnetized models and                                           hc º
+                                                                                                          Pc (xi )
+                                                                                                                   ;                      (24)
+self » 0.20tot for the unmagnetized models because the                                                 SSFR(x i)
+latter have higher SSFR and thus lower gas mass. Inside the
+arm, self tot increases up to 0.30 and 0.27 in models                   these yields η have velocity units, but can be converted to the
+F20B10 and F20Binf, respectively. This demonstrates that                  scaled values adopted in Kim et al. (2013) and Kim & Ostriker
+the gas weight in our models is dominated by the external                 (2015b) by multiplying by 4.8×10−3. When the numerical data
+gravity rather than self-gravity even inside the spiral arms.             for models with  = 0.1 and 0.2 are combined, and deﬁning
+   Figure 23 plots the proﬁles in x of the mean values and                SSFR, -3 = SSFR (xi ) (10-3 M pc-2 Myr-1), our magnetized
+standard deviations of (upper panels) the total midplane stress           models yield htot = 1880 km s-1S-                              -1
+                                                                                                               SFR, -3, hthm = 693 km s
+                                                                                                                0.17
+Ptot as well as (lower panels) the thermal, turbulent, and                  -0.43                  -   -0.10                    -
+magnetic stresses, over t=200–600 Myr . The left and right              SSFR, -3, htrb = 527 km s SSFR, -3, hmag = 187 km s SSFR, -3,
+                                                                                                     1                            1 1.00
+
+panels correspond to the magnetized and unmagnetized                      while the unmagnetized models give htot = 1380 km s-1S-       0.36
+                                                                                                                                       SFR, -3,
+models, respectively. Columns 5–8 in Table 1 give the mean                                      -                                -
+                                                                          hthm = 558 km s-1SSFR, -3, and htrb = 531 km s-1SSFR, -3. For
+                                                                                                 0.36                              0.14
+values and standard deviations of the various midplane stresses           a reference value of ΣSFR,−3=3.5 (see Table 1), these correspond
+averaged spatially in the x direction and temporally over
+                                                                          to ηtot≈1519 km s-1, ηthm≈404 km s-1, ηtrb≈464 km s-1,
+t=200–600 Myr .
+   The magnetized models have a higher total midplane stress,             and ηmag≈654 km s-1 for the magnetized models, showing that
+by a factor of ∼1.3 on average, than the unmagnetized                     the magnetic yield is about 45% of the total.
+counterpart. This is because they contain more gas (Figure 17)               Figure 25 plots the 2D histogram of SSFR (xi) and Ptot(xi) for
+with a larger scale height (Table 2) and thus have higher gas             all models with spiral forcing. The color bar represents the
+weight than the unmagnetized counterparts. In the magnetized              frequency of occurrence over t=200–600 Myr . Notwithstand-
+models, the magnetic stress closely follows the áSñ distribution          ing the large scatter caused by the y averaging, Ptot(xi) has a
+shown in Figure 11(a) and has Πmag∼(0.39−0.45)Ptot on                 good correlation with SSFR (xi). The dashed line denotes our
+average, while the thermal and turbulent pressures are larger in          best ﬁt,
+the region with stronger star formation (and SN feedback; see                                              ⎛ P k       ⎞1.24
+Figure 12). The thermal and turbulent pressures are individu-              SSFR = 1.64 ´ 10-3 M pc-2 Myr-1⎜ 4 tot -B3 ⎟ . (25)
+                                                                                                           ⎝ 10 cm K ⎠
+ally higher in the unmagnetized models, by a factor of ∼1.1
+and 1.5, respectively, than in the magnetized models, although            This is very close to Equation (26) from Kim et al. (2013),
+the addition of the magnetic stress makes the total larger. All of        plotted as a solid line, which was obtained from unmagnetized
+the stresses are almost ﬂat in the x direction in the no-arm              models with no spiral forcing, and a two-phase ISM model.
+models and higher in the arm region owing to stronger self-               This suggests that star formation in our spiral-arm simulations
+gravity.                                                                  is self-regulated, similarly to Kim et al. (2013), in such a way
+   Figure 24 plots a 2D histogram of the total midplane stress
+                                                                          that it keeps the disk in thermal, turbulent, and dynamical
+Ptot and the gas surface density áSñ for all models with spiral
+forcing. The color bar represents the frequency of occurrence             equilibrium (see also Ostriker et al. 2010; Kim et al. 2011).
+over t=200–600 Myr . The dashed line is the best ﬁt                     With Ptot nearly linearly dependent on áSñ from Equation (23),
+                                                                          Equation (25) is consistent with the relationship between SSFR
+                                      ⎛    áSñ     ⎞1.11                  and Σ indicated by Equation (16).
+     Ptot = 2.23 ´ 10 4 kB cm-3 K ⎜                ⎟ .       (23)
+                                      ⎝ 10 M pc-2 ⎠                                        5. Summary and Discussion
+
+In spite of the large variations of both surface density and                                        5.1. Summary
+pressure as the gas ﬂows from interarm to arm and back                       Spiral arms greatly affect gas ﬂows, magnetic ﬁelds, and star
+(Figures 11 and 23), there is a nearly linear relationship                formation in disk galaxies. Two unsolved problems for spiral
+between Ptot and áSñ. The basic reason for this is that the               galaxies are (1) whether or not the spiral arms enhance the SFR
+vertical ISM weight tot is dominated by ext µ áSñ, and                  in the disks and (2) how gaseous spurs/feathers perpendicular
+because dynamical equilibrium is satisﬁed, the total stress               to arms form and evolve. To address these issues, in this paper
+                                                                          we have extended the TIGRESS framework of Kim & Ostriker
+(which must balance tot ) must vary as Ptot µ áSñ. We note
+                                                                          (2017) to include the effect of a stellar spiral-arm potential.
+that the proportionality coefﬁcient in Equation (23) is set by the
+                                                                          TIGRESS is a numerical framework that accurately handles the
+vertical gravitational ﬁeld of the background stars (see                  formation and evolution of star clusters (represented as star
+Equation (22)), which varies only tens of percent between                 particles in the simulation) and the FUV heating plus SN
+arm and interarm. The coefﬁcient would increase (decrease) in             explosions they create. The TIGRESS framework allows us to
+a galactic region where the vertical gravity from the stellar disk        model the turbulent, magnetized, multiphase (cold–warm–hot),
+is higher (lower).                                                        differentially rotating, self-gravitating, vertically stratiﬁed ISM
+
+                                                                     24
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                               Kim, Kim, & Ostriker
+
+self-consistently with star formation and key feedback effects                by regions where feedback has cleared out gas (see
+produced by massive stars. We adopt the local spiral-arm                      Figures 1 and 9), resemble gaseous spurs/feathers seen in
+coordinates of Roberts (1969) where the two orthogonal axes in                real disk galaxies with strong spirals. These feedback-
+the galactic plane correspond to the directions perpendicular                 induced spurs form regardless of the presence of
+( x̂) and parallel ( ŷ) to a local segment of a spiral arm,                  magnetic ﬁelds. Spurs in our models protrude nearly
+respectively, while the third coordinate ( ẑ ) is perpendicular to           perpendicularly from the arm and turn to a trailing
+the galactic plane. We derive the equations of motions for star               conﬁguration in the interarm region. In magnetized
+particles in the spiral-arm coordinates (Appendix), and use                   models, the magnetic ﬁeld is generally parallel to the
+them in the simulations.                                                      “long axis” of the spur. They are transient and last for
+    Our simulation domain is a rectangular box corotating with                ∼30 Myr before being destroyed by nearby feedback and
+the arm. The box size Lx in the x direction is set equal to the               turbulence. Their mean spacing along the arm is
+arm-to-arm distance. We represent the spiral arm using a ﬁxed                 ∼2–3 kpc , tending to be larger in unmagnetized models
+gravitational potential with a simple sinusoidal shape                        with a weaker spiral-arm forcing.
+(Equation (9)), with its minimum occurring at the middle of                3. Star Formation—In our models, more than 90% of star
+the box (x=0). All models have initial gas surface density                  formation is concentrated in the arm, deﬁned as the
+Σ0=13 M pc-2 , similar to that in the solar neighborhood                   region where the gas surface density is above the mean
+and other “mid-disk” galactic environments. For magnetized                    value. The vertical distribution of star-forming positions
+models, the disks are initially threaded by magnetic ﬁelds                    are well described by an exponential function, with a
+parallel to the spiral arm. We consider six models that differ in             scale height proportional to the SFR. The local SFR
+arm strength and magnetic ﬁeld strength, which are character-                 surface density SSFR averaged along the y direction is
+ized by the dimensionless parameters  and β, respectively                    proportional roughly linearly to the local gas surface
+(Equations (12) and (13)). In order to avoid transients caused                density Σ averaged along the y direction (Equation (16))
+by a sudden introduction of the arm potential, we increase its                and to the total midplane stress Ptot (Equation (25)),
+amplitude slowly to the full strength achieved at t=200 Myr .               where the latter is also equal to the ISM vertical weight
+All models are run up to t=700 Myr , long enough for the disk               tot . Compared to the no-arm counterpart, the global
+to reach a quasi-steady state.                                                SFR surface density averaged over the entire domain is
+    The main results can be summarized as follows.                            only modestly enhanced by the spiral-arm forcing, by
+   1. Overall Evolution—As the amplitude of the spiral                        respective factors of 1.6 and 1.2 in models F20B10 and
+      potential grows with time, a dense ridge forms in the                   F20Binf (which have  = 0.2). This suggests that
+      region slightly downstream from the potential minimum.                  spiral arms do not trigger star formation much, but rather
+      Gathering of individual ﬁlaments of sheared gas and                     concentrate star-forming regions into narrow ridges. The
+      shells created by expanding superbubbles contributes to                 local SSFR in the arm is about an order of magnitude or
+      the formation of this ridge. Compared to the interarm                   more higher than in the interarm region. The weak
+      region, the gas in the arm is denser and colder, has                    dependence of SSFR on  is consistent with the quasi-
+      stronger magnetic ﬁelds and midplane pressure, and is the               linear dependence of local SSFR on the local Σ. The near-
+      locus of most star formation in the simulation domain.                  linear relationship we ﬁnd between SSFR and Ptot is
+      Star particles formed in the arm exhibit a spatial gradient             quantitatively in agreement with results from our
+      with respect to age amounting to dxm/dtm∼9±4                        previous simulations (Figure 25).
+      pc Myr −1 on average, with xm and tm denoting the mass-              4. Magnetic Fields and Midplane Stress—Turbulence
+      weighted mean position and age of star particles,                       driven by SN feedback stretches and twists magnetic
+      respectively. Arm star formation is usually clustered,                  ﬁelds to generate an irregular, turbulent component.
+      with SNe injecting thermal and kinetic energy in the                    Due to background shear, the regular magnetic ﬁelds are
+      downstream feedback zones to create superbubbles.                       trailing, with a mean inclination angle of ∼7° in the
+      These interact and are advected by the background ﬂow                   arm and ∼20° in the interarm regions, relative to the
+      to produce turbulence throughout the simulation domain,                 spiral arm. Both regular and turbulent components of
+      with the larger superbubbles breaking out of the disk to                the magnetic ﬁeld are strong inside the arm and weak
+      vent hot gas through chimneys. The system rapidly                       in the interarm region, with their strength sublinearly
+      reaches a quasi-steady state in which turbulence driven by              proportional to the gas surface density (Equation (20)).
+      SN feedback balances dissipation, and the heating                       In models with spiral-arm forcing, the turbulent magnetic
+      (radiation plus SN energy input) balances cooling.                      component is stronger than the regular components
+      Without gas inﬂows from outside the domain, continued                   especially in the interarm region, up to a factor of 1.5.
+      star formation and mass loss through the vertical                       Our disks are overall in local dynamical equilibrium in
+      boundaries make the gas mass and SFR decrease with                      which the total midplane stress Ptot (with thermal,
+      time in our simulations.                                                turbulent, and magnetic contributions) balances the gas
+   2. Spurs/Feathers—Clustered and correlated star formation                  weight tot along the vertical direction (Figure 22).
+      in the arm produces expanding superbubbles that are                     The contribution of self-gravity to the total gas weight
+      distorted as they move downstream, with their boundaries                self tot is 20%–24% on average and 27%–30%
+      turning to dense ﬁlaments attached to the spiral arm.                   in the spiral-arm density peaks. Because the gas
+      While weak ﬁlaments are readily destroyed by nearby                     weight is dominated by ext µ S, the midplane stress
+      feedback, strong ﬁlaments survive and undergo collisions                Ptot is approximately linearly proportional to áSñ
+      with neighboring ones, forming even denser, large-scale                 (Equation (23)). The magnetic tension term in the vertical
+      structures. These dense structures, bounded on both sides               force balance is about ∼17% of the magnetic pressure
+
+                                                                      25
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                 Kim, Kim, & Ostriker
+
+      term in the midplane, while the magnetic stress amounts           of magnitude larger than the values in model F20B10. On the
+      to about ∼40% of Ptot.                                            other hand, Figure 1 of Kreckel et al. (2018) shows that the
+                                                                        spiral arms in M74 have prominent molecular spurs with
+                                                                        λ∼1–2 kpc in the regions at R∼5–6 kpc from the galaxy
+                         5.2. Discussion                                center, where both Σ and SSFR are somewhat smaller than in
+                                                                        the arms of M51.
+   In our models, spiral-arm spurs form due to SN feedback in              That the total SFR in our simulations is insensitive to the arm
+the interarm regions immediately downstream from arms, as a             strength is consistent with the observational results that the
+result of clustered and correlated arm star formation. This             SFR is not much different in ﬂocculent and grand-design spiral
+mechanism is different from the MJI of quasi-steady spiral              galaxies (Elmegreen & Elmegreen 1986) and that arm and
+arms proposed for spur formation by Kim & Ostriker                      interarm regions have similar gas depletion times (Foyle et al.
+(2002, 2006). In the MJI, spurs are nonlinear waves that grow           2010; Eden et al. 2013). This is also entirely consistent with the
+via self-gravity. They collect material along the direction             recent work of Tress et al. (2020), who ran 3D simulations of
+parallel to the arm, which is also parallel to the mean magnetic
+                                                                        an interacting galaxy similar to the M51 system, and found that
+ﬁeld. Thus, MJI-induced spurs are predicted to have magnetic
+                                                                        tidal interactions redistribute gas across the disk and concen-
+ﬁelds perpendicular to their “long axis” and to be associated
+                                                                        trate star formation within the tidally induced arms. However,
+with converging velocity ﬁelds with amplitudes of order
+∼10 km s-1 (e.g., Kim & Ostriker 2002). This is in stark                the total SFR is affected by less than a factor of 2 (see their
+contrast to feedback-induced spurs, which would have                    Figure 15), as we have also found. Theoretically, the
+magnetic ﬁelds parallel to the length of the spur and could             insensitivity of the total SFR to the arm strength is related to
+have larger converging velocities up to ∼50–100 km s-1. In              the fact that the SFR surface density is quasi-linearly
+addition, spurs resulting from the MJI endure for a long time           proportional to the gas surface density. The quasi-linear
+(∼2π/Ω0=200 Myr ) until they undergo gravitational frag-              relationship between SSFR and Σ indicates a roughly constant
+mentation into bound clumps, while feedback-induced spurs               gas depletion time, consistent with recent resolved observations
+are transient, being readily destroyed by subsequent feedback           of external galaxies (e.g., Leroy et al. 2017; Kreckel et al. 2018;
+events. Nonlinear perturbations provided by feedback wipe out           see also Wong & Blitz 2002; Bigiel et al. 2008; Schruba et al.
+linear modes of MJI that might otherwise have grown in our              2011, but note that star formation is as strongly correlated
+simulations. Observations of small-scale magnetic and velocity          with stellar content as gas content—e.g., Leroy et al. 2008;
+ﬁelds around spurs/feathers may provide tell-tale signs of              Bolatto et al. 2017). This in turn implies that the arm star
+whether they are produced by MJI or SN feedback.                        formation in our models corresponds to the regime where the
+   In our simulations, we ﬁnd no evidence for the growth of WI          external gravity from stars is more important than gaseous self-
+in arms downstream from spiral shocks, a mechanism that was             gravity in establishing the vertical force balance (Ostriker et al.
+proposed for inducing spur/feather formation by Wada &                  2010; Kim et al. 2011, 2013). In gas-rich galaxies at high
+Koda (2004). As shown by Kim et al. (2014), the WI develops             redshift or starbursts in the local universe, there may be regions
+as PV generated from deformed spiral shocks accumulates                 where self-gravity dominates the weight, such that the
+successively as orbiting gas passes through shocks periodically.        equilibrium model for the regulation of star formation yields
+This requires that the arm and shock fronts have a steady               SSFR ∝Σ2 (Ostriker & Shetty 2011; Shetty & Ostriker 2012).
+pattern speed and that the PV remains coherent before and after         Any physical process (including spiral forcing, tidal interac-
+the shock fronts. In the present simulations, however, shock            tions, or mergers) that concentrates gas enough to become self-
+fronts oscillate around the mean position in the x direction,           gravitating is expected to enhance the total SFR signiﬁcantly.
+making the density proﬁle broader than the isothermal                      The fairly well-deﬁned age gradient of young star clusters
+counterpart (see Figure 11). More importantly, strong turbu-            seen in our simulations may be a consequence of adopting a
+lence driven by SN feedback rapidly mixes neighboring                   ﬁxed gravitational potential for spiral arms. The presence of the
+vortices with different polarities produced at a deformed shock         age gradient appears to depend on the nature of the spiral
+front. This mixing is hostile to the growth of WI. The presence
+                                                                        potential. Using numerical simulations, Dobbs & Pringle
+of magnetic ﬁelds and vertical shear also help to suppress the
+                                                                        (2010) showed that galaxies with quasi-stationary spiral density
+WI in our models (see also Kim & Ostriker 2006; Kim et al.
+                                                                        waves exhibit a clear monotonic age gradient, while those with
+2015; Sormani et al. 2017).
+   The number of spurs in our magnetized models is typically            tidally induced, transient arms do not. They proposed that the
+two or three, corresponding to a mean spacing of λ∼2–3 kpc .          presence or absence of the age gradient can be used as a
+There are many factors including arm pitch angle and strength,          potential discriminant for the nature of spiral arms. Shabani
+angular velocity, and gas surface density that may affect the           et al. (2018) found that NGC 1566, a grand-design barred-
+spur spacing signiﬁcantly. In particular, the spacing of                spiral galaxy with bisymmetric arms, has a noticeable age
+feedback-induced spurs should be affected by characteristic             gradient across the spiral arms, suggesting that the arms may
+gravitational scales, such that the spacing of correlated star          represent quasi-stationary density waves with a constant pattern
+formation varies inversely with Σ or SSFR . This is supported by        speed, as envisaged by Lin & Shu (1964, 1966). For M51, on
+recent observational results. By analyzing CO data for M51, for         the other hand, they found that star clusters with different ages
+instance, Schinnerer et al. (2017a) identiﬁed nine molecular            are peaked almost at the same locations, although older clusters
+spurs with λ∼0.33 kpc in the northern spiral arm located              spread more widely (see also Kaleida & Scowen 2010;
+∼2.3 kpc away from the galaxy center. This small value of               Chandar et al. 2017). The lack of age gradient for the young
+λ in M51 is likely due to the high gas surface density Σ∼160          star clusters in M51 is presumably because its tidally driven
+M pc-2 and high SFR surface density SSFR ∼0.15                       arms have not yet reached a steady state and are still changing
+M pc-2 Myr-1 (Leroy et al. 2017), which are about an order             their amplitudes and pattern speed (Shabani et al. 2018).
+
+                                                                   26
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                         Kim, Kim, & Ostriker
+
+   Radio synchrotron observations of external disk galaxies              important direction for future high-resolution simulations of
+reveal that the pitch angles of large-scale magnetic ﬁelds are           star formation and the ISM in spiral galaxies.
+correlated with those of the gaseous arms, with the former
+systematically larger by ∼5°–10°, on average than the latter                We appreciate a thoughtful report from the referee. W.-T.K.
+(Van Eck et al. 2015; Frick et al. 2016; see also the review by          gratefully acknowledges the assistance and hospitality provided
+Beck 2016). This is consistent with our numerical results that           by the Department of Astrophysical Sciences at Princeton
+magnetic ﬁelds in the arm are inclined relative to the gaseous           University during his sabbatical visit when this paper was
+arm. In our models, the inclination angle θB of magnetic ﬁelds           prepared. The work of W.-T.K. was supported by the National
+is determined by the competition among three agents: spiral-             Research Foundation of Korea (NRF) grant funded by the
+arm compression, SN feedback, and background shear. Spiral               Korea government (MSIT; 2019R1A2C1004857), with partial
+compression and shear tend to decrease θB, while SN feedback             sabbatical support from the Simons Foundation under grant
+increases θB by creating quasi-radial ﬁelds from quasi-                  510940 to E.C.O. The work of C.-G.K. and E.C.O. was
+azimuthal magnetic ﬁelds. SN feedback and shear yield                    partially supported by grant NNX17AG26G from NASA.
+quasi-equilibrium regular ﬁelds with θB∼13° in models                  C.-G.K. also acknowledges support from Simons Foundation
+without a spiral forcing, and the spiral compression (decom-             award No. 528307 (E.C.O). Computational resources for this
+pression) decreases (increases) θB to ∼7° (∼20°) in the arm              project were provided by Princeton Research Computing, a
+(interarm) regions.                                                      consortium including PICSciE and OIT at Princeton University
+   Our simulations show that the strength of magnetic ﬁelds is           and by the Supercomputing Center/Korea Institute of Science
+correlated with the gas surface density and SFR surface                  and Technology Information with supercomputing resources
+density via Equations (16) and (20). Under the assumption of             including technical support (KSC-2017-C2-0020).
+equipartition between the energy densities of magnetic ﬁelds                Software: Athena (Stone et al. 2008), numpy (van der
+and cosmic rays, Tabatabaei et al. (2013) used synchrotron               Walt et al. 2011), matplotlib (Hunter 2007), IPython
+emission to estimate the ﬁeld strength across the disk of NGC            (Pérez & Granger 2007), pandas (McKinney 2010).
+6946, ﬁnding that Btot∝SSFR 0.14 and Btot∝Σ0.23. These are
+shallower than our numerical results Btot∝SSFR 0.54 and                                        Appendix
+Btot∝Σ0.61 (see Equation (20)). The shallow relations                             Equations of Motion for Star Particles
+reported in observations suggest that the arm-to-interarm                   Here we derive the equations of motion for sink/star
+contrast of magnetic ﬁelds is very low (∼1.3 in M51;                     particles in spiral-arm coordinates. We start from Newtonʼs
+see Fletcher et al. 2011). However, we caution that this                 force equation in the inertial frame of reference
+shallow relation might be a consequence of the assumption of
+energy equipartition. There is no fundamental physical reason                                     R̈ = - Ftot ,                             (A1)
+for equipartition to hold, especially at small scale (e.g.,                               +z ẑ is the coordinate vector in cylindrical
+Stepanov et al. 2014). If instead comic rays are in fact more            where R=R R
+uniform than magnetic ﬁelds, then the true B–Σ relationship              coordinates and Φtot=Φself+Φext is the total gravitational
+should be steeper; if magnetic ﬁelds and cosmic rays are                 potential. We assume that the axisymmetric part Φ0 of the total
+anticorrelated, then the relation would be much steeper.                 gravitational potential is separable from the remaining
+   Finally, we remark on a few important caveats of our                  nonaxisymmetric part Φ1 such that Φtot=Φ0(R)+Φ1 (R, f,
+simulations. First, our current models adopt local, spiral-arm           z): the axisymmetric part Φ0 is responsible for the galaxy
+coordinates which assume quite tightly wound arms and ignore             rotation with angular frequency W = (R-1d F0 dR)1 2 , and Φ1
+curvature terms. The local models also cannot capture self-              can be regarded as perturbations to Φ0. Equation (A1) can then
+gravitating modes with wavelength longer than the x width of             be rewritten as
+the simulation box. Although we do not expect that qualititative
+results would change, to capture missing effects, it is desirable         (R ̈ - Rf + RW2 ) R
+                                                                                    2                             + z ̈zˆ = - F1. (A2)
+                                                                                              + (2R f + Rf̈ ) f
+to run global simulations with a radially varying surface
+density, adopting more realistic arm pitch angles (∼20°–30°).            Equation (A2) states that the speciﬁc angular momentum
+Second, by taking the diode-like vertical boundary conditions,           Lz = R2f is constant if Φ1 is axisymmetric.
+our models do not allow for gas accretion from outside the
+simulation box and thus result in a secular decrease of the SFR                          A.1. In the Frame Rotating at Wp
+over time. Observations indicate that the gas accretion rate to
+                                                                           We now consider a frame rotating at angular frequency
+the Milky Way is ∼0.1–0.4 M yr-1 for the cold gas (Putman               Wp = Wp zˆ , which is not necessarily the same as the local
+et al. 2012) and ∼1 M yr-1 including the ionized gas (Lehner            angular frequency Ω0=Ω(R0). With a new angle variable
+& Howk 2011). Inclusion of accreted gas can offset the long-             fp≡f−Ωp t, Equation (A2) becomes
+term decline of the gas mass via star formation and outﬂows in
+our simulations. Third, in the current TIGRESS framework that                 (R ̈ - Rfp ) R
+                                                                                         2                         + z ̈zˆ
+                                                                                              + (2R f p + Rf̈ p) f
+we adopt, SN explosions are the only form of feedback that
+directly contributes to the turbulent pressure. In reality, other                                            - 2Wp ´ R p ,
+                                                                                    = - F1 + R (W2p - W2 ) R                                (A3)
+forms of feedback such as stellar winds and ionizing radiation
+help to pressurize the ISM in star-forming regions before the            where R p º (R , Rf p, 0).
+onset of ﬁrst SNe. Although the total (lifetime) momentum                   We set up a local Cartesian frame (X, Y, Z)=(R−R0, R0fp,
+injection from these sources is small compared to that from              z) centered at (R0, Ωpt, z) and make a local approximation such
+SNe, the immediate onset may help to limit collapse of dense             that ∣X∣, ∣Y - Y0 t∣, ∣Z∣  R0 and ∣X ∣, ∣Y - Y0∣, ∣Z ∣  R0 W0 ,
+gas. Inclusion of additional “early” feedback represents an              where Y0 º R0 (W0 - Wp) is the background rotational velocity
+
+                                                                    27
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                            Kim, Kim, & Ostriker
+
+
+
+
+Figure A1. Illustration of a particle orbit with the initial conditions (x, y)/Lx=(0, 3.80) and (x , y) (W0 L x ) = (2.96, 1.59) at t=0, calculated from integrating
+Equation (A9) with Φ1=0. Temporal changes of (a) the x and y coordinates of the particle and (b) the relative errors in the energy δE/E and the position offset δs
+between the numerical and analytic results. (c) The trajectory of the particle orbit in the x–y plane. In (a) and (c), the dotted lines denote the movement of the guiding
+center of the epicycle.
+
+seen in the rotating frame. Then, Equation (A3) is decomposed as                        in the z=0 plane as
+                    ¶F1
+           Ẍ = -       + 2W0 (Y - Y0) + 2qW20 X ,                     (A4a)                            X = Ak 0 sin (k 0 t + B) + X 0,                         (A6a)
+                    ¶X
+                               ¶F1
+                      Ÿ = -       - 2W0 X ,                            (A4b)
+                               ¶Y                                                             Y = 2AW0 cos (k 0 t + B) - qW0 X 0 t + Y0 t + Y0,                  (A6b)
+                            ¶F
+                      Z̈ = - 1 ,                      (A4c)
+                            ¶Z
+                                                                                        where A, B, X0, and Y0 are constants to be determined subject to
+where q = -d ln W d ln R∣R0 is the shear parameter. When
+                                                                                        the initial conditions and k 0 = (4 - 2q )1 2 W0 is the epicycle
+Ωp=Ω0, that is, in the frame rotating at the local angular
+                                                                                        frequency. Note that the center of the epicycle (X0, Y0) drifts at
+frequency Ω0, Equation (A4) becomes Hillʼs equations, which
+                                                                                        a constant speed -qW0 X0 + Y0 along the Y direction due to the
+can be integrated to yield
+                                                                                        background rotation (Y0 ) and shear (−qΩ0X0).
+       1 2
+         (X + Y 2 + Z 2) - qW20 X 2 + F1 = constant,                     (A5)
+       2
+                                                                                                          A.2. In the Spiral-arm Coordinates
+corresponding to conservation of the total energy including the
+tidal potential (-qW20 X 2 ).                                                             We now tilt the local (X, Y, Z) frame by an angle i to
+   Equation (A4) possesses solutions for epicycle orbits in the                         construct another rectangular frame (x, y, z), where x and y refer
+X–Y plane. In the absence of the external forcing (Φ1=0),                             to the directions perpendicular and parallel to a local arm
+Equations A4(a) and A4(b) can be integrated to yield the orbit                          segment, respectively, while z denotes the vertical direction.
+
+                                                                                   28
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                 Kim, Kim, & Ostriker
+
+This is achieved by the coordinate transformation                                                              ORCID iDs
+               ⎛ X ⎞ ⎛ cos i -sin i 0 ⎞ ⎛ x ⎞                                   Woong-Tae Kim https://orcid.org/0000-0003-4625-229X
+               ⎜ Y ⎟ = ⎜ sin i cos i 0 ⎟ ⎜ y ⎟.                   (A7)          Chang-Goo Kim https://orcid.org/0000-0003-2896-3725
+               ⎜ ⎟ ⎜                   ⎟
+               ⎝Z ⎠ ⎝ 0         0    1⎠ ⎝ z ⎠                                   Eve C. Ostriker https://orcid.org/0000-0002-0509-9113
+   Assuming that the arm is tightly wound with sin i  1, it is
+straightforward to transform Equation (A4) into the spiral-arm                                                 References
+coordinates. Due to the constant drift of epicycle orbits,
+however, one should be careful in handling the -2qW20 y sin i                   Baba, J., Morokuma-Matsui, K., & Saitoh, T. R. 2017, MNRAS, 464, 246
+                                                                                Balbus, S. A. 1988, ApJ, 324, 60
+term originating from the last term of Equation A4(a). Even if                  Balbus, S. A., & Cowie, L. L. 1985, ApJ, 297, 61
+sin i is small under the tightly wound approximation,                           Beck, R. 2016, A&ARv, 24, 4
+                                                                                Bigiel, F., Leroy, A., Walter, F., et al. 2008, AJ, 136, 2846
+                 y sin i » Y sin i » (Y0 sin i) t                (A8)          Bolatto, A. D., Wong, T., Utomo, D., et al. 2017, ApJ, 846, 159
+                                                                                Boulares, A., & Cox, D. P. 1990, ApJ, 365, 544
+can be of order unity for sufﬁciently large t, representing the drift of        Bovy, J., Rix, H.-W., Liu, C., et al. 2012, ApJ, 753, 148
+a guiding center due to galaxy rotation (Equation A6(b)). Keeping               Buta, R., & Combes, F. 1996, FCPh, 17, 95
+                                                                                Cepa, J., & Beckman, J. E. 1990, ApJ, 349, 497
+all the terms of order unity, Equation (A4) is transformed to                   Chandar, R., Chien, L.-H., Meidt, S., et al. 2017, ApJ, 845, 78
+             ¶F                                                                 Daniel, K. J., & Wyse, R. F. G. 2015, MNRAS, 447, 3576
+      x ̈ = - 1 + 2W0 ( y - y0) + 2qW20 (x - x0 t ) ,         (A9a)          Daniel, K. J., & Wyse, R. F. G. 2018, MNRAS, 476, 1561
+              ¶x                                                                Dobbs, C., & Baba, J. 2014, PASA, 31, 35
+                        ¶F                                                      Dobbs, C. L., Adamo, A., Few, C. G., et al. 2017, MNRAS, 464, 3580
+               y ̈ = - 1 - 2W0 (x - x0) ,                     (A9b)           Dobbs, C. L., & Bonnell, I. A. 2006, MNRAS, 367, 873
+                        ¶y                                                      Dobbs, C. L., & Pringle, J. E. 2010, MNRAS, 409, 396
+                                ¶F                                              Draine, B. T. 1978, ApJS, 36, 595
+                         z̈ = - 1 ,                              (A9c)          Eden, D. J., Moore, T. J. T., Morgan, L. K., Thompson, M. A., &
+                                 ¶z                                                 Urquhart, J. S. 2013, MNRAS, 431, 1587
+                                                                                Eldridge, J. J., Langer, N., & Tout, C. A. 2011, MNRAS, 414, 3501
+where x 0 = Y0 sin i and y0 = Y0 . These is the desired set of              Elmegreen, B. G. 1994, ApJ, 433, 39
+equations for star particles in the spiral-arm coordinates. The                 Elmegreen, B. G. 2011, in EAS Publ. Ser. 51, Star Formation in the Local
+                                                                                    Universe, ed. C. Charbonnel & T. Montmerle (Les Ulis: EDP Sciences), 19
+time t in the last term of Equation A9(a) can be identiﬁed as the               Elmegreen, B. G., & Elmegreen, D. M. 1983, MNRAS, 203, 31
+age of each star particle. The corresponding equation for                       Elmegreen, B. G., & Elmegreen, D. M. 1986, ApJ, 311, 554
+energy conservation reads                                                       Elmegreen, B. G., & Elmegreen, D. M. 2019, ApJS, 245, 14
+                                                                                Elmegreen, B. G., Elmegreen, D. M., & Efremov, Y. N. 2018, ApJ, 863, 59
+       1                                                                        Elmegreen, D. M. 1980, ApJ, 242, 528
+ E=      ∣ x˙ - x˙ 0 ∣2 - qW20 (x - x˙0 t )2 + F1 = constant, (A10)             Fletcher, A., Beck, R., Shukurov, A., Berkhuijsen, E. M., & Horellou, C. 2011,
+       2                                                                            MNRAS, 412, 2396
+                                                                                Foyle, K., Rix, H.-W., Walter, F., & Leroy, A. K. 2010, ApJ, 725, 534
+with z0 = 0 .                                                                  Frick, P., Stepanov, R., Beck, R., et al. 2016, A&A, 585, 21
+   When Φ1=0, the x and y coordinates are separable from the                  Gammie, C. F. 2001, ApJ, 553, 174
+z coordinate, and Equation (A9) can be integrated to give the                   Gong, H., & Ostriker, E. C. 2013, ApJS, 204, 8
+epicycle orbit                                                                  Hawley, J. F., Gammie, C. F., & Balbus, S. A. 1995, ApJ, 440, 742
+                                                                                Huber, D., & Pfenniger, D. 2001, A&A, 374, 465
+            x = ak 0 sin (k 0 t + b) + x0 t + x 0 ,           (A11a)           Hunter, J. D. 2007, CSE, 9, 90
+                                                                                Iffrig, O., & Hennebelle, P. 2015, A&A, 576, A95
+    y = 2aW0 cos (k 0 t + b) + ( y0 - qW0 x 0) t + y0 ,       (A11b)           Kaleida, C., & Scowen, P. A. 2010, AJ, 140, 379
+                                                                                Kennicutt, R. C., Jr. 1989, ApJ, 344, 685
+where a, b, x0, and y0 are integration constants determined                     Kennicutt, R. C., Jr. 1998, ApJ, 498, 541
+by the initial conditions. It is apparent that the center (x0, y0)              Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2008, ApJ, 681, 1148
+                                                                                Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2011, ApJ, 743, 25
+of the epicycle drifts at a constant speed (x 0 , y - qW0 x 0 ) =             Kim, C.-G., & Ostriker, E. C. 2015a, ApJ, 802, 99
+[R0 (W0 - Wp) sin i , R0 (W0 - Wp) - qW0 x 0 )] due to the                      Kim, C.-G., & Ostriker, E. C. 2015b, ApJ, 815, 67
+background velocity v0 (Equation (1)) in the spiral-arm                        Kim, C.-G., & Ostriker, E. C. 2017, ApJ, 846, 133
+                                                                                Kim, C.-G., & Ostriker, E. C. 2018, ApJ, 853, 173
+coordinates.                                                                    Kim, C.-G., Ostriker, E. C., & Kim, W.-T. 2013, ApJ, 776, 1
+   As an example, we take Ωp=Ω0/2, sin i = 0.2, q=1, and                    Kim, W.-T., Kim, Y., & Kim, J.-G. 2014, ApJ, 789, 68
+L x = p sin iR0 , and initially consider a star particle located at (x,         Kim, W.-T., & Ostriker, E. C. 2001, ApJ, 559, 70
+y)/Lx=(0, 3.80) with velocity (x , y) (W0 L x ) = (2.96, 1.59)              Kim, W.-T., & Ostriker, E. C. 2002, ApJ, 570, 132
+                                                                                Kim, W.-T., & Ostriker, E. C. 2006, ApJ, 646, 213
+at t=0, corresponding to aΩ0/Lx=1.4, b=x0=0, and                        Kim, W.-T., & Ostriker, E. C. 2007, ApJ, 660, 1232
+y0/Lx=1. We integrate Equation (A9) with Φ1=0 using a                       Kim, Y., Kim, W.-T., & Elmegreen, B. G. 2015, ApJ, 809, 33
+kick–drift–kick scheme of the leapfrog integrator suggested by                  Knapen, J. H., Beckman, J. E., Cepa, J., & Nakai, N. 1996, A&A, 308, 27
+Quinn et al. (2010), with a time step of Δt=10−3/Ω0.                          Koo, B.-C., Park, G., Kim, W.-T., et al. 2017, PASJ, 129, 094102
+Figure A1 plots the temporal changes of the orbit, the relative                 Kormendy, J., & Kennicutt, R. C. 2004, ARA&A, 42, 603
+                                                                                Koyama, H., & Inutsuka, S.-i 2002, ApJL, 564, L97
+errors in the energy δE/E and the position offset δs/y between                  Koyama, H., & Ostriker, E. C. 2009, ApJ, 693, 1316
+the numerical and analytic solutions (Equation (A11)), and the                  Kreckel, K., Faesi, C., Kruijssen, M. M. D., et al. 2018, ApJL, 863, L21
+trajectory in the x–y plane. As expected, the stellar orbit consists            Kroupa, P. 2001, MNRAS, 322, 231
+of an epicycle motion in the clockwise direction and a constant                 Krumholz, M. R., Bate, M. R., Arce, H. G., et al. 2014, in Protostars and
+                                                                                    Planets VI, ed. H. Beuther et al. (Tucson, AZ: Univ. Arizona Press), 243
+drift of its guiding center indicated by the dotted lines. The                  La Vigne, M. A., Vogel, S. N., & Ostriker, E. C. 2006, ApJ, 650, 818
+energy is conserved within 0.1%, while the position offset is less              Lee, W.-K. 2014, ApJ, 792, 122
+than 0.6%.                                                                      Lee, W.-K., & Shu, F. H. 2012, ApJ, 756, 45
+
+                                                                           29
+The Astrophysical Journal, 898:35 (30pp), 2020 July 20                                                                                          Kim, Kim, & Ostriker
+
+Lehner, N., & Howk, J. C. 2011, Sci, 334, 955                                           Sandage, A. 1961, The Hubble Atlas of Galaxies (Washington, DC: Carnegie
+Leitherer, C., Schaerer, D., Goldader, J. D., et al. 1999, ApJS, 123, 3                    Institution)
+Leroy, A. K., Schinnerer, E., Hughes, A., et al. 2017, ApJ, 846, 71                     Schinnerer, E., Meidt, S. E., Colombo, D., et al. 2017a, ApJ, 836, 62
+Leroy, A. K., Walter, F., Brinks, E., et al. 2008, AJ, 136, 2782                        Schinnerer, E., Meidt, S. E., Pety, J., et al. 2017b, ApJ, 836, 62
+Leroy, A. K., Walter, F., Sandstrom, K., et al. 2013, AJ, 146, 19                       Schmidt, M. 1959, ApJ, 129, 243
+Lin, C. C., & Shu, F. H. 1964, ApJ, 140, 646                                            Schruba, A., Leroy, A. K., Walter, F., et al. 2011, AJ, 142, 37
+Lin, C. C., & Shu, F. H. 1966, PNAS, 55, 229                                            Scoville, N. Z., Polletta, M., Ewald, S., et al. 2001, AJ, 122, 3017
+Lord, S. D., & Young, J. S. 1990, ApJ, 356, 135                                         Seigar, M. S., & James, P. A. 2002, MNRAS, 337, 1113
+Lynds, B. T. 1970, in IAU Symp. 38, The Spiral Structure of Our Galaxy, ed.             Sellwood, J. A. 2014, RvMP, 86, 1
+   W. Becker & G. I. Contopouplos (Dordrecht: Reidel), 26                               Shabani, F., Grebel, E. K., Pasquali, A., et al. 2018, MNRAS, 478, 3590
+Mac Low, M.-M., & Klessen, R. S. 2004, RvMP, 76, 125                                    Shetty, R., & Ostriker, E. C. 2006, ApJ, 647, 997
+Martizzi, D., Faucher-Giguére, C.-A., & Quataert, E. 2015, MNRAS, 450, 504              Shetty, R., & Ostriker, E. C. 2008, ApJ, 684, 978
+McCray, R., & Snow, T. P. 1979, ARA&A, 17, 213                                          Shetty, R., & Ostriker, E. C. 2012, ApJ, 754, 2
+McKee, C. F., & Ostriker, E. C. 2007, ARA&A, 45, 565                                    Shu, F. H. 2016, ARA&A, 54, 667
+McKinney, W. 2010, in Proc. 9th Python in Science Conf., Data Structures for            Shu, F. H., Milione, V., & Roberts, W. W. 1973, ApJ, 183, 819
+   Statistical Computing in Python, ed. S. van der Walt & J. Millman (Austin,           Sormani, M. C., Sobacchi, E., Shore, S. N., Treß, R. G., & Klessen, R. S. 2017,
+   TX: SciPy), 51, https://conference.scipy.org/proceedings/scipy2010/pdfs/                MNRAS, 471, 2932
+   mckinney.pdf                                                                         Stepanov, R., Shukurov, A., Fletcher, A., et al. 2014, MNRAS, 437, 2201
+Muraoka, K., Kohno, K., Tosaki, T., et al. 2009, ApJ, 706, 1213                         Sternberg, A., McKee, C. F., & Wolﬁre, M. G. 2002, ApJS, 143, 419
+Ostriker, E. C., McKee, C. F., & Leroy, A. K. 2010, ApJ, 721, 975                       Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B. 2008,
+Ostriker, E. C., & Shetty, R. 2011, ApJ, 731, 41                                           ApJS, 178, 137
+Pérez, F., & Granger, B. E. 2007, CSE, 9, 21                                            Sutherland, R. S., & Dopita, M. A. 1993, ApJS, 88, 253
+Pettitt, A. R., Tasker, E. J., Wadsley, J. W., Keller, B. W., & Benincasa, S. M.        Tabatabaei, F. S., Schinnerer, E., Murphy, E. J., et al. 2013, A&A, 552,
+   2017, MNRAS, 468, 4189                                                                  A19
+Piontek, R. A., & Ostriker, E. C. 2007, ApJ, 663, 183                                   Tomisaka, K., Habe, A., & Ikeuchi, S. 1981, Ap&SS, 78, 273
+Puerari, I., Elmegreen, B. G., & Block, D. L. 2014, AJ, 148, 133                        Tress, R. G., Smith, R. J., Sormani, M. C., et al. 2020, MNRAS, 492, 2973
+Putman, M. E., Peek, J. E. G., & Joung, M. R. 2012, ARA&A, 50, 491                      van der Walt, S., Colbert, S. C., & Varoquaux, G. 2011, CSE, 13, 22
+Quinn, T., Perrine, R. P., Richardson, D. C., & Barnes, R. 2010, AJ, 139, 803           Van Eck, C. L., Brown, J. C., Shukurov, A., & Fletcher, A. 2015, ApJ, 799,
+Rand, R. J. 1993, ApJ, 410, 68                                                             35
+Renaud, F., Bournaud, F., Emsellem, E., et al. 2013, MNRAS, 436, 1836                   Wada, K., & Koda, J. 2004, MNRAS, 349, 270
+Roberts, W. W. 1969, ApJ, 158, 123                                                      Walch, S., & Naab, T. 2015, MNRAS, 451, 2757
+Roberts, W. W., Roberts, M. S., & Shu, F. M. 1975, ApJ, 196, 381                        Webb, G. M., & Mace, R. L. 2015, JPlPh, 81, 905810115
+Roškar, R., Debattista, V. P., Quinn, T. R., Stinson, G. S., & Wadsley, J. 2008,        Wong, T., & Blitz, L. 2002, ApJ, 569, 157
+   ApJL, 684, L79                                                                       Zhang, L., Rix, H.-W., van de Ven, G., et al. 2013, ApJ, 772, 108
+
+
+
+
+                                                                                   30
+

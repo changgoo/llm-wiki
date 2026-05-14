@@ -1,0 +1,285 @@
+The Astrophysical Journal, 649: L13–L16, 2006 September 20
+䉷 2006. The American Astronomical Society. All rights reserved. Printed in U.S.A.
+
+
+
+
+                                    INTERSTELLAR TURBULENCE DRIVING BY GALACTIC SPIRAL SHOCKS
+                                                     Chang-Goo Kim,1 Woong-Tae Kim,1 and Eve C. Ostriker2
+                                                    Received 2006 May 10; accepted 2006 August 4; published 2006 September 1
+
+                                                                   ABSTRACT
+                 Spiral shocks are potentially a major source of turbulence in the interstellar medium. To address this problem
+              quantitatively, we use numerical simulations to investigate gas flow across spiral arms in vertically stratified,
+              self-gravitating, magnetized models of galactic disks. Our models are isothermal, quasi-axisymmetric, and local
+              in the quasi-radial direction while global in the vertical direction. We find that a stellar spiral potential perturbation
+              promptly induces a spiral shock in the gas flow. For vertically stratified gas disks, the shock front in the radial-
+              vertical plane is in general curved, and never achieves a steady state. This behavior is in sharp contrast to spiral
+              shocks in two-dimensional (thin) disks, which are generally stationary. The nonsteady motions in our models
+              include large-amplitude quasi-radial flapping of the shock front. This flapping feeds random gas motions on the
+              scale of the vertical disk thickness, which then cascades to smaller scales. The induced gas velocity dispersion
+              in quasi–steady state exceeds the sonic value for a range of shock strengths, suggesting that spiral shocks are
+              indeed an important generator of turbulence in disk galaxies.
+              Subject headings: galaxies: ISM — instabilities — ISM: kinematics and dynamics — methods: numerical —
+                                  MHD — turbulence
+
+
+                                   1. INTRODUCTION                                         dynamics driven by spiral shocks, neglecting the vertical degree
+                                                                                           of freedom. When the vertical dimension is taken into account
+   Turbulence in the interstellar medium (ISM) is observed to                              and well resolved, Paper I showed that nonsteady motions of
+be pervasive and highly supersonic. Shocks created by random                               the spiral shock develop.3 Nonsteady behavior of spiral shocks
+gas motions produce a rich variety of structures in the diffuse,                           and generation of vertical motions has in fact been seen in
+atomic ISM, as well as in gravitationally bound giant molecular                            previous numerical models by other authors (e.g., Martos &
+clouds (GMCs). Recent work has shown that turbulence is                                    Cox 1998; Gómez & Cox 2002, 2004; Boley & Durisen 2006).
+crucial to the control of star formation within GMCs, and it is                            In this Letter, we clarify the physical causes of nonstationarity
+also believed to affect GMC formation processes. Turbulence                                for spiral shocks in stratified disks. We also quantify the level
+thus regulates star formation on both local and global scales                              of the induced gas motions to show that vertical spiral shocks
+(e.g., Ballesteros-Paredes et al. 2006). In the absence of driving,                        should indeed be an important source of turbulence in spiral
+shock dissipation and nonlinear cascades cause turbulence to                               galaxies.
+decay on a timescale comparable to flow crossing times even
+for a medium with equipartition-strength magnetic fields (e.g.,
+                                                                                                         2. METHODS AND MODEL PARAMETERS
+Stone et al. 1998; Mac Low 1999; Padoan & Nordlund 1999),
+amounting to a few tens of Myr for the diffuse ISM. This                                       We study the evolution of vertically stratified gas flow across
+implies that the ISM must be continuously stirred by one or                                spiral shocks in local regions of self-gravitating, differentially
+(likely) more driving sources.                                                             rotating, magnetized galactic disks. Our studies use a modified
+   A number of mechanisms have been proposed to drive tur-                                 version of the ZEUS code (Stone & Norman 1992a, 1992b) to
+bulence, including H ii region expansion, supernova explo-                                 solve the time-dependent magnetohydrodynamic (MHD) equa-
+sions, and fluid instabilities involving magnetic fields and grav-                         tions presented in Paper I. We use the same local formulation
+ity (see Mac Low & Klessen 2004; Elmegreen & Scalo 2004                                    described in Paper I, which explored fully three-dimensional
+for recent reviews). Although less well recognized, galactic                               models. Here we perform much higher resolution models to
+spiral shocks are also an appealing means to generate ISM                                  focus on the detailed turbulent response, but suppress the de-
+turbulence. Woodward (1976) showed that cloud deformation                                  gree of freedom parallel to the spiral arm (i.e., our models are
+by passage of a shock, and the associated Kelvin-Helmholtz                                 quasi-axisymmetric). The reader is referred to Paper I for a
+instabilities, together trigger random motions in the cloud.                               complete description of our model prescription and numerical
+Wada & Koda (2004) suggested that an in-plane “wiggle in-                                  methods. Here we briefly summarize the coordinate system and
+stability” of spiral shocks can also drive turbulent motions,                              model parameters we adopt.
+although this appears to be suppressed when three-dimensional                                  We consider a local region centered on a tightly wound spiral
+effects are included (Kim & Ostriker 2006, hereafter Paper I).                             arm (pitch angle i K 1), with a potential perturbation due to
+Very recently, Bonnell et al. (2006) and Dobbs et al. (2006)                               the stars assumed to be rigidly rotating with pattern speed
+demonstrated that passage of a distribution of clouds through                              Q p. We introduce a local, corotating Cartesian frame centered
+a spiral shock gives rise to internal turbulent motions that fol-                          on (R, f, z) p (R 0 , Q p t, 0). The local frame is tilted such that
+low Larson’s (1981) empirical scaling law fairly well.                                     ˆx and ˆy denote the in-plane directions perpendicular and parallel
+   Most of the studies cited above investigate two-dimensional                             to the arm, respectively, while ẑ is perpendicular to the galactic
+                                                                                           plane (Roberts 1969). We set up a two-dimensional simulation
+  1
+    Department of Physics and Astronomy, FPRD, Seoul National University,
+                                                                                           domain with size L x # L z in the x-z plane (hereafter XZ plane),
+Seoul 151-742, South Korea.
+  2                                                                                           3
+    Department of Astronomy, University of Maryland, College Park, MD                           The early low-resolution simulations of Tubbs (1980) did not show this
+20742.                                                                                     effect.
+
+                                                                                     L13
+L14                                                                   KIM, KIM, & OSTRIKER                                                                Vol. 649
+
+                           TABLE 1
+       Summary of Model Parameters and Simulation Results
+
+                                     H
+Model       Q0    b0     F     Grid (pc) Aj2x S1/2/cs Aj2y S1/2/cs Aj2z S1/2/cs Meff
+ (1)        (2)   (3)   (4)     (5) (6)      (7)          (8)          (9)      (10)
+A ......    1.8   ⬁       5   10242   196         0.66      0.63      0.38     4.0
+B ......    1.8   ⬁       5    5122   196         0.67      0.62      0.36     3.9
+C ......    2.0   ⬁       7    5122   218         1.01      0.86      0.45     5.0
+D ......    2.5   ⬁      10    5122   272         1.55      1.20      0.58     6.2
+E ......    1.5   10      5    5122   169         0.64      0.52      0.31     3.8
+F ......    1.8   10      7    5122   203         0.93      0.79      0.42     4.4
+G ......    2.0   10     10    5122   225         1.54      1.19      0.52     5.4
+  Notes.—Cols. (1)–(4): Model name and input parameters. Col. (5): Nu-
+merical resolution. Col. (6): Vertical scale height of gas in initial magneto-
+hydrostatic equilibrium. Cols. (7)–(9): Density-weighted late-time velocity dis-
+persions. Col. (10): Effective Mach number of the large-scale spiral shock.
+
+and assume all physical variables to be independent of y. The
+simulation box size L x is equal to the arm-to-arm separation.
+We allow for nonzero values of velocity vy and magnetic field
+By; initially vy p (Q 0 ⫺ Q p )R 0 ⫺ Q 0 x and By is independent of
+x, where Q 0 is the local angular velocity at R 0 . We also include
+Coriolis forces. This quasi-axisymmetric approximation pre-
+vents clump-forming, nonaxisymmetric gravitational instabil-
+ities from developing, enabling us to focus on the properties
+of turbulence independent of cloud formation.
+   We idealize the ISM by treating it as an isothermal gas with
+effective speed of sound c s p 7 km s⫺1. The initial gaseous disk
+(without the spiral potential) is in vertical magnetohydrostatic
+equilibrium. As reference values, we take R 0 p 10 kpc, Q 0 p
+26 km s⫺1 kpc⫺1, and epicyclic frequency k 0 p 2 1/2 Q 0 (for a                            Fig. 1.—Snapshots of density in logarithmic color scale of model G at
+flat rotation curve). The corresponding orbital period is torb {                       t/torb p 1.2, 1.7, 1.8 from top to bottom. Solid lines in (a) represent instan-
+                                                                                       taneous streamlines of gas. The rectangular box A in (c) indicates a sector
+2p/Q 0 p 2.4 # 10 8 yr. For the spiral arm parameters, we adopt                        enlarged in Fig. 2.
+Q p p Q 0 /2 and sin i p 0.1. We adopt L x p pR 0 sin i p
+3.14 kpc for a two-armed spiral. We impose reflection sym-
+metry with respect to the midplane and apply open boundary                             gravity due to the large postshock midplane density enhance-
+conditions at z p L z p 4H, where H (∼170–270 pc) is the                               ment soon breaks vertical force balance, however, pulling ma-
+                                                                                       terial at high FzF toward the midplane. With increased postshock
+initial disk scale height. We adopt sheared-periodic boundary
+                                                                                       density, the shock near z p 0 tends to move upstream toward
+conditions in x.
+                                                                                       the spiral potential minimum, causing the shock front to bend.
+   The three key parameters that characterize our model disks
+                                                                                       Gas entering the curved shock is initially bent upward toward
+are
+                                                                                       the shock front and then pulled downward due to strong vertical
+                                                                                       gravity. The falling material establishes repulsive pressure gra-
+                                       c 2s
+           Q0 p
+                    k0cs
+                   pGS 0
+                         ,    b0 p
+                                       v2
+                                        A
+                                              ,   Fp           ( )
+                                                           2 FFspF
+                                                         sin i R 02 Q 02
+                                                                         ,      (1)    dients and bounces back to high FzF. The instantaneous stream-
+                                                                                       lines shown for model G at t/torb p 1.2 in Figure 1a reflect gas
+                                                                                       motions at this stage.
+where S 0 is the gas surface density, vA is the Alfvén speed,                            Our model simulations show that spiral shocks in the XZ
+and Fsp is the amplitude of the imposed sinusoidal potential                           plane never achieve a steady state, as illustrated by the strong
+(Paper I). The quantity F measures the ratio of the perturbed                          density variations in Figures 1b and 1c for model G. This result
+sinusoidal radial force to the mean axisymmetric gravitational                         is quite unlike the steady solutions that obtain for models that
+force (Roberts 1969). We do not consider the vertical variation                        neglect vertical degrees of freedom (e.g., Woodward 1975; Kim
+of the spiral potential perturbation; the perturbed vertical force                     & Ostriker 2002). In particular, when the fluid variables are
+is negligible (! 4%) compared to the background vertical force.                        allowed to vary with z, the gas leaving the right x-boundary
+In our simulations, the potential amplitude slowly increases                           does not in general have the same z as it had when it originally
+from 0 to F over ∼1.5torb. We present results for seven numerical                      entered the left x-boundary,4 as Figure 1a illustrates. When the
+models, as listed in Table 1.                                                          vertical gravity exceeds the vertical repulsive pressure force
+                                                                                       downstream from the shock, postshock material is drawn toward
+                        3. NONLINEAR SIMULATIONS                                       the midplane, and the shock front at high FzF bends downstream
+           3.1. Spiral Shock Evolution in a Stratified Disk                            (Fig. 1b). As gas is further compressed, vertical pressure gra-
+                                                                                       dients overwhelm vertical gravity, and the gas even at
+   In this subsection, we describe the evolution of spiral shocks                      FzF/H ∼ 0.5 is able to rebound to FzF/H ⲏ 3. This in turn forces
+in our fiducial model G; evolution in other models is similar.                         the shock front at large FzF to shift back upstream (Fig. 1c).
+As the amplitude of the stellar spiral potential grows, mag-
+netosonic waves emerge and steepen, forming a shock front                                 4
+                                                                                            This is because the fundamental vertical oscillation period need not equal
+near x/L x p 0.04 by t/torb ∼ 1.0. At this time, fluid motions are                     the arm-to-arm flow period, although these timescales are typically within a
+nearly horizontal, and the shock front is nearly vertical. The                         factor of a few of each other.
+No. 1, 2006                                   ISM TURBULENCE DRIVING BY SPIRAL SHOCKS                                                                        L15
+
+
+
+
+   Fig. 2.—Velocity vectors and density in logarithmic scale at t/torb p 3.2 in
+the region A marked in Fig. 1c. The color scale is the same as in Fig. 1. The
+size of the arrow above the box corresponds to the sound speed.                      Fig. 3.—(a) Time evolution of the density-weighted velocity dispersions
+                                                                                  ji in model G. (b) Total velocity dispersion jtot vs. the effective Mach number
+                                                                                  Meff of the spiral shock in models B–G. The error bars represent the standard
+The vertically rebounding gas overshoots equilibrium, vertical                    deviations in the temporal fluctuations of ji.
+gravity again dominates, and the cycle repeats. As gas traverses
+the spiral arms, therefore, the shocks in our models continue
+                                                                                  heights FzF/H ! 1, this ranges from vz2 (k x ) ∝ k⫺0.5              at nx {
+to quasi-periodically shift back and forth perpendicular to the                                                                               x
+                                                                                  L x k x /(2p) ! 8 to vz2 (k x ) ∝ k⫺0.8 at 8 ! n  ! 16  to v 2
+                                                                                                                                                 (k x ) ∝ kx
+                                                                                                                                                           ⫺1.3
+arms. These “flapping” motions of spiral shocks are strongest                                                        x            x           z
+                                                                                  at 16 ! nx ! 64 for the kz p 0 modes. For 1 ! FzF/H ! 2, the
+at high FzF. Random motions at scales comparable to the height
+                                                                                  power spectra are slightly steeper, having vz2 (k x ) ∝ k⫺0.6              at
+H are also driven, and many weak shocks develop, especially                                                                                              x
+
+at high FzF (see Fig. 1c).                                                        nx ! 8, vz2 (k x ) ∝ k⫺1.1
+                                                                                                        x    at 8 ! nx ! 16, and vz2 (k x ) ∝ k⫺1.7
+                                                                                                                                                 x     at 16 !
+                                                                                  nx ! 64.
+   In addition to large-scale flapping, we find that spiral shocks
+in model G experience two small-scale instabilities that aid in
+transfer of random gaseous kinetic energy to smaller scales:                                           3.2. Level of ISM Turbulence
+an advective-acoustic cycle and vortex generation. The advec-                        We now quantify the level of random gas motions driven
+tive-acoustic cycle occurs as the most overdense midplane re-                     by spiral shocks. Since the velocities in XZ spiral shocks are
+gion perturbs the upstream flows by launching acoustic waves,                     nonuniform and nonstationary, it is useful to construct the
+analogous to the vortical-acoustic cycle for instabilities in iso-                mean velocity field Avi S (with i p x , y, or z), where the angle
+thermal Bondi-Hoyle-Lyttleton accretion (e.g., Foglizzo 2002).                    brackets denote a time average over t/torb ∼ 4–8 after turbu-
+Because the spiral shock front is curved in the XZ plane,                         lence saturates. We then measure density-weighted velocity
+Crocco’s theorem ensures generation of vorticity. Moreover,                       dispersions using ji2 { ∫ rd vi2 dx dz/ ∫ r dx dz, where d vi {
+strong rising and falling currents of the gas in the postshock                    vi ⫺ Avi S.5 Figure 3a plots ji (t) for model G, while columns
+region create a sheared velocity field favorable to Kelvin-Helm-                  (7)–(9) in Table 1 list Aji2 S1/2 for all the models.
+holtz instability, which can also generate vorticity. We remark                      As Figure 3a shows, random gas motions in model G are
+that vortices formed at the shock front are not fully resolved                    supersonic in the x- and y-directions, and exhibit large-ampli-
+in our models because instabilities grow faster at smaller scales.                tude temporal fluctuations. The characteristic periods of these
+Nevertheless, the velocity dispersions are essentially indepen-                   quasi-periodic fluctuations are in the range ∼(0.5–0.9)torb. The
+dent of numerical resolution (see below), suggesting that these                   maximum velocity dispersions occur when the spiral shock is
+instabilities may enhance the small-scale cascade but do not                      temporarily vertical. Evidently, the system reaches a quasi–
+affect the overall level of induced turbulence.                                   steady state in which dissipation of turbulence (in shocks and
+   Figure 2 plots typical velocity and density structures inside                  through cascades) is offset by the continual input of new tur-
+a spiral arm when turbulence is saturated. Many weak shocks                       bulent energy from the large-scale flapping. Turbulence is
+and well-resolved vortices of both signs are apparent. The in-                    strongest in the immediate postshock region and declines with
+stantaneous, density-weighted, total velocity dispersion in the                   increasing distance from the shock. Vertically averaged velocity
+region shown in Figure 2 is 1.51 times the sound speed. We                        dispersions inside the spiral arms typically exceed those in
+find that the power spectra of the perturbed velocities extend                    interarm regions by about a factor of 2. For the model param-
+smoothly over all scales, indicating fully developed turbulence.
+Because of the large-scale shock in vx, the large shear/streaming                    5
+                                                                                       In computing each ji, if we were to initially subtract out velocities cor-
+in vy, and the vertical stratification, the power spectrum of vz                  responding either to unperturbed rotation or to a thin-disk spiral shock (instead
+as a function of k x best characterizes the true turbulence. At                   of AviS), then the velocity dispersions would be larger.
+L16                                                                KIM, KIM, & OSTRIKER                                                            Vol. 649
+
+eters we have considered, Table 1 indicates that Ajx S ∼ Ajy S ∼                    appears to require neither self-gravity nor magnetic fields. Our
+2Ajz S. Comparison of Aji S between models A and B shows that                       model simulations, including those unlisted in Table 1, show
+the velocity dispersion is independent of numerical resolution.                     that anything (e.g., an imposed variation of Fsp with z) that
+   What determines the level of velocity dispersions in XZ                          makes the primary shock nonvertical will end up producing a
+spiral shocks? Table 1 suggests that stronger shocks (having                        nonsteady flow, simply because vertical oscillation periods
+larger values of Q⫺1    0 , b 0, and/or F) yield larger ji . To charac-             need not (and in general do not) agree with the horizontal
+terize the shock strength in each model as simply as possible,                      crossing time between arms.
+we have run one-dimensional counterparts with the same set                             Since strong spiral arms usually imply a high rate of star
+of parameters, using the thick-disk self-gravity prescription (see                  formation, spiral shocks and stellar energy sources may work
+Paper I). We define the effective Mach number Mef f {                               together in generating turbulence in many galaxies. The ab-
+AS 2 /S1 S1/2, where S1 and S 2 denote the preshock and postshock                   sence of observed correlation between spiral arm phase and
+surface densities, respectively, in the resulting (one-dimen-                       turbulent amplitude (e.g., Dickey et al. 1990), however, sug-
+sional) spiral shock. Column (10) in Table 1 lists Mef f for each                   gests that these two processes are not the only important sources
+model. Figure 3b plots the total velocity dispersion jtot p                         of turbulence. In addition, radio observations of extended H i
+(Ajx2 S ⫹ Ajy2 S ⫹ Ajz2 S)1/2 as a function of Mef f. While jtot mono-              disks in face-on galaxies show that the total vertical velocity
+tonically increases roughly as jtot /c s p 0.6Mef f ⫺ 1.4 for Meff                  dispersions are as large in the non-star-forming outer parts as
+! 5.5, it is more or less constant at about 2c s for Meff 1 5.5.                    in the star-forming inner regions (van Zee & Bryant 1999),
+We have found that models with other values of Q p /Q 0 follow                      again suggesting that additional sources of turbulence are able
+the same jtot-Mef f relation as shown in Figure 3b.                                 to compensate when needed.
+                                                                                       One compensating source of turbulence may be provided by
+                               4. DISCUSSION                                        the magnetorotational instability (MRI) (Sellwood & Balbus
+                                                                                    1999; Kim et al. 2003; Dziourkevitch et al. 2004). The MRI
+   Galactic rotation can supply an effectively inexhaustible                        should naturally be strongest exactly where spiral shocks are
+amount of kinetic energy to power turbulence in the ISM (Fleck                      absent: in the outer galaxy, where gravity is weak, the disk
+1981).6 In this Letter, we have shown that spiral shocks are in                     flares, and the density drops; and in interarm regions, where
+general nonstationary in the radial-vertical plane and can ef-                      the angular velocity decreases outward (in arms, shear is re-
+ficiently transform some of the available bulk rotational energy                    versed so that MRI cannot occur).
+into random gas motions. Vertical force imbalance drives radial                        While in this Letter we adopt isothermal conditions for the
+flapping of the shock front at FzF/H ⲏ 0.2, which then feeds                        gas and take the mean magnetic field parallel to the spiral arm,
+turbulence at smaller scales. The random gas motions induced                        the real ISM has a multiphase structure and is threaded also
+by the spiral shock persist despite strong shock dissipation and                    by weak vertical magnetic fields. Piontek & Ostriker (2004,
+yield time-averaged in-plane velocity dispersions ∼7–10 km s⫺1                      2005) demonstrated that MRI is able to generate random gas
+for a range of shock strengths, similar to the observed line                        motions up to ∼8 km s⫺1 in two-phase gas under favorable
+widths of cold and warm atomic gas in the Milky Way (e.g.,                          conditions. It will be interesting to see how turbulence driving
+Heiles & Troland 2003). Vertical velocity dispersions are lower,                    in spiral shocks develops for a multiphase medium, and whether
+but still amount to ∼ 12 of the thermal velocity dispersion.                        MRI and spiral shocks can indeed establish a geographically
+   Although our presentation has focused on shocks with re-                         compensating balance of power.
+alistic parameters, in fact turbulence generation by spiral shocks
+   6
+     To maintain a fixed level of turbulence, the energy dissipation per unit         We are grateful to S. S. Hong, J. Kim, and D. Ryu for
+mass per unit time must be balanced by the net stresses, QArvxdvy ⫺
+Bx By /(4p)S/r¯ (e.g., Piontek & Ostriker 2005). If this power is supplied at the
+                                                                                    valuable discussions, and to the referee I. Bonnell for a helpful
+expense of overall ISM accretion toward the galactic center, the accretion time     report. This work was supported partly by Korea Science and
+is ∼(2Q)⫺1 ¯r(QR)2ArvxdvyS⫺1, which exceeds the Hubble time if Arvxdvy ⫺            Engineering Foundation (KOSEF) grant R01-2004-000-10490-
+Bx By /(4p)S ∼ ¯rc2s .                                                              0 and partly by NASA under grant NNG05GG43G.
+                                                                            REFERENCES
+
+Ballesteros-Paredes, J., Klessen, R. S., Mac Low, M.-M., & Vázquez-Sema-           Kim, W.-T., Ostriker, E. C., & Stone, J. M. 2003, ApJ, 599, 1157
+  deni, E. 2006, in Protostars and Planets V, ed. V. Mannings et al. (Houston:      Larson, R. B. 1981, MNRAS, 194, 809
+  LPI), in press                                                                    Mac Low, M.-M. 1999, ApJ, 524, 169
+Boley, A. C., & Durisen, R. H. 2006, ApJ, 641, 534                                  Mac Low, M.-M., & Klessen, R. S. 2004, Rev. Mod. Phys., 76, 125
+Bonnell, I. A., Dobbs, C. L., Robitaille, T. P., & Pringle, J. E. 2006, MNRAS,      Martos, M. A., & Cox, D. P. 1998, ApJ, 509, 703
+  365, 37                                                                           Padoan, P., & Nordlund, A. 1999, ApJ, 526, 279
+Dickey, J. M., Hanson, M. M., & Helou, G. 1990, ApJ, 352, 522                       Piontek, R. A., & Ostriker, E. C. 2004, ApJ, 601, 905
+Dobbs, C. L., Bonnell, I. A., & Pringle, J. E. 2006, MNRAS, submitted (astro-       ———. 2005, ApJ, 629, 849
+  ph/0602103)                                                                       Roberts, W. W. 1969, ApJ, 158, 123
+Dziourkevitch, N., Elstner, D., & Rüdiger, G. 2004, A&A, 423, L29                  Sellwood, J. A., & Balbus, S. A. 1999, ApJ, 511, 660
+Elmegreen, B. G., & Scalo, J. 2004, ARA&A, 42, 211                                  Stone, J. M., & Norman, M. L. 1992a, ApJS, 80, 753
+Fleck, R. C. 1981, ApJ, 246, L151                                                   ———. 1992b, ApJS, 80, 791
+Foglizzo, T. 2002, A&A, 392, 353                                                    Stone, J. M., Ostriker, E. C., & Gammie, C. F. 1998, ApJ, 508, L99
+Gómez, G. C., & Cox, D. P. 2002, ApJ, 580, 235                                     Tubbs, A. D. 1980, ApJ, 239, 882
+———. 2004, ApJ, 615, 744                                                            van Zee, L., & Bryant, J. 1999, AJ, 118, 2172
+Heiles, C., & Troland, T. H. 2003, ApJ, 586, 1067                                   Wada, K., & Koda, J. 2004, MNRAS, 349, 270
+Kim, W.-T., & Ostriker, E. C. 2002, ApJ, 570, 132                                   Woodward, P. R. 1975, ApJ, 195, 61
+———. 2006, ApJ, 646, 213 (Paper I)                                                  ———. 1976, ApJ, 207, 484
+

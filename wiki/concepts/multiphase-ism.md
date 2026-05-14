@@ -5,6 +5,7 @@ created: 2026-05-14
 updated: 2026-05-14
 sources:
   - wiki/sources/mypapers-bibliography.md
+  - wiki/syntheses/batch-1-core-ism-tigress-foundations.md
 tags:
   - astrophysics
   - ism
@@ -24,6 +25,7 @@ The cleaned publication corpus uses the multiphase ISM as its central physical s
 
 - [[publication-map]] identifies the multiphase ISM as the largest cross-cutting theme across the bibliography.
 - TIGRESS and TIGRESS-NCR papers repeatedly use resolved multiphase ISM simulations to connect feedback physics to observables.
+- [[batch-1-core-ism-tigress-foundations]] shows the development from spiral-shock phase transitions to self-regulated turbulent disks and TIGRESS simulations.
 
 ## Related Pages
 
@@ -38,4 +40,3 @@ The cleaned publication corpus uses the multiphase ISM as its central physical s
 
 - Which phase transitions and feedback channels are most important for predicting star formation rates?
 - Which observables best constrain the simulated multiphase structure?
-

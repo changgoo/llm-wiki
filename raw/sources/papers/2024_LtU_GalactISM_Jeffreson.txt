@@ -1,0 +1,1331 @@
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                            https://doi.org/10.3847/1538-4357/ad793f
+© 2024. The Author(s). Published by the American Astronomical Society.
+
+
+
+
+Learning the Universe: GalactISM Simulations of Resolved Star Formation and Galactic
+        Outﬂows across Main-sequence and Quenched Galactic Environments
+Sarah M. R. Jeffreson1                , Eve C. Ostriker2,3 , Chang-Goo Kim2 , Jindra Gensior4 , Greg L. Bryan5,6                   , Timothy A. Davis7       ,
+                  1
+                                                       Lars Hernquist1 , and Sultan Hassan6,8,9,10
+                    Center for Astrophysics, Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA; sarah.jeffreson@cfa.harvard.edu
+                                   2
+                                     Department of Astrophysical Sciences, Princeton University, 4 Ivy Lane, Princeton, NJ 08544, USA
+                                               3
+                                                 Institute for Advanced Study, 1 Einstein Drive, Princeton, NJ 08540, USA
+                                  4
+                                     Department of Astrophysics, University of Zurich, Winterthurerstrasse 190, 8057 Zurich, Switzerland
+                                   5
+                                     Department of Astronomy, Columbia University, 550 W. 120th Street, New York, NY 10027, USA
+                                6
+                                  Center for Computational Astrophysics, Flatiron Institute, 162 5th Avenue, New York, NY 10010, USA
+                 7
+                   Cardiff Hub for Astrophysics Research & Technology, School of Physics & Astronomy, Cardiff University, Cardiff, CF24 3AA, UK
+               8
+                 Center for Cosmology and Particle Physics, Department of Physics, New York University, 726 Broadway, New York, NY 10003, USA
+                                 9
+                                   Department of Physics & Astronomy, University of the Western Cape, Cape Town 7535, South Africa
+                              Received 2024 April 26; revised 2024 September 4; accepted 2024 September 8; published 2024 October 29
+
+                                                                               Abstract
+             We present a suite of six high-resolution chemodynamical simulations of isolated galaxies, spanning observed
+             disk-dominated environments on the star-forming main sequence, as well as quenched, bulge-dominated
+             environments. We compare and contrast the physics driving star formation and stellar feedback among the
+             galaxies, with a view to modeling these processes in cosmological simulations. We ﬁnd that the mass loading of
+             galactic outﬂows is coupled to the clustering of supernova explosions, which varies strongly with the rate of
+             galactic rotation Ω = vcirc/R via the Toomre length, leading to smoother gas disks in the bulge-dominated galaxies.
+             This sets an equation of state in the star-forming gas that also varies strongly with Ω, so that the bulge-dominated
+             galaxies have higher midplane densities, lower velocity dispersions, and higher molecular gas fractions than their
+             main-sequence counterparts. The star formation rate in ﬁve out of six galaxies is independent of Ω and is consistent
+             with regulation by the midplane gas pressure alone. In the sixth galaxy, which has the most centrally concentrated
+             bulge and thus the highest Ω, we reproduce dynamical suppression of the star formation efﬁciency in agreement
+             with observations. This produces a transition away from pressure-regulated star formation.
+             Uniﬁed Astronomy Thesaurus concepts: Disk galaxies (391); Lenticular galaxies (915); Spiral galaxies (1560);
+             Interstellar medium (847); Star formation (1569); Hydrodynamical simulations (767); Stellar feedback (1602);
+             Galactic and extragalactic astronomy (563); Galaxy processes (614); Galaxy properties (615); Galaxy
+             structure (622)
+
+
+                                    1. Introduction                                      display very different properties from their main-sequence
+   Since the ﬁrst detections of cold gas in elliptical, early-type                       spiral galaxy counterparts, forming very smooth gas disks that
+galaxies (ETGs) at low redshift (T. Wiklind & G. Rydbeck 1986;                           more closely resemble protoplanetary disks than they do
+T. G. Phillips et al. 1987), the presence of star-forming gas in                         galaxies (T. A. Davis et al. 2022). A large fraction of these
+such galaxies has been shown to be relatively common.                                    ETGs also display cold gas and molecular gas depletion times
+Molecular gas has been detected in at least 22% of local ETGs                            that are elevated by up to an order of magnitude, relative to the
+(G. A. Welch & L. J. Sage 2003; F. Combes et al. 2007;                                   values measured in main-sequence galaxies. Interestingly, these
+L. M. Young et al. 2011; T. A. Davis et al. 2019), and some of                           prolonged depletion times are not seen in all ETGs: the average
+the most massive ETGs are found to have large molecular gas                              increase in the cold gas depletion time across the population of
+reservoirs between 109 and 1011 solar masses (e.g., P. Salomé &                          observed ellipticals, relative to spiral galaxies, is just 2.5 times
+F. Combes 2003; H. R. Russell et al. 2016; E. O’Sullivan et al.                          (T. A. Davis et al. 2014).
+2018; H. R. Russell et al. 2019).                                                           This suppression of star formation in the cold gas of bulge-
+   With the recent advent of high-sensitivity submillimeter                              dominated galaxies is also a prominent feature in large galaxy
+interferometers, it has become possible to resolve these                                 surveys that directly detect atomic and molecular gas over a
+molecular gas reservoirs in great detail, and even to distinguish                        range of redshifts (e.g., A. Saintonge et al. 2012; L. J. Tacconi
+individual giant molecular clouds (GMCs) within them                                     et al. 2018; D. Colombo et al. 2020). Computing gas masses
+(D. Utomo et al. 2015; L. Liu et al. 2021; T. G. Williams                                via the dust reddening of optical spectra in the Sloan Digital
+et al. 2023; A. Lu et al. 2024). Such studies demonstrate that                           Sky Survey (SDSS) sample, J. M. Piotrowska et al. (2022) have
+the interstellar media (ISMs) of lenticular and elliptical galaxies                      shown a suppression of the molecular gas star formation
+10                                                                                       efﬁciency (SFE) in quenched galaxies by two orders of
+     NHFP Hubble fellow.
+                                                                                         magnitude, comparable to the reduction factor in their overall
+                                                                                         gas fractions. Across the EDGE-CALIFA survey (D. Colombo
+                 Original content from this work may be used under the terms
+                 of the Creative Commons Attribution 4.0 licence. Any further
+                                                                                         et al. 2020), it is found that the offset from the galactic star-
+distribution of this work must maintain attribution to the author(s) and the title       forming main sequence for low gas fraction galaxies is driven
+of the work, journal citation and DOI.                                                   predominantly by a large drop in their SFEs per unit molecular
+
+                                                                                     1
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                               Jeffreson et al.
+
+gas mass, rather than by variation in the molecular gas                   simulations with models that are calibrated based on higher-
+fractions.                                                                resolution simulations, which capture the relevant physics on
+   Such data indicate that the quenching of star formation                smaller scales. The collaboration therefore aims to produce
+occurs as a result of both the removal of star-forming gas from           cosmological simulations that no longer require empirical
+galaxies and the quenching of star formation within the                   calibration or tuning, allowing for the predictive modeling of
+remaining cold gas. While feedback from active galactic nuclei            star formation quenching, among other physics. In this paper,
+(AGNs) has been shown to effectively eject gas from galaxies              we introduce the ﬁrst six of the “GalactISM” simulations: a
+and to halt the accretion of new gas by heating the surrounding           suite of high-resolution chemodynamical isolated galaxy
+intracluster medium (see A. C. Fabian 2012, and references                simulations spanning observed, dynamically diverse star-
+therein), it has not been shown to suppress star formation                forming environments from the galactic star-forming main
+within the remaining cold gas. A mechanism shown to produce               sequence of spiral galaxies to the population of fast-rotating
+the latter effect in numerical simulations is “dynamical                  quenched11 ETGs at low redshift. We examine the SFR, the
+suppression” (M. Martig et al. 2009, 2013; J. Gensior et al.              SFE, and the properties of galactic outﬂows across these
+2020; J. Gensior & J. M. D. Kruijssen 2021), whereby                      environments, as a function of large-scale galaxy properties
+stabilizing torques due to the rapid rate of galactic rotation in         such as the midplane pressure, density, and rotation rate. We
+bulge-dominated environments prevents the collapse of cold                therefore determine which subgrid processes can be modeled
+gas, and thus the formation of new stars.                                 by physically motivated analytic theory in the form of power-
+   To correctly predict and therefore understand the pathways             law relationships, and determine the galactic environments in
+to the quenching of star formation throughout the course of               which nonlinear deviations from these power-law relationships
+galaxy evolution, it is therefore necessary to correctly model            arise. Such nonlinear deviations might in the future be
+the physics driving star formation and stellar feedback in the            accounted for by statistical or learned modeling techniques—
+cold ISMs of both star-forming and quenched galaxies.                     another facet of the Learning the Universe collaboration.
+Unfortunately, state-of-the-art hydrodynamical cosmological                  The GalactISM simulations are complementary to the
+volume simulations lack the resolution to model this cold, star-          “TIGRESS” (C.-G. Kim & E. C. Ostriker 2017; C.-G. Kim
+forming ISM. Though substantial work has been done to model               et al. 2020) and “TIGRESS-NCR” (C.-G. Kim et al. 2023a;
+resolved star formation via cosmological zoom-in simulations              J.-G. Kim et al. 2023b) frameworks—magnetohydrodynamic
+(e.g., O. Agertz et al. 2013; J. Chen et al. 2016; R. J. J. Grand         (MHD) simulations using ATHENA (J. M. Stone et al. 2008;
+et al. 2017; P. F. Hopkins et al. 2018), it is currently infeasible       J. M. Stone & T. Gardiner 2009), with star formation and
+to extend such models to volumes containing many thousands                supernova+radiation feedback that have the same (2–4 pc)
+of galaxies.                                                              resolution in all ISM phases, including the low-density, hot
+   Currently, cosmological volume simulations adopt subgrid               gas.12 The latter allows for full UV radiative transfer via
+treatments for star formation, stellar feedback, and galactic winds       adaptive ray-tracing, as well as photochemistry (J.-G. Kim
+that are typically calibrated to observed scalings in low-redshift,       et al. 2023b). By contrast, the GalactISM simulations employ
+main-sequence galaxies (in the case of star formation and stellar         adaptive reﬁnement in the moving-mesh code AREPO and use
+feedback) or that are tuned to reproduce key galaxy scaling               the mechanical supernova and H II region feedback prescrip-
+relations (in the case of wind mass and energy loading; see               tions based on momentum injection introduced in S. M. R.
+M. C. Smith et al. 2024 and references therein). In particular, the       Jeffreson et al. (2021), appropriate when it is not possible to
+depletion time is commonly calibrated to the relationship                 fully resolve the Sedov–Taylor blast waves and Strömgren
+                                                                          spheres. At the lower resolution of GalactISM (corresponding
+between the star formation rate (SFR) and gas density in nearby
+                                                                          to ∼1–10 pc in the molecular gas and ∼30–60 pc in the warm
+spiral galaxies (e.g., V. Springel & L. Hernquist 2003), the same
+                                                                          gas) we can model entire galaxies and the HCO chemistry of
+relationship that is shifted systematically for the ISMs of ETGs.
+                                                                          their three-phase, star-forming gas reservoirs relatively efﬁ-
+   Perhaps as a result of these highly simpliﬁed subgrid models,
+                                                                          ciently, allowing for the potential inﬂuence of inward radial
+hydrodynamical cosmological simulations are currently unable
+                                                                          mass transport (e.g., M. Krumholz & A. Burkert 2010;
+to accurately model the onset of star formation quenching as a
+                                                                          N. J. Goldbaum et al. 2015; M. R. Krumholz et al. 2018)
+function of stellar mass M*, black hole mass MBH, and halo                and for the later inclusion of a circumgalactic medium,
+mass MHalo (D. Nelson et al. 2018; J. M. Piotrowska et al.                necessary for the modeling of high gas fraction, high-redshift
+2022). Of the Illustris (M. Vogelsberger et al. 2014),                    galactic environments. We also produce a statistical sample of
+IllustrisTNG (D. Nelson et al. 2018), and EAGLE (J. Schaye                around 60,000 GMCs across these six simulations.
+et al. 2015) simulations, J. M. Piotrowska et al. (2022) ﬁnd that            The remainder of the paper is structured as follows: In
+IllustrisTNG displays the best qualitative agreement with trends          Section 2 we introduce the GalactISM simulation suite, along
+in the SDSS at low redshift but overestimates the mass at which           with the numerical models used for star formation, stellar
+quenching sets in, by three times in M* and around 10 times in            feedback, chemistry, and cooling. In Section 3 we give an
+MHalo and MBH. The discrepancy in the quenched fraction of                overview of the dynamical properties, gas-phase distribution
+galaxies with M* is also reproduced by D. Nelson et al. (2018)            and morphology, and star-forming behavior of our galaxies, in
+and M. Donnari et al. (2019), though we note that the                     comparison to observed ETGs from the ATLAS3D survey
+comparison between simulations and observations may be
+affected by sample selection, the choice of SFR indicator, and a          11
+                                                                             We use the term “quenched” to denote galaxies with an sSFR 
+host of other complicating factors (M. Donnari et al. 2021).              1 × 10−11 yr−1.
+                                                                          12
+   One of the key goals of the Learning the Universe Simons                  This higher resolution in the hot gas phase makes it possible to follow the
+Collaboration (and one of its predecessors, the SMAUG                     Sedov–Taylor (energy-conserving, momentum-generating) stage of supernova
+                                                                          remnant (SNR) evolution, in which hot gas is created in shocks, and the
+collaboration) is to substitute the existing, empirically cali-           resolved interaction of expanding SNRs with the warm/cold gas phases, to
+brated or tuned subgrid prescriptions in cosmological                     drive turbulence on a range of scales.
+
+                                                                      2
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                      Jeffreson et al.
+
+                                                                                          disks follow an exponential form. The stellar bulge follows an
+                                                                                          H. C. Plummer (1911) proﬁle in the ETG initial conditions and
+                                                                                          an L. Hernquist (1990) proﬁle in the Milky Way–like initial
+                                                                                          condition. None of our initial conditions contain a hot halo /
+                                                                                          circumgalactic medium component, consistent with the
+                                                                                          AGORA initial condition. Our median gas cell mass is
+                                                                                          859 Me for all galaxies.
+                                                                                              We note that the properties of the simulated gas and stellar
+                                                                                          disks change substantially between the beginning of the
+                                                                                          simulation (0 Myr) and the ﬁrst simulation time analyzed
+                                                                                          (tstart), as the gas disk settles into a state of dynamical
+                                                                                          equilibrium. Unless otherwise stated, Table 1 therefore gives
+                                                                                          the median value of each disk parameter during the period of
+                                                                                          simulation times analyzed, during which the values do not
+                                                                                          change substantially.
+
+                                                                                                              2.1.1. Early-type Galaxies
+                                                                                             The physical parameters for our ETG initial conditions are
+Figure 1. Each of the six isolated galaxy simulations (stars) in the plane of total       designed to span the observable properties of ETGs from the
+stellar mass M* vs. sSFR. Black data points represent atomic and molecular gas
+detections, respectively, from the xGASS (B. Catinella et al. 2018) and                   MASSIVE (C.-P. Ma et al. 2014) and ATLAS3D (M. Cappellari
+xCOLDGASS (A. Saintonge et al. 2017) surveys, while gray data points                      et al. 2011) surveys (transparent data points in Figure 2). We
+represent nondetections. Black crosses represent data from the ATLAS3D                    match the observed variation of the halo mass (M200; top left),
+survey (M. Cappellari et al. 2011). The galactic star-forming main sequence as            stellar half-light radius (R*,1/2; top right), gas fraction (bottom
+deﬁned in B. Catinella et al. (2018) is given by the black solid line and shaded
+region.
+                                                                                          left), extent of the CO-luminous molecular gas disk (RCO; bottom
+                                                                                          middle), and surface density of the CO-luminous molecular gas
+                                                                                          disk (Σgas(R < RCO); bottom right), as a function of the total
+(M. Cappellari et al. 2011). Section 4 provides a systematic
+                                                                                          stellar mass M* (x-axis of each panel). The black lines represent
+analysis of the properties of stellar-feedback-driven galactic
+                                                                                          the observed median values at each stellar mass, while the circled
+outﬂows in our simulation and their dependence on the level of
+                                                                                          bars represent the simulated values. The vertical extent of each
+supernova clustering and gravitational stability in the simulated
+                                                                                          bar represents the variation in value across the simulation times
+gas disks. The scaling of the SFR surface density with the gas
+                                                                                          analyzed. The stellar masses of our galaxies span the observed
+surface density, the midplane pressure, and the ISM weight are
+                                                                                          samples in logarithmic intervals: our four ETGs have stellar
+investigated in Section 5, along with the equation of state
+                                                                                          masses of M* = 1010, 1010.5, 1011, and 1011.5 Me.
+(EOS) between the gas density and pressure. Finally, we
+                                                                                             The disk-to-bulge mass ratios of our simulated galaxies are
+conclude with a discussion and summary of our results in
+                                                                                          set to M*,disk/M*,bulge = 0.2, which will allow us, in the future,
+Section 6.
+                                                                                          to compare our simulated molecular cloud samples to resolved
+                                                                                          observations of molecular gas in the lenticular galaxies studied
+                            2. Simulation Suite                                           by D. Utomo et al. (2015), L. Liu et al. (2021), and T. G. Wil-
+   The six chemodynamical isolated galaxy simulations                                     liams et al. (2023).
+presented in this work consist of one large spiral (Milky                                    According to the observable parameters presented in
+Way–like) galaxy, one dwarf spiral (NGC 300–like) galaxy,                                 Figure 2, we constrain the remaining physical properties of
+and four ETGs. The physical properties of the ETG simulations                             our ETG initial conditions as follows. First, we determine the
+are matched to the observations of elliptical galaxies from the                           concentration parameters c of our dark matter halos according
+ATLAS3D and MASSIVE surveys. Together, the simulated                                      to the halo concentration–mass relation of A. A. Dutton &
+galaxies span over two orders of magnitude in total stellar mass                          A. V. Macciò (2014), for NFW ﬁts to N-body halo density
+and speciﬁc SFR (sSFR; see Figure 1), from the galactic star-                             proﬁles in the cosmology of the Planck satellite (their Equation
+forming main sequence (black line) down to the quenched                                   (8)). We use spin parameters of λ = 0.04 across our simulation
+galaxy population below.                                                                  suite, in accordance with the empirically derived values of
+                                                                                          X. Hernandez et al. (2007), across an SDSS sample of spiral
+                                                                                          and elliptical galaxies.
+                          2.1. Initial Conditions
+                                                                                             Within MAKENEWDISK, the stellar disk scale length is set
+   We generate initial conditions for our early-type and                                  according to its angular momentum, which is in turn determined
+NGC 300–like galaxy simulations using the MAKENEWDISK                                     by the spin of the dark matter halo (see Section 2.2.1 of
+code (V. Springel et al. 2005). The physical properties of the                            V. Springel et al. 2005, and references therein). We then set the
+dark matter halos, stellar disks and bulges, and gas disks for                            stellar bulge scale length such that the observed value of R*,1/2
+each simulation are shown in Table 1, along with the mass                                 is retrieved at each stellar mass, disk-to-bulge ratio, and gas
+resolutions of the associated dark matter particles, stellar                              fraction. Finally, we set the gas disk scale length to match the
+particles, and gas cells. For the Milky Way–like simulation, we                           sizes RCO and surface densities Σgas(R < RCO) of the observed
+use the AGORA initial condition (J.-h. Kim et al. 2014), which                            molecular gas disks at each stellar mass. The CO-luminous gas
+is designed to resemble a Milky Way–like galaxy at redshift                               fraction is computed for each simulation output using the
+z = 0. All six dark matter halos are of Navarro–Frenk–White                               DESPOTIC astrochemistry and radiative transfer model
+(NFW; J. F. Navarro et al. 1997) type, and our stellar and gas                            (M. R. Krumholz 2013, 2014), as described in Appendix A.
+
+                                                                                      3
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                          Jeffreson et al.
+
+                                                                               Table 1
+Physical Properties of the Initial Conditions for Each Galaxy Simulation, Along with the Simulation Times between Which the Simulation Outputs Are Analyzed, tstart
+                                                                               and tend
+
+Property                                 Symbol                                            ETGs                                     Milky Way           NGC 300
+Analysis start (Myr)                       tstart             100                100                 100              100               300                 500
+Analysis end (Myr)                         tend               400                400                 400              400               600                 800
+
+Total stellar mass                       M*/Me                1010              1010.5               1011            1011.5        4.734 × 1010          1 × 109
+
+Stellar disk mass                      M*, d/Me             2 × 109           6.3 × 109           2 × 1010         6.3 × 1010      4.297 × 1010          1 × 109
+Stellar bulge mass                     M*, b/Me             8 × 109           2.5 × 1010          8 × 1010         2.5 × 1011      3.437 × 109               0
+Gas fraction (0 Myr)                   Mgas/M*               0.016               0.016             0.0016            0.0016            0.18                0.68
+Gas fraction (tstart)                  Mgas/M*               0.012               0.011             0.0015            0.0012            0.12                0.57
+Bulge-to-disk ratio                   M*, b/M*, d              4                   4                  4                 4              0.125                 0
+
+Concentration parameter                    c                  8.6                7.4                 6.7              6.4               10                 15.4
+Virial velocity                       V200/km s−1             130                200                 280             370               150                  63
+Spin parameter                             λ                  0.04               0.04                0.04            0.04              0.04                0.04
+
+Stellar disk scale radius               R*, d/kpc             3.96               6.67                9.64            13.5              3.43                1.39
+Stellar bulge scale radius              R*, b/kpc             1.35               1.85                2.8             8.75              0.34                  -
+Gas disk scale radius                   Rgas/kpc              0.30               0.47                0.37            0.62              3.43                3.44
+
+Stellar disk scale height                h*, d/pc              50                 49                 47               45                123                 90
+Gas disk scale height                    hgas/pc               30                 25                 20               30                 82                 110
+
+Gas cell resolution                     ògas/Me                859                859                 859             859               859                 859
+Stellar particle resolution              ò*/Me               5 × 103            5 × 103             5 × 103         5 × 103           5 × 103             5 × 103
+Dark matter particle resolution         òhalo/Me           1.25 × 105         1.25 × 105          1.25 × 105       1.25 × 105       1.25 × 105          1.25 × 105
+
+Note. Unless otherwise stated, all values are median values between tstart and tend.
+
+   The stellar disk scale height in our initial condition is set                         We acknowledge that while these multiphase gas disk scale
+iteratively by MAKENEWDISK, such that the stellar disk                                   heights are in reasonable agreement with edge-on observations
+achieves a state of hydrostatic equilibrium within the full                              of external galaxies, the stellar disk scale height is smaller than
+three-dimensional potential of the galaxy, assuming the density                          expected. The initial stellar velocity dispersion was chosen to
+proﬁle of a uniform isothermal sheet. The three-dimensional                              be consistent with J.-h. Kim et al. (2014), but a larger initial
+velocity structures of the collisionless dark matter and stellar                         vertical velocity dispersion would have resulted in a thicker
+components are set according to the triaxial approximation                               equilibrium stellar disk. The bulge-to-stellar-disk ratio is 0.125,
+outlined in Section 2.3 of V. Springel et al. (2005), and we                             and the initial gas fraction is 0.18.
+initialize the gas scale height to 1/10 of the stellar value, with a
+temperature of 104 K. However, once the simulation begins, the
+                                                                                                               2.1.3. NGC 300–like Galaxy
+gas and stellar disk scale heights self-adjust to smaller values as
+the disks evolve toward a state of dynamical equilibrium under                              For our NGC 300–like simulation, we match the structural
+the inﬂuence of stellar feedback. Therefore, Table 1 gives the                           parameters of the dark matter halo, stellar disk, and gas disk
+median values for the stellar and gas disk scale heights over the                        from T. Westmeier et al. (2011). The dark matter halo has a
+simulation period analyzed in this work. These values are                                circular velocity of V200 = 76 km s−1 at the virial radius,
+stable once the disk has reached a state of dynamical                                    corresponding to a virial mass of M200 = 8.3 × 1010 Me. We
+equilibrium at tstart.                                                                   set an NFW concentration parameter of 15.4, which gives a
+                                                                                         reasonable approximation to the observed rotation curve of the
+                                                                                         baryons in NGC 300, and choose a spin parameter of λ = 0.04,
+                        2.1.2. Milky Way–like Galaxy
+                                                                                         as explained in Section 2.1.1. The stellar disk has a mass of
+   The AGORA disk initial condition (J.-h. Kim et al. 2014) is                           1 × 109 Me and an initial scale height of 0.28 kpc, while the
+designed to resemble a Milky Way–like galaxy at redshift                                 gas disk has a mass of 2 × 109 Me and an isothermal
+z ∼ 0. It has a dark matter halo mass of M200 = 1.07 × 1012 Me,                          temperature of 104 K. Similarly to the ETG initial conditions,
+a virial radius of R200 = 205 kpc, a halo concentration of                               the stellar disk scale length, along with the initial velocity
+c = 10, and a spin parameter of λ = 0.04. The stellar bulge has                          structure of the collisionless particles and gas cells, is set
+a mass of 3.437 × 109 Me, while the exponential disk has a                               according to the methods outlined in V. Springel et al. (2005).
+mass of 4.297 × 1010 Me, a scale length of 3.43 kpc, and an                              The stellar disk scale height equilibrates to a value of 90 pc
+initial scale height of 343 pc.                                                          over the ﬁrst 500 Myr of the simulation run time, and the gas
+   The stellar disk scale height equilibrates to a value of 123 pc                       disk scale height equilibrates to a value of 110 pc.
+over the ﬁrst 300 Myr of the simulation run time, and the total
+gas disk scale height equilibrates to a value of 82 pc.
+                                                                                                             2.2. Galactic Rotation Curves
+Speciﬁcally, the ﬁnal molecular disk scale height is around
+50 pc, the atomic disk scale height is around 200 pc, and the                              In Figure 3 we show the midplane circular velocity vcirc of
+ionized gas extends to distances of >1 kpc above the midplane.                           each simulated galaxy as a function of galactocentric radius R
+
+                                                                                  4
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                              Jeffreson et al.
+
+
+
+
+Figure 2. Physical properties of the simulated ETGs (circled bars), compared to observed galaxies from the ATLAS3D (circular transparent data points) and
+MASSIVE (square transparent data points) galaxy surveys. Open data points represent observed galaxies with no measured values of the molecular gas disk size RCO
+(bottom middle panel), and so no measured values of the molecular gas surface density SH2, CO (bottom right panel). Black lines represent the median observed values
+of each physical quantity in stellar mass bins centered on M* = 1010, 1010.5, 1011, and 1011.5 Me. The vertical extent of the circled bars represents the values spanned
+by the simulated galaxies between the simulation times of 100 and 400 Myr, colored according to their gas fractions. Our simulations roughly reproduce these median
+values (see Section 2.1). Observational references: M. Cappellari et al. (2011), D. Krajnović et al. (2013), M. Cappellari et al. (2013), and T. A. Davis et al.
+(2013, 2014) for ATLAS3D, and M. Veale et al. (2018), T. A. Davis et al. (2019), and T. Davis (2024, private communication) for MASSIVE.
+
+(ﬁrst row of panels, thick transparent lines). We also show the                           By contrast to the ETGs, the Milky Way–like and NGC 300–
+epicyclic frequency κ (second row, thick transparent lines),                           like galaxies (right panels) have much lower levels of rotation-
+which is given by k = W 2 (1 + b ) for an angular velocity of                          induced shear outside the central kiloparsec. Their rotation
+Ω and a shear parameter b = d ln vcirc ln R. For both vcirc and                        curves are dominated by their dark matter and stellar/gas disk
+κ, we show the separate components that are contributed by the                         components, with negligible or zero contribution to the circular
+gravitational potential Φgas due to the gas particles in the                           velocity from a stellar bulge component. The galactic center
+simulation, ΦDM due to the dark matter particles, Φ*,disk due to                       region of the Milky Way–like galaxy (black lines, bottom
+the stellar disk, and Φ*,bulge due to the stellar bulge. In the                        panels) is the most strongly rotationally supported13 region of
+bottom panels, we directly compare the values of vcirc and κ                           the disk galaxies and matches the value of κ in only the most
+across the entire simulation suite.                                                    weakly supported ETG (dark-purple lines, bottom panels).
+   The rotation speed is largest (∼300 km s−1) in the ETG of                              We note that the circular velocity of the NGC 300–like
+stellar mass M* = 1011 Me, due to the higher concentration of                          galaxy (green lines, bottom panels) is around 25% higher than
+its stellar bulge. While this galaxy does not have the largest                         the value observed by T. Westmeier et al. (2011), which varies
+stellar mass, this mass is concentrated within the smallest                            from 50 to 80 km s−1 between galactocentric radii of 0.3 and
+stellar half-light radius R*,1/2. Its higher bulge concentration                       6 kpc, while ours has an average value of 100 km s−1. Our
+can be quantiﬁed by its central stellar surface density                                simulated value is more typical of other dwarf spiral galaxies,
+                                                                                       such as M33 (e.g., E. W. Koch et al. 2018).
+μ* = 1700 Me pc−2, 70% higher than the second most compact
+bulge, with μ* = 1000 Me pc−2. The value of μ* is measured
+within R*,1/2 for each galaxy and listed above the top row of                                2.3. Hydrodynamics, Chemistry, Star Formation, and
+panels in Figure 3.                                                                                              Feedback
+   We see that the values of μ* and the speed of galactic                                The initial conditions described in Section 2.1 are evolved
+rotation are approximately correlated across our simulation                            using the moving-mesh hydrodynamics code AREPO (V. Spri-
+suite: as such, the central stellar surface density can be used as                     ngel 2010). In particular, the gas reservoir is modeled using an
+a proxy for the value of κ (and thus the degree of support
+                                                                                       13
+provided to the gas by tidal, centrifugal, and Coriolis forces) in                        Throughout this paper, we use the term “rotational support” to refer to the
+a given galaxy. The elevated bulge-induced rate of rotation in                         degree of support against gravitational collapse that is provided to the gas in a
+                                                                                       galaxy by the tidal, centrifugal, and Coriolis forces. This support depends on
+the M* = 1011 Me ETG is an important feature of this                                   both the magnitude and gradient of the gas circular velocity vcirc, and thus on
+simulation, to which we will later return.                                             the gravitational potential of the galaxy.
+
+                                                                                   5
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                                   Jeffreson et al.
+
+
+
+
+Figure 3. Top: midplane circular velocity vcirc and epicyclic frequency κ (thick transparent lines) as a function of galactocentric radius R for each of the simulated
+galaxies across the radial extent of the gas disk, computed directly from the gravitational potential exerted by the gas (thin lines), dark matter (dotted lines), disk stars
+(dashed lines), and bulge stars (thick lines). Note that the ETG gas disks are much smaller than those of the main-sequence galaxies. The central stellar surface density
+μ* is given below the stellar mass at the top of each column. Galactic rotation in the ETGs is dominated by the stellar bulge component. Each rotation proﬁle is
+computed at one simulation time only, but the values change negligibly over the time period analyzed for each simulation. Bottom: comparison of the total circular
+velocities and epicyclic frequencies for each of the six galaxy simulations.
+
+unstructured moving mesh that is deﬁned by a Voronoi                                      cooling due to ﬁne-structure emission from C+, O, and Si+;
+tesselation about a discrete set of points, moving with the local                         Lyα emission from atomic hydrogen; H2 line emission, gas-
+gas velocity. A hybrid TreePM gravity solver is used to                                   grain cooling; and electron recombination on grain surfaces and
+calculate the gravitational acceleration vectors of the Voronoi                           in reaction with polycyclic aromatic hydrocarbons (PAHs). In
+gas cells, stellar particles, and dark matter particles. We employ                        hot gas, the chemical network additionally allows for cooling
+the native adaptive gravitational softening scheme for the gas                            via the collisional processes of H2 dissociation, bremsstrah-
+cells, with a minimum softening length of 3 pc and a gradation                            lung, and the ionization of atomic hydrogen. The dominant
+of 1.5 times the Voronoi gas cell diameter. We set the softening                          heating mechanism is photoelectric emission from dust grains
+length of the star particles to a constant value of 3 pc and set the                      and PAHs, with lesser contributions from cosmic-ray ionization
+softening length of the dark matter particles to 280 pc,                                  and H2 photodissociation by the UV interstellar radiation ﬁeld
+                                                                                          (ISRF). We assign a value of 1.7 Habing (H. J. Habing 1968)
+according to the convergence tests presented in C. Power
+                                                                                          units for the ISRF strength according to J. S. Mathis et al.
+et al. (2003).
+                                                                                          (1983) and a value of 2 × 10−16 s−1 to the cosmic-ray
+   Our models for the temperature and chemical composition of
+                                                                                          ionization rate (e.g., N. Indriolo & B. J. McCall 2012).14 The
+the gas in our simulations, along with the rate of star formation                         dust grain number density is computed by assuming the solar
+in this gas and the rate of energy and momentum injection due                             value for the dust-to-gas ratio, and the dust temperature is
+to stellar feedback, are identical to those described in                                  obtained according to the procedure described in Appendix A
+S. M. R. Jeffreson et al. (2024). We give a brief overview of                             of S. C. O. Glover & P. C. Clark (2012). Finally, we use the
+these models below, but we refer the reader to the cited works                            TREECOL algorithm presented in P. C. Clark et al. (2012) to
+for further details.                                                                      model the dust shielding and self-shielding of molecular
+   We use the nonequilibrium network for hydrogen, carbon,
+and oxygen chemistry described in R. P. Nelson &                                          14
+W. D. Langer (1997) and in S. C. O. Glover & M.-M. Mac                                       These choices are based on the solar neighborhood; more realistically, these
+                                                                                          values would vary in time proportional to the local SFR per unit area. A lower
+Low (2007b, 2007a), coupled to the atomic and molecular                                   (higher) radiation ﬁeld will tend to enhance (decrease) the cold-to-warm gas
+cooling function of S. C. O. Glover et al. (2010). This includes                          mass ratio and to decrease (increase) the thermal pressure.
+
+                                                                                     6
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                      Jeffreson et al.
+
+hydrogen from dissociation by the ISRF, allowing us to track             each simulation: in our prescription, the H II region momentum
+the nonequilibrium abundance of molecular hydrogen during                injection is less than 10% of the supernova momentum
+the run time of the simulation.                                          injection for a given stellar cluster.
+   The SFR volume density in our simulation is given by
+           dr , i
+             * =  ff ri , ri  rthresh, Ti  Tthresh         (1 )        3. Star Formation and Interstellar Medium Morphology
+            dt    tff, i
+                                                                           Quiescent, bulge-dominated galaxies have been found to
+             dr , i                                                      have cold gas depletion times that are, on average, substantially
+               * = 0, ri < rthresh, Ti > Tthresh,             (2 )
+              dt                                                         longer than those measured for the main-sequence galaxy
+                                                                         population (e.g., A. Saintonge et al. 2012; T. A. Davis et al.
+where tff, i = 3p (32Gri ) is the local freefall timescale for the       2014; D. Colombo et al. 2020). Such elliptical galaxies are also
+gas cell i with a mass volume density of ρi, and òff is the SFE          found to have smoother, less fragmented ISMs than their main-
+per freefall time, which follows the parameterization of                 sequence counterparts (T. A. Davis et al. 2022; J. Gensior et al.
+P. Padoan et al. (2017), such that                                       2023). Figures 4–6 examine the star-forming and gas-
+                                                                         morphological properties of our simulated galaxies.
+                   ff = 0.4 exp ( - 1.6a 0.5
+                                          vir ).              (3 )         We note that the analysis presented in Figures 3 and 6–13
+   The virial parameter αvir on cloud scales is computed during          excludes the central 50 pc of each galactic disk. We excise this
+the simulation run time within overdense regions surrounding             region of each simulation for two reasons. First, the scale
+each star-forming gas cell; the scale of each overdensity is             heights of our simulated ETG gas disks become too small to be
+determined via a variant of the V. V. Sobolev (1960)                     sufﬁciently well resolved in the central 50 pc. Second, we do
+approximation, as the characteristic length scale L = ρ/|∇ρ|             not account for AGN feedback, which may affect the formation
+for changes in the density of the surrounding gas, where                 and properties of galactic centers in real galaxies. The excision
+∇ρ = ∂ρ/∂r is the density gradient with distance r from the              does not apply to Figures 1 and 2 because these ﬁgures
+central gas cell. The algorithm is described in detail in J. Gen-        compare the global properties of each disk to observations.
+sior et al. (2020). The median radius of these overdensities is
+∼10 pc across our simulation suite, and the average number of
+gas cells within each overdensity is 140. We set an upper limit                                 3.1. Star Formation
+of Tthresh = 100 K on the temperature below which star
+                                                                            Figure 4 shows the SFR surface density ΣSFR of our six
+formation is allowed to occur and a lower limit of
+                                                                         simulated galaxies as a function of their cold gas surface
+ρthresh/mHμ = 100 cm−3 on the density, where μ is the mean
+                                                                         densities SHI + H2 , their molecular gas surface densities SH2 , and
+mass per H atom.
+                                                                         their stellar surface densities Σ*. Large circles represent
+   The star particles formed via Equations (1) and (3) generate
+energy and momentum from supernova explosions and                        averages over simulation time across the extent of each gas
+presupernova H II regions, via the stellar feedback prescription         disk. Error bars represent the corresponding interquartile
+described in S. M. R. Jeffreson et al. (2021). To compute the            ranges, where the interquartile ranges for the ETGs are too
+number of supernovae, ejected mass, and photoionizing                    small to be displayed.
+luminosity of each star particle, we assign a stellar population            The SFR surface densities in Figure 4 are calculated as
+drawn stochastically from a G. Chabrier (2003) initial stellar           averages over the preceding 5 Myr, similar to the time interval
+mass function, using the Stochastically Lighting Up Galaxies             traced in observations via Hα emission. Observed values from
+(SLUG) stellar population synthesis model (R. L. da Silva et al.         the ATLAS3D survey (small transparent and open circles) are
+2014; M. R. Krumholz et al. 2015). An energy of 1051 erg per             shown for comparison with the ETG simulations (large ﬁlled
+supernova is assumed, and the terminal momentum from these               circles), and the observed position of NGC 300 in the left and
+supernovae is explicitly calculated using the few-supernovae             middle panels (black transparent star; J. M. D. Kruijssen et al.
+parameterization derived from the high-resolution simulations            2019) is shown for comparison with the late-type simulations
+of E. S. Gentry et al. (2017, their Equation (17)). This kinetic         (black and turquoise large open circles). The close agreement
+energy, along with the remaining thermal energy, is injected             between simulations and observations in this Figure and in
+into all gas cells surrounding each star particle.                       Figure 1 is an important validity check for our numerical
+   The photoionizing luminosity associated with H II regions is          models of star formation and stellar feedback, outlined in
+converted to a momentum per unit time via the model of                   Section 2.
+S. M. R. Jeffreson et al. (2021), following the analytic work of            Five out of six galaxies fall along the typical power law of
+C. D. Matzner (2002) and M. R. Krumholz & C. D. Matzner                  index ∼1.5 (black solid line, left panel) relating the SFR
+(2009) to account for both radiation pressure and the                    surface density to the cold gas surface density for main-
+momentum injected via the “rocket effect”: the ejection of               sequence galaxies (R. C. Kennicutt 1998; F. Bigiel et al. 2008).
+warm ionized gas from cold molecular clouds. The gas cells               These ﬁve galaxies have molecular gas depletion times of
+inside the Strömgren radii of the H II regions are fully ionized         1 Gyr (dashed line, middle panel). However, the ETG with the
+and heated to a temperature of 7000 K.                                   highest κ displays a suppressed SFR, falling substantially
+   The dense molecular gas clouds in which star formation                below the power law, with a molecular gas depletion time of
+occurs are dispersed on short timescales by the momentum                 around 8 Gyr. That is, star formation in the ETG simulation of
+from these H II regions, as discussed at length in S. M. R. Jeffr-       stellar mass M* = 1011 Me (with the most concentrated stellar
+eson et al. (2021) and S. M. R. Jeffreson et al. (2024).                 bulge) is dynamically suppressed by nearly an order of
+However, H II region momentum does not contribute substan-               magnitude in depletion time. We analyze this galaxy in detail
+tially to the total momentum injected by stellar feedback across         in the second paper of this series.
+
+                                                                     7
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                              Jeffreson et al.
+
+
+
+
+Figure 4. Left: median SFR surface density ΣSFR as a function of the cold gas (atomic plus molecular) surface density SHI + H2 , integrated across each simulated galaxy
+(large circles) and measured for the galaxies in the ATLAS3D galaxy sample (T. A. Davis et al. 2013, 2014; small transparent circles). The colors of the data points
+correspond to their gas fractions, and gas depletion times of 108, 109, and 1010 yr are given by the black solid, dashed, and dotted lines, respectively. Interquartile
+ranges over time and galactocentric radius are given by error bars. For the ETG simulations, these are too small to be shown. Middle: similar to the left panel, but for
+the molecular gas surface density SH2 . Right: similar to the left panel, but for the median stellar surface density Σ* across the gas disk.
+
+             3.2. Disk Morphology and Fragmentation                                    dynamically suppressed ETG simulation) to manifestly frag-
+                                                                                       mented (resembling our other ETG simulations). The disk
+   The middle and bottom rows of panels in Figure 5 compare
+                                                                                       smoothness is also seen to increase with the central stellar
+the total gas disk surface density Σgas and the molecular gas
+                                                                                       surface density in these observations, in qualitative agreement
+disk surface density SH2 of all six galaxy simulations, within
+                                                                                       with our 1011 Me ETG, which has the most concentrated stellar
+2 kpc patches at face-on and edge-on viewing angles. For the                           bulge and the smoothest gas disk. We will discuss the physical
+ETG simulations (left four columns), these patches cover the                           drivers of this disk smoothness in Section 4.
+extent of the entire gas disk. For the Milky Way–like and                                 Finally, we note that the gas and stellar disks of our ETG
+NGC 300–like galaxies (right two columns), with respective                             simulations develop a slight kinematic misalignment during
+gas disk diameters (by eye) of ∼30 and ∼12 kpc, the patch                              their 400 Myr of evolution. This misalignment likely arises as a
+shows only a small portion of each gas disk. The excluded                              result of the gravitational interaction between the gas disk and
+central 50 pc of each gas disk, noted in Section 3.1, is marked                        the stellar bulge. The maximum skew of 3° occurs for the
+by a white circle and is removed from our analysis for the                             smoothest disk with the most compact bulge (M* = 1011 Me).
+remainder of the paper.                                                                Throughout this work, the term “midplane” therefore refers
+   The top row of panels shows the edge-on stellar surface density                     speciﬁcally to the midplane of the gas disk.
+Σ* for each galaxy, highlighting the fact that the stellar distribution
+for the ETGs is bulge dominated (Mdisk/Mbulge ∼ 0.2), whereas the
+stellar distribution is disk dominated for the Milky Way–like                                                        3.3. Gas Phases
+galaxy (Mdisk/Mbulge ∼ 0.9) and for the NGC 300–like galaxy                               The phase structure of the gas in each of our simulations is
+(Mbulge ∼ 0).                                                                          presented in Figure 6. The top two panels compare the mass-
+   All four ETG simulations have much smoother gas                                     weighted distributions of gas as a function of volume density
+distributions than do the main-sequence galaxy simulations.                            nH and temperature T (“phase diagrams”) for the Milky Way–
+While the Milky Way–like and NGC 300–like galaxies display                             like and the dynamically suppressed ETG simulation. The
+giant feedback-driven voids of several kiloparsecs in diameter,                        phase diagram for the NGC 300–like simulation is very similar
+such bubbles are reduced to diameters of <100 pc in the ETGs.                          to that of the Milky Way, and the phase diagrams of the other
+The dynamically suppressed ETG (M* = 1011 Me) is particu-                              three ETGs are relatively similar to that of the quenched ETG.
+larly smooth, as expected according to its long cold gas                               The gas cells are clustered around the state of thermal
+depletion time and thus infrequent stellar feedback. The three                         equilibrium balancing the cooling rate (dominated in our
+other ETGs are manifestly fragmented into dense gas clouds                             simulations by line emission from C+, O, and Si+) and the
+but still remain much smoother than their main-sequence                                heating rate due to the photoelectric effect at the surfaces of
+counterparts.                                                                          PAHs and dust grains. The region of the histogram at
+   This lower degree of gas disk fragmentation in the ETG                              T ∼ 7000 K and high volume density corresponds to the gas
+simulations, relative to the large spiral (Milky Way–like)                             that is heated by the thermal feedback from H II regions, and
+simulation, is in qualitative agreement with the observed                              the gas above a temperature of ∼20,000 K is heated by
+sample of early-type and spiral galaxies in T. A. Davis et al.                         supernova feedback.
+(2022). In that work, the disk clumpiness of a sample of 86                               The bottom left panel of Figure 6 shows the partitioning of
+spiral galaxies, as quantiﬁed by the Gini statistic, is more than                      the ISM into the four phases that are delineated by dashed lines
+double that of a sample of 15 early-type, bulge-dominated                              in the phase diagrams: feedback heated (SN and H II), the warm
+galaxies, which vary from very smooth (resembling our                                  neutral medium (WNM), the cold neutral medium (CNM), and
+
+                                                                                   8
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                              Jeffreson et al.
+
+
+
+
+Figure 5. Surface density maps of the stellar distribution viewed parallel to the galactic midplane (Σ*; top panels), the total gas distribution viewed perpendicular to
+and parallel to the galactic midplane (Σgas; middle panels), and the molecular gas distribution viewed perpendicular to and parallel to the galactic midplane (SH2 ;
+bottom panels) for each of the simulated galaxies. All ETGs are shown at a simulation time of 400 Myr, while the Milky Way–like galaxy is shown at a simulation
+time of 600 Myr and the NGC 300–like galaxy is shown at a simulation time of 800 Myr. The small white circles denote the minimum galactocentric radius analyzed
+in this work. Note that only a small off-center section of the larger Milky Way–like and NGC 300–like disks is displayed.
+
+the molecular hydrogen fraction (H2). This partitioning is                             manifestly larger in the star-forming main-sequence galaxies
+chosen by eye, with the exception of the H2 mass, which is                             than in the four ETGs. In particular, the dynamically
+calculated during the simulation run time using the chemical                           suppressed ETG displays a much smaller fraction of highly
+network described in Section 2. Any H2 mass contained in the                           star-forming gas, with òff > 0.5% (less than half of the fraction
+other partitions is subtracted to produce the bar plot.                                in the other three ETGs). Despite having a much higher
+   We see that the star-forming main-sequence (Milky Way–                              molecular fraction than the other ETGs, it contains no gas with
+like and NGC 300–like) simulations contain a much higher                               òff > 5%. The dynamical suppression of star formation in one
+fraction of hot gas (salmon-colored bars, bottom left) than is                         out of four ETG simulations therefore occurs as a result of the
+present in the ETG simulations, commensurate with their much                           reduction of òff in the coldest and densest molecular gas.
+larger feedback-driven bubbles and voids, as shown in
+Figure 5. Conversely, the ETG simulations contain a much
+higher fraction of cold atomic and molecular gas (black and                                 4. Supernova Clustering, Galactic Outﬂows, and the
+turquoise bars, left panel): up to 70% in the dynamically                                                   Equation of State
+suppressed ETG, and 40% in the other ETGs, relative to <10%                               Recent numerical work has shown that supernova clustering
+of the gas in the main-sequence galaxies. The much larger                              is likely to enhance the strength and mass loading of galactic
+fraction of SN-heated gas in the Milky Way–like and                                    outﬂows (C.-G. Kim et al. 2017; D. Fielding et al. 2018;
+NGC 300–like simulations, despite their similar depletion                              S. M. R. Jeffreson et al. 2021; M. C. Smith et al. 2021), perhaps
+times to three of the ETGs, points to a larger degree of                               at the expense of turbulence driving within the ISM (M. E. Orr
+supernova clustering, relative to the ETGs (see, e.g.,                                 et al. 2022). In turn, the majority of supernova clustering occurs
+S. M. R. Jeffreson et al. 2021; M. C. Smith et al. 2021). We                           in the most massive GMCs (S. M. R. Jeffreson et al. 2024),
+will return to this point in Section 4.                                                which host the majority of galactic star formation (N. Murray &
+   The bottom right panel of Figure 6 shows the partitioning of                        M. Rahman 2010). These massive clouds are able to grow
+the star-forming gas (gas with nH > 100 cm−3) into four                                owing to a high rate of accretion from the galactic environment,
+logarithmic bins of SFE per freefall time òff, which is computed                       and they display substantially higher lifetime SFEs than their
+during the run time of the simulation according to Equation (3).                       low-mass counterparts, as they are slightly more difﬁcult to
+Darker colors correspond to higher values of òff. The fraction of                      destroy (e.g., N. Murray et al. 2010; M. Y. Grudić et al. 2018;
+dense gas that is forming stars, particularly at high òff, is                          S. M. R. Jeffreson et al. 2024).
+
+                                                                                   9
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                               Jeffreson et al.
+
+
+
+
+Figure 6. Top panels: density–temperature phase diagrams for the Milky Way–like galaxy simulation (left) and the smoothest ETG (M* = 1011 Me; right). Dashed
+lines delineate the regions of phase space corresponding to the bar plot in the bottom panels. Bottom left: partitioning of the gas mass in each simulation into four ISM
+phases, from warmest to coolest, as a fraction of the total gas mass in the simulation: hot gas that has received thermal energy from stellar feedback (MSN + HII ), the
+WNM (MWNM), the CNM (MCNM), and the total molecular hydrogen reservoir (MH2 ). The molecular hydrogen mass is subtracted from each of the other phase-space
+regions to produce the bar plot. Bottom right: partitioning of the star-forming gas mass with density ρ/mHμ > 100 cm−3 into fractions with differing SFEs per freefall
+time, òff.
+
+   In the following sections, we discuss the connection between                         Toomre Q parameter for a multiphase ISM of ﬁnite disk
+the rotational support of the gas disk, supernova clustering, and                       thickness (as is appropriate to our simulations) via the
+galactic outﬂow strength across our main-sequence and                                   prescriptions of A. B. Romeo & J. Wiegert (2011) and
+quenched galaxy simulations. We then demonstrate the impact                             A. B. Romeo & N. Falstad (2013), which are in close
+of this physics on the EOS (pressure vs. density relation) and its                      agreement.15 A. B. Romeo & J. Wiegert (2011) combine
+implications for modeling gas in cosmological simulations.                              separate gas and stellar contributions to the dispersion relation,
+                                                                                        while A. B. Romeo & N. Falstad (2013) additionally consider
+                                                                                        separate contributions from the molecular, atomic, and ionized
+               4.1. Disk Stability and Toomre Length
+   The top row of panels in Figure 7 demonstrates that the                              15
+                                                                                           The hot phase (T > 2 × 104 K) is excluded, as the majority of this gas is
+ETGs in our galaxy sample have a much greater level of disk                             contained in feedback-driven bubbles or galactic outﬂows and so does not
+stability than the main-sequence galaxies. We calculate the                             contribute to the disk.
+
+                                                                                  10
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                          Jeffreson et al.
+
+
+
+
+Figure 7. The median Toomre Q parameter (top row), gas and stellar radial velocity dispersion (second row), and gas and stellar surface density (third row) as a
+function of galactocentric radius for the six galaxies in our sample. The bottom row compares the gas disk scale height to the Toomre and 2D Jeans wavelengths. All
+values are computed for gas at temperatures T < 2 × 104 K. Shaded regions represent interquartile ranges over azimuthal angle and simulation time. The Toomre Q
+parameters of the ETGs are much higher than those of the main sequence (Milky Way–like and NGC 300–like) galaxies.
+
+
+gas phases. The solid and dotted–dashed lines show the stellar                       comparable, compact stellar bulges in the four ETGs drive up
+and gaseous Toomre Q parameters Q* = κσR,*/3.36GΣ* and                               their epicyclic frequencies κ by around an order of magnitude.
+Qgas = κσR,gas/πGΣgas, respectively, where κ is the epicyclic                        This translates to a substantial increase in their Toomre Q values.
+frequency κ2 = R−3d(Ω2R4)/dR (shown in Figure 3), σR,* and                              We caution that the Toomre Q parameters in Figure 7 are
+σR,gas (see Appendix B) are the radial stellar and gas velocity                      shown only as a comparison of the approximate level of
+dispersions (shown in the second row of panels), and Σ* and                          stability between the six simulations. In turbulent media, the
+Σgas are the stellar and gas surface densities (shown in the third                   classical threshold, predicting fragmentation only for Q  1,
+row of panels).                                                                      does not strictly apply. First, the threshold for axisymmetric
+   Comparing Figures 7 and 3, we see that the elevated disk                          disk instability is a more complicated function of a and b,
+stability in the ETGs is driven primarily by the stellar                             where the gas surface density has a length scaling relation of
+contribution to galactic rotation. Though the gas and stellar                        Σ ∝ ℓ a and the velocity dispersion has a scaling relation of
+velocity dispersions in the ETGs are actually lower than those in                    σ ∝ ℓ b (e.g., A. B. Romeo et al. 2010). There exist non-Toomre
+the outer Milky Way and the gas and stellar surface densities are                    regimes of a and b in which small or large scales may always
+
+                                                                               11
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                Jeffreson et al.
+
+be unstable (e.g., A. B. Romeo et al. 2010; P. F. Hopkins &
+J. L. Christiansen 2013). Furthermore, the original Toomre Q
+criterion does not take account of nonaxisymmetry or vertical
+dynamics, magnetic effects, nonlinearity (e.g., W.-T. Kim &
+E. C. Ostriker 2001; W.-T. Kim et al. 2002), or turbulent
+dissipation (e.g., B. G. Elmegreen 2011). The fact that Q ≈ 10
+for our ETGs does not imply that gravitational fragmentation is
+not occurring in these galaxies, and drawing a quantitative
+conclusion from Q alone is discouraged.
+   The bottom row of Figure 7 compares the cold+warm gas
+disk scale height (thick dotted lines) for each simulation to its
+Toomre wavelength lT = (2p )2 G Sgas k2 (intermediate dotted
+lines) and its 2D Jeans wavelength (thin dotted lines). Due to its
+higher rate of galactic rotation, the Toomre wavelength
+associated with the dynamically suppressed ETG simulation
+(stellar mass M* = 1011 Me; pink label) is about one-third the
+value of the other three ETGs.
+   Comparing Figures 7 and 5, we see that smoother gas
+morphologies and smaller voids in the gas distribution are
+associated with the shorter Toomre wavelengths λT of the
+ETGs. That is, angular momentum imposes much stronger
+constraints on the scale of self-gravitating condensation for the         Figure 8. The two-point correlation function ξ(Δ) for supernova explosions
+ETGs. Because the variation in the ratio σR/Σ is much smaller             (quantifying the degree of supernova clustering) as a function of their
+than that of λT, this also means that smoother gas distributions          separation Δ over time intervals of 1 Myr, averaged over all times throughout
+                                                                          each simulation (solid lines). The black dashed line indicates the proﬁle for a
+are associated with higher Toomre Q values, as observed by                uniform distribution of objects across the galactic midplane (ξ(Δ) = 1). The
+T. A. Davis et al. (2022). In the next subsection, we will show           shaded regions give the interquartile ranges over these times. The level of
+that this smoother gas distribution is associated with a lower            supernova clustering is higher on all scales in the Milky Way–like and
+level of supernova clustering and weaker galactic outﬂows.                NGC 300–like simulations, relative to the ETG simulations.
+
+
+
+                   4.2. Supernova Clustering                                                       4.3. Galactic Outﬂows
+
+   Figure 8 shows the level of supernova clustering in each of               Figure 9 shows the total galactic SFR (top panel), the rate of
+our simulated galaxies, quantiﬁed by the two-point correlation            gas outﬂow (M out ; middle panel), and the mass loading η of the
+function ξ(Δ) of supernova explosions as a function of spatial            galactic outﬂows (bottom panel) in each of our simulated
+scale Δ. If ξ > 1, then the supernovae are more clustered than            galaxies, as a function of simulation time. We begin tracking
+would be expected for a uniform distribution of objects across            each property only after each disk has reached a state of
+the galactic midplane; if ξ < 1, then they are less clustered. The        dynamical equilibrium. The outﬂow rates are calculated as the
+supernovae in the star-forming main-sequence galaxy simula-               total momentum (volume) density of the gas moving away
+tions display much stronger clustering on all scales than do the          from the disk, integrated over the area of two planar slabs of
+ETG simulations (up to an order of magnitude in ξ). The Milky             thickness 500 pc, located at ±1 kpc above and below the
+Way–like and NGC 300–like simulations display substantial                 galactic disk, i.e., the mass ﬂux M out = ò dA rvz . The mass
+supernova clustering at all scales below Δ ∼ 100 pc, while the            loading divides this outﬂow rate by the SFR.
+ETG simulations display supernova clustering only on much                    The strength and mass loading of the outﬂows display a very
+smaller scales, below Δ ∼ 25 pc.                                          large difference of around 3–4 orders of magnitude between the
+   The level of supernova clustering is clearly associated with           star-forming main-sequence galaxy simulations and the ETG
+the length scale of gravitational instability λT in each disk             simulations. This difference could be attributed to two factors:
+(Figure 7), and thus with the epicyclic frequency κ, dependent            (1) the increased levels of supernova clustering in the Milky
+on the rotational shear d W d ln R (Figure 3). In particular, the         Way–like and NGC 300–like simulations (Figure 8), and (2)
+onset of clustering, indicated by the intercept of the black              the shallower gravitational potential wells of these galaxies. A
+dashed line in Figure 8, occurs at approximately the Toomre               shallower gravitational potential well, measured perpendicular
+length for each simulated disk. As seen in the bottom row of              to the galactic midplane, decreases the escape speed perpend-
+Figure 7, this Toomre length scale is substantially smaller in            icular to the midplane.
+the ETG models, and this stricter limit from angular momentum                The role of supernova clustering alone in driving strong
+on the outer scale of self-gravitating condensation is reﬂected           galactic outﬂows can be quantiﬁed by comparing the Milky
+in the lower level of SN clustering seen in Figure 8. A similar           Way–like galaxy and the ETG of stellar mass M* = 1010.5 Me,
+trend of increasing outﬂow strength with increasing instability           which have similar average values of the gravitational potential
+scale (due to increasing box size) is also noted in Appendix A            (and thus escape speed) across the extents of their respective gas
+of C.-G. Kim et al. (2020). In other words, these galactic                disks, at the distance of 1 kpc from the galactic midplane at
+dynamics inﬂuence the clumpiness of the ISM (the freefall                 which the outﬂow is measured. Figure 9 demonstrates that these
+times of the most massive GMCs; see Figure 14 of                          two galaxies nevertheless have very different values of the
+S. M. R. Jeffreson et al. 2024) and therefore the clumpiness              outﬂow rate and mass loading, which are therefore attributable
+of supernova explosions.                                                  solely to their very different levels of supernova clustering,
+
+                                                                     12
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                      Jeffreson et al.
+
+                                                                                      EOS relating the total turbulent plus thermal gas midplane
+                                                                                      pressure Ptot to the midplane gas density nH = ρ/(μmp), where μ
+                                                                                      is the mean molecular weight. This EOS is equivalent to a
+                                                                                      statement of the combined turbulent and thermal gas velocity
+                                                                                      dispersions, as Ptot º Pth + Pz,turb ~ r (cs2 + s 2z,turb ), where cs is
+                                                                                      the isothermal sound speed. The EOS therefore depends on the
+                                                                                      momentum and energy injected by stellar feedback, which is a
+                                                                                      key driver of turbulence.
+                                                                                         Because this cold+warm reservoir of star-forming gas is
+                                                                                      unresolved in cosmological simulations, it is necessary to
+                                                                                      parameterize the EOS in terms of its properties on large,
+                                                                                      resolved scales. This ﬁxed, “effective” EOS (eEOS) therefore
+                                                                                      provides an effective pressure that accounts for the unresolved
+                                                                                      stellar feedback in the simulation.
+                                                                                         In Figure 10, we demonstrate how such an eEOS can be
+                                                                                      derived from our high-resolution GalactISM simulations, with
+                                                                                      star-forming gas reservoirs resolved on scales of 1–100 pc in
+                                                                                      the warm+cold gas reservoir. Filled data points represent
+                                                                                      median values of the total midplane pressure Ptot and density
+                                                                                      nH, as well as the epicyclic frequency κ, within overlapping
+                                                                                      radial annuli of width 500 pc. Our method for calculating Pth,
+                                                                                      Pturb, and ρ is outlined in Appendix B.
+                                                                                         In the left panel of Figure 10, we show the standard two-
+                                                                                      dimensional eEOS, characterized by the variables nH and Ptot.
+                                                                                      The best ﬁt to our two star-forming main-sequence galaxies
+                                                                                      (the Milky Way–like and NGC 300–like simulations in gray
+                                                                                      and green, respectively) is given by a thick black line and takes
+                                                                                      the form
+
+                                                                                               log (Ptot k B) = 1.14 log (nH cm-3) + 4.42.                  (4)
+
+                                                                                      This can be compared to the best-ﬁt eEOS in star-forming
+                                                                                      main-sequence environments reported in E. C. Ostriker &
+                                                                                      C.-G. Kim (2022) from TIGRESS simulations, given by
+                                                                                      log (Ptot kB) = 1.43 log (nH cm-3) + 4.30 and denoted by the
+                                                                                      black dashed line. The two ﬁts are in relatively good
+                                                                                      agreement, albeit with Equation (4) having a slightly shallower
+                                                                                      slope than the TIGRESS ﬁt. This difference reﬂects detailed
+                                                                                      differences between the feedback models and is not unex-
+                                                                                      pected. In fact, with the updated TIGRESS-NCR framework, a
+                                                                                      shallower slope is obtained than with the original TIGRESS
+                                                                                      framework (C.-G. Kim et al. 2023a).
+                                                                                         In the middle and right panels of Figure 10, we show that the
+                                                                                      ETG simulations in our sample have different EOSs from the
+                                                                                      Milky Way–like and NGC 300–like simulations, overlapping
+                                                                                      only with the centermost regions of the main-sequence
+                                                                                      galaxies. As the level of galactic rotation is increased, the
+                                                                                      eEOS is shifted systematically toward lower gas velocity
+Figure 9. Global galactic SFR (top panel), gas outﬂow rate (middle panel), and        dispersions. That is, the support against gravitational collapse
+mass loading of outﬂows (bottom panel) as a function of time. We begin                that is provided by galactic rotation allows gas to remain
+tracking each property only when the gas disks have reached a state of
+dynamical equilibrium: 100 Myr onward for the ETG simulations, 300 Myr                gravitationally stable at higher densities and lower velocity
+onward for the Milky Way–like simulation, and 500 Myr onward for the                  dispersions, commensurate with the smaller Toomre wave-
+NGC 300–like simulation.                                                              lengths λT, smaller scale heights, and lower levels of supernova
+                                                                                      clustering, as reported in Figures 7 and 8.
+mediated by the level of galactic rotation and the associated level                      Our simulations provide evidence that rotationally supported
+of disk gravitational stability Q and the Toomre wavelength.                          regions in galaxies (including the central regions of the Milky
+                                                                                      Way–like galaxy) have reduced thermal and turbulent pressure
+                                                                                      and potentially require an adjusted eEOS in cosmological
+ 4.4. The Effective Equation of State of the Cold+Warm Gas
+                                                                                      simulations. The gray transparent plane in Figure 10 shows
+                         Distribution
+                                                                                      such a three-dimensional eEOS, characterized by the variables
+   The turbulent and thermodynamic state of the cold+warm gas                         nH, Ptot, and κ and ﬁtted to all galaxies in the simulation suite,
+reservoir (T < 2 × 104 K) in each galaxy can be described by an                       excluding the ETG with dynamically suppressed star formation
+
+                                                                                 13
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                             Jeffreson et al.
+
+
+
+
+Figure 10. Total midplane pressure Ptot as a function of the midplane gas volume density nH and the epicyclic frequency κ for the cold+warm gas (T < 2 × 104 K) in
+our simulations, viewed in three different planes. The left panel shows the usual EOS (Ptot vs. nH) for our simulated galaxies. The best-ﬁt line to the Milky Way and
+NGC 300 (star-forming main-sequence) galaxy simulations is given by the solid black line, and the best ﬁt to the TIGRESS simulations is indicated by the thick
+dashed line. Three isotherms of constant T = Ptot/nHkB are given by gray dotted lines. Filled data points represent median values over time and azimuthal angle for
+each simulated galaxy, measured within overlapping radial annuli of width 500 pc. The gray transparent plane shows the best ﬁt to all data, excluding the dynamically
+suppressed galaxy (pink).
+
+(pink data points). This best ﬁt takes the form                                       is the density above which star formation is allowed to occur,
+                                                                                      and τdep, 0 is the gas depletion time at this threshold. The
+        log (Ptot k B) = - 0.33 log (k Myr-1)                                         resulting inverse proportionality between the SFR and the gas
+                         + 1.03 log (nH cm-3) + 3.93.                     (5)         freefall time 3p 32Grgas is in rough agreement with a sample
+                                                                                      of 21 observed spiral galaxies at low redshift from R. C. Kenni-
+If κ displays only a small variation between galaxies, then we
+                                                                                      cutt (1998), which follow the power law SSFR µ S1.4         HI + H2 ,
+obtain logPtot µ 1.03log nH , which is close to the best-ﬁt two-
+                                                                                      averaged across galactic disks (the “Schmidt–Kennicutt rela-
+dimensional eEOS reported in Equation (4).                                            tion”). This model is used in IllustrisTNG (V. Springel &
+   Finally, we note that the dynamically suppressed ETG is
+                                                                                      L. Hernquist 2003; M. Vogelsberger et al. 2013) and is
+offset from the plane characterizing the star-forming gas in the
+                                                                                      qualitatively very similar to the models used in other large
+other ﬁve galaxies. In a future paper, we will investigate in
+detail how this behavior is related to the rate of galactic                           cosmological simulations, such as EAGLE (J. Schaye et al.
+rotation, leading to a transition to a longer depletion time, lower                   2015).16
+gas velocity dispersion, and smaller gas disk scale height,                              The solid black line and shaded region in the left panel of
+which is nonlinear in κ.                                                              Figure 11 represent the median and interquartile range of this
+                                                                                      subgrid model, when applied to the outputs of our GalactISM
+                   5. Star Formation Regulation                                       simulations, degraded to the TNG-50 resolution of 80 pc. For
+                                                                                      comparison, the ﬁlled data points represent the true median
+   Power-law relationships between the SFR surface density                            values of SHI + H2 and ΣSFR in each simulation, within
+ΣSFR and other large-scale properties of galaxies provide
+                                                                                      overlapping radial annuli of width 500 pc. The blue contours
+important constraints for theories of galactic star formation.
+                                                                                      in the left panel represent the sample of 18 galaxies observed at
+They also function as subgrid models for star formation in
+cosmological simulations, in which the cold+warm ISM                                  750 pc by F. Bigiel et al. (2008), and the gray contours in the
+cannot be resolved. Most commonly, such subgrid models                                right panel represent the sample of 80 galaxies observed at
+are underpinned by the empirical power-law relationship                               1.5 kpc resolution by J. Sun et al. (2023).
+between ΣSFR and either the neutral gas surface density                                  We note that the slight (≈0.3 dex) overestimate of the SFR
+SHI + H2 or the molecular gas surface density SH2 . Crucially,                        surface density ΣSFR for our Milky Way–like simulation,
+their slopes and normalizations are calibrated to observed                            relative to the 95% conﬁdence level of the F. Bigiel et al.
+samples of galaxies, limiting their predictive power and                              (2008) values, is likely due to differences in the stellar gravity
+applicability to a diverse set of galactic environments. In this                      for given SHI + H2 . First, the AGORA initial condition has a
+section we test a new, predictive subgrid model for star                              smaller stellar disk scale height than the Milky Way–like
+formation in disk galaxies.                                                           galaxies observed by F. Bigiel et al. (2008), as we mentioned in
+                                                                                      Section 2.1.2. Second, the fraction of ionized gas is enhanced,
+5.1. Gas Surface Density versus Star Formation Rate Surface                           as seen in Figure 6, and thus S* SHI + H2 is slightly increased,
+                          Density                                                     relative to these observed galaxies.
+   The most common subgrid model for star formation                                   16
+in cosmological simulations sets a depletion time of tdep =                              We note that the EAGLE simulations set SFRcell/mgas according to a power
+                                                                                      law in the gas pressure, but in combination with their eEOS P µ rgas    4 3
+                                                                                                                                                                  above
+mcell SFR cell = tdep, 0 (rthresh rgas )0.5 per star-forming gas cell                 nH = 0.1 cm−3, the resulting relation is SFR cell m cell µ r0.3 , and the normal-
+                                                                                                                                                  gas
+of mass mcell, where ρgas is the volume density of the gas, ρthresh                   ization of this relationship is again set according to R. C. Kennicutt (1998).
+
+                                                                                14
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                            Jeffreson et al.
+
+
+
+
+Figure 11. SFR surface density ΣSFR as a function of the cold gas surface density SHI + H2 (left) and as a function of the molecular gas surface density SH2 (right).
+Solid, dashed, and dotted lines represent depletion times of 108, 109, and 1010 Gyr, respectively. Filled data points represent median values over time for each
+simulated galaxy, measured within overlapping radial annuli of width 500 pc. For visual clarity, the corresponding interquartile ranges are shown at just one
+representative radius in each galaxy. The solid black line and shaded region represent the median and interquartile range of the SFR predicted by the model of
+V. Springel & L. Hernquist (2003). The model is applied to all of our high-resolution snapshots at once, where each snapshot is degraded to a 3D resolution of 80 pc—
+equal to the softening length used in TNG-50 (see Section 5.1). The blue and gray contours represent the 40%–80%–95% levels of the observed galaxy samples from
+F. Bigiel et al. (2008) and J. Sun et al. (2023), respectively, which assume a constant CO-to-H2 conversion factor.
+
+
+   At a given SHI + H2 , the effect of decreasing the stellar disk                    the MUFASA (R. Davé et al. 2016) and SIMBA (R. Davé et al.
+scale height and increasing Σ* is to vertically compress the gas                      2019) simulations and takes advantage of the relatively
+at the galactic midplane, increasing its volume density,                              constant slope of the relationship between the molecular gas
+pressure, and SFR. In addition, the deviation between                                 surface density SH2 and SFR surface density, shown in the right
+simulations and observations at high gas surface densities                            panel of Figure 11. The trend across ﬁve out of six of our
+may be increased by the uncertainty in the CO-to-H2                                   simulated galaxies can be well modeled by a linear relationship
+conversion factor used in F. Bigiel et al. (2008), since a                            between ΣSFR and SH2 , with a roughly constant molecular gas
+constant CO-to-H2 conversion factor tends to overestimate SH2                         depletion time of 1 Gyr. Aside from a slight upturn in ΣSFR
+in dense galactic centers (see below).                                                relative to SH2 at high surface densities, the simulated data are
+   We see that the V. Springel & L. Hernquist (2003) subgrid                          in good agreement with recent observations of the molecular
+model provides a reasonable approximation to the median-                              gas distribution across a sample of 80 nearby galaxies at
+resolved SFR surface density across the inner regions of the                          1.5 kpc resolution (J. Sun et al. 2023, green contours).
+Milky Way–like galaxy simulation (black data points) but                                 However, although SH2 appears to be a better predictor of
+overestimates the SFR in the outer regions and fails to capture                       ΣSFR than SHI + H2 (see also, e.g., F. Bigiel et al. 2011), the
+the variation in depletion time across the NGC 300–like and                           proportionality between these variables is still an empirical
+ETG simulations. Similarly, it does not capture the spread of                         relationship that is calibrated to a set of observations. This
+resolved depletion times in the F. Bigiel et al. (2008)                               relationship is not derived from ﬁrst principles, so it is not
+observations. This is perhaps unsurprising, considering that                          predictive in new galactic environments. Furthermore, new
+the slope and normalization of the power-law subgrid model                            observations of CO isotopologues across nearby galaxies are
+are calibrated to galaxy-averaged values in nearby spirals, with                      now revealing substantial variations in the CO-to-H2 conver-
+physical properties closest to those of our Milky Way–like                            sion factor αCO (used to derive SH2 ) between galaxy disks and
+simulation.                                                                           galaxy centers (J. S. den Brok et al. 2023; Y.-H. Teng et al.
+   An alternative empirical subgrid model for star formation in                       2023). These results strongly imply that the proportionality
+cosmological simulations sets the depletion time according to                         between ΣSFR and SH2 is not as universal as previously
+the molecular gas volume density, which in turn is computed                           thought, even across the population of nearby galaxies. In fact,
+via the subgrid model of M. R. Krumholz & N. Y. Gnedin                                if the variation in the CO-to-H2 conversion factor is taken into
+(2011). Similarly to the IllustrisTNG model, the slope and                            account, the upturn in ΣSFR relative to SH2 that is seen in our
+normalization of the power law are set according to the                               simulations at high surface densities would be retrieved in
+R. C. Kennicutt (1998) galaxy sample. This approach is used in                        observations (Y.-H. Teng et al. 2023). More generally,
+
+                                                                                15
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                               Jeffreson et al.
+
+observational evidence has demonstrated that the correlation of                         suppressed galaxy (pink data points), is given by
+star formation with chemical composition (such as CO or                                                                                   -1
+                                                                                                          SSFR    ⎞⎟ = 1.235 log ⎜⎛ Ptot kB ⎟⎞ - 7.86. (6)
+HCN) is much weaker when environmental variation is taken                                    log10 ⎛⎜       -2 -1                      -3
+into account (e.g., M. J. Gallagher et al. 2018).                                                   ⎝ M kpc yr ⎠                 ⎝ cm K ⎠
+   An alternative approach to using empirical relations for
+subgrid SFRs is to predict these SFRs via a theoretical model.                          This best ﬁt shows good agreement with the observed
+In the next subsection, we compare our results to the                                   relationship between ΣSFR with Ptot across a sample of 80
+predictions of the pressure-regulated feedback-modulated star                           nearby galaxies at 1.5 kpc scales (J. Sun et al. 2023), in which
+formation theory, calibrated to the TIGRESS simulations                                 SFRs are traced by Hα + 22 μm emission and gas is traced
+(E. C. Ostriker & C.-G. Kim 2022).                                                      by 21 cm + CO (2–1) emission, with a CO (2–1)/(1–0)
+                                                                                        conversion factor of 0.65 and a constant CO-to-H2 factor
+ 5.2. Midplane Pressure versus Star Formation Rate Surface                              aCO = 4.35 M pc-2 (K km s-1)-1.18 The resulting logarithmic
+                          Density                                                       correlation between Ptot and ΣSFR for the observed galaxies has
+   Recent analyses of a large sample of main-sequence galaxies                          a slope of 0.93 and a normalizing coefﬁcient of −6.95, with
+from the PHANGS-ALMA sample (A. K. Leroy et al. 2021)                                   estimated upper-limit uncertainties of around 25% and
+have demonstrated a close correlation between the kiloparsec-                           0.20 dex, respectively.
+scale midplane pressure Ptot of gas disks in dynamical                                     The slightly steeper slope in our simulations may be due to a
+equilibrium and the galactic SFR surface density ΣSFR (J. Sun                           number of effects. One is that the value of the CO-to-H2
+et al. 2023), as well as the fraction of dense and self-gravitating                     conversion factor αCO is known to decrease in high-pressure
+molecular gas (J. Sun et al. 2020).                                                     (and high surface density) regions of galaxies (e.g., Y.-H. Teng
+   Such a relationship between the SFR and the midplane                                 et al. 2023, and references therein) and is thus not well
+pressure is a central tenet of “pressure-regulated” theories of                         represented by a constant αCO. In fact, using the variable αCO
+star formation (E. C. Ostriker et al. 2010; C.-G. Kim et al.                            of A. D. Bolatto et al. (2013), J. Sun et al. (2023) ﬁnd that the
+2011; E. C. Ostriker & R. Shetty 2011). In this theoretical                             slope increases to 1.08. Other possible reasons for the small
+framework (see E. C. Ostriker & C.-G. Kim 2022), the thermal,                           discrepancy in slopes are (1) differences in the gas and star
+turbulent, and magnetic pressures in the diffuse ISM are driven                         formation reservoirs that we have analyzed, relative to those
+by stellar feedback, as offset by dissipation and cooling (see                          traced by CO and Hα emission in the observations; (2) a small
+also related work by T. A. Thompson et al. 2005; P. F. Hopkins                          underestimate of the momentum provided by feedback at high
+et al. 2011; C.-A. Faucher-Giguère et al. 2013, on the balance                          pressures/densities, in our simulated galaxies; and (3) variation
+between momentum injection by feedback and turbulent                                    in the supernova feedback momentum yield, according to
+dissipation). That is, there is a causal relationship whereby                           differences in the galactic environments we have modeled, as
+higher SFRs ΣSFR, associated with higher fractions of dense,                            noted by D. Martizzi et al. (2015) and C. C. Hayward &
+gravitationally bound gas, produce more feedback, and this                              P. F. Hopkins (2017), among others.
+leads to higher total pressures Ptot. In the Ostriker–Kim theory,                          We obtain a similar slope and normalization to that of the
+the sum of the pressures Ptot must also satisfy vertical                                TIGRESS simulations, which are 1.21 and −7.66, respectively,
+dynamical equilibrium by balancing the ISM weight at the                                and given by the dashed line in the ﬁgure. The slightly reduced
+midplane. As a result, ΣSFR is expected to be directly                                  normalization factor may be attributable to the different
+proportional to the diffuse ISM weight and inversely propor-                            feedback model used in our simulations, or to the presence of
+tional to the total “feedback yield.”                                                   radial mass transport, which is not present in stratiﬁed box
+   The predicted relationship between Ptot and ΣSFR is                                  simulations.
+reproduced in simulations of stratiﬁed boxes representing a                                Excluding the dynamically suppressed galaxy, the correla-
+range of observable galactic environments (e.g., C.-G. Kim                              tion between ΣSFR and Ptot in our simulations is tight,
+et al. 2013; C.-G. Kim & E. C. Ostriker 2015; E. C. Ostriker &                          indicating that the midplane pressure is strongly correlated
+C.-G. Kim 2022). The required condition of vertical dynamical                           with the SFR, in line with theoretical expectations. We show
+equilibrium is also demonstrated in these simulations, as well                          explicitly in Appendix B and Figure 14 that the midplane
+as in the Milky Way–like galaxy of S. M. Benincasa et al.                               pressure can be approximated by the ISM weight  across our
+(2016) and FIRE cosmological zoom-in simulations analyzed                               simulation suite, given by
+by A. B. Gurvich et al. (2020). The Ptot–ΣSFR relation has not                                                               z max              ¶F
+yet been investigated in high-resolution isolated galaxy
+simulations spanning diverse galactic environments outside of
+                                                                                                        Ptot ~  =      ò0           rgas (z)
+                                                                                                                                                ¶z
+                                                                                                                                                   dz,               (7 )
+
+the star-forming main sequence.                                                         where zmax is the maximum extent of the gas disk, ρgas is the
+   The left panel of Figure 12 shows the relationship between                           gas volume density, and Φ is the gravitational potential due to
+Ptot and ΣSFR within overlapping radial annuli of width
+                                                                                        the entire distribution of gas, stars, and dark matter. The right
+∼500 pc, for diffuse gas in our simulated galaxies.17 Our
+method for calculating the total (turbulent plus thermal)                               panel of Figure 12 shows ΣSFR versus  , since  is more
+midplane pressure is described in Appendix B. The best ﬁt to                            readily accessible in observations than a direct measure of Ptot.
+these data (thick black line), excluding the dynamically                                The ﬁlled circles again represent measured values within
+                                                                                        annular radial bins, and gray crosses represent estimated values
+                                                                                        across the gas disks of the ATLAS3D sample, with a similar
+17
+   “Diffuse” is equivalent to the cold+warm, gravitationally unbound gas
+                                                                                        18
+reservoir with T  104 K and αvir > 2. This gas accounts for the majority of the           In practice, J. Sun et al. (2023) calculate the ISM weight  , as opposed to
+ISM by mass, and in our simulations we calculate Ptot for this cold+warm gas            the pressure Ptot, but we have placed the gray contours on the left panel of
+reservoir.                                                                              Figure 12 for visual clarity.
+
+                                                                                   16
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                             Jeffreson et al.
+
+
+
+
+Figure 12. SFR surface density ΣSFR as a function of the total midplane pressure Ptot (left) and as a function of the ISM weight  (right; see Section 5.2). Black
+dotted lines represent constant ratios of ΣSFR/Ptot = 102, 103, and 104 km s−1. Only the cool–warm gas (T < 2 × 104 K) that is gravitationally unbound (αvir > 2) is
+included in the calculation. Filled data points represent median values over time for each simulated galaxy, measured within overlapping radial annuli of width 500 pc.
+For visual clarity, the corresponding interquartile ranges are shown at just one representative radius in each galaxy. The thick black line represents the best linear
+regression ﬁt to these data points, excluding the dynamically suppressed galaxy (pink). The thick dashed line represents the corresponding best ﬁt from the TIGRESS
+simulations (E. C. Ostriker & C.-G. Kim 2022). The gray contours represent the 40%–80%–95% levels of the observed galaxy sample from J. Sun et al. (2023), and
+the gray crosses represent average values across the gas disks of the ATLAS3D galaxy sample from T. A. Davis et al. (2014), also shown in Figure 2. We note that
+J. Sun et al. (2023) strictly measure  to obtain Ptot, but we include these data in the left panel for readability.
+
+
+spread of ΣSFR/Ptot values. Our method for calculating  in                            lines), and stellar bulge (thick dotted–dashed lines), at one
+both the simulations and observations is described in                                  single simulation time, are shown in the top row, clearly
+Appendix B.                                                                            demonstrating that  is dominated by the stellar bulge in the
+   It is worth noting that the ATLAS3D values of ΣSFR/Ptot in                          ETG simulations, by the stellar disk in the Milky Way–like
+the right panel of Figure 12 display relatively good agreement                         simulation, and by the disk and dark matter halo in the
+with all four ETG simulations, including the dynamically                               NGC 300–like simulation. We note that the strong dominance
+suppressed galaxy simulation. That is, they extend to lower                            of the stellar disk weight contribution over the gas disk
+disk-averaged SFRs per unit ISM weight than do the spiral                              contribution in the Milky Way–like disk may not reﬂect the
+galaxies in the left panel of Figure 12. This ﬁnding is consistent                     true balance of weights in the Milky Way, due to the small
+with the suppression of the SFE in observed ETGs (e.g.,                                scale height of the stellar disk in the AGORA initial condition
+T. A. Davis et al. 2014) by dynamical suppression (e.g.,                               (∼100 pc), relative to the true value in the Milky Way
+M. Martig et al. 2009; J. Gensior et al. 2020).                                        (∼300 pc).
+   Figure 12 therefore demonstrates that, averaged over time,                             In the middle row of Figure 13, we show that a state of
+and with the exception of the dynamically suppressed galaxy,                           dynamical equilibrium is maintained across all of the galaxy
+the gas disks of our simulated galaxies have ΣSFR strongly                             simulations, with close overlap between the midplane pressure
+correlated with Ptot »  . Because the ISM weight  can be                             (thick solid lines) and the ISM weight (thick dashed lines). The
+calculated in terms of the large-scale properties of galaxies (see                     thermal pressure (thin lines) is also shown, for comparison. The
+Section 3 of S. Hassan et al. 2024, for details), Equation (6) can                     lack of an increase in Pth toward the inner parts of the Milky
+therefore be used to model star formation in cosmological                              Way and NGC 300 models is likely due to the spatially and
+simulations, so long as the assumption of dynamical equili-                            temporally constant radiation ﬁeld we have adopted in our
+brium holds and dynamical suppression of the SFE is not                                simulations. A more realistic model would have a radiation
+present.                                                                               ﬁeld that increases at higher ΣSFR but would still produce a
+   In Figure 13, we show the same data as is presented in                              value of Pth that is subdominant to Pturb in all but very low
+Figure 12, but in greater detail for each simulated galaxy, with                       weight environments (see E. C. Ostriker & C.-G. Kim 2022).
+interquartile ranges over time and azimuthal angle at each                             Since Pth = Pturb in the star-forming gas of the supersonic ISM,
+galactocentric radius (transparent shaded regions). The separate                       this should not affect the robustness of our results.
+contributions to the ISM weight  made by the gas disk (solid                             Finally, the bottom row of Figure 13 shows the correspon-
+lines), dark matter halo (dotted lines), stellar disk (dashed                          dence between the measured SFR surface density ΣSFR for each
+
+
+                                                                                 17
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                             Jeffreson et al.
+
+
+
+
+Figure 13. Top row: the ISM weight  due to each component of the gravitational potential, as a function of the galactocentric radius, at the ﬁnal analyzed time of
+each simulation. Middle row: comparison of the total midplane pressure (solid lines) and the total ISM weight (dashed lines), along with median values of the thermal
+midplane pressure (thin lines) as a function of galactocentric radius. Only the cool–warm gas (T < 2 × 104 K) that is gravitationally unbound (αvir > 2) is included in
+the calculation of the pressures and SFRs. Bottom row: comparison of the true SFR surface density ΣSFR (dotted lines) and the SFR surface density predicted by
+Equation (6). The bottom two rows are median values over time and azimuthal angle, and all shaded areas are the corresponding interquartile ranges.
+
+
+simulation as a function of galactocentric radius and the value                                             6. Discussion and Summary
+predicted via Equation (6). The same power-law relation                                   In this work we have presented six high-resolution
+between Ptot and ΣSFR manifestly holds across ﬁve out of six                           chemodynamical simulations of galaxies spanning the dyna-
+galaxies, excluding the dynamically suppressed ETG.                                    mical environments of star-forming main-sequence and
+   We therefore ﬁnd that Equation (6) holds promise as a
+                                                                                       quenched (low-sSFR) galaxies, with a wide range of bulge-
+predictive, ﬁrst-principles subgrid model for star formation in
+                                                                                       to-disk ratios, and hence a wide range of epicyclic frequencies.
+cosmological simulations, across a range of star-forming main-
+                                                                                       We have investigated their global properties: the regulation of
+sequence and bulge-dominated, quenched galaxy environ-
+                                                                                       star formation; the gas-phase distribution and the gas-phase
+ments. This model provides an estimate for the SFR based
+                                                                                       morphology, related to the gravitational potential; the cluster-
+on the theoretical prediction of E. C. Ostriker & C.-G. Kim
+                                                                                       ing of supernovae; and the driving of galactic outﬂows. We
+(2022), rather than a ﬁt to a relatively small sample of nearby
+                                                                                       have found that varying the gravitational potential produces a
+main-sequence spirals, as is the current state of the art in
+                                                                                       large range of gas morphologies, phase structures, and SFRs,
+cosmological simulations. It therefore has the potential to make
+                                                                                       which are broadly in agreement with observations. We have
+reliable predictions of the SFR across a larger range of
+                                                                                       quantiﬁed these variations with a view to modeling such
+environments, particularly at high redshift.
+                                                                                       environments in cosmological simulations. We can summarize
+   By contrast, the SFR in the dynamically suppressed galaxy is
+                                                                                       our results as follows:
+decoupled from pressure regulation, as both the midplane
+turbulent pressure and galactic rotation appear to provide                                1. The level of supernova clustering, and thus the mass
+substantial support against gravitational collapse of the cold,                              loading η of galactic outﬂows, is strongly coupled to the
+star-forming gas. It is likely that the SFR in this galaxy is                                rate of galactic rotation κ, via the Toomre length scale for
+determined not just by the midplane gas pressure but also by                                 each disk. That is, higher rotation rates prevent large
+the rate of galactic rotation. We will discuss this galaxy in                                clusters from forming, such that star formation occurs in
+detail in the second paper of this series, along with ways to                                larger numbers of smaller clouds, which do not break out
+incorporate the role of multiple physical mechanisms in driving                              of the disk. The result is that the bulge-dominated
+(and thus predicting) the SFR.                                                               galaxies have galactic outﬂows with mass loadings
+
+
+                                                                                 18
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                           Jeffreson et al.
+
+      reduced by four orders of magnitude, relative to the star-          J.G. gratefully acknowledges ﬁnancial support from the Swiss
+      forming main-sequence galaxies.                                     National Science Foundation (grant no CRSII5_193826). G.L.B.
+   2. The EOS (density vs. pressure) of the star-forming gas              acknowledges support from the NSF (AST-2108470, ACCESS),
+      depends on its turbulent velocity dispersion and so also            a NASA TCAN award, and the Simons Foundation. We thank
+      varies strongly with the level of supernova clustering and          Volker Springel for providing us access to Arepo, and we thank
+      the rate of galactic rotation. The cold+warm gas reservoir          Mark Krumholz and Romain Teyssier for helpful discussions.
+      in the ETGs has a higher density, lower velocity                    We thank Jiayi Sun for the use of his script for plotting beautiful
+      dispersion, and higher molecular gas fraction than in               density contours for Figures 11 and 12.
+      the main-sequence galaxies.
+   3. Aside from one dynamically suppressed ETG, with the                                        Appendix A
+      highest epicyclic frequency κ, the midplane pressure is                               Chemical Post-processing
+      strongly associated with the SFR surface density ΣSFR
+                                                                             As noted in Section 2.1, the CO-luminous gas fraction in our
+      across both main-sequence and early-type environments,
+                                                                          simulations is calculated in post-processing using the DES-
+      in agreement with E. C. Ostriker & R. Shetty (2011) and
+                                                                          POTIC model for astrochemistry and radiative transfer
+      E. C. Ostriker & C.-G. Kim (2022). The relationship is
+                                                                          (M. R. Krumholz 2013). The self-shielding and dust shielding
+      tighter than that between ΣSFR and gas surface density.
+                                                                          of CO molecules from the ambient UV radiation ﬁeld cannot be
+   Our conclusions have important implications for the                    accurately computed during run time at the mass resolution of
+modeling of star formation and stellar feedback in cosmolo-               our simulation. Within DESPOTIC, the escape probability
+gical simulations:                                                        formalism is applied to compute the CO line emission from
+                                                                          each gas cell according to its hydrogen atom number density
+   1. The relationship between the midplane gas pressure Ptot             nH, column density NH, and virial parameter αvir, assuming that
+      and the SFR surface density ΣSFR represents an improved             the cells are approximately spherical. In practice, the line
+      model for star formation across star-forming main-                  luminosity varies smoothly with the variables nH, NH, and αvir.
+      sequence and quenched galactic environments, relative               We therefore interpolate over a grid of precalculated models at
+      to the Schmidt–Kennicutt relation.                                  regularly spaced logarithmic intervals in these variables to
+   2. Across galactic environments with widely varying levels             reduce computational cost. The hydrogen column density is
+      of galactic rotation and epicyclic frequency κ, as seen             estimated via the local approximation of C. Safranek-Shrader
+      across our GalactISM simulations, the EOS between the               et al. (2017) as NH = λJnH, where lJ = (pcs2 Gr )1 2 is the
+      gas density and the pressure varies strongly with κ. The            Jeans length, with an upper limit of T = 40 K on the gas cell
+      value of κ should therefore be taken into account when              temperature. The virial parameter is calculated from the
+      modeling the pressure of the star-forming gas (via the              turbulent velocity dispersion of each gas cell according to
+      eEOS) and the mass loading of galactic outﬂows in                   I. MacLaren et al. (1988) and F. Bertoldi & C. F. McKee
+      cosmological simulations.                                           (1992). The line emission is self-consistently coupled to the
+   3. The onset of dynamical suppression introduces a                     chemical and thermal evolution of the gas, including carbon
+      transition away from pressure-regulated star formation,             and oxygen chemistry (M. Gong et al. 2017); gas heating by
+      which depends nonlinearly on the rate of galactic rotation          cosmic rays and the grain photoelectric effect; line cooling due
+      κ. This behavior represents the greatest challenge for              to C+, C, O, and CO; and thermal exchange between dust and
+      parameterization in terms of galaxy properties that are             gas. We match the ISRF strength and cosmic ionization rate to
+      resolved in cosmological simulations.                               the values used in our live chemistry.
+We are optimistic that, like the eEOS, the mass loading η of                 Having calculated values of the CO line luminosity for each
+galactic outﬂows, and even the onset of dynamical suppression             simulated gas cell, we compute the CO-bright molecular
+of the SFE, can be parameterized systematically in terms of               hydrogen surface density as
+large-scale galaxy properties such as the ISM weight  and κ.
+Across our galaxy sample, the variations in η, the degree of                                      2.3 ´ 10-29 M (erg s-1)-1
+                                                                            SH2,CO [M pc-2 ] =
+supernova clustering, and the SFE are not described by simple                                             m H [M]
+power laws. However, given a large number of high-resolution                                           ¥
+                                                                                                  ´ò       dz ¢rg (z ¢) L CO [erg s-1 H atom-1] ,
+galaxy simulations across diverse galactic environments, from                                       -¥
+simulation suites such as GalactISM and TIGRESS, it might be                                                                                  (A1)
+possible to constrain these quantities via data-driven or
+machine learning techniques. An investigation of this possibi-            where ρg(z) is the total gas volume density in Me pc−3 at a
+lity will in the future be enabled by the expertize in statistical        distance z (in pc) from the galactic midplane. The factor of
+modeling present in the Learning the Universe collaboration.              2.3 ´ 10-29 M (erg s-1)-1 combines the mass-to-luminosity
+                                                                          conversion factor aCO = 4.3 M pc-2 (K km s-1)-1 of A. D.
+                                                                          Bolatto et al. (2013) with the line luminosity conversion factor
+                       Acknowledgments                                    5.31 × 10−30(K km s−1 pc2)/(erg s−1) for the CO J = 1 → 0
+   We thank an anonymous referee for the thorough and                     transition at redshift z = 0 (P. M. Solomon & P. A. Vanden
+attentive reading of the paper, which improved the clarity of             Bout 2005).
+the text and conclusions. S.M.R.J. is supported by Harvard                   We note that our assumption of a constant H2-to-CO
+University through an Institute of Theory and Computation                 conversion factor may introduce an overestimate of the CO-
+Fellowship. The work of E.C.O. and C.G.K. is supported by                 luminous molecular gas surface density at high gas surface
+grant 10013948 from the Simons Foundation to Princeton                    densities. Additionally, for high column density regions in
+University, sponsoring the Learning the Universe collaboration.           which the CO J = 1–0 line becomes optically thick,
+
+                                                                     19
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                  Jeffreson et al.
+
+Equation (A1) may overestimate the integrated emission for
+this particular line. Our CO-luminous molecular gas surface
+density is therefore necessarily an upper limit to the CO-
+luminous H2 column.
+   We emphasize that this post-processing calculation of CO-
+bright H2 emission is used only for the comparison of
+molecular half-mass radii and average surface densities in the
+creation of initial conditions to match the observational
+samples shown in Figure 2, for which Equation (A1) is
+sufﬁcient. All other H2 column densities are computed via the
+chemical network and shielding prescription outlined in
+Section 2.3, independently of the CO luminosity.
+
+                       Appendix B
+ Calculation of Interstellar Medium Weights, Pressures,
+ Velocity Dispersions, and Star Formation Rate Surface
+                         Densities
+B.1. Values of Weight, Pressure, and Star Formation Rate from
+                        Simulated Data
+   In Figures 10, 12, and 13 we show the total midplane                     Figure 14. Total midplane gas pressure Ptot as a function of the ISM weight 
+pressure Ptot, the midplane volume density nH, and the                      for our six simulated galaxies. The dashed line represents the 1–1 relationship
+gravitational weight  of the ISM across our simulation suite.              expected in dynamical equilibrium. Filled data points represent median values
+                                                                            over time for each simulated galaxy, measured within overlapping radial annuli
+These quantities are computed on a cylindrical three-dimen-                 of width 500 pc. The Milky Way–like galaxy is represented by gray data
+sional grid in galactocentric radius R, azimuthal angle θ, and              points, the NGC 300–like galaxy by green data points, and the ETGs by the
+vertical distance z from the galactic midplane. The R-bins have             purple, pink, and orange data points. For visual clarity, the corresponding
+a width of 500 pc and a separation of 200 pc, while the z-bins              interquartile ranges are shown at just one representative radius in each galaxy.
+have a width of 10 pc and a separation of 10 pc. Twelve θ bins
+with θ ä [0, 2π] are used in every case.                                    force per unit area that pushes the gas disk in one direction,
+   In the calculation of all gas properties below, we exclude gas           rather than compressing it, and is therefore excluded.
+that is gravitationally bound with αvir < 2 or that is in the hot,             Correspondingly, the volume-weighted midplane pressure is
+feedback-heated phase with T > 2 × 104 K. That is, we include               calculated for each column of (R, f) at z = zFmin , such that
+only the cool–warm gas phase; this gas is assumed to be in a                Ptot = Pth + Pturb, with
+state of vertical dynamical equilibrium in the theory of
+E. C. Ostriker et al. (2010) and E. C. Ostriker & C.-G. Kim                                           Pth = rcs2∣z = z Fmin                           (B2)
+(2022), and this equilibrium is directly demonstrated for a
+                                                                            and
+range of z within multiphase simulations in C.-G. Kim &
+E. C. Ostriker (2015), A. B. Gurvich et al. (2020), and                                        Pturb = r (vz - ávz ñ)2 ∣z = z Fmin .                  (B3)
+A. Vijayan et al. (2020).
+   The ISM weight is computed over the set of gas cells within              The volume density ρ = nHμmp of the gas cells is simply the
+each (R, θ, z) bin, such that                                               sum of the gas cell masses divided by the bin volume
+                                                                            (equivalent to a volume-weighted average of the gas cell
+                                   z
+              ⎡ z max   ¶F        F min
+                                           ¶F ⎤                             densities). The angle brackets denote mass-weighted averages
+  =      min ⎢ å r (z)    (z ) , å r (z )    (z ) ⎥     Dz ,               over each (R, f) column (note that the volume-weighted
+               z F
+                        ¶z       - z       ¶z
+              ⎣ min                  max           ⎦                        pressure is given by the product of the volume-weighted gas
+                                                                (B1)        density and the mass-weighted velocity dispersion, as shown
+                                                                            explicitly in E. C. Ostriker et al. 2010). The gas velocity
+where ρ is the gas volume density, zmax = 300 pc for the ETG                perpendicular to the galactic midplane is given by vz, and cs is
+simulations, and zmax = 1.5 kpc for the Milky Way–like and
+                                                                            the gas sound speed. Figure 13 shows that total midplane
+NGC 300–like simulations. The potential Φ in each bin is given
+                                                                            pressure does indeed balance the ISM disk’s vertical weight in
+by interpolating the gravitational potential values across the
+                                                                            our simulations.
+150 particle centroids (stellar, dark matter, or gas particles of              Finally, we calculate the SFR surface density ΣSFR in each
+any phase) nearest to the center of the bin, using radial basis             (R, f) column by simply summing the instantaneous SFRs of
+function interpolation (T. Hines 2023). The gradient ∂Φ/∂z is               the gas cells in each column and dividing by its surface area.
+then taken as the difference between adjacent bins along the                We note that Figures 1 and 4, by contrast, use SFRs calculated
+z-axis.                                                                     as averages over star particles with ages 5 Myr, similar to the
+   In Equation (B1), the quantity zFmin represents the z-bin in             values that would be observed in Hα emission. We ﬁnd good
+each (R, f) column for which ρΦ is minimized. We treat this as              agreement between the the SFRs computed via these two
+the midplane of the gas disk. The minimum of the two sums on                methods.
+either side of zFmin then provides a measure of the compressive                The values of  , Ptot, and ΣSFR shown in Figures 10–13 are
+force per unit area that acts on the gas disk (the ISM weight).             median values over time and azimuthal angle. Because the
+The difference in the absolute values of these sums provides a              turbulent velocity dispersion used to compute Pturb is a
+
+                                                                       20
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                             Jeffreson et al.
+
+statistical quantity (standard deviation of vertical velocities)                                        ORCID iDs
+and the SFR is computed stochastically for the gas cells in our
+                                                                          Sarah M. R. Jeffreson https://orcid.org/0000-0002-
+simulation, we take medians and interquartile ranges only over
+                                                                          4232-0200
+the set of voxels with 100 gas cells.
+                                                                          Eve C. Ostriker https://orcid.org/0000-0002-0509-9113
+   Finally, we show explicitly in Figure 14 that the mid-plane
+                                                                          Chang-Goo Kim https://orcid.org/0000-0003-2896-3725
+pressure and the interstellar medium weight are linearly related
+                                                                          Jindra Gensior https://orcid.org/0000-0001-6119-9883
+across the three orders of magnitude spanned by our galaxies,
+                                                                          Greg L. Bryan https://orcid.org/0000-0003-2630-9228
+consistent with the state of dynamical equilibrium discussed in
+                                                                          Timothy A. Davis https://orcid.org/0000-0003-4932-9379
+Section 5.2 and implicitly demonstrated in Figures 10–13.
+                                                                          Lars Hernquist https://orcid.org/0000-0001-6950-1629
+                                                                          Sultan Hassan https://orcid.org/0000-0002-1050-7572
+ B.2. Calculation of the Radial Velocity Dispersions, σR and
+                            σR,*
+                                                                                                         References
+   In Figure 7, we show the radial component of the velocity
+dispersion for the gas and stellar components of the galactic             Agertz, O., Kravtsov, A. V., Leitner, S. N., & Gnedin, N. Y. 2013, ApJ,
+disk, which provides support against the gravitational collapse              770, 25
+of gas, as encapsulated in the Toomre Q parameter. We                     Benincasa, S. M., Wadsley, J., Couchman, H. M. P., & Keller, B. W. 2016,
+calculate these quantities as                                                MNRAS, 462, 3053
+                                                                          Bertoldi, F., & McKee, C. F. 1992, ApJ, 395, 140
+                                                                          Bigiel, F., Leroy, A., Walter, F., et al. 2008, AJ, 136, 2846
+                  s 2R = á(vR - ávRñ)2 ñ                                  Bigiel, F., Leroy, A. K., Walter, F., et al. 2011, ApJL, 730, L13
+                                                                          Bolatto, A. D., Wolﬁre, M., & Leroy, A. K. 2013, ARA&A, 51, 207
+                s 2R, = á(vR, * - ávR, *ñ)2 ñ ,              (B4)
+                     *                                                    Cappellari, M., Emsellem, E., Krajnović, D., et al. 2011, MNRAS, 413, 813
+                                                                          Cappellari, M., Scott, N., Alatalo, K., et al. 2013, MNRAS, 432, 1709
+where angle brackets again denote mass-weighted averages                  Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, MNRAS, 476, 875
+                                                                          Chabrier, G. 2003, PASP, 115, 763
+over the gas cells / stellar particles in each (R, f) column.             Chen, J., Bryan, G. L., & Salem, M. 2016, MNRAS, 460, 3335
+                                                                          Clark, P. C., Glover, S. C. O., & Klessen, R. S. 2012, MNRAS, 420, 745
+       B.3. Estimated Values for the ATLAS3D Sample                       Colombo, D., Sanchez, S. F., Bolatto, A. D., et al. 2020, A&A, 644, A97
+                                                                          Combes, F., Young, L. M., & Bureau, M. 2007, MNRAS, 377, 1795
+   In the right panel of Figure 12, we estimate the positions of          da Silva, R. L., Fumagalli, M., & Krumholz, M. R. 2014, MNRAS, 444, 3275
+the ATLAS3D galaxies in the plane of ISM weight  versus                  Davé, R., Anglés-Alcázar, D., Narayanan, D., et al. 2019, MNRAS, 486, 2827
+the SFR surface density ΣSFR (gray crosses). We have                      Davé, R., Thompson, R., & Hopkins, P. F. 2016, MNRAS, 462, 3265
+                                                                          Davis, T. A., Alatalo, K., Bureau, M., et al. 2013, MNRAS, 429, 534
+approximated  for the ATLAS3D sample by making a                         Davis, T. A., Gensior, J., Bureau, M., et al. 2022, MNRAS, 512, 1522
+number of geometrical approximations regarding the gas disk,              Davis, T. A., Greene, J. E., Ma, C.-P., et al. 2019, MNRAS, 486, 1404
+stellar bulge, and dark matter halo. The median disk-to-bulge             Davis, T. A., Young, L. M., Crocker, A. F., et al. 2014, MNRAS, 444, 3427
+ratio in the galaxies is zero, such that                                  den Brok, J. S., Bigiel, F., Chastenet, J., et al. 2023, A&A, 676, A93
+                                                                          Donnari, M., Pillepich, A., Nelson, D., et al. 2019, MNRAS, 485, 4817
+                  = g + *, b + dm,                       (B5)         Donnari, M., Pillepich, A., Nelson, D., et al. 2021, MNRAS, 506, 4760
+                                                                          Dutton, A. A., & Macciò, A. V. 2014, MNRAS, 441, 3359
+                                                                          Elmegreen, B. G. 2011, ApJ, 737, 10
+where g is the weight of the gas due to its own gravitational            Fabian, A. C. 2012, ARA&A, 50, 455
+potential, *, b is the weight due to the potential associated            Faucher-Giguère, C.-A., Quataert, E., & Hopkins, P. F. 2013, MNRAS,
+                                                                             433, 1970
+with the stellar bulge, and dm is the weight due to the                  Fielding, D., Quataert, E., & Martizzi, D. 2018, MNRAS, 481, 3325
+potential associated with the dark matter halo. Assuming a                Gallagher, M. J., Leroy, A. K., Bigiel, F., et al. 2018, ApJ, 858, 90
+plane-parallel geometry for the gas,                                      Gensior, J., Davis, T. A., Bureau, M., et al. 2023, MNRAS, 526, 5590
+                                                                          Gensior, J., & Kruijssen, J. M. D. 2021, MNRAS, 500, 2000
+                                                                          Gensior, J., Kruijssen, J. M. D., & Keller, B. W. 2020, MNRAS, 495, 199
+                               pG S2g
+                       g =             ,                    (B6)         Gentry, E. S., Krumholz, M. R., Dekel, A., & Madau, P. 2017, MNRAS,
+                                  2                                          465, 2471
+                                                                          Glover, S. C. O., & Clark, P. C. 2012, MNRAS, 421, 116
+where Σg is the gas surface density. Both the stellar bulge and           Glover, S. C. O., Federrath, C., Mac Low, M. M., & Klessen, R. S. 2010,
+                                                                             MNRAS, 404, 2
+dark matter components have spherical distributions, such that            Glover, S. C. O., & Mac Low, M.-M. 2007a, ApJ, 659, 1317
+their combined weight can be approximated as                              Glover, S. C. O., & Mac Low, M.-M. 2007b, ApJS, 169, 239
+                                                                          Goldbaum, N. J., Krumholz, M. R., & Forbes, J. C. 2015, ApJ, 814, 131
+                                                                          Gong, M., Ostriker, E. C., & Wolﬁre, M. G. 2017, ApJ, 843, 38
+           *, b + dm = z Sg (W2 , b + W2dm ) hg ,          (B7)
+                                *                                         Grand, R. J. J., Gómez, F. A., Marinacci, F., et al. 2017, MNRAS, 467, 179
+                                                                          Grudić, M. Y., Hopkins, P. F., Faucher-Giguère, C.-A., et al. 2018, MNRAS,
+where hg is the gas disk scale height, and we have assumed that              475, 3511
+hg is much smaller than the scale lengths of both the bulge and           Gurvich, A. B., Faucher-Giguère, C.-A., Richings, A. J., et al. 2020, MNRAS,
+                                                                             498, 3664
+the halo, with ζ ∼ 1/3 (see E. C. Ostriker & R. Shetty 2011).             Habing, H. J. 1968, BAN, 19, 421
+For the ATLAS3D galaxies, we assume a Plummer proﬁle for                  Hassan, S., Ostriker, E. C., Kim, C.-G., et al. 2024, ApJ, submitted
+the bulge and an NFW proﬁle for the halo, as in our                       Hayward, C. C., & Hopkins, P. F. 2017, MNRAS, 465, 1682
+                                                                          Hernandez, X., Park, C., Cervantes-Sodi, B., & Choi, Y.-Y. 2007, MNRAS,
+simulations, and calculate Ω*,b and Ωdm from the measured                    375, 163
+values of the stellar half-light radius R*,1/2 and the virial halo        Hernquist, L. 1990, ApJ, 356, 359
+mass M200, as shown in Figure 2. We set a gas disk scale height           Hines, T. 2023, Python Package Containing Tools for Radial Basis Function
+                                                                             (RBF) Applications, GitHub, https://github.com/treverhines/RBF
+of hg = 25 pc—the median scale height within our ETG                      Hopkins, P. F., & Christiansen, J. L. 2013, ApJ, 776, 48
+simulations.                                                              Hopkins, P. F., Quataert, E., & Murray, N. 2011, MNRAS, 417, 950
+
+                                                                     21
+The Astrophysical Journal, 975:113 (22pp), 2024 November 1                                                                                            Jeffreson et al.
+
+Hopkins, P. F., Wetzel, A., Kereš, D., et al. 2018, MNRAS, 480, 800                    Ostriker, E. C., McKee, C. F., & Leroy, A. K. 2010, ApJ, 721, 975
+Indriolo, N., & McCall, B. J. 2012, ApJ, 745, 91                                       Ostriker, E. C., & Shetty, R. 2011, ApJ, 731, 41
+Jeffreson, S. M. R., Krumholz, M. R., Fujimoto, Y., et al. 2021, MNRAS,                O’Sullivan, E., Combes, F., Salomé, P., et al. 2018, A&A, 618, A126
+   505, 3470                                                                           Padoan, P., Haugbølle, T., Nordlund, Å ., & Frimann, S. 2017, ApJ, 840, 48
+Jeffreson, S. M. R., Semenov, V. A., & Krumholz, M. R. 2024, MNRAS,                    Phillips, T. G., Ellison, B. N., Keene, J. B., et al. 1987, ApJL, 322, L73
+   527, 7093                                                                           Piotrowska, J. M., Bluck, A. F. L., Maiolino, R., & Peng, Y. 2022, MNRAS,
+Kennicutt, R. C., Jr 1998, ApJ, 498, 541                                                  512, 1052
+Kim, C.-G., Kim, J.-G., Gong, M., & Ostriker, E. C. 2023a, ApJ, 946, 3                 Plummer, H. C. 1911, MNRAS, 71, 460
+Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2011, ApJ, 743, 25                           Power, C., Navarro, J. F., Jenkins, A., et al. 2003, MNRAS, 338, 14
+Kim, C.-G., & Ostriker, E. C. 2015, ApJ, 815, 67                                       Romeo, A. B., Burkert, A., & Agertz, O. 2010, MNRAS, 407, 1223
+Kim, C.-G., & Ostriker, E. C. 2017, ApJ, 846, 133                                      Romeo, A. B., & Falstad, N. 2013, MNRAS, 433, 1389
+Kim, C.-G., Ostriker, E. C., & Kim, W.-T. 2013, ApJ, 776, 1                            Romeo, A. B., & Wiegert, J. 2011, MNRAS, 416, 1191
+Kim, C.-G., Ostriker, E. C., & Raileanu, R. 2017, ApJ, 834, 25                         Russell, H. R., McNamara, B. R., Fabian, A. C., et al. 2016, MNRAS,
+Kim, C.-G., Ostriker, E. C., Somerville, R. S., et al. 2020, ApJ, 900, 61                 458, 3134
+Kim, J.-G., Gong, M., Kim, C.-G., & Ostriker, E. C. 2023b, ApJS, 264, 10               Russell, H. R., McNamara, B. R., Fabian, A. C., et al. 2019, MNRAS,
+Kim, J.-h., Abel, T., Agertz, O., et al. 2014, ApJS, 210, 14                              490, 3025
+Kim, W.-T., & Ostriker, E. C. 2001, ApJ, 559, 70                                       Safranek-Shrader, C., Krumholz, M. R., Kim, C.-G., et al. 2017, MNRAS,
+Kim, W.-T., Ostriker, E. C., & Stone, J. M. 2002, ApJ, 581, 1080                          465, 885
+Koch, E. W., Rosolowsky, E. W., Lockman, F. J., et al. 2018, MNRAS,                    Saintonge, A., Catinella, B., Tacconi, L. J., et al. 2017, ApJS, 233, 22
+   479, 2505                                                                           Saintonge, A., Tacconi, L. J., Fabello, S., et al. 2012, ApJ, 758, 73
+Krajnović, D., Alatalo, K., Blitz, L., et al. 2013, MNRAS, 432, 1768                   Salomé, P., & Combes, F. 2003, A&A, 412, 657
+Kruijssen, J. M. D., Schruba, A., Chevance, M., et al. 2019, Natur, 569, 519           Schaye, J., Crain, R. A., Bower, R. G., et al. 2015, MNRAS, 446, 521
+Krumholz, M., & Burkert, A. 2010, ApJ, 724, 895                                        Smith, M. C., Bryan, G. L., Somerville, R. S., et al. 2021, MNRAS,
+Krumholz, M. R., 2013 DESPOTIC: Derive the Energetics and SPectra of                      506, 3882
+   Optically Thick Interstellar Clouds, Astrophysics Source Code Library,              Smith, M. C., Fielding, D. B., Bryan, G. L., et al. 2024, MNRAS, 527, 1216
+   ascl:1304.007                                                                       Sobolev, V. V. 1960, Moving Envelopes of Stars (Cambridge, MA: Harvard
+Krumholz, M. R. 2014, MNRAS, 437, 1662                                                    Univ. Press)
+Krumholz, M. R., Burkhart, B., Forbes, J. C., & Crocker, R. M. 2018,                   Solomon, P. M., & Vanden Bout, P. A. 2005, ARA&A, 43, 677
+   MNRAS, 477, 2716                                                                    Springel, V. 2010, MNRAS, 401, 791
+Krumholz, M. R., Fumagalli, M., da Silva, R. L., Rendahl, T., & Parra, J. 2015,        Springel, V., Di Matteo, T., & Hernquist, L. 2005, MNRAS, 361, 776
+   MNRAS, 452, 1447                                                                    Springel, V., & Hernquist, L. 2003, MNRAS, 339, 289
+Krumholz, M. R., & Gnedin, N. Y. 2011, ApJ, 729, 36                                    Stone, J. M., & Gardiner, T. 2009, NewA, 14, 139
+Krumholz, M. R., & Matzner, C. D. 2009, ApJ, 703, 1352                                 Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B. 2008,
+Leroy, A. K., Schinnerer, E., Hughes, A., et al. 2021, ApJS, 257, 43                      ApJS, 178, 137
+Liu, L., Bureau, M., Blitz, L., et al. 2021, MNRAS, 505, 4048                          Sun, J., Leroy, A. K., Ostriker, E. C., et al. 2020, ApJ, 892, 148
+Lu, A., Haggard, D., Bureau, M., et al. 2024, MNRAS, submitted                         Sun, J., Leroy, A. K., Ostriker, E. C., et al. 2023, ApJL, 945, L19
+Ma, C.-P., Greene, J. E., McConnell, N., et al. 2014, ApJ, 795, 158                    Tacconi, L. J., Genzel, R., Saintonge, A., et al. 2018, ApJ, 853, 179
+MacLaren, I., Richardson, K. M., & Wolfendale, A. W. 1988, ApJ, 333, 821               Teng, Y.-H., Sandstrom, K. M., Sun, J., et al. 2023, ApJ, 950, 119
+Martig, M., Bournaud, F., Teyssier, R., & Dekel, A. 2009, ApJ, 707, 250                Thompson, T. A., Quataert, E., & Murray, N. 2005, ApJ, 630, 167
+Martig, M., Crocker, A. F., Bournaud, F., et al. 2013, MNRAS, 432, 1914                Utomo, D., Blitz, L., Davis, T., et al. 2015, ApJ, 803, 16
+Martizzi, D., Faucher-Giguère, C.-A., & Quataert, E. 2015, MNRAS, 450, 504             Veale, M., Ma, C.-P., Greene, J. E., et al. 2018, MNRAS, 473, 5446
+Mathis, J. S., Mezger, P. G., & Panagia, N. 1983, A&A, 500, 259                        Vijayan, A., Kim, C.-G., Armillotta, L., Ostriker, E. C., & Li, M. 2020, ApJ,
+Matzner, C. D. 2002, ApJ, 566, 302                                                        894, 12
+Murray, N., Quataert, E., & Thompson, T. A. 2010, ApJ, 709, 191                        Vogelsberger, M., Genel, S., Sijacki, D., et al. 2013, MNRAS, 436, 3031
+Murray, N., & Rahman, M. 2010, ApJ, 709, 424                                           Vogelsberger, M., Genel, S., Springel, V., et al. 2014, Natur, 509, 177
+Navarro, J. F., Frenk, C. S., & White, S. D. M. 1997, ApJ, 490, 493                    Welch, G. A., & Sage, L. J. 2003, ApJ, 584, 260
+Nelson, D., Pillepich, A., Springel, V., et al. 2018, MNRAS, 475, 624                  Westmeier, T., Braun, R., & Koribalski, B. S. 2011, MNRAS, 410, 2217
+Nelson, R. P., & Langer, W. D. 1997, ApJ, 482, 796                                     Wiklind, T., & Rydbeck, G. 1986, A&A, 164, L22
+Orr, M. E., Fielding, D. B., Hayward, C. C., & Burkhart, B. 2022, ApJ, 932, 88         Williams, T. G., Bureau, M., Davis, T. A., et al. 2023, MNRAS, 525, 4270
+Ostriker, E. C., & Kim, C.-G. 2022, ApJ, 936, 137                                      Young, L. M., Bureau, M., Davis, T. A., et al. 2011, MNRAS, 414, 940
+
+
+
+
+                                                                                  22
+

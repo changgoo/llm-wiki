@@ -1,0 +1,1205 @@
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                             https://doi.org/10.3847/1538-4357/aaa5ff
+© 2018. The American Astronomical Society. All rights reserved.
+
+
+
+
+          Numerical Simulations of Multiphase Winds and Fountains from Star-forming
+                    Galactic Disks. I. Solar Neighborhood TIGRESS Model
+           1
+                                                                  Chang-Goo Kim1,2   and Eve C. Ostriker1
+               Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA; cgkim@astro.princeton.edu, eco@astro.princeton.edu
+                                       2
+                                         Center for Computational Astrophysics, Flatiron Institute, New York, NY 10010, USA
+                              Received 2017 August 9; revised 2017 December 8; accepted 2018 January 4; published 2018 February 5
+
+                                                                                 Abstract
+               Gas blown away from galactic disks by supernova (SN) feedback plays a key role in galaxy evolution. We
+               investigate outﬂows utilizing the solar neighborhood model of our high-resolution, local galactic disk simulation
+               suite, TIGRESS. In our numerical implementation, star formation and SN feedback are self-consistently treated and
+               well resolved in the multiphase, turbulent, magnetized interstellar medium. Bursts of star formation produce
+               spatially and temporally correlated SNe that drive strong outﬂows, consisting of hot (T > 5 ´ 10 5 K ) winds and
+               warm (5050 K < T < 2 ´ 10 4 K ) fountains. The hot gas at distance d > 1 kpc from the midplane has mass
+               and energy ﬂuxes nearly constant with d. The hot ﬂow escapes our local Cartesian box barely affected by gravity,
+               and is expected to accelerate up to terminal velocity of vwind ~ 350–500 km s-1. The mean mass and energy
+               loading factors of the hot wind are 0.1 and 0.02, respectively. For warm gas, the mean outward mass ﬂux through
+               d = 1 kpc is comparable to the mean star formation rate, but only a small fraction of this gas is at velocity
+               >50 km s-1. Thus, the warm outﬂows eventually fall back as inﬂows. The warm fountain ﬂows are created by
+               expanding hot superbubbles at d < 1 kpc; at larger d neither ram pressure acceleration nor cooling transfers
+               signiﬁcant momentum or energy ﬂux from the hot wind to the warm outﬂow. The velocity distribution at launching
+               near d ~ 1 kpc is a better representation of warm outﬂows than a single mass loading factor, potentially enabling
+               development of subgrid models for warm galactic winds in arbitrary large-scale galactic potentials.
+               Key words: galaxies: ISM – galaxies: star formation – magnetohydrodynamics (MHD) – methods: numerical
+
+
+                                    1. Introduction                                      zoom-in simulations, more careful treatments of SNe allowing
+                                                                                         for a “momentum prescription” at low resolution can solve at
+   Galactic scale gas outﬂows (or winds) are ubiquitous in star-
+                                                                                         least some aspects of the overcooling problem (e.g., Hopkins
+forming galaxies (see Veilleux et al. 2005; Heckman &
+                                                                                         et al. 2014, 2017; Kimm & Cen 2014; Kimm et al. 2015),
+Thompson 2017, for reviews) and believed to be essential to
+                                                                                         especially for dwarfs. However, given the constraints of
+the distribution of the gas and metals in galaxies and the
+                                                                                         computational expense, treating unresolved physics with
+circumgalactic/intergalactic medium (CGM/IGM), and hence                                 parameterized models is unavoidable in many situations,
+to regulating cosmic star formation history (see Somerville &                            including in simulations of galaxy groups/clusters, and in the
+Davé 2015; Naab & Ostriker 2017, for reviews). Theoretical                               large boxes needed for fully sampled statistics of cosmic galaxy
+models of the stellar mass-halo mass relation constructed by                             populations (e.g., Schaye et al. 2015; Pillepich et al. 2017).
+abundance matching of observational stellar mass functions to                               When star formation feedback physics is not directly
+simulated halo mass functions (e.g., Behroozi et al. 2013;                               simulated, galactic winds are not an outcome but an input that
+Moster et al. 2013; Rodríguez-Puebla et al. 2017) indicate that                          is part of the “subgrid” treatment (Somerville & Davé 2015).
+galaxies (or dark matter halos) are very inefﬁcient at converting                        Currently, however, subgrid models of wind driving by stellar
+gas into stars. At low redshift, at most ∼10%–20% of the                                 feedback often either adopt highly simpliﬁed scaling prescrip-
+available baryonic mass has been converted into stars at halo                            tions for wind mass-loss rates (relative to the star formation
+mass of ~1012 M, while the ratio of stellar mass to halo mass                           rate) and velocities (relative to the halo potential depth), or else
+declines steeply toward both lower and higher masses. Recent                             are calibrated using empirical results from a limited set of
+cosmological hydrodynamic simulations of large volumes of                                galaxies (and hence are not fully predictive). Better theoretical
+the Universe require strong outﬂows driven by both star                                  models are clearly needed. Towards this end, the ﬁrst step is to
+formation and active galactic nuclei feedback to explain low                             provide a physical understanding and detailed characterization
+baryonic abundance in galaxies compared to the cosmic                                    of outﬂowing gas (including both winds and fountains) in
+fraction (e.g., Springel & Hernquist 2003; Vogelsberger                                  galaxies, informed and calibrated based on high-resolution
+et al. 2014; Schaye et al. 2015).                                                        three-dimensional numerical magnetohydrodynamic (MHD)
+   Direct inclusion of feedback processes in large-volume                                simulations. To fully capture the interaction between stellar
+cosmological galaxy formation simulations is still not feasible                          feedback and a realistic multiphase interstellar medium (ISM),
+in practice. For star formation feedback by supernovae (SNe),                            it is crucial to self-consistently include the gravitational
+implementation via simple thermal energy dumps suffers                                   collapse that produces star clusters and to resolve the local
+“overcooling,” with energy radiated away without preventing                              injection of energy from individual massive stars.
+in situ star formation or driving winds (e.g., Katz 1992); this is                          In classical theoretical models of galactic winds motivated
+because resolving the cooling radii of SN remnants requires                              by observed starburst galaxies (e.g., Chevalier & Clegg 1985),
+much higher resolution (Kim & Ostriker 2015a) than is                                    a steady, adiabatic ﬂow is produced by a central energy source.
+practicable in large-volume simulations. In cosmological                                 In this approach, hot, overpressured gas ﬂows are characterized
+
+                                                                                     1
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                  Kim & Ostriker
+
+by “mass loading” and “energy loading” factors, respectively            responding self-consistently to star formation. Some recent
+deﬁned by the ratios of mass and energy outﬂow rates to star            numerical work has focused speciﬁcally on the outﬂow
+formation rates and energy injection rates at the wind base.            properties driven by SN feedback (e.g., Creasey et al. 2013;
+Simple spherical wind models can also be constructed that               Martizzi et al. 2016; Fielding et al. 2017), although with a
+allow for radiative cooling, such that the temperature                  cooling cutoff at 10 4 K that does not allow for the full range of
+precipitously drops at some radius in certain parameter regimes         ISM phases.
+(e.g., Wang 1995; Bustard et al. 2016; Thompson et al. 2016).              Very recently, it has become possible to evolve the turbulent,
+   Observed galactic outﬂows are multiphase in nature.                  magnetized, multiphase ISM in local galactic disks with
+Systematic observations reveal prevalent multiphase structure           cooling and heating, galactic differential rotation, and self-
+of galactic winds with cold molecular (e.g., Weiß et al. 1999;          gravity, including fully self-consistent resolved star formation
+Leroy et al. 2015), neutral (e.g., Heckman et al. 2000;                 and SN feedback over durations of several 100 Myr (Kim &
+Martin 2005; Rupke et al. 2005; Chen et al. 2010; Contursi              Ostriker 2017, Paper I hereafter). A few other recent simula-
+et al. 2013), ionized (e.g., Pettini et al. 2001; Shapley et al.        tions have also included self-gravity to model SN rates and
+2003; Steidel et al. 2010; Erb et al. 2012; Heckman et al. 2015;        positions self-consistently with star formation (Hennebelle &
+Chisholm et al. 2017), and hot gas phases (e.g., Strickland &           Iffrig 2014; Gatto et al. 2017; Iffrig & Hennebelle 2017; Peters
+Stevens 2000; Strickland & Heckman 2007; López-Cobá                     et al. 2017), but given their relatively short simulation duration
+et al. 2017). For the best studied example, local starburst             (100 Myr ), they have not reached a statistically quasi-steady-
+M82, Leroy et al. (2015; see also Chisholm & Matsushita 2016)           state, and wind properties may be subject to transient effects
+have shown a clear signature of decreasing outward mass                 from the simulation start-up.
+ﬂuxes in molecular and neutral gas as a function of the distance           In this paper, we analyze our ﬁducial model from the
+from the disk midplane, implying a fountain (Shapiro &                  TIGRESS (Three-phase ISM in Galaxies Resolving Evolution
+Field 1976; Bregman 1980) rather than a wind for the cooler             with Star formation and SN feedback) simulation suite
+gas. In one conceptual framework, warm and cold gas in                  introduced in PaperI, in order to provide a more comprehen-
+outﬂows is created when a hot medium accelerated by its own             sive understanding of multiphase gas outﬂows in the realistic
+pressure gradient cools radiatively; an alternative concept is          ISM. Our analysis here mainly focuses on characterizing
+that overdense warm and cold ISM clouds are “entrained” by a            differences among outﬂows of different thermal phases. In a
+high-velocity, low-density hot wind. More realistically, both           subsequent paper, we will analyze models with different
+effects can in principle occur, and in general there is a complex       galactic conditions to investigate systematic scaling relations of
+                                                                        wind properties (e.g., Heckman et al. 2015; Muratov et al.
+interaction between the multiple phases that are present.
+                                                                        2015; Heckman & Borthakur 2016; Chisholm et al. 2017).
+   The mass and energy loading factors are key quantities that
+                                                                           In Section 2, we review equations for steady, adiabatic ﬂows
+characterize winds and quantify their signiﬁcance in controlling
+                                                                        and summarize key physical quantities to be measured from the
+baryonic mass cycles of galaxies. Measuring these loading
+                                                                        simulation. We then present an overview of gas ﬂows in the
+factors has been of intense observational interest, but
+                                                                        simulation, including overall mass ﬂuxes and vertical proﬁles of
+uncertainties are still large. In particular, the reported mass
+                                                                        each gas phase; this demonstrates the necessity of a phase-by-
+loading factor ranges widely from 0.01 to 10 (Veilleux                  phase analysis. In Section 3, we analyze the hot gas component,
+et al. 2005). Depending on the assumed geometry, metallicity,           showing that it is consistent with a wind having well-deﬁned
+and ionization state, the mass outﬂow rate can easily be                mass ﬂux and speciﬁc energy (or Bernoulli parameter) that are
+reduced by a factor of 10 (e.g., Chisholm et al. 2016b, 2017). In       approximately constant as a function of distance from the
+addition, uncertain deprojection may result in an overestimate          midplane. Section 4 presents an analysis of the warm gas
+of the velocity, incorrectly leading to interpretation of a low-        component, showing characteristics of a fountain ﬂow that has
+temperature outﬂow as a wind rather than a fountain. If gas is          decreasing mass and energy ﬂuxes as a function of distance from
+not really escaping, the outward mass ﬂux will be a decreasing          the midplane. Section 5 provides mass and energy loading
+function of distance from the wind launching region, and mass           factors of each phase, comparing these to previous work and to
+ﬂuxes estimated at small radii would exceed the true losses             observations. Section 6 summarizes our main conclusions.
+from a galaxy.
+   Predicting wind loading factors theoretically requires
+modeling the interaction between SN remnants (including                           2. Overview of Gas Flows in TIGRESS
+from clustered SNe) and the ISM. Expansion of superbubbles
+driven by multiple SNe has been studied by idealized analytic            2.1. Outﬂow Terminology, Vertical Proﬁles, and Classical
+models and simulations (e.g., McCray & Kafatos 1987; Mac                                    Adiabatic Winds
+Low & McCray 1988; Mac Low et al. 1989; Mac Low &                          In galactic disks, star formation takes place in dense gas near
+Ferrara 1999; Kim et al. 2017). While these idealized models            the midplane, within the scale height of the ISM. Prodigious
+provide essential physical insight and quantitative estimates,          energy is injected by SNe within this thin layer, and the high-
+ﬁrm theoretical measurements of mass loading in multiphase              entropy, overpressured gas expands outward. Strong shocks
+winds from galactic disks require ISM models with realistic             heat and accelerate both dense, cold cloudlets and the warm,
+spatio-temporal distribution of SNe and vertical stratiﬁcation.         diffuse intercloud medium surrounding individual SNRs and
+A number of local stratiﬁed-disk simulations, with increasingly         superbubbles, with most of this gas cooling back to its original
+high resolution, have modeled the multiphase ISM with SN                temperature relatively quickly (e.g., Kim & Ostriker 2015a;
+feedback (e.g., Korpi et al. 1999; de Avillez 2000; de Avillez &        Kim et al. 2017). Depending on the level of remaining speciﬁc
+Breitschwerdt 2004; Joung & Mac Low 2006; Hill et al. 2012;             energy with respect to the gravitational potential, outﬂows of
+Gent et al. 2013; Walch et al. 2015; Girichidis et al. 2016b; Li        cooled, SN-accelerated warm (or cold) gas may either keep
+et al. 2017), albeit with SN rates and locations imposed rather         moving out of the disk, or may turn around at some height.
+
+                                                                    2
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                     Kim & Ostriker
+
+While most of the energy deposited by SNe is radiated away,                      equations, which can be applied to our simulations. In this
+some of the hot gas created in strong SN shocks is at low                        paper, the F = 0 reference point is at the midplane.
+enough density that it has very limited cooling. This accelerates                  For ﬂows in a local Cartesian box, like ours, with energy
+away from the midplane towards higher-latitude, lower-                           sources near the midplane, any time-averaged steady winds that
+pressure regions, achieving high enough velocity that it can                     may exist are launched vertically along the ẑ axis. Through
+escape from the galactic potential well. In this paper, the term                 Gauss’s law, volume integration of Equations (1) and (2) gives
+“galactic winds” refers to outﬂows launched with high enough                     mass and total energy ﬂuxes through surface area A = L x L y at
+energy to escape the galactic gravitational potential, while the                 z = d as
+term “galactic fountains” refers to outﬂows launched with
+insufﬁcient energy that eventually fall back.                                          Swind (d ) º FM (z = d ) - FM (z = - d ) = M˙ inj (d ) A
+                                                                                       ˙                                                                    (4 )
+   In our simulations (and in real galaxies), the motions of gas                 and
+are three-dimensional. Within any given patch of the ISM in
+the disk, followed on its orbit about the galactic center,                              E (d ) º FE (z = d ) - FE (z = - d ) = E˙ inj (d ) A.              (5 )
+horizontal averaging can be used to deﬁne a mean density,
+velocity, and other ﬂow properties as a function of height z. In                 Here, d is the distance from the disk midplane, and total mass
+general, the instantaneous mean velocity will have both                          and energy injection rates within ∣z∣ < d are M˙ inj (d ) =
+horizontal (radial-azimuthal) and vertical components. The                         d                            d
+                                                                                 ò r˙ inj dV and E˙ inj (d ) = ò e˙inj dV . The quantities FM (z ) =
+horizontally averaged ﬂow quantities may be further averaged                      -d                               -d
+
+over time (with window comparable to an orbit time, so that                      árvzñ and FE (z ) = árvz ñ stand for mass and total energy ﬂuxes
+epicyclic motions are averaged away). If the accretion rate is                   averaged over a horizontal area at height z.3 The above
+low, the resulting temporally averaged velocity at any height                    relations assume periodic boundary conditions in both of the
+will be dominated by vertical motion. Thus, horizontal and                       horizontal directions; energy terms associated with the back-
+temporal averaging of the gas yields an effectively one-                         ground shear from integrals over faces perpendicular to x̂ are
+dimensional proﬁle as a function of height, consisting of                        discussed in Appendix A.
+average values ár (z )ñ, ávz (z )ñ, áP (z )ñ, and so on. If there is a net          Since SN explosions are usually concentrated within a thin
+outﬂow, sign (vz ) = sign (z ), and if there is a net inﬂow, the sign            layer near the midplane, M˙ inj (d ) and E˙ inj (d ) are expected to
+is reversed.                                                                     approach constant values for d  H , where H is the disk scale
+   Similar to horizontal- and time-averaged ﬂows, classical SN-                  height. Hence, if A is constant, as in the local Cartesian
+driven wind solutions are one-dimensional, and the simplest                      coordinates, for a steady wind the (areal) mass and energy
+solutions are also adiabatic. For steady-state one-dimensional                   ﬂuxes Ṡwind and E would also approach constants at d  H
+adiabatic gas ﬂows, the equations of mass and total energy                       above the source region. For general geometries (e.g.,
+conservation, including source terms, can be written as                          Chevalier & Clegg 1985 for spherical coordinates), however,
+                         · (rv) = r˙ inj (z) ,                       (1 )       where the area that encloses a given set of streamlines varies as
+                                                                                 a function of distance (e.g., A∝r2 for the spherical case), the
+                        · (rv) = e˙inj (z) ,                        (2 )       ﬂuxes would also vary (e.g., ∝r−2).
+                                                                                    To the extent that horizontal correlations (or anticorrelations)
+where ṙinj and e˙inj are the volumetric mass and energy injection               among variables at a given z may be neglected, FE = FM  , and
+rates, respectively, arising from SN feedback. In Equations (1)                  if we may assume symmetry across the midplane this yields
+and (2), z represents the vertical direction for a ﬂow                            = E S  ˙ wind = E˙ inj M˙ inj. This implies that beyond the
+perpendicular to the plane of a galactic disk; an approximately                  source region where E˙ inj and M˙ inj have reached their ﬁnal
+spherical galactic center ﬂow (e.g., Chevalier & Clegg 1985)                     values, the Bernoulli parameter becomes constant for a steady
+would instead have ṙinj (r ) and e˙inj (r ). Note that ṙinj does not           (or time-averaged) ﬂow. In the more general case with A an
+represent SN ejecta itself. Rather, shock heating of ambient                     increasing function of distance, because the area perpendicular
+ISM gas near SNe increases the mass injection rate above that                    to streamlines is the same for both mass and energy ﬂux, FE
+of the initial SN ejecta, while cooling tends to reduce the rate.                and FM would vary ∝A−1, but  would still be conserved along
+                                                                                 streamlines (beyond the source region), irrespective of
+Allowing for this shock heating and cooling, ṙinj is simply the
+                                                                                 geometry. Therefore, for steady adiabatic winds (or equiva-
+mean local rate at which hot material is added the steady ﬂow.                   lently for any time-averaged, adiabatic portion in a more
+Similarly, e˙inj represents the mean local energy input rate to the              general outﬂow), the Bernoulli parameter is a key quantity that
+ﬂow, which is bounded above by the initial energy carried by                     enables robust extrapolation of ﬂow evolution to large
+SN ejecta.                                                                       distances.4 As applied to the present problem, this suggests
+   In Equation (2), the total speciﬁc energy (the Bernoulli                      that evaluation of  with our local disk simulations should
+parameter) is deﬁned by                                                          provide predictions for properties of the hot portion of the wind
+                         v2    g P                                               at large distance (outside our simulation domain) where wind
+                   º       +      + F,                               (3 )       streamlines open up (becoming more radial than vertical). This
+                         2    g-1r                                               motivates the need to quantify mass and energy ﬂuxes in the
+consisting of speciﬁc kinetic energy, speciﬁc enthalpy h =                       3
+                                                                                    For the energy ﬂux, we hereafter use subscripts KE, TE, GE, and ME to
+[g (g - 1)] P r , and gravitational potential terms. Note that                   denote different energy components. These are respectively FKE = rvz v 2 2
+here, for simplicity, we consider adiabatic, unmagnetized gas,                   (kinetic), FTE = rvz h (thermal, with h enthalpy), FGE = rvz F (gravitational),
+but Appendix A presents the full equations for general MHD                       and FME = Sz (magnetic; see Section A and Equation (21)). The subscript E
+                                                                                 will denote the total energy term, the sum of all four components.
+ﬂows in a local shearing box, and shows that horizontal- and                     4
+                                                                                    This holds true for MHD ﬂows if the Poynting ﬂux is negligible, as in our
+time-averaging yields a set of simple steady-state 1D ﬂow                        simulations; see Figure 5.
+
+                                                                             3
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                            Kim & Ostriker
+
+launching region—just above the source region—in our                                  t ~ 100 Myr , a quasi-steady state is reached. When stars form,
+simulations.                                                                          massive stars enhance heating in the warm and cold ISM, and
+   The simple analysis above provides helpful intuition for gas                       the SN rate increases, driving turbulence throughout the ISM.
+ﬂows driven by localized energy sources, but the real ISM—                            Both feedback processes disperse dense clouds and puff the gas
+and our simulations—is not a single phase, adiabatic gas. In                          disk up, temporarily shutting star formation off. With the
+fact, material in the ISM spans a wide range of density and                           corresponding reduction in star formation feedback, the gas can
+temperature. SN shocks are responsible for generating the hot                         settle back to the midplane and collect into dense clouds, which
+gas phase (T ~ 106 - 107 K ), which interacts with surround-                          then form a new generation of stars. In PaperI, we evaluated
+ing warm (T ~ 10 4 K ) and cold (T ~ 10 2 K ) phases. Con-                            several basic ISM and wind properties, and demonstrated their
+sidering each thermal component individually, radiative heating                       convergence as a function of the numerical spatial resolution
+and cooling as well as mass and energy transfers between                              (see also Appendix B.1).
+components would act as source and sink terms in the                                     In this paper, we analyze detailed properties of galactic
+conservation equations of each phase. Because SN ejecta                               winds and fountains for a vertically extended version of the
+strongly interact with the surrounding ISM in extremely                               ﬁducial model of PaperI. The simulation domain covers
+complex ways to heat and accelerate gas, some of which may                            1 kpc ´ 1 kpc horizontally and -4.5 kpc < z < 4.5 kpc verti-
+be able to escape from a galaxy, it is not at all obvious how one                     cally, at a uniform resolution Dx = 4 pc. Representative
+would estimate M˙ inj and E˙ inj for individual thermal components                    snapshots displaying a volume rendering of density and
+of a multiphase outﬂow. Moreover, star formation and hence                            velocity vectors during outﬂow- and inﬂow-dominated periods
+SN events are very bursty, and this burstiness may affect yields.                     are shown in Figure 1. Figure 2 displays slices of temperature
+Clearly, the total and individual-phase M˙ inj and E˙ inj are only                    and vertical velocity through the y=0 plane for the same
+quantiﬁable with self-consistent numerical simulations that                           snapshots shown in Figure 1. The outﬂows and inﬂows seen in
+capture the full physics of the ISM. Nevertheless, while                              Figures 1 and 2 are part of an overall cycle that repeats,
+simulations are essential for obtaining the detailed properties of                    representing the response to large amplitude temporal ﬂuctua-
+realistic multiphase outﬂows, we can still expect certain aspects                     tions in star formation rates (see the gray line in Figure 3(a)).
+of classical wind solutions to hold when suitably applied. In                            To characterize vertical gas ﬂows, we ﬁrst construct horizon-
+particular, as we shall show, the spacetime-averaged hot portion                      tally averaged quantities. We then calculate the net mass and
+of the wind, when considered separately from other phases,                            energy ﬂuxes that pass through horizontal planes (both upper and
+shares many similarities with adiabatic one-dimensional winds.                        lower sides) at d=1, 2, and 3 kpc (cf. Equations (4) and (5)).
+                                                                                      Figure 3 shows time evolution of (a) mass ﬂux, along with the
+          2.2. TIGRESS Simulation Model and Analysis                                  areal star formation rate (SSFR ), and (b) energy ﬂux. Every star
+                                                                                      formation burst is followed by a burst of energy injection, and this
+   In PaperI, we presented a novel framework for multi-                              burstiness is reﬂected in large temporal variations in the mass and
+physics numerical simulations of the star-forming ISM                                 energy ﬂuxes. The ﬂuxes can become negative, meaning that the
+implemented in the Athena MHD code (Stone et al. 2008;                                mass and/or energy of gas ﬂowing inward exceeds that of the gas
+Stone & Gardiner 2009). We solve the ideal MHD equations in                           ﬂowing outward, at a given height. As distance d from the
+a local, shearing box, representing a small patch of a                                midplane increases, the net mass ﬂux signiﬁcantly decreases,
+differentially rotating galactic disk. This treatment allows us                       while the net energy ﬂux even through d=2 and 3 kpc remains
+to achieve uniformly high spatial resolution compared to what                         large. While net negative mass ﬂuxes (implying fallback) occur at
+is possible in a global simulation of an entire galaxy or galaxies                    d = 1 kpc after each burst of mass outﬂow, net energy ﬂuxes
+(e.g., Hopkins et al. 2012; Muratov et al. 2015), which is                            almost always remain positive. The differing behavior of mass
+crucial to resolve both star formation and SN feedback as well                        and energy ﬂuxes is a signature of multiphase ﬂows.
+as all thermal phases of the ISM both near and far from the                              Although star formation and hence SN feedback are impulsive
+midplane. We include gaseous and (young) stellar self-gravity,                        rather than continuous, the system approaches a quasi-equilibrium
+a ﬁxed external gravitational potential to represent the old                          state. This state is a limit cycle mediated by the feedback loop, in
+stellar disk and dark matter halo, galactic differential rotation,                    which epochs of cooling and collapse alternate with epochs of
+and optically thin cooling and grain photoelectric heating. We                        heating and expansion.6 Given that a quasi-steady state exists in
+utilize sink particles to follow formation of and accretion onto                      the present simulation, horizontal- and temporal averages can be
+star clusters in dense, cold gas. Massive young stars in these                        constructed to characterize this mean state. Since different thermal
+star clusters feed energy back to the ISM, by emitting far-                           phases coexist at all heights, to understand the outﬂows and
+ultraviolet radiation (FUV) and exploding as SNe. The former                          inﬂows of mass and energy, it is further necessary to separately
+heats the diffuse warm and cold ISM, while the latter creates
+                                                                                      construct horizontal averages of each thermal phase.
+hot ISM gas, drives turbulence, and induces outﬂows.
+                                                                                         In Figure 4 we plot horizontally and temporally averaged
+   Our simulations yield realistic, fully self-consistent three-
+                                                                                      proﬁles of mass, momentum, and energy distributions for
+phase ISM models with self-regulated star formation.5 PaperI
+                                                                                      thermally separated gas phases; these proﬁles average over
+presented results from a ﬁducial model with parameters similar
+                                                                                      t = 250–500 Myr and also average over upper (z > 0 ) and
+to those of the Solar neighborhood. There, we showed that after
+                                                                                      lower (z < 0 ) sides. Proﬁles show hydrogen number density,
+5
+    Of course, the absence of global geometry means that we are unable to
+                                                                                      nH º r (m H mH ), outward vertical momentum density,
+follow the effects of strong noncircular ﬂows in the disk, the transport of gas
+                                                                                      6
+from one radius to another in a fountain (which would also require signiﬁcant            We note, however, that a quasi-steady state is not guaranteed for all galactic
+angular momentum exchange), or the transition of hot winds through a sonic            conditions (e.g., Torrey et al. 2017), and may only hold in parts of the
+point. Nevertheless, the high resolution afforded by our local scope is               parameter space in which the vertical oscillation time (which controls collapse
+extremely valuable for limiting artiﬁcial mixing, which is essential for              and star formation) is sufﬁciently long compared to the stellar evolution
+understanding key characteristics of multiphase ﬂows.                                 timescale (which controls feedback and expansion).
+
+                                                                                  4
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                           Kim & Ostriker
+
+
+
+
+Figure 1. Sample snapshots illustrating (left) outﬂow-dominated, and (right) inﬂow-dominated periods, at t=300 and 360 Myr , respectively. Gas density is shown in
+color scale volume rendering, and the velocity ﬁeld is shown with vectors; vector colors (rather than length) indicate velocity magnitudes. A fast-moving, low-density
+(dark blue) outﬂow is evident in the left snapshot, while moderate-density (green) gas that was previously blown out to large distances is falling back toward the
+midplane in the right. Velocity ﬁelds are turbulent near the midplane (d < H ), but ordered in either outﬂowing or inﬂowing directions at large distances. For visual
+clarity, only the upper half of the simulation box (z = 0 to 4 kpc ) is shown, with a full horizontal crossection -512 pc  x, y  512 pc .
+
+rvout º rvz sign (z ), and total energy density (excluding gravity):                   time-averaged vertical momentum density, which is the same
+                                                                                       as the time-averaged net mass ﬂux. Although the mean value of
+                          1 2     P    B2                                              vertical momentum density (or net mass ﬂux) of the warm
+                    º      rv +     +    .                                 (6 )
+                          2      g-1   8p                                              medium is effectively zero, there are large temporal ﬂuctuations
+                                                                                       (indicated by the green shaded region) at small and
+Note that this energy density differs from the gas density                             intermediate d because the warm gas contributes signiﬁcantly
+multiplied by the Bernoulli parameter of Equation (3), as it                           to both outgoing and incoming mass ﬂuxes at different times
+includes just thermal energy (rather than enthalpy) and also                           (as in Figure 3).
+includes magnetic energy density.                                                         The phase-separated momentum and energy density proﬁles
+   The four thermal phases plotted in Figure 4 are cold                                in Figure 4 (and corresponding proﬁles of mass and momentum
+(T < 5050 K ), warm (5050 K < T < 2 ´ 10 4 K ), ionized                                ﬂux) reﬂect essential differences of gas ﬂow dynamics between
+(2 ´ 10 4 K < T < 5 ´ 10 5 K ), and hot (T > 5 ´ 10 5 K ).7                            the warm and hot phases, which we separately analyze in the
+Above the warm/cold layer (d > H , where H » 400 pc),                                  following sections.
+the mass density is dominated by the warm component and the
+energy density is dominated by the hot component. As the
+individual terms in the energy density are proportional to                                                           3. Hot Winds
+corresponding terms in the momentum ﬂux (rv 2 , P), the hot                               In this section, we focus on the hot component, deﬁned by
+medium also dominates the momentum ﬂux away from the                                   T > 5 ´ 10 5 K , representing gas that has been shock-heated
+midplane. The hot medium is the largest contributor to the                             by SN blastwaves. The hot medium ﬁlls most of the volume
+                                                                                       above the disk scale height, and cooling in tenuous hot gas is
+7
+   Note that we omit the “unstable” phase (184 K < T < 5050 K ) deﬁned in              inefﬁcient. With pressure gradients that accelerate it outward
+PaperI and merge it into the “cold” phase since (1) these phases are not of           (cf. Figure 4(c)) and a source from SN shocks propagating into
+primary interest in this paper since we are focusing on gas above the disk scale
+height, and (2) the sum of these two phases numerically converges better than          the surrounding warm and cold medium near the midplane, the
+the individual phases.                                                                 horizontally and temporally averaged hot medium naturally ﬁts
+
+                                                                                   5
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                        Kim & Ostriker
+
+
+
+
+Figure 2. Sample slices through y=0 showing temperature and vertical velocity at t=300 (left) and 360 Myr (right), representing outﬂow- and inﬂow-dominated
+periods. During outﬂow-dominated periods (left), the hot component ﬁlls most of the volume at high ∣z∣ and ﬂows outward at high velocity, while the warm component
+is conﬁned in small cloudlets. During inﬂow-dominated periods (right), the warm component occupies most of the volume and falls toward the midplane. As in the
+volume renderings of Figure 1, only the upper half of the simulation box (z = 0 to 4 kpc ) is shown.
+
+
+the criteria for a (quasi-)steady, adiabatic wind. We therefore                     superbubbles) breaks out of the warm/cold layer, the hot gas
+might expect that the mass ﬂux and energy ﬂux (and thus the                         mass ﬂux is nearly constant with d. The slight decrease of the
+Bernoulli parameter) of the time-averaged hot component                             mass ﬂux at large d is caused by non-zero cooling (radiative
+would be (approximately) conserved as the gas ﬂows outward.                         and mixing of hot gas with cooler phases).
+   Figure 5 explicitly shows vertical proﬁles of (a) the mass ﬂux,                     Figure 5(b) shows near constancy of the time-averaged total
+Ṡwind, h , and (b) the speciﬁc energy, E , h Ṡwind, h , based on time            speciﬁc energy  of the hot gas above d = 1 kpc, as expected
+averages of each horizontally averaged ﬂux. Here “h” subscripts                     for a steady, adiabatic wind (given the negligible Poynting
+denote the hot component. To distinguish between outﬂows and                        ﬂux). We also calculate individual components of the
+inﬂows for the mass ﬂux, in addition to net ﬂux we separately                       (averaged) energy ﬂux, and divide them by the (averaged)
+show the ﬂux of outﬂowing (sign (vz ) = sign (z )) and inﬂowing                     mass ﬂux. This provides the components of the mass-ﬂux-
+(sign (vz ) = - sign (z )) gas.
+                                                                                    weighted speciﬁc energy E , h Ṡwind, h , consisting of kinetic,
+   The mass ﬂux of the hot gas shows net outﬂow (blue line in
+                                                                                    thermal (enthalpy), gravitational, and magnetic terms (see
+Figure 5(a)), with negligible inﬂow ﬂux at all heights (yellow
+line in Figure 5(a)). As the SNe that create the hot medium are                     Equations (3) and (21)). Once the hot gas breaks out of the
+concentrated near the midplane, the hot gas mass ﬂux within                         warm/cold layer, the gas ﬂow approximately preserves mass
+the warm/cold layer (d < H; below the vertical dotted line in                       and energy ﬂuxes, because except for limited cooling, there are
+Figure 5) ﬁrst increases with d and then decreases as hot SNRs                      no sources (or sinks) for the hot gas mass and energy. We have
+have a maximum size before the onset of cooling. Above the                          checked that the individual cooling and heating terms,
+point where the hot gas in the interior of SN remnants (or                          including Reynolds and Maxwell stresses that arise from the
+
+                                                                                6
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                            Kim & Ostriker
+
+
+
+
+Figure 3. Time evolution of (a) mass and (b) energy ﬂuxes driven by bursts in the star formation rate. Mass and energy ﬂuxes per unit area at distances d = 1, 2 , and
+3 kpc from the midplane are measured (Equations (4) and (5)). Each burst in SSFR (shown in gray in upper panel) leads to outﬂows in both mass and energy near the
+midplane. The net mass ﬂux decreases at larger d, because most of the outﬂow near the midplane is warm “fountain” gas with low velocity that turns around (resulting
+in periods of negative mass ﬂux at d = 1 kpc ). Energy ﬂuxes are substantial at all heights, due to the dominance of hot gas that escapes as a wind.
+
+shearing box (see Equation (18)), are indeed small compared to                           streamlines cannot open up and there is no associated adiabatic
+the SN energy injection.                                                                 cooling, limiting the pressure and density gradients and therefore
+   From d = 2–4 kpc, the enthalpy of the hot gas implies a                               the acceleration of the ﬂow. However, the constancy of both the
+temperature in the range 1.2–1.5 ´ 106 K (or sound speed in                              Bernoulli parameter and mass ﬂux with d for the hot medium in
+the range 130–150 km s-1), and the kinetic energy of the hot                             our simulation suggests that it properly represents the near-disk
+gas translates to a velocity of 170–200 km s-1. The Poynting                             regions for a generalized galactic disk wind, in which streamlines
+ﬂux contribution to  is negligible, corresponding to an Alfvén                          emerge from the disk vertically (with A=const when z  Rdisk )
+speed of 30–35 km s-1.                                                                   and would open up (A increasing with distance) when z  Rdisk .
+   In SN-driven hot winds, the enthalpy (speciﬁc heat) term                              The mass and energy ﬂuxes carried by the hot wind are controlled
+dominates over other components of the Bernoulli parameter,                              by the interaction between SN shocks and the warm-cold medium
+including the gravitational potential, at heights less than the                          that creates the hot ISM well within the disk, in processes that are
+                                                                                         unlikely to be affected by large-scale global galactic and CGM
+disk radius. At large distance where streamlines open up in
+                                                                                         properties and geometry. Therefore, the Bernoulli parameter we
+angle, one could expect hot galactic winds with constant  to
+                                                                                         calculate should be a robust estimator of asymptotic hot wind
+accelerate past a sonic point to an asymptotic velocity of                               speed irrespective of the constraints of our Cartesian box.
+vwind º 2 ( - F)1 2 as they adiabatically cool, similar to                                 As shown in Figure 3 (and demonstrated by the shaded
+classical Parker stellar wind solutions.8 Global simulations                             region in Figure 5(b)), star formation and hence outﬂows are
+indeed show the expected behavior at large distance (e.g.,                               bursty, resulting in large temporal ﬂuctuations. Based on
+Fielding et al. 2017).                                                                   analysis of  for the hot component within short time ranges,
+   In general, hot winds are accelerated by pressure gradients at                        the maximum asymptotic velocity9 of the hot wind could reach
+the same time as enthalpy is converted to kinetic energy, and a                          up to vwind ~ 500 km s-1, while the mean asymptotic wind
+sonic transition in a steady wind is only possible if the                                speed would be vwind ~ 350 km s-1. Deﬁning the speed
+crossectional area increases as the ﬂow moves outward (e.g.,                             required to escape to r as vesc (r ) º [2 (F (r ) - F (0))]1 2 , in
+Shu 1992). In the Cartesian geometry of the present simulations,                         our simulation domain vesc (z = 4 kpc) ~ 130 km s-1, so the
+8                                                                                        9
+   Note that for galactic potentials, Φ is generally computed relative to the               Here, this maximum wind velocity is calculated using Φ at a height
+midplane, whereas for point mass potentials, the F = 0 reference point is at             d = 4 kpc , although in reality the wind velocity would continue to decrease
+inﬁnite distance; the zero point in Φ is irrelevant as long as it is consistent in       slowly with distance due to the logarithmic increase of F(r ) with r at large
+vwind and  .                                                                            distances in dark matter halo potentials.
+
+                                                                                     7
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                          Kim & Ostriker
+
+
+
+
+Figure 4. Vertical distributions of mass, vertical momentum, and energy densities, averaged horizontally and over upper (z > 0 ) and lower (z < 0 ) sides of the disk
+and over time t = 250–500 Myr . Colored lines for separate thermal components show proﬁles of (a) hydrogen number density nH, (b) vertical momentum density rvout
+(which is the same as the mass ﬂux), and (c) total energy density (excluding gravity)  , each as a function of distance d from the midplane. Color-coded shaded
+regions represent one-sigma temporal ﬂuctuations. In order to properly visualize both the magnitude and sign of the momentum density, we use a linear scale for
+∣rvout∣ < 10-4 and a log scale for ∣rvout∣ > 10-4 . The warm and hot phases respectively dominate mass and energy densities above the disk scale height (indicated by
+vertical dotted line), and the hot component also has the largest vertical momentum density (net outward mass ﬂux).
+
+hot wind easily escapes, i.e.,   F even at large d for the hot                      averaged proﬁles, the properties of instantaneous proﬁles are
+component. A hot wind launched with the local conditions of                           quite similar. To illustrate this, Figure 6 shows the mass ﬂux
+our simulation would also be able to propagate far into the halo                      and speciﬁc energy of the hot component at t=300 Myr, the
+for the Milky Way, where the escape velocities are                                    “outﬂow” snapshot shown in Figure 2. Except for local
+vesc (50 kpc) ~ 350 km s-1 and vesc (150 kpc) ~ 450 km s-1                            ﬂuctuations, the instantaneous mass ﬂux and speciﬁc energy
+using MWPotential2014 in galpy (Bovy 2015). More                                      proﬁles are overall very similar to the corresponding time-
+generally, the far-ﬁeld velocity for a hot wind with given local                      averaged proﬁles. In particular, the speciﬁc energy proﬁles in
+launching conditions can be estimated based on  and the                              Figures 5 and 6 are quantitatively almost the same, while the
+large-scale galactic potential.                                                       mass ﬂux is higher in Figure 6 than in Figure 5 because the
+   Finally, we note that while we have mostly based the                               latter includes non-outburst epochs as well as outburst epochs
+discussion above on temporal averages of horizontally                                 in the temporal averaging.
+
+                                                                                 8
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                             Kim & Ostriker
+
+
+
+
+Figure 5. Time-averaged (t = 250–500 Myr ) vertical proﬁles of hot gas (a) mass ﬂuxes and (b) speciﬁc energies. (a) The net mass ﬂux is shown as a blue line with
+one-sigma temporal ﬂuctuations as the blue shaded region. The hot gas does not show any signiﬁcant inﬂows (yellow line), implying that any decrement of the mass
+ﬂux is due to a phase transition to cooler phases and not direct inﬂows of the hot gas. (b) Total Bernoulli parameter  as well as individual components (i.e., kinetic,
+thermal, gravitational, and magnetic terms; see Equations (3) and (22)). Mean values are shown as colored lines, and one-sigma temporal ﬂuctuations are shown as
+shaded regions. The speciﬁc enthalpy and kinetic energy are much larger than the gravitational potential. The magnetic term plays a minor role. In both (a) and (b), the
+vertical dotted line indicates the disk scale height (H = 400 pc ).
+
+                          4. Warm Fountains                                            each period, the opposite ﬂows always exist at all heights and
+                                                                                       are more signiﬁcant compared to the case for hot gas
+   Over the duration of the simulation, the mean net mass
+                                                                                       (Figure 5). For the warm medium, the kinetic term in the
+ﬂux in warm gas out of the simulation domain is ~1.1 ´
+                                                                                       speciﬁc energy exceeds the enthalpy, but remains below the
+10-4 M kpc-2 yr-1, about 28% of the net mass ﬂux in hot gas.
+                                                                                       gravitational potential term at d  1 kpc. This explains why
+As we shall show, the outward mass ﬂux of the warm medium
+                                                                                       most of the warm gas outﬂow turns around at d ~ 1–2 kpc and
+secularly decreases with d, such that if our box were taller we
+                                                                                       falls back toward the midplane. During the outﬂow period, the
+would expect the mean net mass ﬂux out of the simulation                               mean velocity of the warm gas is in the range ~60–80 km s-1
+domain to be even smaller. With negligible time-averaged net                           for d = 1–4 kpc .
+outward mass ﬂux at large distance, the warm medium at                                    Overall, the warm medium occupies more volume above
+d  1 kpc in our simulation is not a true galactic wind. Even                          d = 1 kpc during the inﬂow period than the outﬂow period.
+though the inﬂows and outﬂows of warm gas over long                                    This is because the hot gas is mainly generated during the
+timescales are essentially balanced, time variations in the warm                       outﬂow period by shocking the warm gas, and the high-
+gas ﬂux rvout are quite large and include both positive and                            pressure hot gas conﬁnes the warm gas into small cloudlets.
+negative values (green shaded region of Figure 4(b)). The                              When the disk becomes quiescent, the warm gas expands into
+ﬂuctuating behavior of the warm medium can be contrasted                               previous hot wind channels (see Figure 2). About a factor of 5
+with the much smaller temporal ﬂuctuations of the mass ﬂux in                          to 10 more volume is occupied by the warm gas in the inﬂow
+the hot gas (red shaded region of Figure 4(b)). Evidently, the                         period than the outﬂow period for d=2 and 3 kpc slabs.
+warm gas does not produce an escaping wind like that in the                               Although in the current simulations the warm gas is almost
+hot gas but a ﬂuctuating fountain that at any time consists of                         entirely conﬁned by the galactic gravitational potential, this
+both outﬂow and inﬂow. Figure 3 shows that alternating inﬂow                           would not necessarily be true if the potential were shallower, as
+and outﬂow dominance in the warm gas is reﬂected in the                                in dwarf galaxies. Direct simulations for different galactic
+alternating signs of the mass ﬂux for the whole medium at                              conditions, including shallower potentials, are underway using
+d = 1 kpc . In addition, the decrease in the magnitude of the                          the same TIGRESS framework. However, we can also use our
+total (phase-integrated) mass ﬂux with increasing d reﬂects the                        current simulation to provide information on what might be
+secular decrease in the net mass ﬂux of the warm fountain                              expected by quantifying the fraction of fast-moving warm gas.
+(difference between inward and outward ﬂuxes) with distance.                           Figure 8 shows outward velocity probability distribution
+   To quantify the characteristics of warm fountain ﬂows, we                           functions (PDFs) weighted by volume (top), mass (middle),
+take time averages selectively for outﬂow (S      ˙ wind (1 kpc) >                     and mass ﬂux (bottom) within slabs of thickness Dslab = 20 pc
+               -
+0.001 M kpc yr )
+                2   -1                           (S
+                                                  ˙ wind (1 kpc) <
+                            and      inﬂow                                             during outﬂow (left) and inﬂow (right) periods. We show
+                 -    -
+-0.001 M kpc yr ) periods. Outﬂows of warm gas occur
+                  2    1
+                                                                                       results at several distances d averaged over both sides of the
+when many correlated SNe from a star formation burst lead to a                         disk (z = d ). Note that the volume-weighted PDF is
+superbubble expanding into the warm and cold layer, while                              normalized by slab volume (Vslab = L x L y 2Dslab ), and the
+inﬂows occur when the disk is in a quiescent state with reduced                        mass-weighted PDF is normalized by the mean mass within
+star formation after the cold medium has been dispersed by a                           the same volume (Mslab º Mtot 2Dslab Lz ; Mtot is the mass in
+previous burst. Figure 7 plots time-averaged mass ﬂux (top)                            the whole domain at a given time), while the mass ﬂux PDF is
+and speciﬁc energy (bottom) for outﬂow (left) and inﬂow                                in physical units of M kpc-2 yr-1/ km s-1. During both
+(right) periods. Although one ﬂow dominates the other during                           outﬂow and inﬂow periods, Figure 8 shows that the warm gas
+
+                                                                                   9
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                  Kim & Ostriker
+
+
+
+
+                  Figure 6. Mass ﬂux and speciﬁc energy proﬁles for the hot wind as in Figure 5, except at a single instant t = 300 Myr .
+
+
+velocity has a broad distribution with both outward and inward                  fraction of (outgoing) fast-moving warm gas (vout > 50 km s-1)
+velocities.                                                                     is reduced by a factor of 5 to 10 in inﬂow compared to outﬂow
+   During the outﬂow period, Figures 8(a) and (c) show that the                 periods. Combined with the total outﬂowing mass ﬂuxes of
+volume and mass of high velocity (>50 km s-1) warm gas                          S˙ wind, w ~ 10-2 and 10-3 M kpc-2 yr-1 at d = 1 kpc during
+increases from the midplane to 1 kpc, where the speciﬁc kinetic                 outﬂow and inﬂow periods (see Figures 7(a), (b)), respectively,
+energy is larger than the gravitational potential (see Figure 7(c)).            the mass ﬂuxes of the fast-moving warm gas are about 6×10−4
+The increase in mass of high-velocity, high-altitude warm gas                   and 10-5 M kpc-2 yr-1 (see Figures 8(e) and (f)). This can be
+between the midplane and d = 1 kpc is due to acceleration of                    compared to a mean mass ﬂux of hot gas at the same height of
+the warm medium pushed by expanding superbubbles; this                          ~1.3 ´ 10-3 and 2 ´ 10-4 M kpc-2 yr-1 during outﬂow and
+includes warm gas that was shock-heated to the hot phase (and                   inﬂow periods, respectively. Although the “fast” warm outﬂow
+accelerated to high velocity) and subsequently cooled back                      has comparable mass ﬂux at d = 1 kpc to that of the hot
+down. Figures 8(c) and (e) show that as d increases, the peaks of               medium during outﬂow periods, even at vout > 50 km s-1 the
+the distributions of mass and mass ﬂux move to higher velocity                  warm medium yields very little mass escaping from the large-
+and the overall outﬂowing gas fraction decreases. This general                  scale potential in the present simulation, while the hot medium
+trend represents dropout/turnaround of warm gas ﬂuid elements                   mostly escapes (0.12 and 0.034 M pc-2 of hot and warm gas
+with low (and decelerating) velocities that are unable to climb to              have respectively escaped during the time interval of 250 Myr ).
+large d in the gravitational potential.                                         This emphasizes the importance of measuring not just mass
+   In principle, the acceleration of warm clouds driven by hot-                 ﬂuxes, but mass ﬂuxes and speciﬁc energies in comparison to
+gas ram pressure, the cooling of fast hot gas, and the dropout of               galactic escape speeds.
+low-velocity warm ﬂuid elements could all contribute to the                         At large distances, the large-scale gravitational potential
+gradual increase of warm-medium speciﬁc kinetic energy at                       strongly affects the warm-gas velocity distribution by enforcing
+d > H shown in Figure 7(c). Figure 8(c) shows, however, that                    dropout of lower-velocity material, but closer to the midplane,
+overall the mass of high-velocity warm gas is decreasing with                   this is less of an issue. At around the disk scale height, the
+increasing d. This has the important implications that in our                   gravitational potential is small compared to the speciﬁc kinetic
+simulation (1) warm clouds at large d are not signiﬁcantly                      energy of the gas, and global geometric effects are not
+accelerated by ram pressure of the hot, high-velocity gas that is               important yet. We therefore consider the velocity distribution at
+ﬂowing out around them, and (2) relatively little hot gas is                    d = 1 kpc as representative of the launching conditions for a
+converted to the warm phase through cooling at large d. Rather,                 warm outﬂow, which would apply relatively independently of
+the warm medium is primarily accelerated via direct energy                      the global galaxy potential (e.g., in a dwarf as well as a large
+input from SNe at d  1 kpc, and at higher altitudes warm ﬂuid                  galaxy for given local conditions). Here, we ﬁnd the PDFs
+elements slow and turn around according to the competition                      during outﬂow periods of the fast-moving warm gas
+between the gravitational potential and the kinetic energy they                 (vout > 50 km s-1) at d = 1 kpc are well ﬁtted by a single
+initially acquired at small d. Figures 4(c) and 5(b) are also                   exponential function,
+telling in this regard: the total energy density (and individual
+components) of the hot medium declines very slowly for                                                               ⎛ v ⎞
+d  1 kpc , while the energy density of the warm medium                                                df
+                                                                                                            = Af exp ⎜ - out ⎟ ,                      (7 )
+declines steeply; since momentum ﬂux terms are proportional                                           dvout          ⎝ vf ⎠
+to energy density terms, this indicates that there is no
+signiﬁcant transfer of momentum from the hot to the warm gas.                    for f = V Vslab or M Mslab , where the normalization factors for
+   During the inﬂow period, the majority of the warm gas is                      volume and mass-weighted PDFs are AV = 0.63 vV and
+falling. Since SN feedback is never completely turned off,                       AM = 0.79 vM , respectively, and the characteristic velocities
+however, some warm gas is still accelerated outward. The                         are vV = 18 km s-1 and vM = 15 km s-1. Using the mass PDF,
+
+                                                                           10
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                          Kim & Ostriker
+
+
+
+
+                                                                                                                  Swind (1 kpc) > 0.001 M kpc-2 yr-1) and inﬂow
+Figure 7. Vertical proﬁles of warm gas mass ﬂuxes (top) and speciﬁc energies (bottom) averaged over outﬂow (left; ˙
+        ˙ wind (1 kpc) < -0.001 M kpc-2 yr-1) periods. Inﬂows and outﬂows are comparable with each other, implying little net mass and energy outﬂows (or
+(right; S
+inﬂows) from the simulation domain associated with the warm medium. Note that, for visualization purpose, we take absolute values of the inﬂow mass ﬂux and net
+ﬂux during the inﬂow period; these have negative signs by deﬁnition. For the warm medium, the kinetic term exceeds both the thermal and magnetic terms in the
+speciﬁc energy, but is always lower than the gravitational term above ~1 kpc . This explains why the warm medium creates a fountain rather than a wind. The vertical
+dotted lines in all panels indicate the gas scale height (H = 400 pc ).
+
+the mass-ﬂux PDF is given by                                                                             5. Mass and Energy Loading
+
+                                           ⎛ v ⎞                                                              5.1. Simulation Results
+             d (rvout )  M
+                        = slab AM vout exp ⎜ - out ⎟ ,                    (8 )           In this section, we discuss key quantities of gas outﬂows
+               dvout     Vslab             ⎝ vM ⎠
+                                                                                      driven by SNe, the mass and energy loading factors. The mass
+                                                                                      loading factor, β, through the surfaces at d (including both
+where the mean density, Mslab Vslab , is given by r = 1.2 ´                           sides of the disk plane) is conventionally deﬁned by the ratio of
+10-3 M pc-3, corresponding to hydrogen number density nH =                           “outgoing” mass ﬂux to the star formation rate as
+0.033 cm-3. These velocity PDFs for the fountain ﬂow are
+similar to ballistic fountain models constrained by observations                                                          ˙+
+                                                                                                                          S
+                                                                                                                   bº       wind
+                                                                                                                                 ,                              (9 )
+of extraplanar gas (e.g., Fraternali & Binney 2006, 2008;                                                                 SSFR
+Marasco et al. 2012).
+   By quantifying the mass ﬂux PDF in warm gas for models                             while the energy loading factor, α, is deﬁned by the ratio of
+with different local conditions, it should be possible to develop a                   “outgoing” kinetic + thermal (enthalpy) energy ﬂux to the
+comprehensive quantitative characterization of warm wind                              energy production rate of SNe,
+launching by star formation feedback. These local results could
+                                                                                                                    +       +
+                                                                                                                      KE +  TE
+then be used to make global predictions. For example, integration                                            aº                 ,                             (10)
+of Equation (8) for velocities vout > VH for would yield a mass                                                     ESN SSFR m*
+ﬂux (VH vM + 1) exp (-VH vM ) S       ˙ wind,w (d = 1 kpc). If this
+                                                                                      where ESN = 10 51 erg is the total energy per SN, and
+holds in general, it means that measurement of the launching-
+                                                                                      m* = 95.5 M is the total mass of new stars per SN (see
+region warm mass ﬂux ˙     Swind,w (d = 1 kpc) for given local disk                                            +
+conditions could be used to predict the ﬂux that actually escapes                     Paper I). To compute ˙ Swind ,  +           +
+                                                                                                                       KE , and  TE , we select only
+into the halo for a galaxy with arbitrary halo velocity VH. This                      zones with outﬂowing gas (i.e., with sign (vz ) = sign (z )). The
+statistical characterization can be combined with measurements                        areal star formation rate averaged over t = 250–500 Myr is
+of mass ﬂux and Bernoulli parameter for the hot medium to                             SSFR = 0.006 M kpc-2 yr-1; we use this average SSFR in
+develop subgrid models of multiphase wind driving for                                 computing all loading factors. Note that a rolling mean of SSFR
+implementation in galaxy formation simulations.                                       with 100 Myr time window gives 50% variation with respect to
+
+                                                                                 11
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                                Kim & Ostriker
+
+
+
+
+Figure 8. Outward vertical velocity (vout º vz sign (z )) probability distributions of the warm medium. Distributions of volume (top), mass (middle), and mass ﬂux (bottom)
+as a function of velocity are calculated for 20 pc thickness slabs above and below the midplane (z = d ) centered at d = 0, 0.5, 1, 2, 3 kpc . In the bottom row, the mass
+ﬂux within each velocity bin is in units of M kpc-2 yr-1/ km s-1, and negative mass ﬂuxes are shown with dotted lines. Warm gas with both signs of vout is present
+during both “outﬂow” and “inﬂow” periods, but the corresponding mean velocity (for d ¹ 0 kpc ) changes sign. Acceleration of the warm gas to high velocities,
+especially during outﬂow periods, is evident in the difference of proﬁle shapes between the midplane (d = 0 kpc ) and higher latitude, with an exponential tail at high
+velocity developing by d = 1 kpc . However, an overall deceleration with height in the increasing gravitational potential is also evident in comparison of proﬁles at
+increasing d  1 kpc . The magenta dashed lines in the left column are ﬁts to the fast-moving gas vout > 50 km s-1 at d = 1 kpc given by Equations (7) and (8).
+
+the mean. Because there is generally a temporal offset between                           SN feedback causes large outgoing mass ﬂuxes of warm and
+star formation bursts and winds (see Figure 3), the instanta-                            cold gas within the disk scale height d < H , but the majority of
+neous ratio of mass or energy ﬂuxes to the star formation rate                           the warm and cold medium has low velocity and cannot travel
+can signiﬁcantly over- or under-estimate the true physical                               far from the midplane; this mass ﬂux at small d is best thought
+loading. The ratio of time-averaged wind ﬂuxes to the time-                              of as the “upwelling” of turbulent motions within the disk
+averaged star formation rate is more meaningful.                                         driven by expanding SNRs and superbubbles.10 The mass
+   We decompose the gas into four thermal components and                                 10
+                                                                                            Allowing for the work done by shock-heated hot gas, both isolated and
+present the loading factors of each thermal phase as a function                          spatially correlated SNe inject a mean spherical momentum/SN to the ISM of
+of d (Figure 9). The energy ﬂux is always dominated by the hot                           ~10 5 M km s-1 (see Kim & Ostriker 2015a; Kim et al. 2017, and references
+gas, with the energy loading factor of ah ~ 0.01–0.05 above                              therein), an order of magnitude greater than the momenta of the initial SN
+                                                                                         ejecta. Most of this momentum goes into maintaining quasi-equilibrium force
+d > 1 kpc (as before, the “h” subscript denotes the hot phase).                          balance with gravity in the bulk of the ISM, rather than driving a wind.
+
+                                                                                   12
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                          Kim & Ostriker
+
+
+
+
+Figure 9. Mass and energy loading factors in each thermal phase. For both cold and warm gas, both mass and energy loading factors stifﬂy decrease as a function of d.
+Mass loading also drops off with d for the ionized phase. Only the hot gas is a true wind, with well-deﬁned mass and energy loading factors of bh ~ 0.1 and
+ah ~ 0.02 , respectively.
+
+
+loading factor of the ionized gas also decreases signiﬁcantly                        individual Bernoulli parameters, can be used to distinguish
+with d. By the time the ﬂow reaches the edge of the simulation                       fountains from winds even within a limited vertical domain.
+domain, bh is at least a factor ∼3 larger than all the other                             The mass loading factor of the hot gas obtained here is
+components. Therefore, as we have concluded in Sections 3                            consistent with simple estimates based on idealized experi-
+and 4, only the hot gas forms a genuine “galactic wind,” with a                      ments of superbubbles driven by multiple SNe in the warm-
+mass loading factor of bh ~ 0.1 that is nearly constant above                        cold ISM (Kim et al. 2017). The shock from an individual SN
+d > 1 kpc . We note that with the above deﬁnitions of α and β,                       sweeps up ~10 3 M before it cools and forms a shell (Kim &
+the Bernoulli parameter for the hot wind is given                                    Ostriker 2015a). For superbubbles created by multiple SNe, the
+by  = F + (ah bh ) ESN m*.                                                          maximum mass in hot gas per SN is Mˆ h ~ 400–2000 M prior
+   The vertical dependence of the mass loading factors of non-                       to shell formation, but subsequently this drops to Mˆ h ~
+hot phases shown in Figure 9(a) implies that it is important to                      10–100 M (lower at higher ambient density). When star
+provide careful distinctions when reporting on the outﬂows                           formation rates are self-regulated (e.g., Kim et al. 2013; Kim &
+measured in numerical simulations, as “wind” mass loading                            Ostriker 2015b), the mean interval between SNe within
+can be greatly overestimated if this is not done. In particular,                     projected area pH 2 in the disk of a galaxy is always
+the steep decrease of the warm-gas mass loading factor b w with                      ~0.3 Myr , and breakout of superbubbles is expected to occur
+d implies that if this were measured at d ~ 1 kpc , it would
+                                                                                     after shell formation (see Section 5 of Kim et al. 2017). For a
+overestimate the value at the edge of our box (d ~ 4 kpc) by a
+                                                                                     SN interval 0.1 Myr , Figure 11 of Kim et al. (2017) shows
+factor ∼30, and the true value at larger distance would be even
+                                                                                     that by the time superbubbles reach a radius of 2H ,
+smaller (see also Martizzi et al. 2016, who reached similar
+                                                                                     Mˆ h ~ 10–30 M, depending only weakly on ambient density.
+conclusions about total β). Thus, a measurement of b w from a
+simulation with small vertical domain cannot by itself provide a                     This corresponds to bh = Mˆ h m* ~ 0.1–0.3. The same
+prediction for warm gas mass loss in a galactic wind. However,                       idealized superbubble simulations show a hot-gas energy
+even with a limited vertical domain, it is possible to                               loading factor of a few percent when superbubbles expand
+discriminate between fountain ﬂow and wind by combining                              beyond ~H , since most of the energy has already been
+measurements of the warm gas mass ﬂux and its vertical                               transferred to acceleration and heating of ambient gas and lost
+velocity (as in Section 4). Similar considerations apply to                          via radiative cooling at the time of shell formation.
+observations of gas at T ~ 10 4 K at high latitudes in edge-on                           Kim et al. (2017) argued that bh < 1 is expected quite
+galaxies, but in that case, uncertain projection effects make this                   generally unless the temporal and spatial correlations of SNe
+even more problematic: without an unambiguous measurement                            are extremely enhanced compared to their mean values,
+of velocity (which is subject to assumed wind geometry), it is                       requiring more than a factor of 40 elevation compared to the
+impossible to distinguish between fountain ﬂow and wind from                         average conditions in self-regulated galactic disks where
+observations of the emission measure.                                                SSFR  10-3 M kpc-2 yr-1. Although our simulation does
+   More generally, it is essential to decompose outﬂows in                           exhibit large temporal ﬂuctuations (see Figure 3), the peak
+simulations into separate thermal phases to distinguish winds                        upward ﬂuctuation compared to the mean star formation rate is
+from fountain ﬂows. The phase-integrated β cannot be taken as                        only a factor of 5. Further systematic investigations for
+a true wind mass loading unless the measurement is made at                           different galactic conditions will be needed to conﬁrm whether
+very large distance in a global simulation. Nevertheless,                            the predictions for low bh apply universally in star-forming
+individual measurements of mass ﬂuxes in different phases,                           galaxies. If local or global conditions make star formation
+when combined with analysis of the components of their                               inherently extremely bursty, then bh may be higher.
+
+                                                                                13
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                 Kim & Ostriker
+
+                5.2. Comparison with Observations                                                   5.3. Wind Driving Simulation Context
+   The low mass loading factor of the hot gas in our simulations                          Recently, a number of other research groups have performed
+is comparable to (or slightly smaller than) the observed mass                          simulations with similar local Cartesian box setups to study
+loading factor estimated in the best studied local starburst M82.                      galactic outﬂows driven by SNe (e.g., Creasey et al. 2013,
+Using Chandra X-ray observations, Strickland & Heckman                                 2015; Girichidis et al. 2016a, 2016b; Martizzi et al. 2016; Gatto
+(2009) constrained the “central” mass loading factor of the hot                        et al. 2017; Li et al. 2017). Most of these simulations have
+gas to about bh ~ 0.3–1, with the “central” energy loading                             adopted ﬁxed SN rates, while varying the SN placement (e.g.,
+factor about ah ~ 0.3–1. Here, they constrained quantities                             random versus in high density regions). In contrast, in our
+using a large number of hydrodynamical models to explain the                           simulation, SN rates and locations are self-consistent with star
+observed diffuse and hard X-rays, which come from the central                          formation, which we believe is crucial in creating realistic
+500pc region.11 It is difﬁcult to make a direct comparison, but                        multiphase outﬂows.
+if we consider the state of the hot medium within the energy-                             Girichidis et al. (2016b) ran a set of simulations with solar
+injecting layer (d < H ) in our simulations, we have bh ~ 0.5                          neighborhood conditions, focusing on the effect of the SN
+and ah ~ 0.1–0.2. Although there are no systematic observa-                            placement and of SN clustering. The authors emphasize that
+tional studies of mass loading factors of the hot gas, bh < 1 is                       due to the short duration of their simulations (100 Myr ),
+suggested for a wide range of star formation rates from dwarf                          deﬁnitive conclusions cannot be drawn regarding wind driving.
+starbursts to ultraluminous infrared galaxies, utilizing the                           However, their measurements of outﬂow in the d = 1 kpc
+Chevalier & Clegg (1985) wind model with observational                                 plane can be compared to our fountain ﬂow measurements. For
+constraints of the X-ray luminosity and star formation rates                           a range of different SN feedback treatments, they report mass
+(Zhang et al. 2014).                                                                   loading factors ~5–10 . Although this is larger than what we
+   For the solar neighborhood conditions investigated in the                           ﬁnd (b w ~ 1 at d ~ 1 kpc ), their simulations do show a decline
+present simulation, the warm gas accelerated by the SNe cannot                         in outﬂow over time, and our measurements are at
+reach velocities fast enough to escape the gravitational                               t > 250 Myr . As pointed out by the authors, the majority of
+potential. Typically star formation bursts launch warm outﬂows                         the outﬂowing mass is relatively dense (nH ~ 0.1) and moves
+with velocity up to ~100 km s-1, but with most gas at lower                            slowly (vout ~ 20–40 km s-1), similar to the properties of our
+velocity (see Figure 8), which can climb to ~1 kpc but no                              warm fountain at low d. Their fraction of high-velocity gas
+further (compare the kinetic and gravitational curves in                               (vout > 500 km s-1) is only 2–8 ´ 10-5, which correspond-
+                                                                                       ingly reduces the mass loading factor of gas that is certain to
+Figure 7(c)). Without additional energy and momentum input
+                                                                                       escape to large distance.
+at high-∣z∣, SN feedback alone cannot drive warm winds in the
+                                                                                          In simulations including cosmic rays, Girichidis et al. (2016a)
+Milky Way-type galaxies. Above d = 1 kpc, Figure 9(a) shows
+                                                                                       found slowly moving (vout ~ 10–50 km s-1) warm outﬂows
+that b w < 1. Even though relatively fast warm gas could escape
+                                                                                       with a mass loading factor near unity. The SN-only comparison
+from dwarf galaxies with a shallower potential well than the
+                                                                                       model of Girichidis et al. (2016a) had an order of magnitude
+Milky Way, Equation (7) implies that b w ~ 1 3 for
+                                                                                       lower mass loading, with just a fast, low-density component
+vout > 50 km s-1 at most. This suggests that achieving b > 1                           passing through the d = 1 kpc surface where the mass ﬂux is
+in dwarfs, as appears necessary to explain current-day galaxy-                         measured. While this comparison suggests that cosmic rays may
+halo relationships and cosmic history, would require an                                be crucial to accelerating warm outﬂows, a concern is that the
+additional acceleration mechanism such as interaction with an                          role of SNe may not have been properly captured in Girichidis
+outﬂowing cosmic ray ﬂuid (e.g., Hanasz et al. 2013; Girichidis                        et al. (2016a). Due to the high computational cost of including
+et al. 2016a; Ruszkowski et al. 2017). In cosmic-ray-driven                            cosmic rays, relatively low spatial resolution Dx ~ 16 pc was
+winds, SN feedback may still be crucial for pushing warm gas                           adopted for this pair of comparison simulations. The reported
+out to large d where cosmic ray pressure gradients are sufﬁcient                       mass outﬂow rate for SN-only models appears to differ
+to produce efﬁcient acceleration (Mao & Ostriker 2018).                                signiﬁcantly between the high resolution (Dx ~ 4 pc) simula-
+   Observational studies of warm phase outﬂows (possibly                               tion of Girichidis et al. (2016b), with mass ﬂux at d = 1 kpc of
+including the ionized phase according to our deﬁnition)                                4 ´ 10-2 M kpc-2 yr-1, and the low-resolution (Dx ~ 16 pc)
+indicate a wide range of the mass loading factor, b w + i ~                            simulation of Girichidis et al. (2016a), with mass ﬂux of
+0.1–10 (e.g., Heckman et al. 2015; Chisholm et al. 2017), with                         10-3 M kpc-2 yr-1. In our own resolution study for a similar
+systematically decreasing trends for increasing galaxy mass,                           parameter regime (see Paper I), we found that numerical
+circular velocity, and total SFR. As the level of wind mass                            convergence of SN-driven ISM properties is not guaranteed at
+loading may vary with both local conditions (including Sgas                            Dx ~ 16 pc, and the low-resolution outcomes are quite sensitive
+and S*), as well as the global gravitational potential, it will be                     to the exact prescription for SN feedback. This suggests that
+quite interesting to measure outﬂow properties in simulations                          higher resolution simulations will be needed to assess the role of
+under widely varying galactic conditions, for comparison with                          interactions between the cosmic ray ﬂuid and gas in driving
+current empirical scaling trends and future observations.                              galactic winds.
+                                                                                          The Gatto et al. (2017) models are most similar to our
+11
+    However, we note that in their modeling the hot wind freely expands into a         simulations in that they self-consistently model star formation
+very tenuous medium rather than expanding into a dense ISM. By comparison,
+it is evident (e.g., in Figure 8 of Kim et al. 2017) that before superbubble
+                                                                                       and SN feedback, rather than adopting a ﬁxed SN rate. The
+breakout from the warm/cold ISM, the hot gas has very high velocity but                main conclusion they draw is that the outﬂow rate strongly
+mostly remains subsonic. This suggests that lack of a dense surrounding                depends on the volume ﬁlling factor of hot gas. Above a 50%
+medium in a hydrodynamic wind comparison model might lead to a Mach                    volume ﬁlling factor, their measured mass loading factors at
+number higher than would be realistic, and hence for density and temperature
+constrained by emission properties the mass loss rate could be overestimated by        d = 1 kpc are ~1–100 (but note that this may be exaggerated
+a factor of a few.                                                                     since loading is evaluated instantaneously rather than based on
+
+                                                                                  14
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                       Kim & Ostriker
+
+temporal averages; see the discussion after Equation (10) in               the SN distribution, which in principle could change the wind
+Section 5.1). While the simulation durations of Gatto et al.               mass loading. However, our tests suggest that a very large
+(2017) are <100 Myr , such that star formation and wind mass-              proportion of high-velocity runaways would be needed to
+loss rates are likely both subject to “start-up” transient effects,        signiﬁcantly increase the wind mass loading, while the
+we agree with the conclusion that signiﬁcant driving of                    corresponding star formation rate and ISM phase segregation
+fountain ﬂows (which dominate at d = 1 kpc based on our                    in that case might not be consistent with observations.
+work) is associated with prominent superbubbles near the disk                 Finally, we remark that a ﬁne enough grid to spatially resolve
+midplane. In PaperI, we found the hot gas ﬁlls ~20%–60% of                both low ﬁlling-factor warm gas and high ﬁlling-factor hot gas in
+the volume at ∣z∣ < H .                                                    the wind launching region is crucial for proper physical
+   Martizzi et al. (2016) performed simulations for solar                  characterization of galactic winds. If warm and hot gas are
+neighborhood conditions, as well as environments with higher               artiﬁcially mixed (e.g., if the ﬂow in AMR and semi-Lagrangian
+gas surface density and SN rates. For high-velocity gas                    simulations moves from a higher resolution region near the
+(vout > 300 km s-1) that could potentially escape, they reported           midplane to a lower resolution region at high latitude), the result
+mass loading factors of 0.02–0.005 (lower for higher gas                   can be unphysical in ways that would compromise the
+surface density models). They also noted the absence of wind               implications for real galactic systems. For example, consider
+acceleration from subsonic to supersonic velocities as a                   mixing of warm and hot ﬂows that have total horizontally
+limitation of local Cartesian box simulations. We have argued              averaged mass, momentum, and energy vertical ﬂuxes of Fρ, Frv ,
+in Section 3 that provided the hot-gas Bernoulli parameter and             and FE. If we further assume a steady state and neglect gravity
+mass ﬂux have both approached constant values at large d in a              and magnetic ﬁelds, the outgoing ﬂuxes of the mixed gas must
+Cartesian simulation, they can be combined to make predic-                 be the same as the sum of the horizontally averaged incoming
+tions for wind properties at large distance. In this case, the             ﬂuxes of the warm and hot gas. That is, Fr = rmix vmix =
+asymptotic mass ﬂux at high velocity would be larger than the
+near-disk value as high-enthalpy gas is further accelerated                árw vwñ + árh vhñ, and similarly Frv = rmix vmix 2
+                                                                                                                                + Pmix and
+when streamlines open, but the total mass ﬂux of hot gas would             FE = rmix vmix [vmix 2 + gPmix ((g - 1) rmix )] are the sum of
+                                                                                            2
+
+change little. However, it is not possible to compare hot-gas              “warm” and “hot” terms based on horizontal averages over
+mass ﬂuxes, as Martizzi et al. (2016) did not separate by phase.           multiple zones.
+   Li et al. (2017) conducted simulations using ﬁxed SN rates,                The post-mixing mean velocity will depend on the total
+but decomposed by thermal phase in reporting mass and energy               ﬂuxes as
+(as well as metal) loading factors. Their measurements are at
+d = 1–2.5 kpc , with their “warm” component including most                                       ⎡      ⎛                        1 2⎤
+                                                                                         g Frv ⎢             2 (g 2 - 1) FE Fr ⎞⎟ ⎥
+of what we consider “ionized,” and their “hot” extending down                 vmix =               1 - ⎜⎜1 -                    ⎟     .   (11)
+to T = 3 ´ 10 5 K , slightly lower than our “hot” deﬁnition. For                       g + 1 Fr ⎢⎣      ⎝         g2      Fr2v ⎠ ⎥⎦
+their solar neighborhood model, the hot and total mass loading
+factors are about 0.8 and 2–3, which are larger than ours by a             Typically, Fρ (near the disk) will be dominated by the warm
+factor of 3 to 8 (see also their discussion in comparison to work          medium contribution (see Figure 9(a)), Frv will be dominated
+of Creasey et al. 2013, 2015; Girichidis et al. 2016b). The                by the hot medium contribution (see Figure 4(c)), and FE will
+energy loading factor is also about an order of magnitude larger
+                                                                           be dominated by the hot medium contribution (see Figure 9(b)).
+in their model.
+                                                                              Figure 10 shows this hypothetical post-mixing velocity as
+   The reason for this large difference in mass and energy
+                                                                           calculated from our simulation. This is based on horizontal
+loading with respect to our ﬁndings is mainly due to the
+                                                                           averages of the outgoing (i.e., zones with sign (vz ) = sign (z ))
+difference in the vertical scale height of SNe (relative to the gas
+scale height), as also pointed out in Li et al. (2017). By placing         ﬂuxes, temporally averaged over the outﬂow period and over
+SNe randomly with a ﬁxed SN scale height of 250pc, we ﬁnd                  both sides of the disk. Also shown, for comparison, are the
+that we are able to reproduce their results (see Appendix B.2).            mean outﬂow velocities of the warm and the hot gas. The
+When we adopt a ﬁxed SN scale height of 250pc, the majority                implication of the comparison shown in Figure 10 is that if
+of SN explosions occur outside of the main gas layer. Each SN              numerical mixing were to occur at d > 1 kpc , the result would
+remnant can then expand into the hot, rareﬁed disk atmosphere              be vmix ~ 100 km s-1, which is intermediate between the mean
+with little interaction with warm gas. Most of the injected                hot and mean warm outﬂow velocities. Depending on the
+energy is carried outward before cooling. The resulting ISM                galaxy/halo global properties, this could have two (opposite)
+properties are also quite different: the gas scale height is               unphysical consequences. On the one hand, if vmix is greater
+smaller (H ~ 150 pc), star formation rates are higher, and the             than the galaxy escape speed but the original vw is less than the
+hot and warm/cold phases are almost completely segregated                  galaxy escape speed, then the artiﬁcially mixed ﬂow would be
+(single phase outﬂow). In Appendix B.2, we also test models                able to escape with a much larger mass loading factor than
+without runaway O stars, and with random SN placement with                 would be realistic (i.e., ~b w rather than bh ). On the other hand,
+a smaller scale height of 50pc. Both alternatives result in                if vmix is smaller than the galaxy escape speed, then the
+loading factors and warm gas velocity distribution very similar            artiﬁcially mixed ﬂow would not be able to escape at all,
+to the ﬁducial model. Within the standard TIGRESS frame-                   whereas in reality the hot wind should escape with mass
+work, the spatial distribution of SNe is subject to the adopted            loading factor bh , and potentially loaded with more than its
+prescription for runaways, but is otherwise self-consistently              share of metals.
+determined with respect to the gas by the distribution of star                To avoid these unphysical consequences, it is necessary to
+formation sites. Better theoretical and observational constraints          separately resolve the multiphase gas even above the dense
+for runaway OB stars would lead to more accurate modeling of               midplane region.
+
+                                                                      15
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                        Kim & Ostriker
+
+
+
+
+Figure 10. Hypothetical post-mixing velocity vmix (black) if artiﬁcial numerical mixing were to happen at a distance d from the midplane. We use horizontally
+averaged outgoing ﬂuxes to calculate vmix using Equation (11), and take a time average over the outﬂow period. Also shown are mean values of the warm-gas and hot-
+gas outﬂowing velocities. The nominal value of vmix is similar to the warm medium velocity at small d, and gets closer to the hot medium velocity at large d.
+
+                              6. Summary                                            added or subtracted either through shocks, radiation, pressure
+                                                                                    work on other phases, or mixing.
+   Gas ﬂows blown out of galactic midplane regions by
+                                                                                       2. The hot gas mass loading factor, deﬁned as the ratio of
+energetic stellar feedback, most notably type II SNe, will either
+                                                                                    outﬂowing mass ﬂux to the star formation rate per unit area, is
+escape as a wind or turn around as a fountain, depending on the
+                                                                                    bh ~ 0.1, decreasing by 40% from d=1 to 4 kpc. The
+speciﬁc kinetic and thermal energy of the gas compared to
+                                                                                    measured value of bh is consistent with estimates from
+the gravitational potential. Due to the multiphase structure of
+                                                                                    idealized numerical experiments of superbubble expansion in
+the ISM, the simplest steady, adiabatic solutions (e.g.,
+                                                                                    a warm-cold ISM.
+Chevalier & Clegg 1985) are not directly applicable, although
+                                                                                       3. Above d = 1 kpc, the hot outﬂow contains a tiny fraction
+aspects of these solutions are informative when considering a
+                                                                                    of the energy originally injected in the ISM by SNe. Another
+phase-decomposed analysis. More generally, the question of
+                                                                                    tiny fraction is converted to kinetic energy of the warm and
+“How much mass and energy are carried out by each phase of
+                                                                                    cold medium accelerated by superbubble expansion, but most
+outﬂowing gas?” depends strongly on when and where star
+                                                                                    of the original SN energy is radiated away within the disk scale
+formation and SNe occur and how feedback transfers energy to
+                                                                                    height. The ratio of outﬂowing hot-gas energy ﬂux to the SN
+the ISM. Given the complexity involved, the properties of
+                                                                                    energy injection rate per unit area is ah ~ 0.02, decreasing by
+galactic winds and fountain ﬂows created by the star-forming
+                                                                                    65% from d=1 to 4 kpc. For d = 2–4 kpc, the mean
+ISM must be investigated via fully self-consistent numerical
+                                                                                    temperature of the hot gas is ~1.5 ´ 106 K , and its mean
+simulations.
+                                                                                    velocity is ~200 km s-1. Magnetic energy in the outﬂow is
+   The TIGRESS implementation described in PaperI provides
+                                                                                    negligible, with mean Alfvén speed of ~30 km s-1.
+comprehensive, self-consistent simulations of the multiphase
+                                                                                       4. In the present simulation, the energy of the hot medium is
+star-forming ISM that can be used for high-resolution
+                                                                                    carried mainly as heat because the outﬂow is constrained to
+investigations of outﬂows in a wide variety of environments.
+                                                                                    remain vertical in our local Cartesian box. Allowing for the
+In this paper, we analyze the solar neighborhood model of
+                                                                                    opening of streamlines at larger distance (beyond our
+PaperI to characterize vertical gas ﬂows phase-by-phase. Our
+                                                                                    simulation domain), much of the enthalpy would be converted
+principal ﬁnding is that the outﬂowing gas consists of a
+                                                                                    to kinetic energy. The hot medium is barely affected by gravity
+superposition of a hot wind and a warm fountain ﬂow. We
+                                                                                    within the simulation domain, and with an asymptotic
+summarize key conclusions from our analysis of each
+component below.                                                                    maximum wind speed of ~ 2 ( - F) ~ 350 km s-1 would
+                                                                                    easily escape to very large distances. More generally, local
+                                                                                    simulations with varying galactic conditions can provide
+                             6.1. Hot Wind
+                                                                                    measures of bh and the Bernoulli parameter  that can be
+  1. The hot gas component, which is created by SN shocks,                          used to provide predictions for hot wind properties at large
+behaves very similarly to expectations for a steady, adiabatic                      distances in a wide range of galaxies.
+ﬂow as it expands away from the midplane. For the
+horizontally and temporally averaged hot component, the mass
+                                                                                                              6.2. Warm Fountain
+ﬂux and the Bernoulli parameter are close to constant as a
+function of the distance from the midplane d above d > 1 kpc ,                        1. The warm (including both neutral and ionized) medium,
+indicating that there is relatively little mass added or subtracted                 which dominates the total gas mass in the simulation, acquires
+by heating or cooling from/to another phase, and little energy                      energy from SN feedback, mostly in kinetic form. However,
+
+                                                                               16
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                    Kim & Ostriker
+
+the typical outgoing velocity of the warm medium above                    potential even within our local box affects the warm-medium
+d = 1 kpc is only vout ~ 60 km s-1, which is not enough to                properties at large d, so it is important to treat conclusions
+overcome the large-scale gravitational potential in the present           regarding warm-medium outﬂows cautiously.
+simulation. As a result, most of the warm gas that is blown out              Second, in the present simulations we do not include
+of the midplane eventually turns around and falls back, forming           photoionization. This affects the properties of the warm and
+a fountain.                                                               ionized phases, for which the photoionization heating can be
+   2. Star formation bursts lead to a succession of outﬂow-               important. Inclusion of photoionization is necessary for direct
+dominated and inﬂow-dominated periods of the fountain ﬂow.                comparison with observations, where the line diagnostics are
+During both outﬂow-dominated and inﬂow-dominated periods,                 sometimes better explained by photoionization rather than a
+gas with both signs of velocity (i.e., outﬂows and inﬂows) is             shock model (e.g., Chisholm et al. 2016a). As a ﬁrst step
+present on both sides of the disk. Considering just the                   toward this, it may be sufﬁcient to compute ionization in post-
+outﬂowing gas, owing to deceleration and turnaround, the                  processing, as photoionization is unlikely to be important to the
+outgoing warm-medium mass loading factor b w is a decreasing              dynamics of high-velocity warm gas, even though it may
+function of height d. The mean warm-gas mass ﬂux in                       dominate heating. Most observations of highly ionized
+outﬂowing “fountain” gas at d ~ 1 kpc is b w ~ 1, but this                absorption lines, however, are based on large apertures, so
+drops steeply to b w ~ 0.03 at d = 4 kpc.                                 direct theoretical comparisons would also require simulations
+   3. The value of the warm-medium energy loading factor aw               with global geometry.
+drops from ∼0.002 to 10−4 over d=1 to 4 kpc. Because aw                    We are able to run our simulations over an extended period,
+drops slightly less than b w , the mean speciﬁc energy of the             long after initial transients that may affect quantitative results
+warm medium increases with d. The corresponding (volume-                  reported by others for outﬂows in simulations with similar
+weighted) mean velocities of the warm gas at d=1 and 4 kpc              physics and resolution to the TIGRESS implementation, but
+are ∼60 and 80 km s-1. However, it is important to note that              shorter durations. Other recent high-resolution simulations do
+the increase of mean velocity in the warm medium with d is                not have self-consistent star formation and feedback, which
+primarily due to dropout of low-velocity ﬂuid elements, and               may affect outﬂow loading because this is sensitive to the
+does not reﬂect acceleration with height. Detailed distributions          spatio-temporal correlation of supernovae with ISM gas of
+show a secular decrease in the mass and mass ﬂux of high-                 different phases. In the future, as more groups run high-
+velocity warm gas with increasing d.                                      resolution simulations with self-consistent star formation and
+   4. A promising way to characterize warm outﬂows is via the             SN feedback for an extended duration, it will be informative to
+velocity distribution where they are launched at d ~ 2H . Here,           compare phase-separated results for mass and energy loading,
+we ﬁnd that the high-velocity warm gas has an exponential
+                                                                          Bernoulli parameters, and velocity distributions, for both
+distribution. For a given PDF in velocity, the portion of the
+                                                                          fountain ﬂows and winds.
+warm gas mass ﬂux that is able to escape as a wind will depend
+                                                                             Application of the TIGRESS implementation to other
+on the halo potential depth. For the large-scale galactic
+                                                                          galactic environments is currently underway, and promises to
+potential in the present simulation, very little warm gas
+                                                                          be quite interesting. Varying the basic model input parameters
+escapes, but in a dwarf galaxy, the same distribution could
+                                                                          (especially gas and stellar surface density and metallicity) will
+lead to a wind with b w ~ 1 3.
+                                                                          enable predictions for multiphase outﬂow properties in a wide
+                                                                          range of galaxies, and will provide detailed information needed
+                   6.3. Caveats and Prospects                             to build subgrid models for winds in cosmological simulations
+   Our simulations have two main caveats for direct compar-               of galaxy formation. By extending TIGRESS and other self-
+ison with observations. First, we use a local Cartesian box to            consistent multiphase ISM/star formation numerical imple-
+achieve high resolution. The uniformly high resolution is                 mentations to include additional feedback (especially radiation
+crucial for distinguishing different phases and limiting numer-           and cosmic rays), understanding the complex physics behind
+ical mixing. However, the local Cartesian box prevents us from            galactic winds and fountains is within reach.
+following the hot outﬂow’s evolution under global geometry
+with a realistic galactic potential (see Martizzi et al. 2016).              We are grateful to the referee for helpful report, and to Miao
+Without the opening of streamlines, the hot medium cannot                 Li and Drummond Fielding for fruitful discussions. This work
+accelerate through a sonic point to reach its asymptotic                  was supported by grants AST-1312006 from the National
+velocity; we therefore cannot follow this process directly in             Science Foundation, and NNX14AB49G and NNX17AG26G
+our simulations. However, proper decomposition of the gas                 from NASA. Resources supporting this work were provided in
+phases allows us to provide well-deﬁned mass and energy                   part by the NASA High-End Computing (HEC) Program
+loading factors for the hot gas, which can be robustly                    through the NASA Advanced Supercomputing (NAS) Division
+extrapolated to obtain predictions for asymptotic wind proper-            at Ames Research Center and in part by the Princeton Institute
+ties at large scales. The hot-gas loading factors at large d are          for Computational Science and Engineering (PICSciE) and the
+slightly lower than the observational constraints deduced from            Ofﬁce of Information Technology’s High Performance Com-
+M82 (Strickland & Heckman 2009). This is likely because in                puting Center.
+M82 the strong starburst has successfully cleared much of the                Software: This work made use of Athena MHD code
+cooler gas away from the midplane; we ﬁnd that when SNe                   (Stone et al. 2008; Stone & Gardiner 2009). This work also
+explode above the denser phases, the mass and energy loading              made use of analysis and visualization softwares including yt
+of hot winds increases. As discussed above, to the extent that            (Turk et al. 2011), astropy (Astropy Collaboration et al. 2013),
+the warm phase is ballistic above a scale height, its measured            matplotlib (Hunter 2007), numpy (van der Walt et al. 2011),
+velocity distributions could be used to extrapolate its properties        IPython (Perez & Granger 2007), pandas (McKinney 2010),
+to large distance. However, it is clear that the gravitational            and VisIt (Childs et al. 2012).
+
+                                                                     17
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                      Kim & Ostriker
+
+                     Appendix A                                             x-surfaces of the box, from shearing boundary conditions—
+             MHD Equations in a Shearing Box                                e.g., Hawley et al. 1996; Stone & Gardiner 2010) and the net
+  The ideal MHD equations of mass, momentum, and total                      cooling.
+energy conservation in frame rotating at W = Wˆz are                           Although the evolution of our simulation is highly dynamic
+                                                                            and time-dependent, the ﬂuctuations in the horizontally
+                    ¶r                                                      averaged gas properties are with respect to a well-deﬁned
+                       +  · (rv) = 0,                          (12)
+                    ¶t                                                      equilibrium state (see Figure 4), after an early transient period.
+                                                                            We thus take time averages to consider a quasi-steady
+   ¶(rv)       ⎡          B2   BB ⎤
+         +  · ⎢rvv + P +    -    ⎥ = - 2W ´ (rv)                           equilibrium state, dropping the time derivative terms in
+    ¶t         ⎣          8p   4p ⎦                                         Equations (16)–(18) to analyze characteristics of mean gas
+                                      - r Ftot ,                           ﬂows. We explicitly measured each energy source term for
+                                                                (13)        separate thermal phases and conﬁrmed that for the hot gas the
+                                                                            energy source terms are negligible, and for the warm gas the
+and                                                                         cooling dominates the energy source terms. The hot gas can
+                  ⎡⎛ 1                                                      thus be treated nearly adiabatically. Above the region where
+         ¶                 g P        ⎞
+            +  · ⎢⎜ v 2 +      + Ftot ⎟ rv                                 SN energy is injected, the hot gas mass and energy ﬂuxes
+         ¶t       ⎣⎝ 2     g-1r        ⎠                                    remain (roughly) constant, and hence the ratio of the two,
+                                                                             + z , is also (roughly) constant. Here,
+               (B ´ v) ´ B ⎤
+           +               ⎥⎦ = - r  ,                         (14)                                        Sz
+                   4p                                                                               z º                                 (22)
+                                                                                                            rvz
+where the total energy density is
+                                                                            is the speciﬁc magnetic energy carried by the magnetic ﬁeld,
+                      1 2     P    B2
+                º      rv +     +    .                         (15)        which is shown to be small compared to  (Figure 5). Thus,
+                      2      g-1   8p                                       outside of the energy injection region where the hot component
+The total gravitational potential Ftot includes self-gravity and            is created, its mean vertical mass ﬂux rvz and its Bernoulli
+external-gravity, as well as the tidal potential Ftidal = -qW2x 2           parameter  are expected to be roughly constant, independent
+(see Paper I). Note that the zero point of Ftot is at the center of         of distance relative to the midplane.
+the simulation domain.                                                         We note that, more generally, if we consider the time-
+   With the help of shearing-periodic boundary conditions in                averaged state of a ﬂow (i.e., ¶ (...) ¶t = 0 ) that is weakly
+the horizontal directions, the horizontally averaged equations              magnetized and has negligible cooling, Equations (12) and (14)
+are then given by                                                           reduce to  · (rv) = 0 and v ·  = 0 . That is, the Bernoulli
+                                                                            parameter is conserved along streamlines, regardless of the
+                   ¶á rñ   ¶                                                geometry of the ﬂow.
+                         +    á rvz ñ = 0,                      (16)
+                    ¶t     ¶z
+                                                                                                   Appendix B
+  ¶á rvz ñ   ¶             B2  B2                    ¶F                                     Numerical Convergence Tests
+           +    rvz2 + P +    - z               =- r    , (17)
+    ¶t       ¶z            8p  4p                    ¶z
+                                                                               Due to complex and nonlinear interactions between SN
+and                                                                         feedback and the surrounding medium, satisfaction of simple
+                                                                            physical conditions (e.g., resolving the Sedov stage of a single
+   ¶á ñ   ¶                  qW          ⎛          Bx By ⎞                SN blast wave; Kim & Ostriker 2015a) will not guarantee
+    ¶t
+         +
+           ¶z
+              á rvz  + zñ =
+                              Ly       ò ⎜⎝rvx dvy - 4p ⎟⎠ dy               numerical convergence of the simulated system as a whole. It is
+                                                                            therefore important to check robustness of our main results for
+                                 - á r ñ ,                                 varying numerical resolution.
+                                                                (18)           In addition, it has been suggested that the SN placement can
+where the angle brackets denote a horizontal average,                       signiﬁcantly impact the resulting ISM structure and feedback
+                                                                            efﬁciency (e.g., Gatto et al. 2015; Li et al. 2015). In TIGRESS,
+á qñ º å qdxdy L x L y . Here, speciﬁc energy of the gas, or the
+                                                                            unlike in most other simulations, the SN locations are not set
+Bernoulli parameter, is deﬁned by                                           based on a pre-deﬁned vertical distribution, but are self-
+                       v2    g P                                            determined based on the locations where star clusters form and
+                 º       +      + F,                           (19)        migrate over time. A fraction of the SNe in our simulation are
+                       2    g-1r
+                                                                            associated with runaways, and we adopt a distribution for the
+where F = Ftot - Ftidal , and the Poynting vector is deﬁned by              ejection velocity from clusters based on a binary population
+                                                                            synthesis model (Eldridge et al. 2011). This distribution,
+                          (B ´ v ) ´ B
+                     Sº                ,                        (20)        together with the fraction of binary runaways, is in fact not very
+                              4p                                            certain. It is therefore valuable to test how our results might
+with its vertical component of                                              depend on the placement of SNe by comparing different
+                                                                            test runs.
+                          vz B 2 - Bz v · B
+                   Sz =                     .                   (21)
+                                  4p                                                           B.1. Numerical Resolution
+The right-hand side of Equation (18) is the sum of energy                     We analyze the same set of simulations with different
+source terms due to the Reynolds and Maxwell stresses (on the               numerical resolutions of Dx = 4, 8, and 16 pc. Note that we
+
+                                                                       18
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                     Kim & Ostriker
+
+
+
+
+Figure 11. Mass- and mass ﬂux-weighted velocity distributions of the warm medium measured at d = 1 kpc for different numerical resolutions during the outﬂow
+period (same as Figures 8(c) and (e)). The magenta dashed lines in each panel are ﬁts given by Equations (7) and (8).
+
+
+
+
+         Figure 12. Mass and energy loading factors of the warm (green) and hot (red) phases (same as Figure 9), for different numerical resolutions.
+
+
+showed in Paper I that Dx = 16 pc is a marginal condition for                     (Figure 13) and mass and energy loading factors of the warm
+convergence in star formation rates and the ISM properties.                       and hot medium (Figure 14), we conclude that presence or
+Here, we further show detailed velocity distributions of the                      absence of runaways with our adopted prescription does not
+warm medium (Figure 11) and mass and energy loading factors                       signiﬁcantly alter the results.
+of the warm and hot medium (Figure 12) at varying resolution.                        With randomly located SNe, the results can change
+These properties, which are key characteristics of hot winds                      substantially, depending on the adopted scale height. For the
+and warm fountains, are evidently converged.                                      random-250 model, the hot gas mass and energy loading
+                                                                                  factors are about 0.8 and 0.2, respectively. In this case, most
+                         B.2. SN Placement                                        SNe explode above the gaseous scale height without interacting
+   In order to compare the effects of SN placement, we consider,                  with the warm and cold medium. The hot SN remnants simply
+in addition to the ﬁducial model, three models with different                     expand outward in the low-density, hot atmosphere. A
+prescriptions: (1) no-runaway—all SNe are in star cluster                         negligible warm fountain is created. In contrast, for the
+particles without runaways; (2) random-250—all SNe are                            random-50 model, the majority of SN events happen within
+randomly located horizontally and consistent with an exponen-                     the warm/cold gas layer. The hot gas created in SN remnants
+tial vertical proﬁle with scale height of zSN = 250 pc vertically,                strongly interacts with the surrounding warm and cold medium,
+but with the rate determined by star cluster particles; (3)                       and hot gas is lost in the process. The resulting hot gas mass
+random-50—the same as random-250, but zSN = 50 pc.                                and energy loading factors in the wind for the random-50
+   By comparing the ﬁducial model with the no-runaway                             model are similar to the ﬁducial model. This trend with varying
+model for velocity distributions of the warm medium                               SN scale height was also shown in Li et al. (2017).
+
+                                                                             19
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                     Kim & Ostriker
+
+
+
+
+Figure 13. Mass- and mass ﬂux-weighted velocity distributions of the warm medium measured at d = 1 kpc for different SN prescriptions during the outﬂow period
+(same as Figures 8(c) and (e)).
+
+
+
+
+            Figure 14. Mass and energy loading factors of the warm (green) and hot (red) phases for different SN prescriptions (same as Figure 9).
+
+   In short, the mass and energy loading factors of the hot wind                  structure persists and allows more efﬁcient hot and warm
+are sensitive to the vertical distribution of SNe relative to the                 outﬂows in the lower half of the domain. This results in slightly
+gas (mainly the warm medium). In our ﬁducial model, we                            higher mass and energy loading factors of the warm fountain
+assume 2/3 of SNe explode in binaries and eject runaway                           for the random-50 model relative to the ﬁducial model.
+companions. This gives a runaway SNe fraction of 1/3. Since
+the ejection velocity distribution is an exponential function
+with characteristic velocity 50 km s-1, the fraction of SNe that                                                 ORCID iDs
+explode above 200 pc is 15%. This fraction increases to 44% in                    Chang-Goo Kim https://orcid.org/0000-0003-2896-3725
+the random-250 model, while the no-runaway and                                    Eve C. Ostriker https://orcid.org/0000-0002-0509-9113
+random-50 models give fractions of 0.4% and 7%,
+respectively.
+   It is noteworthy that the random-250 model fails to                                                           References
+regulate star formation rates at the same level as the ﬁducial
+                                                                                  Astropy Collaboration, Robitaille, T. P., Tollerud, E. J., et al. 2013, A&A,
+model (the SFR is about 1.5 times higher for the random-250                          558, A33
+model). In the random-50 model, an asymmetric vertical                            Behroozi, P. S., Wechsler, R. H., & Conroy, C. 2013, ApJ, 770, 57
+distribution of gas develops at later times (more gas is in the                   Bovy, J. 2015, ApJS, 216, 29
+upper half of the simulation domain). Since the SNe                               Bregman, J. N. 1980, ApJ, 236, 577
+                                                                                  Bustard, C., Zweibel, E. G., & D’Onghia, E. 2016, ApJ, 819, 29
+distribution is set relative to the initial gas distribution rather               Chen, Y.-M., Tremonti, C. A., Heckman, T. M., et al. 2010, AJ, 140, 445
+than the instantaneous gas distribution, the asymmetric gas                       Chevalier, R. A., & Clegg, A. W. 1985, Natur, 317, 44
+
+                                                                             20
+The Astrophysical Journal, 853:173 (21pp), 2018 February 1                                                                                          Kim & Ostriker
+
+Childs, H., Brugger, E., Whitlock, B., et al. 2012, High Performance                  Li, M., Bryan, G. L., & Ostriker, J. P. 2017, ApJ, 841, 101
+    Visualization-Enabling Extreme-Scale Scientiﬁc Insight (Boca Raton, FL:           Li, M., Ostriker, J. P., Cen, R., Bryan, G. L., & Naab, T. 2015, ApJ, 814, 4
+    CRC Press), 357                                                                   López-Cobá, C., Sánchez, S. F., Moiseev, A. V., et al. 2017, MNRAS,
+Chisholm, J., & Matsushita, S. 2016, ApJ, 830, 72                                         467, 4951
+Chisholm, J., Tremonti, C. A., Leitherer, C., & Chen, Y. 2017, MNRAS,                 Mac Low, M.-M., & Ferrara, A. 1999, ApJ, 513, 142
+    469, 4831                                                                         Mac Low, M.-M., & McCray, R. 1988, ApJ, 324, 776
+Chisholm, J., Tremonti, C. A., Leitherer, C., Chen, Y., & Wofford, A. 2016a,          Mac Low, M.-M., McCray, R., & Norman, M. L. 1989, ApJ, 337, 141
+    MNRAS, 457, 3133                                                                  Mao, S., & Ostiker, E. C. 2018, ApJ, in press (arXiv:1801.06544)
+Chisholm, J., Tremonti Christy, A., Leitherer, C., & Chen, Y. 2016b, MNRAS,           Marasco, A., Fraternali, F., & Binney, J. J. 2012, MNRAS, 419, 1107
+    463, 541                                                                          Martin, C. L. 2005, ApJ, 621, 227
+Contursi, A., Poglitsch, A., Grácia Carpio, J., et al. 2013, A&A, 549, A118           Martizzi, D., Fielding, D., Faucher-Giguère, C.-A., & Quataert, E. 2016,
+Creasey, P., Theuns, T., & Bower, R. G. 2013, MNRAS, 429, 1922                            MNRAS, 459, 2311
+Creasey, P., Theuns, T., & Bower, R. G. 2015, MNRAS, 446, 2125                        McCray, R., & Kafatos, M. 1987, ApJ, 317, 190
+de Avillez, M. A. 2000, MNRAS, 315, 479                                               McKinney, W. 2010, in Proc. 9th Python in Science Conf, ed.
+de Avillez, M. A., & Breitschwerdt, D. 2004, A&A, 425, 899                                S. van der Walt & J. Millman (Austin TX: SciPy), 51
+Eldridge, J. J., Langer, N., & Tout, C. A. 2011, MNRAS, 414, 3501                     Moster, B. P., Naab, T., & White, S. D. M. 2013, MNRAS, 428, 3121
+Erb, D. K., Quider, A. M., Henry, A. L., & Martin, C. L. 2012, ApJ, 759, 26           Muratov, A. L., Kereš, D., Faucher-Giguère, C.-A., et al. 2015, MNRAS,
+Fielding, D., Quataert, E., Martizzi, D., & Faucher-Giguère, C.-A. 2017,                  454, 2691
+    MNRAS, 470, L39                                                                   Naab, T., & Ostriker, J. P. 2017, ARA&A, 55, 59
+Fraternali, F., & Binney, J. J. 2006, MNRAS, 366, 449                                 Perez, F., & Granger, B. E. 2007, CSE, 9, 21
+Fraternali, F., & Binney, J. J. 2008, MNRAS, 386, 935                                 Peters, T., Naab, T., Walch, S., et al. 2017, MNRAS, 466, 3293
+Gatto, A., Walch, S., Low, M.-M. M., et al. 2015, MNRAS, 449, 1057                    Pettini, M., Shapley, A. E., Steidel, C. C., et al. 2001, ApJ, 554, 981
+Gatto, A., Walch, S., Naab, T., et al. 2017, MNRAS, 466, 1903                         Pillepich, A., Nelson, D., Hernquist, L., et al. 2017, arXiv:1707.03406
+Gent, F. A., Shukurov, A., Fletcher, A., Sarson, G. R., & Mantere, M. J. 2013,        Rodríguez-Puebla, A., Primack, J. R., Avila-Reese, V., & Faber, S. M. 2017,
+    MNRAS, 432, 1396                                                                      MNRAS, 470, 651
+Girichidis, P., Naab, T., Walch, S., et al. 2016a, ApJL, 816, L19                     Rupke, D. S., Veilleux, S., & Sanders, D. B. 2005, ApJS, 160, 115
+Girichidis, P., Walch, S., Naab, T., et al. 2016b, MNRAS, 456, 3432                   Ruszkowski, M., Yang, H.-Y. K., & Zweibel, E. 2017, ApJ, 834, 208
+Hanasz, M., Lesch, H., Naab, T., et al. 2013, ApJL, 777, L38                          Schaye, J., Crain, R. A., Bower, R. G., et al. 2015, MNRAS, 446, 521
+Hawley, J. F., Gammie, C. F., & Balbus, S. A. 1996, ApJ, 464, 690                     Shapiro, P. R., & Field, G. B. 1976, ApJ, 205, 762
+Heckman, T. M., Alexandroff, R. M., Borthakur, S., Overzier, R., &                    Shapley, A. E., Steidel, C. C., Pettini, M., & Adelberger, K. L. 2003, ApJ,
+    Leitherer, C. 2015, ApJ, 809, 147                                                     588, 65
+Heckman, T. M., & Borthakur, S. 2016, ApJ, 822, 9                                     Shu, F. H. 1992, The Physics of Astrophysics, Vol. II: Gas Dynamics
+Heckman, T. M., Lehnert, M. D., Strickland, D. K., & Armus, L. 2000, ApJS,                (Sausalito, CA: Univ. Science Books)
+    129, 493                                                                          Somerville, R. S., & Davé, R. 2015, ARA&A, 53, 51
+Heckman, T. M., & Thompson, T. A. 2017, arXiv:1701.09062                              Springel, V., & Hernquist, L. 2003, MNRAS, 339, 289
+Hennebelle, P., & Iffrig, O. 2014, A&A, 570, A81                                      Steidel, C. C., Erb, D. K., Shapley, A. E., et al. 2010, ApJ, 717, 289
+Hill, A. S., Joung, M. R., Mac Low, M.-M., et al. 2012, ApJ, 750, 104                 Stone, J. M., & Gardiner, T. 2009, NewA, 14, 139
+Hopkins, P. F., Kereš, D., Oñorbe, J., et al. 2014, MNRAS, 445, 581                   Stone, J. M., & Gardiner, T. A. 2010, ApJS, 189, 142
+Hopkins, P. F., Quataert, E., & Murray, N. 2012, MNRAS, 421, 3522                     Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B. 2008,
+Hopkins, P. F., Wetzel, A., Keres, D., et al. 2017, arXiv:1702.06148                      ApJS, 178, 137
+Hunter, J. D. 2007, CSE, 9, 90                                                        Strickland, D. K., & Heckman, T. M. 2007, ApJ, 658, 258
+Iffrig, O., & Hennebelle, P. 2017, A&A, 604, A70                                      Strickland, D. K., & Heckman, T. M. 2009, ApJ, 697, 2030
+Joung, M. K. R., & Mac Low, M.-M. 2006, ApJ, 653, 1266                                Strickland, D. K., & Stevens, I. R. 2000, MNRAS, 314, 511
+Katz, N. 1992, ApJ, 391, 502                                                          Thompson, T. A., Quataert, E., Zhang, D., & Weinberg, D. H. 2016, MNRAS,
+Kim, C.-G., & Ostriker, E. C. 2015a, ApJ, 802, 99                                         455, 1830
+Kim, C.-G., & Ostriker, E. C. 2015b, ApJ, 815, 67                                     Torrey, P., Hopkins, P. F., Faucher-Giguère, C.-A., et al. 2017, MNRAS,
+Kim, C.-G., & Ostriker, E. C. 2017, ApJ, 846, 133                                         467, 2301
+Kim, C.-G., Ostriker, E. C., & Kim, W.-T. 2013, ApJ, 776, 1                           Turk, M. J., Smith, B. D., Oishi, J. S., et al. 2011, ApJS, 192, 9
+Kim, C.-G., Ostriker, E. C., & Raileanu, R. 2017, ApJ, 834, 25                        van der Walt, S., Colbert, S. C., & Varoquaux, G. 2011, CSE, 13, 22
+Kimm, T., & Cen, R. 2014, ApJ, 788, 121                                               Veilleux, S., Cecil, G., & Bland-Hawthorn, J. 2005, ARA&A, 43, 769
+Kimm, T., Cen, R., Devriendt, J., Dubois, Y., & Slyz, A. 2015, MNRAS,                 Vogelsberger, M., Genel, S., Springel, V., et al. 2014, Natur, 509, 177
+    451, 2900                                                                         Walch, S., Girichidis, P., Naab, T., et al. 2015, MNRAS, 454, 238
+Korpi, M. J., Brandenburg, A., Shukurov, A., Tuominen, I., & Nordlund, Å.             Wang, B. 1995, ApJ, 444, 590
+    1999, ApJL, 514, L99                                                              Weiß, A., Walter, F., Neininger, N., & Klein, U. 1999, A&A, 345, L23
+Leroy, A. K., Walter, F., Martini, P., et al. 2015, ApJ, 814, 83                      Zhang, D., Thompson, T. A., Murray, N., & Quataert, E. 2014, ApJ, 784, 93
+
+
+
+
+                                                                                 21
+

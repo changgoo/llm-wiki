@@ -1,0 +1,803 @@
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                            doi:10.1088/0004-637X/778/2/88
+ 2013. The American Astronomical Society. All rights reserved. Printed in the U.S.A.
+C
+
+
+
+
+                                  LONG-TERM EVOLUTION OF DECAYING MAGNETOHYDRODYNAMIC
+                                     TURBULENCE IN THE MULTIPHASE INTERSTELLAR MEDIUM
+                                                                        Chang-Goo Kim1 and Shantanu Basu
+               Department of Physics and Astronomy, University of Western Ontario, London, Ontario N6A 3K7, Canada; ckim256@uwo.ca, basu@uwo.ca
+                                         Received 2013 March 29; accepted 2013 September 19; published 2013 November 7
+
+                                                                                        ABSTRACT
+              Supersonic turbulence in the interstellar medium (ISM) is believed to decay rapidly within a flow crossing time
+              irrespective of the degree of magnetization. However, this general consensus of decaying magnetohydrodynamic
+              (MHD) turbulence relies on local isothermal simulations, which are unable to take into account the roles of the
+              global structures of magnetic fields and the ISM. Utilizing three-dimensional MHD simulations including interstellar
+              cooling and heating, we investigate decaying MHD turbulence within cold neutral medium sheets embedded in a
+              warm neutral medium. The early evolution of turbulent kinetic energy is consistent with previous results for decaying
+              compressible MHD turbulence characterized by rapid energy decay with a power-law form of E ∝ t −1 and by a
+              short decay time compared with the flow crossing time. If initial magnetic fields are strong and perpendicular to
+              the sheet, however, long-term evolution of the kinetic energy shows that a significant amount of turbulent energy
+              (∼0.2E0 ) still remains even after 10 flow crossing times for models with periodic boundary conditions. The decay
+              rate is also greatly reduced as the field strength increases for such initial and boundary conditions, but not if the
+              boundary conditions are those for a completely isolated sheet. We analyze velocity power spectra of the remaining
+              turbulence to show that in-plane, incompressible motions parallel to the sheet dominate at later times.
+              Key words: ISM: kinematics and dynamics – magnetohydrodynamics (MHD) – methods: numerical – turbulence
+              Online-only material: color figures
+
+
+
+                                 1. INTRODUCTION                                               linewidths within molecular clouds (e.g., Larson 1981). Mag-
+                                                                                               netic fields have then come into the spotlight to resolve this con-
+   Supersonic turbulence is ubiquitous in the interstellar medium                              tradiction. Arons & Max (1975) have suggested non-dissipative
+(ISM) and is a key ingredient of star formation processes (see                                 linear Alfvén waves as sub-Alfvénic turbulence to explain the
+Elmegreen & Scalo 2004; Mac Low & Klessen 2004; McKee                                          observed turbulence without the need for external energy driv-
+& Ostriker 2007 for recent reviews). The characteristics and                                   ing (see also Mouschovias 1975; Zweibel & Josafatsson 1983;
+properties of turbulence have long been studied since the pio-                                 Elmegreen 1985).
+neering study for incompressible, hydrodynamic turbulence by                                      Recently, numerical simulations allowed one to explore the
+Kolmogorov (1941), which is applicable mostly to terrestrial                                   nonlinear evolution of supersonic MHD turbulence and revealed
+flows. For incompressible turbulence, turbulent energy is trans-                               that the previous belief of long-lived, sub-Alfvénic turbulence
+ferred from larger to smaller scales via eddy cascading all the                                is incorrect. Gammie & Ostriker (1996) have shown that kinetic
+way down to the dissipation scale, where viscosity is effective.                               energy dissipates quickly in one-dimensional MHD simulations
+Turbulence in the ISM, however, is expected to depart largely                                  of isothermal compressible decaying turbulence. This work
+from this classical picture mostly due to its compressibility with                             has been extended to three-dimensional, local periodic-box
+supersonic Mach number and non-negligible degree of magne-                                     simulations by several authors (e.g., Mac Low et al. 1998;
+tization. A general theory of incompressible magnetohydrody-                                   Stone et al. 1998; Padoan & Nordlund 1999). The results from
+namic (MHD) turbulence has been developed by Goldreich &                                       simulations for compressible MHD turbulence have converged
+Sridhar (1995) and tested by numerical simulations for both in-                                to a rapid decay of turbulence in the ISM, as E ∝ t −1 ,
+compressible and compressible gas flows (e.g., Cho & Vishniac                                  regardless of magnetic field strengths. If the energy transfer
+2000; Maron & Goldreich 2001; Lithwick & Goldreich 2001;                                       to larger scales through the inverse cascade is prevented by
+Cho & Lazarian 2003; Vestuto et al. 2003). Similar energy cas-                                 energy injection on the scale of the system, Cho & Lazarian
+cading processes occur in MHD turbulence as well, while the                                    (2003) have suggested η would be closer to 2. Supersonic
+eddies are elongated along the direction of the magnetic field.                                turbulence in molecular cloud conditions dissipates half of the
+   The time evolution of turbulent energy is expected to follow a                              initial energy within a flow crossing time (Ostriker et al. 2001),
+power-law form of E ∝ t −η . The exponent η of incompressible                                  usually comparable to the free-fall time of the cloud. Based
+hydrodynamic turbulence has been analytically suggested to be                                  on these numerical studies, the universal supersonic turbulence
+10/7 from Kolmogorov theory (Kolmogorov 1941) and exper-                                       observed in clouds is now believed to arise from inexhaustible
+imentally measured to be in a range from 1.2 to 2 (Smith et al.                                energy input mechanisms, e.g., stellar feedback, gas-dynamical
+1993). Since supersonic gas flows naturally induce shock waves                                 instabilities, galactic rotation, and so on (see Mac Low &
+that provide additional energy dissipation, turbulent energy is                                Klessen 2004; Elmegreen & Scalo 2004, and references therein).
+expected to be dissipated away rapidly in less than the lifetime                                  Although general consensus of rapidly decaying compress-
+of a molecular cloud in the absence of driving. This theoretical                               ible MHD turbulence has been achieved during the last two
+expectation contradicts with universally observed suprathermal                                 decades, the conclusion relies heavily on the results of local
+1 Currently at Department of Astrophysical Sciences, Princeton University,
+                                                                                               isothermal simulations (see also the local models for the multi-
+                                                                                               phase ISM; Kritsuk & Norman 2002, 2004). Since these models
+Princeton, NJ 08544, USA; cgkim@astro.princeton.edu
+
+                                                                                           1
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                      Kim & Basu
+
+represent a local patch of a homogeneous medium embedded                                                      
+                                                                               ∂ρv               BB         B2
+within a larger cloud, they are not directly applicable to turbu-                   + ∇ · ρvv −     + P+         I = 0,   (2)
+                                                                                ∂t               4π         8π
+lence in the diffuse multiphase ISM. Thermal processes in the
+ISM naturally induce an inhomogeneity, giving rise to two dis-                                                   
+                                                                          ∂E                B2       B
+tinct atomic phases, a cold neutral medium (CNM) and a warm                  +∇ · E+P +          v−    (B · v) − K∇T = −ρ L,
+                                                                          ∂t               8π       4π
+neutral medium (WNM), whose density and temperature differ                                                                (3)
+by about two orders of magnitude (Field et al. 1969; Wolfire
+et al. 1995). High-resolution 21 cm absorption line observa-                                 ∂B
+tions using the Arecibo telescope have shown that the CNM                                       − ∇ × (v × B) = 0,                     (4)
+                                                                                             ∂t
+is generally observed within sheets rather than isotropic clouds
+(Heiles & Troland 2003). These CNM sheets have magnetic                                             ∇ · B = 0,                         (5)
+fields that dominate the thermal pressure of the ISM, with a
+median strength of 6 μG (Heiles & Troland 2005; Crutcher                  where ρ, v, P, and B are the total gas mass density, velocity
+2012), while the orientation of the magnetic fields to the sheet is       vector, gas thermal pressure, and magnetic field, respectively,
+somewhat uncertain. Such commonly observed sheet-like struc-              as usual. E is the total energy density
+tures of the CNM with strong magnetic fields threading both the
+CNM and the WNM suggest that idealized local isothermal                                             P    ρv 2 B 2
+                                                                                            E=         +     +    ,                    (6)
+models have clear limitations in their application to turbulence                                  γ −1    2    8π
+of the diffuse multiphase ISM. The global structures of the ISM
+and magnetic fields should be taken into account to study ISM             where v 2 = v · v and B 2 = B · B. We adopt the ideal gas
+turbulence properly.                                                      law P = (γ − 1)e with γ = 5/3, where e is the internal
+   Kudoh & Basu (2003, 2006) have considered a stratified                 energy density. The thermal pressure is P = 1.1nkB T for
+molecular cloud using a Lagrangian fluid description for the              a 10% helium abundance. Here, n is the number density of
+temperature to model a cold cloud within a hot medium. Their              hydrogen and hence ρ = 1.4 mH n. The thermal conductivity
+1.5 dimensional simulations show lower dissipation rates than             is K = 105 erg s−1 cm−1 K−1 . The source term in the energy
+local isothermal simulations, but it is unclear whether this              equation (Equation (3)) is the net volumetric cooling given by
+results from a lack of dimensionality (Mac Low et al. 1998;               ρ L ≡ n[nΛ(T ) − Γ]. Following Koyama & Inutsuka (2002),
+Ostriker et al. 1999) or the global structure they considered.            we adopt the simple fitting formula for dominant interstellar
+Using two-dimensional simulations of thin sheets with the                 cooling, mainly due to [C ii], [O i] fine structure, and Lyα
+external magnetic field calculated as a potential field, Basu &           recombination lines and the constant heating rate due to the
+Dapp (2010) have shown that global magnetic-tension driven                photoelectric effect on grains by far-ultraviolet photons (Kim
+modes produce long-lasting turbulence in the flux-freezing                et al. 2008 for a typo corrected version):
+limit, in contrast with previous local models. Without a thin-                                                      
+disk approximation, however, three-dimensional stratified cloud                                       −1.184 × 105                  √
+                                                                            Λ(T ) = 2 × 10−19 exp                      + 2.8 × 10−28 T
+models with Lagrangian fluid elements have reported that energy                                          T + 1000
+dissipation occurs differently from Basu & Dapp (2010), but                                       
+                                                                                               −92
+about 10% of the initial kinetic energy remains at the final stage                   × exp            erg cm3 s−1 ,                   (7)
+(Kudoh & Basu 2011).                                                                            T
+   Motivated by the limitations of local isothermal simulations
+and recent simulations for thin sheets, we investigate the long-                              Γ = 2 × 10−26 erg s−1 .                  (8)
+term evolution of decaying turbulence. We utilize fully three-
+                                                                             We solve the governing equations using the Athena code that
+dimensional simulations with interstellar cooling and heating
+                                                                          employs the high order Godunov method (Stone et al. 2008;
+in order to understand turbulence within the diffuse multiphase
+                                                                          Stone & Gardiner 2009). Among the various techniques pro-
+ISM. Our numerical models provide alternative perspectives on
+                                                                          vided by the Athena code to solve the MHD equations, we adopt
+decaying turbulence within CNM sheets, including the effect of
+                                                                          the van Leer integrator (Stone & Gardiner 2009) with Roe’s
+magnetic fields anchored in the ambient WNM as well as non-
+                                                                          Riemann solver and the second-order spatial reconstruction
+isothermality and field orientations. This paper is organized
+                                                                          scheme. Athena satisfies the divergence-free condition within
+as follows. In Section 2, we describe numerical methods and
+                                                                          machine precision via the constrained transport algorithm
+initial model setups. In Section 3.1, we present our main results
+                                                                          (Evans & Hawley 1988). For the cooling source term, we
+using temporal evolution of turbulent kinetic energy for models
+                                                                          solve it separately using a fully implicit method with a
+with different magnetic field strengths and orientations. In
+                                                                          Newton–Raphson iteration (Piontek & Ostriker 2004; Kim et al.
+Section 3.2, we analyze turbulence characteristics in detail,
+                                                                          2008) and update the temperature before entering the integrator
+especially strong-field models. In Section 4, we discuss our
+                                                                          steps for conservation equations. To ensure the code stability,
+model setup and outcomes in comparison with observations and
+                                                                          we reduce the time step until the temperature change is smaller
+Section 5 summarizes our main results.
+                                                                          than 50% of the previous temperature. An isotropic thermal
+                                                                          conduction is solved explicitly as well.
+        2. NUMERICAL METHODS AND MODELS
+                                                                             For an initial state, we assume a thin CNM sheet in a thermal
+  In order to investigate the decaying MHD turbulence in the              pressure equilibrium with the surrounding WNM. So, we first
+multiphase ISM, we solve a set of ideal MHD equations with                solve the thermal equilibrium equation, Γ = nΛ(T ), for a given
+cooling, heating, and thermal conduction:                                 equilibrium pressure P0 to find the density and temperature of
+                                                                          the CNM and the WNM, (nc , Tc ) and (nw , Tw ), respectively.
+                       ∂ρ                                                 For our fiducial parameter of initial thermal pressure, P0 /kB =
+                          + ∇ · (ρv) = 0,                      (1)
+                       ∂t                                                 3000 cm−3 K (Wolfire et al. 2003; Jenkins & Tripp 2011), the
+
+                                                                      2
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                          Kim & Basu
+
+                                                                           Table 1
+                                                            Model Parameters and Simulation Results
+
+                   Model       β      b̂     σz,0 a    tdec b,c    K b,c
+                                                                  tdec      EK (tcr )b,d    EK (10tcr )b,d    δEB /EK (tcr )    δEB /EK (10tcr )
+                   AS         0.1      ẑ      0        0.65      0.44         0.32             0.18              0.19               0.07
+                   AI          1       ẑ      0        0.40      0.27         0.21             0.06              0.26               0.12
+                   AW         10       ẑ      0        0.31      0.28         0.18             0.02              0.15               0.40
+                   AHe        ∞       ...      0        0.29      0.29         0.20             0.03               ...                ...
+                   BS         0.1      x̂      0        0.37      0.18         0.15             0.02              0.43               0.07
+                   BI          1       x̂      0        0.32      0.22         0.13             0.01              0.61               0.48
+                   BW         10       x̂      0        0.30      0.26         0.15             0.02              0.32               0.86
+                   CS         0.1      ẑ      2        0.49      0.11         0.19             0.06              0.22               0.01
+                   CI          1       ẑ      2        0.40      0.21         0.14             0.02              0.32               0.08
+                   CW         10       ẑ      2        0.36      0.27         0.17             0.01              0.21               0.45
+                   CH         ∞       ...      2        0.33      0.33         0.22             0.02               ...                ...
+
+                   Notes.
+                   a In units of km s−1 .
+                   b Only horizontal components (x̂ and ŷ) of turbulent kinetic energy (E
+                                                                                          K,perp ) are used for Series C to exclude the effect
+                   of initial vertical expansion. See Section 3.1.1 for details.
+                   c In units of t .
+                                  cr
+                   d In units of E (0).
+                                    K
+                   e The AH model is also referred to as the BH model in the text since they are identical.
+
+
+
+
+equilibrium density and temperature are (48 cm−3 , 57 K) and                          between fluid properties should be addressed after the saturation
+(0.4 cm−3 , 6500 K) for the CNM and WNM, respectively. We                             of turbulence. However, the slope of the time evolution of
+then assign a uniform CNM for |z| < Δc /2, where Δc = 2 pc is                         turbulent kinetic energy remains similar to that when starting
+the thickness of the CNM sheet. The WNM fills other regions                           from a saturated state of turbulence (compare Mac Low et al.
+of our cubical box with side lengths of L = 20 pc. The uniform                        1998 with Stone et al. 1998).
+magnetic field is assigned a field strength of                                           The simulation parameters are summarized in Table 1. Here,
+                                           1/2                                      we have three different model series with various magnetic
+                                  P0 /kB                                              field configurations: Series A has vertical magnetic fields,
+           B0 = 3.2 β −1/2                       μG,        (9)                       B = B0 ẑ, and anisotropic turbulence (no vertical motions;
+                              3000 cm−3 K
+                                                                                      σz,0 = 0 km s−1 ), Series B has horizontal magnetic fields,
+where β ≡ 8π P0 /B02 is the plasma beta that parameterizes the                        B = B0 x̂, and anisotropic turbulence, and Series C has vertical
+magnetic field strength using the ratio of thermal to magnetic                        magnetic fields, B = B0 ẑ, and isotropic turbulence (non-zero
+pressure.                                                                             vertical motions; σz,0 = 2 km s−1 ). Each series has additional
+   We assign initial velocity perturbations using independent                         labels of S, I, W, and H, corresponding to strong (β = 0.1),
+realizations of a Gaussian random field with a power spectrum                         intermediate (β = 1), weak (β = 10) magnetic fields, and
+(PS) |vk2 | ∝ k 6 exp(−8k/kpk ) for each velocity component.                          purely hydrodynamic (β = ∞), respectively. Note that the AH
+Here, kpk = 2π/λpk is the wavenumber at the peak of the PS.                           and BH models are identical.
+We adopt kpk L/(2π ) = 8 and the amplitude of the velocity                               Boundary conditions (BCs) are periodic in the horizontal
+field σ1D,0 = 2 km s−1 . The flow crossing time at the scale                          directions (x̂ and ŷ). In the vertical direction, we adopt periodic
+λpk = L/8 is then tcr ≡ λpk /σ1D,0 = 1.2 Myr, which will be                           BCs for quasi-global cases, representing regularly placed CNM
+considered as a time unit throughout the paper. This represents                       sheets within larger H i clouds. We also run Series A with
+a reference time scale for the initial turbulent decay and can                        continuous BCs for a single, isolated CNM sheet in order to
+be used for comparison with previous work. Since the CNM                              study the effect of BCs (see Section 3.1.2).
+has a sound speed of cc ≡ (P0 /ρc )1/2 = 0.6 km s−1 and                                  The major diagnostics of our simulations are turbulent ener-
+an Alfvén speed of vA,c ≡ B0 /(4πρc )1/2 = (2/β)1/2 cc , our                         gies defined by                    
+choice of σ1D,0 = 2 km s−1 is supersonic and sub-Alfvénic                                                             1
+                                                                                                               EK =         ρv 2 dV                   (10)
+for β = 0.1, slightly super-Alfvénic for β = 1, and super-                                                            2
+Alfvénic for β = 10 in the CNM sheet (see Figure 6 for
+                                                                                      and                                  
+details of the Mach number distribution). On the other hand,                                                          1         2     
+the sound speed of the WNM is cw = 6.6 km s−1 so that                                                        δEB =              B − B02 dV .            (11)
+the initial turbulence for the WNM is always subsonic and                                                            8π
+sub-Alfvénic. The sound and Alfvén wave crossing times in                           The total turbulent energy can be obtained by Eturb = EK + δEB .
+the vertical direction are ts ≡ (L − Δc )/cw + Δc /cc ∼ 5tcr                          Note that, by definition, the kinetic and magnetic energies are
+and tA = ts (β/2)1/2 , respectively. The Alfvén wave crossing                        weighted by mass and volume, respectively. Since the total
+times yield tA /tcr = 1.1, 3.4, and 11 for β = 0.1, 1, and 10,                        mass is dominated by the CNM and the total turbulent energy
+respectively.                                                                         is dominated by the kinetic energy except in the very early
+   It is noteworthy that the saturated state of turbulence is                         amplification phase (<tcr ) of the turbulent magnetic energy for
+achieved after two or three largest-eddy turnover times (e.g.,                        models with β = 0.1, EK is the best probe of turbulent energy
+Stone et al. 1998). Thus, the early evolution until (2–3)tcr in                       within the CNM.
+our models may reflect transient features associated with a                              We carry out a convergence test for the AI model using
+particular choice of initial conditions. The scaling relationships                    numbers of grid zones from 323 to 5123 . We confirmed that
+
+                                                                               3
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                                            Kim & Basu
+
+
+
+
+Figure 1. Time evolution of turbulent kinetic and magnetic energy, EK (solid lines) and δEB (dashed lines), respectively, normalized by the initial turbulent energy,
+Eturb (0). (a) Series A: initial magnetic fields are vertical (b̂ = ẑ) and initial velocity fields are anisotropic (no vertical motions), (b) Series B: initial magnetic fields are
+horizontal (b̂ = x̂) and initial velocity fields are anisotropic, and (c) Series C: initial magnetic fields are vertical (b̂ = ẑ) and initial velocity fields are isotropic in all
+three dimensions. The dotted line in each panel denotes a reference line for a power-law form of E ∝ t −1 .
+(A color version of this figure is available in the online journal.)
+
+
+both turbulent kinetic and magnetic energies converge from                                    magnetic energy. The perturbed magnetic energy reaches its
+2563 upward, so we adopt 2563 grid zones for our standard                                     maximum at around 0.1–0.2tcr , having 5%–30% of Eturb (0).
+numerical resolution for all simulations, which gives a grid size                             The peak magnetic energy increases with increasing initial field
+of Δ = 0.08 pc.                                                                               strength and the time to reach the peak energy is slightly delayed
+    For a quick overview of our results, we list the decay times                              as the initial field strength decreases. After the time when δEB is
+                                                      K
+of the total and kinetic turbulent energy, tdec and tdec (defined by                          maximal, both turbulent kinetic and magnetic energies begin to
+the time when the initial total and kinetic energy is reduced by                              decay. Although the turbulent kinetic (and magnetic) energy in
+50%), respectively. We also list the remaining kinetic energy at                              all models decays rapidly and loses about half of its initial energy
+tcr and 10tcr , as well as the ratio of turbulent magnetic to kinetic                         within one crossing time, as in previous isothermal simulations
+energy. Note that we use only the kinetic energy in the x̂–ŷ plane                           (e.g., Mac Low et al. 1998; Stone et al. 1998; Padoan & Nordlund
+(XY plane hereafter) for Series C to avoid contamination from an                              1999; Ostriker et al. 2001), the late time evolution is different
+initial vertical expansion (see Section 3.1.1 for details). These                             from model to model as magnetic field strengths vary.
+values can be compared with previous results (e.g., Ostriker                                     The most notable result is shown in Series A (Figure 1(a));
+et al. 2001).                                                                                 an increasing amount of turbulent energy remains as magnetic
+                                                                                              fields get stronger. The early evolution up to one or two crossing
+                                  3. RESULTS                                                  times is similar to previous isothermal models. There is no
+                                                                                              significant difference depending on magnetic field strengths.
+   Since the main purpose of this paper is to investigate the long-                           The decay times, defined as the time when the initial energy
+term evolution of the turbulent energy and its characteristics                                is reduced by 50%, are tdec /tcr = 0.65, 0.40, 0.31, and 0.29,
+in the multiphase ISM, we begin by describing the temporal                                    for β = 0.1, 1, 10, and ∞, respectively (see Table 1). For
+evolution of turbulent kinetic energy for each model. Then,                                   kinetic energy alone, we obtain tdec K
+                                                                                                                                     /tcr = 0.44, 0.27, and 0.28,
+we analyze the characteristics of the remaining turbulence of                                 for β = 0.1, 1, and 10, respectively. These values are roughly
+each model, putting particular emphasis on models with strong                                 consistent with the results of Ostriker et al. (2001), despite
+magnetic fields (β = 0.1). These models have a significant                                    different initial velocity perturbations, gas structures, equation
+amount of turbulent energy at later times.                                                    of state, and magnetic field configurations. The energy decay
+                                                                                              follows a power-law type evolution with Eturb ∝ t −1 as in Mac
+                   3.1. Evolution of Turbulent Energy                                         Low et al. (1998) and Stone et al. (1998). However, the energy
+                                                                                              decay becomes shallower after a few crossing times depending
+                      3.1.1. Effect of Initial Conditions
+                                                                                              on the strength of the magnetic field. For the AS model, it
+   Figure 1 plots EK /Eturb (0) (solid) and δEB /Eturb (0) (dashed)                           is clearly seen that a significant amount of turbulent energy
+as a function of time, t/tcr , for all models with periodic BCs for                           remains even at 10tcr (EK /Eturb (0) = 0.18 at t/tcr = 10).
+all directions. In panels (a) and (b), we show models in Series                                  With horizontal magnetic fields (Series B; Figure 1(b)), in
+A and B, respectively, whose initial velocity perturbations are                               contrast to Series A, the magnetic field strength does not affect
+anisotropic without initial vertical motions (σz,0 = 0). Note that                            the evolution of the turbulent kinetic energy. The kinetic energy
+the hydrodynamics models (the AH and BH models; green) in                                     keeps decaying roughly with a power-law form of Eturb ∝ t −1 .
+panels (a) and (b) are identical. Series C is shown in panel (c).                             The decay times for the total energy are slightly longer for
+The initial velocity perturbations deform magnetic field lines                                models with stronger magnetic fields, while the trend is reversed
+and the kinetic energy is partially converted to the turbulent                                for kinetic energy (see Table 1). This is also seen in Ostriker
+
+                                                                                         4
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                          Kim & Basu
+
+                                                                                          Series C. As shown in panel (b), the parallel component of the
+                                                                                          kinetic energy hardly decays until t ∼ 2tcr . Since the surround-
+                                                                                          ing WNM has a low density, the CNM expands nearly freely in
+                                                                                          the vertical direction with less dissipation. After this expansion,
+                                                                                          the parallel component decays as rapidly as a power law of t −1
+                                                                                          irrespective of the field strengths.
+                                                                                             However, the perpendicular component of kinetic energy
+                                                                                          decays similarly to that in Series A; a power-law decay with
+                                                                                          EK ∝ t −1 at an early stage and a shallower decay at later
+                                                                                          times. The strong-field model (CS model; black) contains
+                                                                                          about an order of magnitude more energy at the end of the
+                                                                                          simulation compared with the CW and CH models, while
+                                                                                          the remaining energy is significantly dissipated already: at
+                                                                                          t/tcr = 10, EK,perp /EK,perp (0) = 5.6%, 1.8%, 1.4%, and 1.6%
+                                                                                          for the CS, CI, CW, and CH models, respectively.
+                                                                                             The evolution of the perturbed magnetic energy also shows
+                                                                                          a significant difference between the model Series. In Series A,
+Figure 2. Time evolution of turbulent kinetic energy in the directions (a)
+perpendicular, EK,perp /EK,perp (0), and (b) parallel, EK,para /EK,para (0), to the
+                                                                                          the fluid motions are assigned only in the plane perpendicular
+initial magnetic field for Series C. Note that EK,perp = EK,x + EK,y is two times         to the initial magnetic field. Thus, the perturbed magnetic
+greater than EK,para = EK,z at the initial time. The dashed line in each panel            energy over the entire evolutionary stage is dominated by
+denotes a reference line for a power-law form of EK ∝ t −1 .                              the parallel component, δBz2 , due to converging and diverging
+(A color version of this figure is available in the online journal.)                      fluid motions. The generation of the perpendicular component,
+                                                                                          δBx2 + δBy2 , is limited, especially for the strong-field case, where
+                                                                                          magnetic field lines are hardly bent. Only the AW model has
+et al. (2001) due to the initial amplification of the magnetic
+                                                                                          comparable energy in each component at later times. However,
+fields. The turbulent kinetic energy that remains is only about
+                                                                                          in Series B and C, there are non-negligible fluid motions in
+15% at t/tcr = 1 and less than 2% at t/tcr = 10 for all β.
+                                                                                          the direction parallel to the magnetic fields, which generate the
+   Note that Ostriker et al. (1999) have also shown a shallower
+                                                                                          perpendicular component of the perturbed magnetic energy as
+energy decay for stronger magnetic field strength in their 2.5-
+                                                                                          well by stretching and shrinking the field lines. Despite having a
+dimensional simulations with horizontal magnetic fields. As
+                                                                                          different amount of energy stored in each component, the ratios
+they argued, this is likely due to the lack of dissipation in the
+                                                                                          of the total perturbed magnetic energy to the initial turbulent
+symmetric direction.2 Since here we allow the vertical degree of
+                                                                                          energy at the peak are nearly the same. After (1–3)tcr , when
+freedom, this shallower decay cannot be seen. Rather, we can see
+                                                                                          the fluid becomes really turbulent with proper scaling relations,
+the effect of magnetic fields when the field is vertical (Series A),
+                                                                                          δEB decays rapidly in Series B and C as δEB ∝ t −2 , similar to
+which is not because of the numerically suppressed dissipation
+                                                                                          Ostriker et al. (2001). On the other hand, since the remaining
+in one direction but because of the surviving incompressible
+                                                                                          kinetic energy is large enough to keep perturbing the magnetic
+horizontal motions in such magnetic field configurations and
+                                                                                          field at later times, the decay rate of δEB in Series A is reduced
+periodic BCs (see Section 3.1.2 for more details).
+                                                                                          as well (the power-law exponent is approximately −1). The
+   In Figure 1(c), models with isotropic velocity perturbations
+                                                                                          models with weaker field strength in Series B and C maintain
+(Series C) show different evolutionary behavior. It is mainly due
+                                                                                          their perturbed magnetic energy longer since the magnetic field
+to the initial vertical expansion, arising from an imbalance of the
+                                                                                          can be deformed even with weaker fluid motions.
+initial turbulent pressure. The initial CNM sheet is in thermal
+pressure equilibrium with the surrounding WNM. However,                                                   3.1.2. Effect of Boundary Conditions
+vertical turbulent motions give rise to an additional turbulent
+pressure in the vertical direction, which is greater in the CNM                              The models with periodic BCs at the vertical boundaries
+because of its greater density. A shallower decay of kinetic                              presented in Section 3.1.1 can be considered as a quasi-global
+energy is observed until the vertical expansion ends at about                             case for CNM sheets that are periodically placed within a large
+the half-thickness crossing time (L/2)/σ1D,0 = 4tcr . Since the                           H i cloud. Although there might be many CNM sheets connected
+kinetic energy evolution is contaminated by the shallower decay                           with magnetic fields in an H i cloud, the periodic BCs are still an
+of the vertical energy component (similar to Ostriker et al.                              oversimplified assumption. We thus consider another extreme
+(1999) but for a different reason), it is necessary to isolate the                        case: a single isolated CNM sheet sandwiched by the WNM,
+effect of the initial vertical expansion in order to understand the                       represented by models with continuous BCs. In this case, waves
+turbulent energy evolution correctly.                                                     can escape outward freely. We only consider models in Series
+   We separate the turbulent kinetic energy into perpendicu-                              A with continuous BCs since Series B is not affected much by
+lar (EK,perp = EK,x + EK,y ) and parallel (EK,para = EK,z )                               vertical boundaries and Series C is inappropriate to run with
+components to the magnetic field direction. Figure 2 plots (a)                            continuous BCs due to the initial vertical expansion, which
+EK,perp /EK,perp (0) and (b) EK,para /EK,para (0) as a function of                        would induce significant mass loss with continuous BCs.
+time for Series C. Note that EK,perp is two times greater than                               Figure 3 shows the time evolution of the normalized turbulent
+EK,para initially since the initial velocity field is isotropic in                        kinetic energies EK /Eturb (0) for the AS (black), AI (red), and
+                                                                                          AW (blue) models with periodic (solid lines) and continuous
+2 We have run similar simulations to Ostriker et al. (1999) and found that the
+                                                                                          (dotted lines) BCs at the vertical boundaries, z = ±Lz /2. Here,
+shallower decay of kinetic energy is indeed due to a shallower decay of the               the time is normalized by the Alfvén wave crossing time tA ,
+vertical energy component. The horizontal components are still decaying as                which differs for each model. The kinetic energy evolution
+E ∝ t −1 .                                                                                begins to differ at around t = tA . After one Alfvén wave crossing
+
+                                                                                      5
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                                  Kim & Basu
+
+                                                                                        (left), the x̂–ẑ plane at y = 0 (XZ plane; middle), and the
+                                                                                        ŷ–ẑ plane at x = 0 (YZ plane; right) at t/tcr = 1 (top) and
+                                                                                        10 (bottom). In the XY plane, we clearly see that there are
+                                                                                        strong shocks within the CNM sheet at an early stage due
+                                                                                        to compressible motions with supersonic velocity (top left),
+                                                                                        while the remaining motions are less compressive but vortical
+                                                                                        (bottom left). Note that the snapshots at t/tcr = 1 may not reflect
+                                                                                        the saturated state of turbulence but illustrate a particular choice
+                                                                                        of our initial conditions, since the saturated state of turbulence
+                                                                                        would be achieved at (2–3)tcr after driving begins (e.g., Stone
+                                                                                        et al. 1998). Vertical motions are also induced due to a velocity
+                                                                                        difference at the contact discontinuity of the two phases, but
+                                                                                        they are negligible. The thickness of the CNM sheet is slightly
+                                                                                        increased (middle and right).
+                                                                                           For a more quantitative analysis, we decompose the ve-
+                                                                                        locity fields into shearing (divergence-free) and compressible
+                                                                                        (curl-free) components using a Helmholtz decomposition (e.g.,
+                                                                                        Kowal & Lazarian 2010). As seen in the middle and right panels
+                                                                                        of Figure 4, the background density of the AS model varies as
+                                                                                        a function of z, and the induced vertical motions are negligible.
+Figure 3. Evolution of the turbulent kinetic energy, EK /Eturb (0), as a function       A cylindrically binned PS would thus give good characteristics
+of time in units of the Alfvén wave crossing time, tA = ts (β/2)1/2 , where            at all evolutionary stages for the AS model. This analysis is
+ts ∼ 5tcr , for the AS (black), AI (red), and AW (blue) models. The solid and
+dashed lines, respectively, stand for periodic and continuous BCs at the vertical
+                                                                                        advantageous to see how the PS varies along the vertical di-
+boundaries. The vertical dotted line denotes t = tA .                                   rection, while it is not suitable to address the anisotropy of the
+(A color version of this figure is available in the online journal.)                    turbulence since it shows the kz = 0 mode only. We first take
+                                                                                        a two-dimensional fast Fourier transform in the XY plane for
+                                                                                        vx and vy at a given vertical position. The shearing and com-
+time, the overall evolution is greatly affected by the BCs; the                         pressible components of the velocity PS can then be obtained as
+turbulent energy decays very rapidly with continuous BCs.                               functions of z and k⊥ by
+   Since the initial velocity perturbations in Series A are as-
+signed in the perpendicular plane to the initial magnetic field,                                         Psh (k⊥ ; z) = |k̂R × ṽ(k⊥ ; z)|2         and
+Alfvén waves are excited initially and propagate toward the                                           Pcomp (k⊥ ; z) = |k̂R · ṽ(k⊥ ; z)|2 ,                      (12)
+WNM along the field lines. They are not dissipative themselves
+and hardly produce compressible waves (slow and fast waves)                             where ṽ is the velocity field in the Fourier space, k⊥ = (kx , ky )
+since the mode coupling is in general very weak (e.g., Cho et al.                       is the wave vector in the perpendicular (XY) plane, and k⊥ =
+2002; Cho & Lazarian 2003). It is evident in Figure 3 that travel-                      (kx2 + ky2 )1/2 is the cylindrically binned wavenumber. Since our
+ing Alfvén waves that re-enter the CNM sheet after one Alfvén                         main interests focus on turbulence within the CNM, we calculate
+wave crossing time are responsible for the reduced decay rates                          a mass-weighted, vertically averaged PS for each component as
+observed in the AS and AI models. Even with a strong magnetic
+field, the decay rate of turbulence cannot be reduced for a sin-                                                              ρ(z)P (k⊥ ; z)dz
+                                                                                                              P (k⊥ ) =                        ,                   (13)
+gle, isolated CNM sheet by storing energy in Alfvén waves, as                                                                    ρ(z)dz
+has long been considered since Arons & Max (1975). Rather, it
+seems that maintaining and/or replenishing mechanisms for the                           where ρ(z) = ρdxdy/(Lx Ly ) is the horizontally averaged
+Alfvén waves are necessary to obtain a reduced decay rate.                             density. We also calculate a specific energy for each component
+                                                                                        as a function of z:
+                    3.2. Turbulence Characteristics                                                                
+                                                                                                                 1
+                                                                                                         E (z) =      P (k⊥ ; z)π k⊥ dk⊥ .         (14)
+   In Section 3.1, we find not only consistent results with pre-                                                 2
+vious local isothermal simulations for early decay of turbulent
+                                                                                                                                 11/3
+kinetic energy, but also new results of decaying turbulence with                           Figure 5 plots (a) Psh (k⊥ ) ×k⊥ (solid line) and Pcomp (k⊥ )
+reduced rates in the XY plane when the field is vertical and strong.                    (dashed line) as a function of k⊥ and (b) Ecomp (z)/Esh (z) as
+Since weak-field models are similar to hydrodynamic models                              a function of z at t/tcr = 0 (black line), 1 (red line), and
+and previous local simulations, here we put more emphasis on                            10 (blue line) for the AS model. In order to show the slope
+strong-field models for a detailed analysis of turbulence char-                         and inertial range of the PS clearly, we multiply the PS by
+                                                                                         11/3
+acteristics. Note that the intermediate field models also show                          k⊥ in panel (a). Initially, the same amount of energy is
+similar characteristics to the strong-field models, but with less                       assigned in the shearing and compressible components (see
+residual energy.                                                                        the black line in Figure 5(b)).3 The compressible component
+                               3.2.1. AS Model                                          3  Previous simulations of decaying turbulence usually assume purely
+                                                                                        incompressible initial velocity perturbations (e.g., Ostriker et al. 1999, 2001).
+   In order to investigate the characteristics of the remaining                         In our test runs with purely incompressible initial velocity perturbations, the
+turbulence at later times, we begin by analyzing the AS model                           compressible component is quickly generated (see also Vestuto et al. 2003)
+with periodic BCs since it has a significant amount of energy at                        and the PS of each component converges in less than a crossing time to that in
+                                                                                        models with an initial compressible component. Although the decay of
+later times compared with the others. Figure 4 shows number                             turbulence is slightly delayed when there is no initial compressible component,
+density snapshots for the AS model in the XY plane at z = 0                             we confirm that the overall evolution remains similar.
+
+                                                                                    6
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                             Kim & Basu
+
+
+
+
+Figure 4. Number density slices in logarithmic color scales at z = 0 (left), y = 0 (middle), and x = 0 (right) for the AS model at t/tcr = 1 (top) and 10 (bottom).
+Note that we adjust the color schemes in the color bars above each panel to associate a white color with the maximum number density of the WNM (n = 1 cm−3 ) for
+a clearer distinction between the WNM and CNM (plus unstable phase). Bluish and reddish colors denote the WNM and CNM (plus unstable phase), respectively.
+(A color version of this figure is available in the online journal.)
+
+
+
+
+Figure 5. (a) Cylindrically binned, vertically integrated PS of the AS model at t/tcr = 0 (black), 1 (red), and 10 (blue). The solid and dashed lines stand for the
+shearing and compressible components, respectively. See Equation (13) and the text for details. (b) Ratios between the compressible and shearing components of the
+specific energy integrated over k⊥ as a function of z. See Equation (14) and the text for details.
+(A color version of this figure is available in the online journal.)
+
+                                                                                7
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                 Kim & Basu
+
+keeps decaying rapidly due to strong shock dissipation, while
+the shearing component survives longer, as seen in Figure 5(a)
+(see also the left panels of Figure 4). As time goes by, the
+power diffuses to larger scales via the inverse cascade and
+the shearing mode at larger scales starts growing and finally
+dominates, while at small scales both the compressible and
+shearing components keep decaying. The shearing component
+of the PS at t/tcr = 10 (the final time of simulation) follows a
+power-law shape with an exponent of −11/3 in an inertial range
+of 4 ⩽ k⊥ L/2π ⩽ 20. The slope is consistent with the expected
+value in incompressible hydrodynamic and MHD turbulence
+(Kolmogorov 1941; Goldreich & Sridhar 1995), which is also
+known to be applicable to Alfvén modes (as well as slow modes)
+in compressible MHD turbulence (Cho & Lazarian 2003). This
+slope is achieved and preserved after one crossing time, while
+the inertial range varies. The remaining turbulent energy within
+the CNM sheet at later times in the AS model is thus mostly in
+the form of incompressible motions and cascades from larger
+to smaller scales as in traditional incompressible turbulence. It
+is not everlasting as in purely thin-disk models with a potential
+field outside (Basu & Dapp 2010).                                        Figure 6. (a) Sonic and (b) Alfvén Mach number PDFs for the AS model. The
+   It is evident that incompressible motions in the direction per-       vertical dotted line denotes a Mach number of unity.
+pendicular to the CNM sheet survive longer and are responsible           (A color version of this figure is available in the online journal.)
+for the reduced decay rate. Initial velocity perturbations deform
+magnetic fields and a part of the perturbed kinetic energy is
+stored in the form of magnetic energy. Since the Alfvén waves           v1D keeps decreasing. This is due to an initial lowering of vA
+excited by motions in the direction perpendicular to the mag-            for the densest gas since there are not only horizontal motions
+netic field cannot escape the simulation domain with periodic            but also vertical compression (see the top panels of Figure 4),
+BCs, they re-enter the CNM sheet and help to preserve shear-             which enhances the density but not the magnetic field energy.
+ing motions in the CNM sheet. After one Alfvén wave crossing            At t/tcr = 10, 66% of the CNM by mass is still supersonic, but
+time, the evolution of the turbulent energy within the CNM sheet         the entire gas is sub-Alfvénic.
+is affected by the re-entering waves and shows a reduced decay
+rate (see Figure 3).                                                                              3.2.2. BS and CS Models
+   The mean energy ratios between the compressible and shear-
+ing components, Ecomp (z)dz/ Esh (z)dz, are 16% and 0.8%                    Figures 7 and 8 show number density slices in logarithmic
+at t/tcr = 1 and 10, respectively. However, within the CNM               color scales for the BS and CS models, respectively, as in
+sheet (at around z = 0), the energy in the compressible mode             Figure 4. In contrast with the AS model, the initial CNM sheet
+remains up to 35% and 6% of the shearing mode energy at                  is not maintained, due to non-negligible vertical motions in both
+t/tcr = 1 and 10, respectively. At the final snapshot, the energy        models. The structures in the BS and CS models are significantly
+ratio at the midplane is about an order of magnitude greater than        different from one another.
+at higher |z|. Since the amplitude of incompressible motions is             Since the gas can flow more easily along the magnetic field
+still supersonic within the CNM sheet (see Figure 6), the more           lines, the initial motions in the XY plane for the BS model
+compressible mode can be more easily generated than in the               soon become anisotropic. The kinetic energies in the ŷ- and ẑ-
+WNM. However, the generation of compressible modes by in-                directions become comparable after t = tcr , while the remaining
+compressible Alfvén waves is limited (Cho et al. 2002; Cho &            energy, which keeps decaying rapidly (in contrast with the AS
+Lazarian 2003) so that the energy ratio is still very small (only        and CS models), is deposited to gas flows in the x̂-direction. At
+a few percent) even within the CNM sheet.                                t = tcr , filaments in the CNM sheet align with the ŷ-direction
+   Since our model is not isothermal, the probability distribution       in the XY plane, perpendicular to the initial magnetic field (see
+functions (PDFs) of sonic and Alfvén Mach numbers provide               the top-left panel of Figure 7). Initially formed filaments keep
+a better understanding of the velocity dispersions of each gas           moving, colliding, and merging along the x̂-direction. These
+phase. The Mach numbers for each gas parcel are defined by               overdense regions are soon smeared out along the x̂-direction
+Ms ≡ v1D /cs and MA ≡ v1D /vA , where v1D ≡ [(vx2 +vy2 )/2]1/2 ,         but preserved in the ŷ-direction. Thus, overdense regions then
+                                                                         expand vertically and form vertical sheets in the XZ plane (see
+cs ≡ (P /ρ)1/2 , and vA ≡ B/(4πρ)1/2 . Note that we ignore the           the middle and right panels of Figure 7).4
+velocity in the vertical direction vz , which is negligibly small           As we noted in the kinetic energy evolution of Series C
+compared with vx and vy at all times in the AS model. Figure 6           (Figure 2), the initial vertical turbulent motions induce an
+plots mass fractions of gas in the AS model for (a) sonic and
+(b) Alfvén Mach numbers to put more emphasis on the CNM.
+For β = 0.1, the initial mean Mach numbers for the CNM are
+                                                                         4   The number, shape, and structure of the sheets may depend on
+                                                                         characteristics of the initial perturbation since vertical motions are mainly
+Ms = σ1D,0 /cc ∼ 3.3 and MA = σ1D,0 /vA,c ∼ 0.75. However,               induced by the velocity difference of horizontal motions at the contact
+as seen in Figure 6(b), about 32% of the CNM by mass is in               discontinuity. For the BH model (or AH model), there is no specific structure
+the super-Alfvénic regime initially. Overall, the PDFs gradually        aligned with the x̂-direction, while the CNM sheet still expands vertically
+move toward smaller values as v1D decreases. In the high density         since kinetic energy becomes comparable in all directions. Note that the
+                                                                         detailed structural evolution is beyond the scope of this paper and does not
+tail of the MA –PDF, MA is initially increased even though               affect the energy decaying rates, which are the main focus of this paper.
+
+                                                                     8
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                             Kim & Basu
+
+
+
+
+Figure 7. Same as Figure 4, but for the BS model. Note that the middle panels are slices along y = −2.9 pc (not y = 0 pc) to show the structure of the sheet in the
+XZ plane.
+(A color version of this figure is available in the online journal.)
+
+
+
+overall expansion of the CNM sheet due to (turbulent) pressure                       perpendicular to the each axis, referred to as Psh,x , Psh,y , and
+imbalance, as is clearly seen in the top panels of Figure 8. After                   Psh,z , respectively.
+about t/tcr = 2, the CNM and WNM are mixed up completely                                Figure 9 plots the spherically binned PS of the AS (black),
+and coexist at all vertical positions. The turbulent energy in                       BS (red), and CS (blue) models at t/tcr = 10. In panel
+the XY plane decays a bit longer than in the AS model and                            (a), the shearing (solid lines) and compressible (dashed lines)
+incompressible motions at large scales eventually dominate. In                       components are shown as in Figure 5(a). Note that for the AS
+the bottom panels of Figure 8, predominant vortical motions                          model, Psh is almost identical to that in Figure 5(a), while
+are evident in the XY plane as in Figure 4, while the vertically                     Pcomp shows slightly smaller power at large scales (small k⊥
+stretched CNM is shown in the XZ and YZ planes.                                      and k). This is because the analysis does not give a mass-
+   By comparing the AS and BS models, we see that the                                weighted velocity PS, but rather a volume-weighted PS that
+initial magnetic field direction results in drastic differences for                  originates not from the CNM but from the WNM. There is
+turbulent energy and structural evolution. On the other hand,                        a clear signature of the enhanced incompressible component
+there are many similarities between the AS and CS models                             at large scales for the CS model, while there is no such
+despite the substantial structural differences in the vertical slices.               feature in the BS model. The ratios of the compressible to
+In order to characterize the turbulence quantitatively, we again                     incompressible components of the integrated specific energy,
+investigate the velocity PS using the Helmholtz decomposition.                       Ecomp /Esh = Pcomp (k)4π k 2 dk/ Psh (k)4π k 2 dk, are about 1%
+For the BS and CS models, the vertical motions at later times                        for all models, again implying that the compressible component
+are not negligible, so that the plane-parallel PS analysis done in                   is hardly generated by incompressible Alfvén waves.
+Section 3.2.1 is not suitable. It is better to use velocity fields fully                In Figure 9(b), we plot the shearing component of the PS
+in three dimensions. We decompose the velocity fields in Fourier                     perpendicular to each wave vector. For the AS model, it is
+space in a similar manner but for a three-dimensional wave                           clearly seen that the shearing component perpendicular to the
+vector k = (kx , ky , kz ) and spherically binned wavenumber                         magnetic field, Psh,z , is dominant at all scales, justifying our
+k = (kx2 + ky2 + kz2 )1/2 (see Equation (12)). There is no additional                plane-parallel analysis in Section 3.2.1. For the CS model, Psh,z
+averaging needed for a spherically binned PS. Note that the                          (solid blue line) is remarkably similar to that in the AS model
+shearing component of the PS in three dimensions has three                           with slightly lower power despite a non-negligible Psh,x and
+components, representing the power of incompressible motions                         Psh,y in the CS model. This again implies a Kolmogorov-like
+
+                                                                                9
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                           Kim & Basu
+
+
+
+
+                                                       Figure 8. Same as Figure 4, but for the CS model.
+                                                 (A color version of this figure is available in the online journal.)
+
+
+
+
+Figure 9. (a) Spherically binned PS for the shearing (solid lines) and compressible (dashed lines) components for β = 0.1 models at t/tcr = 10. (b) Directionally
+decomposed PS for the shearing components.
+(A color version of this figure is available in the online journal.)
+
+
+                 −11/3                                                                   The characteristics of turbulence in the BS model are quite
+scaling P ∝ k⊥       as in Cho & Lazarian (2003). Most of energy
+is deposited into larger scales so that the slowly decaying kinetic                   different from those of the AS and CS models, as expected.
+energy at later times is mainly due to the large-scale shearing                       The shearing component still dominates the compressible com-
+component in the direction perpendicular to the magnetic field,                       ponent, but there is no clear enhancement of the large-scale
+as in the AS model.                                                                   modes. For the shearing component, the perpendicular
+
+                                                                                 10
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                        Kim & Basu
+
+component (Psh,x ) has less energy than the parallel components,         the WNM (Figure 5). Although a significant fraction of the
+in stark contrast with the AS and CS models, whose energy is             CNM by mass is in supersonic regimes, incompressible Alfvén
+mainly dominated by the perpendicular component (Psh,z ).                waves are hardly generating compressible motions, implying a
+                                                                         weak coupling of MHD waves in the absence of driving (cf.,
+                        4. DISCUSSION                                    Cho et al. 2002; Cho & Lazarian 2003). The velocity PS for
+                                                                         the AS and CS models at later times show power-law shapes
+   Based on numerous local isothermal simulations of decay-              Psh ∝ k −11/3 , close to that of classical incompressible turbu-
+ing MHD turbulence during the last two decades, it has been              lence (Kolmogorov 1941; Goldreich & Sridhar 1995). This is
+widely accepted that compressible MHD turbulence in the                  not surprising since Alfvén modes (and slow modes as well)
+ISM is decaying rapidly regardless of magnetic field strength.           follow a Kolmogorov-like spectrum (Cho et al. 2002; Cho
+Due to inherent limitations of local modeling, however, the              & Lazarian 2003) and these are the dominant modes in our
+effects of the global structures of magnetic fields and the              simulations.
+diffuse multiphase ISM have not been explored. Idealized                    Based on our models, we find for the AS model (and also
+two-dimensional models of thin sheets with magnetic fields               the CS model) a significant delay of turbulent decay and
+anchored in interstellar space have shown self-sustained tur-            non-negligible remaining turbulent energy (v1D ∼ 1 km s−1 ),
+bulence driven by the global MHD effect (the magnetic-tension            which may be associated with supersonic non-thermal
+driven mode) in a flux-freezing limit (Basu & Dapp 2010). In             linewidths within the CNM. This requires a sheet-like CNM
+this paper, we extend their models to more realistic interstellar        distribution with strong magnetic fields threading perpendic-
+conditions, consisting of thin CNM sheets embedded in the low            ular to the sheet, as well as periodic BCs in the vertical di-
+density WNM (Heiles & Troland 2003, 2005). By solving in-                rection. For a typical thermal pressure of the diffuse ISM,
+terstellar cooling and heating explicitly with a set of ideal MHD        P0 /kB ∼ 3–4 × 103 cm−3 K in the solar neighborhood (Jenkins
+equations, we are able to investigate the long-term evolution            & Tripp 2001, 2011; Wolfire et al. 2003), a strong magnetic field
+of turbulent energy decay and characteristics of the remaining           assumed in the AS model (β = 0.1) implies B0 ∼ 10–12 μG
+energy in the diffuse multiphase ISM.                                    (see Equation (9)). The observed average strength of the total
+   In contrast with the idealized models of Basu & Dapp (2010),          magnetic field in spiral galaxies is about 10 μG, while weaker
+who assumed instantaneous field redistribution toward a poten-           fields (∼5 μG) are observed for radio-faint galaxies in the Local
+tial field outside thin sheets, the kinetic energy in our models         Group and star-forming galaxies show stronger field strengths
+cannot persist (see also Kudoh & Basu 2011). The initial evo-            of 20–30 μG (see Beck 2005, and references therein). The me-
+lution of the kinetic energy is rather similar to local models           dian value of the CNM (10 cm−3 < nH < 300 cm−3 ) in the
+characterized by decay times shorter than a flow crossing time           Milky Way is about 6 μG (Heiles & Troland 2005; Crutcher
+and a power-law shape decay of E ∝ t −1 (e.g., Mac Low et al.            et al. 2010; Crutcher 2012). Thus, the typical magnetic field
+1998; Stone et al. 1998). For our strong-field model (AS model)          strengths in the ISM are generally expected to be in the strong-
+with vertical magnetic fields and anisotropic turbulence (no ini-        field regime with respect to the thermal pressure, as in the
+tial vertical motions), we find a clear signature of a reduced           AS model.
+decay rate at later times and the kinetic energy remains at 32%             A sheet-like CNM perpendicular to the local magnetic field
+and 18% of the initial energy at t/tcr = 1 and 10, respec-               is also expected to be common. One direct formation mech-
+tively. Similar results are found in the weaker field models, but        anism for CNM structure is the condensation of the WNM
+less energy remains for weaker magnetic fields (Figure 1(a)).            due to supersonic colliding flows driven by, e.g., supernova
+This dependence on the field strengths is also shown in Series           explosions. Recent simulations of supersonic colliding flows
+C (with vertical fields and isotropic turbulence), while turbu-          with magnetic fields by Heitsch et al. (2009) show that a thin
+lent energy keeps decaying as a power law of E ∝ t −1 in                 CNM sheet perpendicular to the field can be formed when the
+Series B (with horizontal fields and anisotropic turbulence), ir-        WNM flows along a strong magnetic field, otherwise sheets are
+respective of magnetic field strengths (Figures 1(b) and (c)). In        soon disrupted by the nonlinear thin shell instability (Vishniac
+Ostriker et al. (1999), two-dimensional local models with hor-           1994; Heitsch et al. 2007). In numerical simulations of structure
+izontal magnetic fields have also reported reduced decay rates           formation in the multiphase ISM including the thermal insta-
+for strong magnetic fields, arising mainly from a lack of dis-           bility, CNM filaments or sheets are usually formed along the
+sipation in the symmetric direction (see also Gammie 1996;               direction perpendicular to the field lines since gas flows across
+Kudoh & Basu 2003). Although the initial velocity fields are             the field are prevented, especially in strong-field cases (e.g.,
+two-dimensional in Series A and B, the vertical motions emerge           Hennebelle & Pérault 2000; Mouschovias et al. 2009; Inoue &
+naturally since there is no artificial suppression of dissipation        Inutsuka 2012). When CNM clouds are formed by large-scale
+in the symmetric direction. The reduced decay rates shown in             gravitational collapse within slightly supercritical gas, planar
+the AS and CS models are indeed due to the survival of incom-            structures perpendicular to the magnetic field direction are also
+pressible motions in the direction perpendicular to the magnetic         expected to form first. Subsequently, self-gravity overwhelms
+field (see Section 3.2).                                                 other forces, such as magnetic tension, in order to cause isotropic
+   We use the Helmholtz decomposition method to obtain in-               collapse. In a high-resolution H i absorption line survey using
+compressible and compressible components of the velocity PS,             the Arecibo radio telescope, Heiles & Troland (2003) suggested
+providing detailed characteristics of the remaining turbulence.          that “blobby sheets” characterize the structure of CNM clouds
+At later times, almost all the energy in Series A and C is in the        rather than isotropic clouds (see also Gibson et al. 2000; Meyer
+form of shearing motions perpendicular to the magnetic field             et al. 2006), while the orientation of the magnetic fields is still
+(in the XY plane) at the largest scale (Figure 9). The remaining         uncertain (Heiles & Troland 2005).
+energy in the compressible component has only 1% of the in-                 Such commonly observed CNM sheets imply that the CNM
+compressible component at the end of simulation (t/tcr = 10),            and WNM should be in total pressure equilibrium in the
+while the CNM sheets contain more compressible energy than               direction perpendicular to the sheet, otherwise the sheet is
+
+                                                                    11
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                            Kim & Basu
+
+dispersed easily, as seen in Series C (see Figure 8). The total               In this paper, we focus on the long-term evolution of decaying
+pressure equilibrium can be expressed as                                   turbulence under the influence of interstellar cooling and heating
+                                                                           with global structures of magnetic fields. In reality, however,
+    Pth,w + Pturb,w + δPmag,w = Pth,c + Pturb,c + δPmag,c ,   (15)         dynamical processes whose time scales are shorter than the
+                                                                           decay time of turbulence should be taken into account to explore
+where Pth = ρcs2 , Pturb = ρσz2 , and δPmag = δB 2 /8π                     the dynamical and structural evolution of the multiphase ISM.
+are the thermal, turbulent, and turbulent magnetic pressures,              Using a driving scheme in Fourier space, several studies have
+respectively. The subscripts “w” and “c” represent the WNM                 explored characteristics of turbulence in the multiphase ISM,
+and CNM, respectively. Assuming that the density, temperature,             such as density and pressure PDFs, mass fractions, structure
+vertical velocity dispersion, and turbulent magnetic fields are            functions, and PSs (e.g., Gazol et al. 2005; Gazol & Kim 2010,
+constant within each gas phase, Equation (15) results in a                 2013; Seifried et al. 2011; Saury et al. 2013). More realistic
+thermal pressure ratio between the two phases                              situations have also been considered with driving sources of
+                                                                           turbulence such as converging flows (e.g., Audit & Hennebelle
+                        Pth,w   1 + M2c + βc−1
+                 Rp ≡         =                .              (16)         2005, 2010; Hennebelle & Audit 2007; Heitsch et al. 2005,
+                        Pth,c   1 + M2w + βw−1                             2009; Vázquez-Semadeni et al. 2007) and propagating shock
+                                                                           waves (e.g., Koyama & Inutsuka 2000, 2002). Since only a few
+The left hand side of Equation (16) can be constrained by
+                                                                           of them considered the effect of magnetic fields (e.g., Gazol
+thermal equilibrium. For given interstellar cooling and heating
+                                                                           et al. 2009; Heitsch et al. 2009; Hennebelle & Pérault 2000;
+rates, there are maximum and minimum thermal pressures of the
+                                                                           Hennebelle & Inutsuka 2006), however, many MHD turbulence
+WNM and CNM, Pmax and Pmin , respectively, and Pmax ∼ 3Pmin
+                                                                           characteristics within the multiphase ISM remain unexplored.
+(Wolfire et al. 1995, 2003). Since the cooling time scale is
+                                                                           In particular, driven turbulence within CNM sheets with self-
+generally short compared with the gas dynamical time scales,
+                                                                           gravity can be investigated in our future work.
+gas is expected to be in thermal equilibrium even in the case of
+vigorously turbulent disks (e.g., Piontek & Ostriker 2005; Kim
+et al. 2011). Thus, it is likely to have Rp < 3. More generally,                                     5. SUMMARY
+the CNM can have higher thermal pressure due to self-gravity                  Using three-dimensional ideal MHD simulations with inter-
+(e.g., Jenkins & Tripp 2011) so that it is more natural to have            stellar cooling and heating, we have shown that the long-term
+Rp  1.                                                                    evolution of decaying turbulence in CNM sheets embedded in
+   Non-thermal linewidths in the CNM and WNM are observed                  a WNM can be different from the usual results of local isother-
+in the ranges of ∼2–7 km s−1 and 10 km s−1 , respectively,                mal simulations. Both models share common characteristics of
+resulting in Mc > 3 and Mw ∼ 1–2 (Heiles & Troland 2003;                   decaying turbulence described by a power-law decay with a
+Kalberla & Kerp 2009). If the magnetic field is uniform and                short decay time at early evolutionary stages. For strong and
+perpendicular to the sheet, we can neglect the contribution                perpendicular (to the sheet) magnetic fields, however, turbu-
+from magnetic pressure. We then have a thermal pressure ratio              lent kinetic energy decays slowly at later times and can survive
+Rp > 5 for Mc > 3 and Mw ∼ 1 from the observed velocity                    longer until 10tcr in the form of incompressible motions in the
+dispersions, which is inconsistent with the expectation from               plane of the sheet. A significant amount of energy, ∼20% of the
+thermal equilibrium of the multiphase ISM. If the turbulence               initial energy, remains in models with strong fields (β = 0.1)
+within CNM sheets is anisotropic so that the turbulent pressure            and anisotropic velocity perturbations (no initial vertical mo-
+in the parallel direction to the field is negligible as in Series A        tions; the AS model). One more very important requirement
+and B, Rp can be kept around unity with the observed Mach                  for a longer-lived turbulence maintained by a strong magnetic
+numbers of each medium. There are also other ways to explain               field is a mechanism to compensate for the leaking of Alfvén
+this contradiction. If the CNM sheets are confined mainly by               waves (periodic BCs in our models). While idealized, such BCs
+the ram pressure of the WNM as in colliding flow simulations,              may represent some aspects of the interaction of multiple CNM
+an additional term appears in the denominator of Equation (16),            sheets within the observed neutral ISM (Heiles & Troland 2005).
+reducing Rp if the Mach number of the colliding flow is similar
+to Mc (e.g., Heitsch et al. 2009). It is also possible to have               The authors are grateful to the referee for a constructive re-
+isotropic turbulence in sheets if the turbulent magnetic pressure          port on the manuscript and also to Dr. Jongsoo Kim and Dr. Eve
+                                     >
+overwhelms other terms and βc ∼        βw . Although the turbulent         Ostriker for helpful discussions on boundary conditions. This
+magnetic field can be as strong as the uniform field (Heiles               work was made possible by the facilities of the Shared Hierar-
+& Troland 2005; Han et al. 2006), anisotropic turbulence is                chical Academic Research Computing Network (SHARCNET:
+still preferred since β ∼ 0.3 is not enough to overwhelm the               www.sharcnet.ca) and Compute/Calcul Canada. C.G.K. is sup-
+turbulent terms.                                                           ported in part by a CITA National Fellowship. S.B. is supported
+   As we have shown in Section 3.1.2, an isolated CNM sheet                by a Discovery Grant from NSERC.
+(modeled by continuous BCs) cannot maintain the turbulent
+energy for a long time. Instead, the energy decays rapidly, as
+in local simulations. The reduced decay rate found in the AS                                         REFERENCES
+model is thus a consequence of the replenishment of Alfvén                Arons, J., & Max, C. E. 1975, ApJL, 196, L77
+waves into the CNM sheet caused by the periodic BCs. In the                Audit, E., & Hennebelle, P. 2005, A&A, 433, 1
+real ISM, the CNM sheets would be placed neither periodically              Audit, E., & Hennebelle, P. 2010, A&A, 511, A76
+in the direction perpendicular to the magnetic field nor would             Basu, S., & Dapp, W. B. 2010, ApJ, 716, 427
+they be isolated. Realistic global simulations that model larger           Beck, R. 2005, in Cosmic Magnetic Fields, ed. R. Wielebinski & R. Beck
+                                                                             (Lecture Notes in Physics, Vol. 664; Berlin: Springer), 41
+magnetized, multiphase H i clouds containing a number of CNM               Cho, J., & Lazarian, A. 2003, MNRAS, 345, 325
+sheets would be necessary to further investigate the reduced               Cho, J., Lazarian, A., & Vishniac, E. T. 2002, ApJ, 564, 291
+decay rate of turbulence found in the AS model.                            Cho, J., & Vishniac, E. T. 2000, ApJ, 539, 273
+
+                                                                      12
+The Astrophysical Journal, 778:88 (13pp), 2013 December 1                                                                                                 Kim & Basu
+
+Crutcher, R. M. 2012, ARA&A, 50, 29                                                     Kritsuk, A. G., & Norman, M. L. 2004, ApJL, 601, L55
+Crutcher, R. M., Wandelt, B., Heiles, C., Falgarone, E., & Troland, T. H.               Kudoh, T., & Basu, S. 2003, ApJ, 595, 842
+   2010, ApJ, 725, 466                                                                  Kudoh, T., & Basu, S. 2006, ApJ, 642, 270
+Elmegreen, B. G. 1985, ApJ, 299, 196                                                    Kudoh, T., & Basu, S. 2011, ApJ, 728, 123
+Elmegreen, B. G., & Scalo, J. 2004, ARA&A, 42, 211                                      Larson, R. B. 1981, MNRAS, 194, 809
+Evans, C. R., & Hawley, J. F. 1988, ApJ, 332, 659                                       Lithwick, Y., & Goldreich, P. 2001, ApJ, 562, 279
+Field, G. B., Goldsmith, D. W., & Habing, H. J. 1969, ApJL, 155, L149                   Mac Low, M., & Klessen, R. S. 2004, RvMP, 76, 125
+Gammie, C. F. 1996, ApJ, 462, 725                                                       Mac Low, M., Klessen, R. S., Burkert, A., & Smith, M. D. 1998, PhRvL,
+Gammie, C. F., & Ostriker, E. C. 1996, ApJ, 466, 814                                       80, 2754
+Gazol, A., & Kim, J. 2010, ApJ, 723, 482                                                Maron, J., & Goldreich, P. 2001, ApJ, 554, 1175
+Gazol, A., & Kim, J. 2013, ApJ, 765, 49                                                 McKee, C. F., & Ostriker, E. C. 2007, ARA&A, 45, 565
+Gazol, A., Luis, L., & Kim, J. 2009, ApJ, 693, 656                                      Meyer, D. M., Lauroesch, J. T., Heiles, C., Peek, J. E. G., & Engelhorn, K.
+Gazol, A., Vázquez-Semadeni, E., & Kim, J. 2005, ApJ, 630, 911                            2006, ApJL, 650, L67
+Gibson, S. J., Taylor, A. R., Higgs, L. A., & Dewdney, P. E. 2000, ApJ, 540, 851        Mouschovias, T. Ch. 1975, PhD thesis, Harvard Univ.
+Goldreich, P., & Sridhar, S. 1995, ApJ, 438, 763                                        Mouschovias, T. Ch., Kunz, M. W., & Christie, D. A. 2009, MNRAS, 397, 14
+Han, J. L., Manchester, R. N., Lyne, A. G., Qiao, G. J., & van Straten, W.              Ostriker, E. C., Gammie, C. F., & Stone, J. M. 1999, ApJ, 513, 259
+   2006, ApJ, 642, 868                                                                  Ostriker, E. C., Stone, J. M., & Gammie, C. F. 2001, ApJ, 546, 980
+Heiles, C., & Troland, T. H. 2003, ApJ, 586, 1067                                       Padoan, P., & Nordlund, Å. 1999, ApJ, 526, 279
+Heiles, C., & Troland, T. H. 2005, ApJ, 624, 773                                        Piontek, R. A., & Ostriker, E. C. 2004, ApJ, 601, 905
+Heitsch, F., Burkert, A., Hartmann, L. W., Slyz, A. D., & Devriendt, J. E. G.           Piontek, R. A., & Ostriker, E. C. 2005, ApJ, 629, 849
+   2005, ApJL, 633, L113                                                                Saury, E., Miville-Deschênes, M.-A., Hennebelle, P., Audit, E., & Schmidt, W.
+Heitsch, F., Slyz, A. D., Devriendt, J. E. G., Hartmann, L. W., & Burkert, A.              2013, arXiv:1301.3446
+   2007, ApJ, 665, 445                                                                  Seifried, D., Schmidt, W., & Niemeyer, J. C. 2011, A&A, 526, A14
+Heitsch, F., Stone, J. M., & Hartmann, L. W. 2009, ApJ, 695, 248                        Smith, M. R., Donnelly, R. J., Goldenfeld, N., & Vinen, W. F. 1993, PhRvL,
+Hennebelle, P., & Audit, E. 2007, A&A, 465, 431                                            71, 2583
+Hennebelle, P., & Inutsuka, S.-i. 2006, ApJ, 647, 404                                   Stone, J. M., & Gardiner, T. 2009, NewA, 14, 139
+Hennebelle, P., & Pérault, M. 2000, A&A, 359, 1124                                     Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B.
+Inoue, T., & Inutsuka, S.-i. 2012, ApJ, 759, 35                                            2008, ApJS, 178, 137
+Jenkins, E. B., & Tripp, T. M. 2001, ApJS, 137, 297                                     Stone, J. M., Ostriker, E. C., & Gammie, C. F. 1998, ApJL, 508, L99
+Jenkins, E. B., & Tripp, T. M. 2011, ApJ, 734, 65                                       Vázquez-Semadeni, E., Gómez, G. C., Jappsen, A. K., et al. 2007, ApJ,
+Kalberla, P. M. W., & Kerp, J. 2009, ARA&A, 47, 27                                         657, 870
+Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2008, ApJ, 681, 1148                          Vestuto, J. G., Ostriker, E. C., & Stone, J. M. 2003, ApJ, 590, 858
+Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2011, ApJ, 743, 25                            Vishniac, E. T. 1994, ApJ, 428, 186
+Kolmogorov, A. 1941, DoSSSR, 30, 301                                                    Wolfire, M. G., Hollenbach, D., McKee, C. F., Tielens, A. G. G. M., & Bakes,
+Kowal, G., & Lazarian, A. 2010, ApJ, 720, 742                                              E. L. O. 1995, ApJ, 443, 152
+Koyama, H., & Inutsuka, S. 2000, ApJ, 532, 980                                          Wolfire, M. G., McKee, C. F., Hollenbach, D., & Tielens, A. G. G. M. 2003, ApJ,
+Koyama, H., & Inutsuka, S. 2002, ApJL, 564, L97                                            587, 278
+Kritsuk, A. G., & Norman, M. L. 2002, ApJL, 569, L127                                   Zweibel, E. G., & Josafatsson, K. 1983, ApJ, 270, 511
+
+
+
+
+                                                                                   13
+

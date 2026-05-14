@@ -5,6 +5,7 @@ created: 2026-05-14
 updated: 2026-05-14
 sources:
   - wiki/sources/mypapers-bibliography.md
+  - wiki/syntheses/batch-1-core-ism-tigress-foundations.md
 tags:
   - astrophysics
   - feedback
@@ -25,6 +26,7 @@ The publication corpus treats stellar feedback as the main regulator of the mult
 
 - The planned batches separate supernova and bubble physics, radiation and chemistry, star formation regulation, and wind launching because these are distinct but coupled feedback channels.
 - [[publication-map]] uses stellar feedback as a central connection among [[multiphase-ism]], [[star-formation-regulation]], [[supernova-feedback]], and [[galactic-winds]].
+- [[batch-1-core-ism-tigress-foundations]] establishes feedback as the source of thermal and turbulent pressure needed for disk equilibrium.
 
 ## Related Pages
 
@@ -38,4 +40,3 @@ The publication corpus treats stellar feedback as the main regulator of the mult
 
 - How do different feedback channels combine across ISM phases?
 - Which feedback yields are portable from local simulations into cosmological models?
-

@@ -5,6 +5,8 @@ created: 2026-05-14
 updated: 2026-05-14
 sources:
   - wiki/sources/mypapers-bibliography.md
+  - wiki/sources/2017-kim-ostriker-tigress-framework.md
+  - wiki/syntheses/batch-1-core-ism-tigress-foundations.md
 tags:
   - astrophysics
   - simulations
@@ -25,6 +27,8 @@ TIGRESS and related TIGRESS-NCR work form a backbone of the publication corpus. 
 
 - [[publication-map]] places TIGRESS foundation papers in the first full-text ingest batch.
 - Later batches use TIGRESS-related work to connect radiation, chemistry, winds, H I diagnostics, dust polarization, and ram pressure stripping.
+- [[2017-kim-ostriker-tigress-framework]] defines the framework and validates convergence for a solar-neighborhood model.
+- [[2018-kim-ostriker-tigress-winds]] uses TIGRESS to distinguish hot winds from warm fountain flows.
 
 ## Related Pages
 
@@ -38,4 +42,3 @@ TIGRESS and related TIGRESS-NCR work form a backbone of the publication corpus. 
 
 - Which TIGRESS-derived subprojects deserve their own hub pages?
 - How should TIGRESS-NCR be linked to the original TIGRESS framework?
-

@@ -18,6 +18,18 @@ This file is the content catalog for the wiki. Update it whenever pages are adde
 ## Sources
 
 - [[mypapers-bibliography]] - Cleaned bibliography of 72 astrophysics publications, grouped into planned full-text ingest batches.
+- [[2006-kim-kim-ostriker-spiral-shock-turbulence]] - Spiral shocks in vertically stratified disks as a source of ISM turbulence.
+- [[2008-kim-kim-ostriker-spiral-shocks-thermal-instability]] - One-dimensional multiphase spiral shocks with thermal instability.
+- [[2010-kim-kim-ostriker-vertical-spiral-shocks]] - Vertically stratified spiral shocks with thermal instability and shock flapping.
+- [[2011-kim-kim-ostriker-star-formation-regulation]] - Numerical tests of thermal and vertical dynamical equilibrium in star-forming disks.
+- [[2013-kim-ostriker-kim-3d-star-formation-regulation]] - 3D simulations validating pressure-regulated star formation.
+- [[2013-kim-basu-decaying-mhd-turbulence]] - Decaying MHD turbulence in cold neutral medium sheets embedded in warm gas.
+- [[2015-kim-ostriker-magnetized-disk-star-formation]] - Magnetized feedback-regulated galactic disks and magnetic support.
+- [[2017-kim-ostriker-tigress-framework]] - Introduction of the TIGRESS simulation framework.
+- [[2018-kim-ostriker-tigress-winds]] - TIGRESS analysis of hot winds and warm fountain flows.
+- [[2020-kim-kim-ostriker-tigress-spiral-arms]] - TIGRESS simulations of spiral arms, star formation, and spurs.
+- [[2020-mao-ostriker-kim-clouds-star-formation]] - Cloud definitions and star formation correlations in a live multiphase ISM.
+- [[2024-jeffreson-galactism]] - GalactISM simulations connecting resolved star formation and outflows to cosmological modeling.
 - [[ruszkowski-pfrommer-2023-cosmic-ray-feedback]] - Review of cosmic ray acceleration, transport, observables, and feedback in galaxies and galaxy clusters.
 
 ## Entities
@@ -48,3 +60,4 @@ No filed question pages yet.
 
 - [[publication-map]] - Topic map of the cleaned publication bibliography.
 - [[publication-ingest-plan]] - Batch plan for future full-text paper ingestion once PDF paths are available.
+- [[batch-1-core-ism-tigress-foundations]] - Full-text synthesis of the core ISM and TIGRESS foundation batch.

@@ -1,0 +1,1260 @@
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                            doi:10.1088/0004-637X/776/1/1
+ 2013. The American Astronomical Society. All rights reserved. Printed in the U.S.A.
+C
+
+
+
+
+            THREE-DIMENSIONAL HYDRODYNAMIC SIMULATIONS OF MULTIPHASE GALACTIC DISKS
+               WITH STAR FORMATION FEEDBACK. I. REGULATION OF STAR FORMATION RATES
+                                                      Chang-Goo Kim1 , Eve C. Ostriker2,3 , and Woong-Tae Kim4
+                       1 Department of Physics and Astronomy, University of Western Ontario, London, Ontario N6A 3K7, Canada; ckim256@uwo.ca
+                                  2 Department of Astronomy, University of Maryland, College Park, MD 20742, USA; eco@astro.princeton.edu
+                                           3 Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA
+                       4 Center for the Exploration of the Origin of the Universe (CEOU), Astronomy Program, Department of Physics and Astronomy,
+                                                         Seoul National University, Seoul 151-742, Korea; wkim@astro.snu.ac.kr
+                                                      Received 2013 May 14; accepted 2013 August 13; published 2013 September 17
+
+                                                                                        ABSTRACT
+              The energy and momentum feedback from young stars has a profound impact on the interstellar medium (ISM),
+              including heating and driving turbulence in the neutral gas that fuels future star formation. Recent theory has
+              argued that this leads to a quasi-equilibrium self-regulated state, and for outer atomic-dominated disks results in
+              the surface density of star formation ΣSFR varying approximately linearly with the weight of the ISM (or midplane
+              turbulent + thermal pressure). We use three-dimensional numerical hydrodynamic simulations to test the theoretical
+              predictions for thermal, turbulent, and vertical dynamical equilibrium, and the implied functional dependence of
+              ΣSFR on local disk properties. Our models demonstrate that all equilibria are established rapidly, and that the expected
+                            √ between mean thermal and turbulent pressures and ΣSFR apply. For outer disk regions, this results
+              proportionalities
+              in ΣSFR ∝ Σ ρsd , where Σ is the total gas surface density and ρsd is the midplane density of the stellar disk (plus
+              dark matter). This scaling law arises because ρsd sets the vertical dynamical time in our models (and outer disk
+              regions generally). The coefficient in the star formation law varies inversely with the specific energy and momentum
+              yield from massive stars. We find proportions of warm and cold atomic gas, turbulent-to-thermal pressure, and
+              mean velocity dispersions that are consistent with solar-neighborhood and other outer disk observations. This study
+              confirms the conclusions of a previous set of simulations, which incorporated the same physics treatment but was
+              restricted to radial-vertical slices through the ISM.
+              Key words: galaxies: ISM – galaxies: kinematics and dynamics – galaxies: star formation – methods: numerical –
+              turbulence
+              Online-only material: color figures
+
+
+
+                                 1. INTRODUCTION                                               values of ambient UV, X-rays, and cosmic rays, with far-UV
+                                                                                               (FUV) from young stars the dominant term (e.g., Wolfire et al.
+   Disk galaxies like the Milky Way are long-lived systems,                                    1995, 2003). Many processes may contribute to turbulent driving
+evolving (in the absence of interactions) only on timescales                                   (e.g., Elmegreen & Scalo 2004), but those associated with
+of several orbits. The interstellar medium (ISM) also evolves                                  feedback from young stars are likely to be the most important
+slowly overall, such that there are well-defined ISM properties                                on scales relevant for vertical dynamical equilibrium within
+when averaged over a spatial domain of several disk scale                                      the disk. Similar to the case for thermal pressure, empirical
+heights and several tenths of an orbit. On small spatial scales,                               measures of the supernova (SN) rate have often been used to
+however, the ISM is highly structured, and can change rapidly                                  obtain predictions for the turbulent pressure in ISM models
+as both thermal and dynamical timescales are short. These short                                (e.g., McKee & Ostriker 1977).
+timescales suggest that the ISM will be able to evolve to a quasi-                                For a self-consistent ISM model, the equilibrium pressure
+equilibrium state, in which heating balances cooling, and in                                   obtained by balancing various gain and loss terms must be
+which the mean pressure in the diffuse gas at any height balances                              the same as the equilibrium pressure that offsets the vertical
+the weight of the overlying ISM. The ideas that thermal and                                    weight of the gas. Ostriker et al. (2010, hereafter OML10) and
+vertical “hydrostatic” equilibrium should approximately apply                                  Ostriker & Shetty (2011, hereafter OS11) used this principle,
+are widely held (see, e.g., the reviews of Ferrière 2001; Cox                                 in combination with relations between turbulent and thermal
+2005) and have been studied in detail over many decades in                                     driving and the star formation rate (SFR), to obtain predictions
+the astrophysical literature. Turbulence has only been studied                                 for the equilibrium SFR in disk systems regulated by feedback.
+more recently with the advent of numerical hydrodynamic                                        In this model framework, the radiation fields and SN rates that
+simulations, but it too is expected to reach an equilibrium                                    control thermal and turbulent pressure in the ISM are no longer
+between driving and dissipation (cf. Stone et al. 1998; Mac                                    considered independent (or empirically determined) parameters,
+Low 1999). Although thermal pressure plays a role, turbulent                                   but must evolve (together with an evolving SFR) to levels
+pressure is believed to be the most important contributor to                                   that yield pressures that are consistent with vertical dynamical
+vertical force balance in the atomic ISM (Lockman & Gehman                                     equilibrium.
+1991).                                                                                            Kim et al. (2011, hereafter Paper I) tested this feedback-
+   In models of the atomic ISM, the heating rate per particle,                                 regulated simultaneous equilibrium model via numerical hydro-
+and therefore the equilibrium thermal pressure, is generally                                   dynamic simulations for the outer disk regime in which gas is
+treated as an independent parameter, set based on empirical                                    primarily atomic (both warm and cold), while Shetty & Ostriker
+
+                                                                                           1
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                Kim, Ostriker, & Kim
+
+(2012, hereafter SO12) tested the equilibrium model with sim-                    2. NUMERICAL METHODS AND MODELS
+ulations of the starburst regime in which gas is mainly molec-
+ular and cold. Both of these numerical studies demonstrated                                  2.1. Numerical Methods
+that models for a wide range of parameters indeed evolve to                 We consider local “shearing box” models of galactic disks in
+a quasi-steady, turbulent state. Key physical quantities, such as        three dimensions (e.g., Kim et al. 2002, 2003). The axes in the
+the SFR surface density (ΣSFR ), disk scale height, midplane ther-       local Cartesian frame are x ≡ R − R0 and y ≡ R0 (φ − Ωt),
+mal and turbulent pressures, warm and cold gas fractions, and            where R0 is the galactocentric radius at the center of the
+mass-weighted velocity dispersions, reach well-defined mean              domain and Ω ≡ Ω(R0 ) is the angular velocity at R0 ; z is
+values within an orbital time. The saturation of these statis-           the vertical coordinate centered on the galactic midplane. The
+tical properties enables a comparison with the theory of self-           background velocity in this local frame relative to the domain
+regulated star formation developed in OML10 and OS11, and                center (at x = y = z = 0) has the form v0 = −qΩx ŷ, where
+also provides calibrations of certain parameters that enter the          q ≡ −(d ln Ω/d ln R)|R0 is the local shear rate. We assume
+theory.                                                                  a flat rotation curve, such√that we set q = 1 and the local
+   In this paper, we return to the atomic-dominated outer                epicyclic frequency is κ = 2Ω. The shearing box formulation
+disk regime, but extend the simulations of Paper I from two-             in the local frame includes tidal gravity and Coriolis force terms
+dimensional radial-vertical domains to fully three-dimensional           in the horizontal direction. In addition, we include a (fixed)
+(3D) models. We explore a wide range of total gas surface                vertical gravitational potential to model the stellar disk and dark
+density Σ ∼ 2.5–20 M pc−2 and midplane density of stars                 matter halo, self-gravity of gas, cooling and heating, and thermal
+plus dark matter ρsd ∼ 0.003–0.45 M pc−3 . We also include              conduction. The resulting set of equations (see, e.g., Piontek &
+sheared galactic rotation, focusing on model families in which           Ostriker 2007; Paper I) is
+the angular speed Ω ∝ Σ so that the Toomre parameter in
+the gas is constant (Q ∼ 2 for saturated-state turbulence ve-                                   ∂ρ
+                                                                                                   + ∇ · (ρv) = 0,                      (1)
+locity dispersion ∼7 km s−1 ). Our feedback prescription in-                                    ∂t
+cludes both time-dependent heating and turbulent driving de-              ∂v               1
+pendent on the SFR, as described in Section 2.1. We also vary                + v · ∇v = − ∇P − 2 × v + 2qΩ2 x x̂ − ∇Φ + gsd , (2)
+the heating efficiency frad ∼ 0.2–5 that connects the heating             ∂t               ρ
+                                                                                   ∂e
+rate and the SFR surface density. This allows us to explore                            + ∇ · (ev) = −P ∇ · v − ρ L + K∇ 2 T ,  (3)
+how, e.g., varying dust abundance (which would alter radia-                         ∂t
+tion penetration and heating) may affect the saturated state and                                 ∇ 2 Φ = 4π Gρ,                (4)
+evolution.                                                               where gsd is the external gravity, ρ L is the net cooling rate
+   As we shall describe, our simulations show that realistic             per unit volume, and K = 4 × 107 erg s−1 cm−1 K−1 /[1 +
+SFRs are obtained when momentum feedback at the levels                   (0.05 cm−3 /n)] is the conductivity adopted such that thermal
+expected from the corresponding Type II SN rates are included.           instability is resolved on our grid (Koyama & Ostriker 2009a;
+This affirms the conclusions reached in our previous numerical           Paper I). Other symbols have their usual meanings. We assume
+studies (Paper I; SO12). Although detailed prescriptions differ,         that the gas has cosmic abundance so that the gas pressure is
+recent work from other groups has reached similar conclusions            P = 1.1nkB T , where n = ρ/(1.4mp ) is the number density
+regarding the ability of sufficient momentum feedback to self-           of hydrogen nuclei. An ideal gas law is assumed with internal
+regulate star formation at realistic levels (e.g., Dobbs et al.          energy density e = (3/2)P .
+2011; Hopkins et al. 2011; Agertz et al. 2013). Beyond simply               Since the vertical gradient scales of stellar disks and dark
+demonstrating that feedback is effective in self-regulating star         matter halos are generally much larger than those of gaseous
+formation, we also show (following Paper I) that SFRs obey a             disks (and vertical domain sizes in our simulations), we adopt the
+near-linear scaling with the pressure of the diffuse ISM, and we         simple approach of taking external gravity as a linear function
+relate the coefficient to the inverse of the specific momentum           of the vertical coordinate z:
+injected by massive stars. This explains empirical correlations
+of molecular gas and star formation with pressure identified by                                 gsd = −4π Gρsd zẑ,                     (5)
+Blitz & Rosolowsky (2004, 2006) and Leroy et al. (2008). Our
+numerical results confirm the conclusion of Paper I that both            where ρsd is the stellar plus dark matter volume density at the
+warm and cold atomic gas are expected to be present in the ISM           midplane.
+for a wide range of conditions, consistent with observations                The net volumetric cooling function is given by ρ L ≡
+of both the solar-neighborhood (Heiles & Troland 2003) and               n[nΛ(T ) − Γ]. For the diffuse ISM, radiative cooling by the
+distant outer disk regions (Dickey et al. 2009; Pineda et al.            C ii 158 μm fine-structure line and by Lyα line emission is
+2013) of the Milky Way.                                                  dominant at low and high temperature, respectively, whereas
+   The plan of this paper is as follows. In Section 2, we sum-           grain photoelectric heating by FUV radiation with energy
+marize our numerical methods and the parameter sets chosen               6 eV < hν < 13.6 eV is dominant in both the cold and warm
+for our simulations modeling varying galactic environments.              phases (Bakes & Tielens 1994). We adopt the fitting formula for
+In Section 3, we present our results, including an overview of           the cooling function from Koyama & Inutsuka (2002):
+evolution (Section 3.1), statistics of saturated-state properties                                                    
+                                                                                              −19        −1.184 × 105
+for different models (Section 3.2), comparison with the predic-               Λ(T ) = 2 × 10 exp
+tions for vertical dynamical, thermal, and turbulent equilibrium                                           T + 1000
+                                                                                                                    
+based on these statistics (Section 3.3), and comparison with the                                   −28
+                                                                                                       √         −92
+theoretical predictions for equilibrium star formation scalings                        + 2.8 × 10        T exp         erg cm3 s−1 , (6)
+                                                                                                                  T
+and rates (Section 3.4). We summarize and discuss our main
+conclusions in Section 4.                                                with temperature T in degrees Kelvin.
+
+                                                                     2
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                      Kim, Ostriker, & Kim
+
+   We adopt the same star formation feedback prescription as                          p∗ = 3 × 105 M km s−1 . For uniform-density conditions, there
+in Paper I. This includes momentum feedback (to represent the                         is only a weak dependence of the radiative-stage momentum on
+radiative stage of blasts produced by SN explosions) at a rate                        the ambient density (p∗ ∝ n̄−0.12 ), because momentum in the
+proportional to the SFR, together with a time-dependent heating                       Sedov stage varies as ∼ESN /vshock and the onset of the radiative
+rate that is also proportional to the SFR (representing radiative                     stage is the point at which v shock drops enough that post-shock
+heating from young, massive stars). We scale the heating rate                         cooling becomes strong (see, e.g., the physical discussion in
+relative to the fiducial solar-neighborhood value adopted by                          Blondin et al. 1998). For a strongly clumped medium, however,
+Koyama & Inutsuka (2002), Γ0 = 2×10−26 erg s−1 (see below).                           both the radius at the radiative stage and the net momentum
+   The reader is referred to Paper I for a full description of the                    injection may depart more strongly from our adopted value; this
+feedback prescription. Here we only give a brief summary. Star                        will be evaluated with future simulations.
+formation is taken to occur only when the density of the grid zone                       For radiative feedback, we count the number of recent massive
+exceeds a threshold5 ncr = 200 cm−3 (Γ/Γ0 )0.2 . The probability                      star formation events over tbin to calculate the recent SFR:
+of massive star formation in a given zone with simulation time
+step Δt is                                                                                                                    N∗ m∗
+                                                                                                                  ΣSFR =                ,                         (9)
+                                 Ṁ∗                                                                                         Lx Ly tbin
+                           P∗ =      Δt,                        (7)
+                                 m∗                                                   where N∗ stands for the total number of massive stars formed
+where Ṁ∗ is the expected SFR for a given grid zone, and                              during the time interval (t − tbin , t). In contrast to Paper I,
+m∗ = 100 M represents the total mass in stars (averaged                              our simulation domain is sufficiently large in the azimuthal
+over the initial mass function) per SN (cf., Kroupa 2001). The                        direction so that tbin can be set to the realistic lifetime of OB
+expected SFR for a grid zone with density ρ > ρcr is taken as                         stars, tFUV = 10 Myr (Parravano et al. 2003).6 We assume a
+                                                                                      simple linear relationship between the heating rate Γ, the mean
+                                                  ρΔV                                 FUV radiation field JFUV , and the SFR surface density ΣSFR
+                       Ṁ∗ = ρ̇∗ ΔV =        ff           ,                 (8)       (see OML10; Paper I) normalized relative to solar-neighborhood
+                                                  tff (ρ)
+                                                                                      conditions, such that
+where ΔV = ΔxΔyΔz = (2 pc)3 is the volume element of the                                                                             
+                                                                                                                  ΣSFR         JFUV,meta
+grid zone, ff is the star formation efficiency per free-fall time                                Γ = Γ0 frad              +                  .      (10)
+of dense, self-gravitating gas, and tff (ρ) ≡ [3π/(32Gρ)]1/2 is                                                  ΣSFR,0         JFUV,0
+the free-fall time of a given grid zone. We take a fiducial value                     In Equation (10), we adopt the solar-neighborhood fiducial
+ ff = 0.01, which is consistent with theory and observations of                       heating rate Γ0 = 2 × 10−26 erg s−1 from Koyama & Inutsuka
+dense ISM gas (Krumholz & McKee 2005; Krumholz & Tan                                  (2002), the SFR surface density in the solar neighborhood
+2007; Krumholz et al. 2012). We note that based on the study                          ΣSFR,0 = 2.5 × 10−3 M kpc−2 yr−1 from Fuchs et al. (2009),
+of SO12, the adopted value of ff can be varied by an order of                         and JFUV,meta = 0.0024JFUV,0 to represent the metagalactic
+magnitude with little effect on the resulting mean SFR, provided                      FUV radiation field (Sternberg et al. 2002). As in Paper I,
+that the threshold density is sufficiently high compared to the                       we introduce a parameter frad to allow for variable heating
+mean value in the diffuse ISM.                                                        efficiency at a given SFR relative to our adopted parameters.
+   When a massive star forms, we immediately apply momentum                           By increasing/decreasing frad , we can also represent greater/
+feedback in its vicinity, i.e., we neglect time delays (see below                     lesser penetration of FUV through the ISM as would occur for
+and Paper I). For each feedback event, we first take spatial                          lower/higher dust abundance.
+averages within a sphere of radius rsh and redistribute mass,                            We utilize the Athena code with the van Leer integrator
+momentum, and thermal energy with their respective averaged                           (Stone & Gardiner 2009), Roe’s Riemann solver, a piecewise
+values. We adopt a fixed value rsh = 10 pc as representative                          linear spatial reconstruction scheme, and the orbital advection
+of the shell formation epoch (Cioffi et al. 1988; Koo & Kang                          method for a shearing box (Stone & Gardiner 2010). In addition,
+2004). We then add to the local momentum density a quantity                           we adopt a fast Fourier transform Poisson solver method with
+with a form ρv(r) = psh (r/rsh )2 r̂, where r is the position                         treatment of shearing horizontal coordinates as introduced by
+vector measured from the center of the SN feedback region, and                        Gammie (2001) and with vacuum vertical boundary conditions
+psh = 5p∗ /(4π rsh 3
+                     ) is the momentum density at r = rsh . This                      as introduced by Koyama & Ostriker (2009a). We include
+injects a total radial momentum p∗ to the surrounding medium;                         cooling/heating and thermal conduction terms in an operator
+physically, p∗ represents the value of the shell momentum in                          split manner. For the net cooling, we use an implicit solution
+the radiative stage of a SN remnant. Thornton et al. (1998)                           method based on Simpson’s rule and apply subcycling to limit
+studied the evolution of expanding spherical SN remnants with                         the maximum temperature change to <50% of previous value
+realistic radiative cooling and found that the shell momentum is                      over all grid zones. If the change of temperature exceeds 50% of
+p∗ ∼ (1–4)×105 M km s−1 at the time of maximum luminosity                            the previous value, we halve the timestep and repeat subcycles
+and a factor ∼2.5 larger after shell cooling has declined, with the                   for the specific grid zone until the temperature change for one
+highest values corresponding to low metallicity. The simulations                      hydrodynamic timestep update is smaller than 50%.
+of Cioffi et al. (1988) and Blondin et al. (1998) found similar                          Similar to Paper I, we mention several caveats regarding the
+values at solar metallicity. In the present work, we adopt                            current simulations. First, the feedback from SN explosions is
+5   The threshold density is calculated based on the thermal equilibrium state        6   For the QA02 model, which has extremely low surface density, we adopt
+of cold gas, ncr = Γ/Λ(Tcr ), where Tcr is the threshold temperature. For our         tbin = 40 Myr to partly compensate for the fact that the domain of influence of
+net cooling function, the Jeans length is λJ ≈ 1.4Tcr e−46/Tcr (Γ/Γ0 )−1/2 pc
+                                                      3/4
+                                                                                      FUV radiation would be approximately four times larger than the horizontal
+(Paper I). By taking λJ = 5 pc, Tcr (and hence ncr ) can be found as a function       area of our simulation box. Note that this time is still very short compared to
+of Γ/Γ0 . Using a power-law fit, we obtain ncr given in the main text,                the orbit time torb and the vertical oscillation period tosc for the QA02 model.
+representing the maximum density for which the Jeans length is well resolved          Also, for 3DS and XZ models with smaller azimuthal domain size (see
+(cf. Truelove et al. 1997) at our adopted spatial resolution of 2 pc.                 Section 2.2), we extend tbin to 0.5torb .
+
+                                                                                  3
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                          Kim, Ostriker, & Kim
+
+realized solely via expanding SN remnants rather than injecting                                            Table 1
+thermal energy, which would create a hot ISM (McKee &                                                   Model Parameters
+Ostriker 1977). More realistically, the hot ISM would occupy              Model         Σ                ρsd            torb        Lz        s0        frad
+a significant volume even near the midplane (e.g., Hill et al.                       (M pc−2 )       (M pc−3 )       (Myr)       (pc)
+2012), together with the cold and warm phases in approximate              QA02            2.5           0.0031         878        2048       0.28       1.0
+pressure equilibrium. Due to its large-scale height, however,             QA05            5.0           0.0125         439        1024       0.28       1.0
+most of the hot gas does not participate in supporting the weight         QA07            7.5           0.0281         293         768       0.28       1.0
+of the warm/cold diffuse gas, although expansion of highly                QA10           10.0           0.0500         219         512       0.28       1.0
+overpressured hot SN remnants is crucial in driving turbulence            QA15           15.0           0.1125         146         384       0.28       1.0
+within the surrounding warm/cold ISM; we model the latter                 QA20           20.0           0.2000         110         256       0.28       1.0
+effect. Based on our conclusion that the SFR is regulated by              QB02            2.5           0.0125         878        1024       0.07       1.0
+midplane total pressure (Section 3.4), we believe that our main           QB05            5.0           0.0500         439         768       0.07       1.0
+findings are robust, in spite of our simplified treatment of SNe.         QB07            7.5           0.1125         293         512       0.07       1.0
+We note that using preliminary simulations in which SNe are               QB10           10.0           0.2000         219         384       0.07       1.0
+modeled with thermal energy input (rather than momentum                   QB15           15.0           0.4500         146         256       0.07       1.0
+input), we recover similar results for SFRs to those reported             S02             2.5           0.0500         878        1024       0.02       1.0
+here.                                                                     S07             7.5           0.0500         293         768       0.16       1.0
+   A second caveat is that the feedback we apply is instanta-             S15            15.0           0.0500         146         512       0.62       1.0
+neous, whereas a more realistic treatment of stellar evolution            S20            20.0           0.0500         110         512       1.10       1.0
+would include inputs from stellar winds and expanding H ii re-            G01            10.0           0.0125         219        1024       1.10       1.0
+gions (e.g., Mac Low & Klessen 2004) prior to SN explosions.              G02            10.0           0.0250         219         768       0.55       1.0
+Since SNe are the most powerful driving source of turbulence av-          G10            10.0           0.1000         219         512       0.14       1.0
+eraged over the ISM (p∗ /m∗ for stellar winds and expanding H ii          G40            10.0           0.4000         219         384       0.03       1.0
+regions would be an order of magnitude lower than that of SNe;            R02            10.0           0.0500           28        512       0.28       0.2
+see OS11), we believe that the current simplified approach is an          R05            10.0           0.0500           28        512       0.28       0.5
+adequate first approximation for modeling SFR self-regulation             R25            10.0           0.0500           28        512       0.28       2.5
+in diffuse-dominated regions. Feedback from earlier stages of             R50            10.0           0.0500           28        512       0.28       5.0
+massive star evolution would, however, affect the detailed prop-
+erties and lifetimes of gravitationally bound clouds (GBCs), so           Notes. Physical input parameters are the same as in Paper I. Full 3D simulations
+including these effects will be important in modeling higher-Σ            with Lx = Ly = 512 pc are run only for models QA02, QA05, QA10, QA20,
+                                                                          and R50 (bold face in first column). “Slim” 3D simulations (Lx = 512 pc,
+galactic regions where most of the ISM mass is in GBCs rather
+                                                                          Ly = 32 pc) are run for all parameters.
+than diffuse structures. For this reason, we confine ourselves
+here to the regime Σ ⩽ 20 M pc−2 in which the observed ISM
+is predominantly in the diffuse atomic component. When spiral             220 Myr (Σ/10 M pc−2 )−1 , which we take as the time unit in
+arms or bars are taken into account, the time delay between               our presentation.
+the epochs of star formation and feedback would likely also be               We take Lx = 512 pc and Lz = 4Hw for the horizontal
+important (e.g., Kim et al. 2010; Seo & Kim 2013).                        and vertical domain sizes. Here Hw ≡ cw /(4π Gρsd )1/2 is a
+                                                                          nominal Gaussian scale height of warm gas with cw = 7 km s−1 ,
+                      2.2. Model Parameters
+                                                                          which varies from model to model. In all models, we vary
+   We run the same set of models as in Paper I, which covers              the number of grid zones such that the grid resolution7 is
+a wide range of outer disk conditions for nearby galaxies.                Δx = Δy = Δz = 2 pc. In the azimuthal direction, we consider
+Our parameters are the gas surface density Σ, the stellar plus            two different domain sizes: one set is full 3D simulations using
+dark matter density at the midplane ρsd , and the galactic                azimuthal domain size Ly = Lx = 512 pc (hereafter 3DF
+rotational speed Ω. We have five model series: QA, QB, S,                 models), and the other set uses a slimmer azimuthal domain size
+G, and R. For all series, the angular speed of galactic rotation          Ly = 32 pc (hereafter 3DS models). Since full 3D simulations
+varies as Ω = 28 km s−1 kpc−1 (Σ/10 M pc−2 ), such that the              require considerable computational resources, it is impractical to
+gaseous Toomre stability parameter Qg ≡ κσx /(π GΣ) would                 run 3DF models for all parameter values. Our 3DS models cover
+be constant for fixed radial (x̂) gas velocity dispersion σx              the whole parameter space, while the 3DF models cover just the
+(Qg ∼ 2 for σx = 7 km s−1 ). In the QA and QB series, ρsd ∝ Σ2            QA and R series (see Table 1). In forthcoming sections, we shall
+such that the stellar Toomre parameter would also be constant             show that 3DF and 3DS models yield essentially the same results
+within each series. These two series differ only in the ratio             in terms of statistical properties at saturation. We also compare
+of self-to-external (i.e., gaseous-to-stellar+dark matter) gravity:       these properties to the results from the simulations of Paper I,
+s0 = 0.28 and 0.07 for the QA and QB series, respectively,                which followed the evolution of two-dimensional radial-vertical
+where s0 ≡ π GΣ2 /(2σz2 ρsd ) (cf., Kim et al. 2002). The QA              slices through the disk; these are denoted as “XZ” models. In
+and QB series may thus each be thought of as representing a               the remainder of this paper, we use suffixes 3DF, 3DS, and XZ
+sequence of radii in a Qg = const, Q∗ = const galaxy, where               to distinguish models with the same parameters but different
+the stellar disk is a factor of four more massive in the QB series        azimuthal domain size. The term “3D models” denotes both
+than in the QA series. For the S series we fix ρsd and vary Σ,            3DF and 3DS models.
+whereas for the G series we fix Σ and vary ρsd . For the R series,
+we vary frad for the fiducial model QA10, to test the effect of
+varying the heating efficiency or dust shielding for FUV. We              7 Although the resolution is a factor of two lower than in Paper I, we have
+list the model parameters in Table 1. In all models, the orbital          confirmed that the key physical properties are converged even at lower
+period is torb = 2π/Ω = 220 Myr (Ω/28 km s−1 kpc−1 )−1 =                  resolution than we adopt here.
+
+                                                                      4
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                        Kim, Ostriker, & Kim
+
+                                                                                                                                           2
+                           200                                                         200
+                                                                                                                                           1
+                           100                                                         100
+
+
+                                                                                                                                                 log(n) [cm ]
+                                                                                                                                                −3
+
+
+                  y [pc]     0                                                z [pc]       0                                               0
+
+                           −100                                                        −100
+                                                                                                                                           −1
+                           −200                                                        −200
+                                                                                                                                           −2
+                                  −200 −100 0 100 200                                          −200 −100 0 100 200
+                                           x [pc]                                                       x [pc]
+
+                           200                                                         200
+
+                           100                                                         100
+
+                  y [pc]     0                                                z [pc]       0
+
+                           −100                                                        −100
+
+                           −200                                                        −200
+
+                                  −200 −100 0 100 200                                          −200 −100 0 100 200
+                                           x [pc]                                                       x [pc]
+
+                           200                                                         200
+
+                           100                                                         100
+
+                  y [pc]     0                                                z [pc]       0
+
+                           −100                                                        −100
+
+                           −200                                                        −200
+
+                                  −200 −100 0 100 200                                          −200 −100 0 100 200
+                                           x [pc]                                                       x [pc]
+Figure 1. Snapshots of density in the solar-neighborhood-like model QA10-3DF (logarithmic color scale) at early evolutionary stages, t/torb = 0 (top), 0.1 (middle),
+and 0.2 (bottom). The left and right columns display horizontal and vertical slices through the computational domain at z = 0 and y = 0, respectively. The initial
+disk rapidly separates into two phases due to thermal instability, with the cold gas settling to the midplane (Kim et al. 2010). Gravity causes the cold gas to collect
+into GBCs where star formation occurs, and produces feedback, starting at t/torb = 0.1 (middle row). Energy injected by SNe drives turbulence, expanding the disk
+vertically (see evolution from middle right to lower right) and helping to create large-scale clumpy/filamentary structure.
+(A color version of this figure is available in the online journal.)
+
+
+
+                      3. SIMULATION RESULTS                                                midplane z = 0; left) and radial-vertical XZ-plane (y = 0;
+                                                                                           right) at t/torb = 0 (top), 0.1 (middle), and 0.2 (bottom).
+      3.1. Overview of Time Evolution and Disk Properties                                  The initial gas distribution (top row of Figure 1) follows a
+  In this subsection, we describe details of time evolution and                            Gaussian vertical density profile with scale height of ∼80 pc.
+properties of our disk models. We begin with our fiducial model,                           In the initial conditions, we impose a Gaussian random density
+QA10, which adopts Σ = 10 M pc−2 , ρsd = 0.05 M pc−3 ,                                   perturbation with flat spectrum at wavenumbers smaller than
+and Ω = 28 km s−1 kpc−1 , similar to conditions in the solar                               kLz /2π = 8 and total amplitude of 10%. This choice of initial
+neighborhood. Figure 1 shows evolving density slices of the                                conditions allows rapid growth of thermal instability near the
+QA10-3DF model in the horizontal XY-plane (at the disk                                     midplane, evolving toward two-phase thermal equilibrium (see
+
+                                                                                       5
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                         Kim, Ostriker, & Kim
+
+
+
+
+                                                                                         Figure 3. Time evolution of (a) thermal and (b) turbulent pressures at the
+                                                                                         midplane, together with the mass-weighted (c) thermal and (d) turbulent velocity
+                                                                                         dispersions of the diffuse component for models QA10-3DF (black), QA10-3DS
+                                                                                         (red), and QA10-XZ (blue). Boxcar averages with a window of Δt = 0.02torb
+                                                                                         are taken to reduce noisy spikes and show fluctuations clearly.
+Figure 2. Time evolution of (a) the density-weighted vertical scale height H,
+(b) the SFR surface density ΣSFR , and (c) the gaseous Toomre stability parame-          (A color version of this figure is available in the online journal.)
+ter Qg for models QA10-3DF (black), QA10-3DS (red), and QA10-XZ (blue).
+These models differ only in their azimuthal domain sizes. The evolution is sim-
+ilar for all models. The temporal fluctuations in ΣSFR are smeared out in models
+QA10-3DS and QA10-XZ due to the larger binning adopted for ΣSFR (see
+text). The temporal fluctuations in Qg are smeared out in model QA10-3DF                 ΣSFR , and (c) the gaseous Toomre stability    parameter Qg ≡
+due to a much larger averaging volume compared to models QA10-3DS and                    κσx /π GΣ, with σx2 ≡ (P + ρvx2 )dV / ρdV , for models
+QA10-XZ. The mean values of H ∼ 80 pc, ΣSFR ∼ 1.5 × 10−3 M kpc−2 yr−1 ,
+and Qg ∼ 1.7 after saturation (t/torb > 1) are essentially the same in all models        QA10-3DF (black), QA10-3DS (red), and QA10-XZ (blue). All
+(see Table 2).                                                                           quantities reach quasi-steady saturated values after one orbit,
+(A color version of this figure is available in the online journal.)                     implying that statistical measures can be computed starting at
+                                                                                         this epoch. All three models, with different azimuthal domains,
+                                                                                         are overall in very good agreement with each other, confirming
+Kim et al. 2010).8 At the midplane, thermal instability forms                            the reliability of our previous XZ models and the 3DS models
+cold cloudlets, and subsequent gravitational accretion leads to                          for the purposes of assessing mean values of H and ΣSFR . The
+growth of more massive clouds. The first star formation and                              scale height, the SFR surface density, and the Toomre parameter
+SN feedback event is triggered at t ∼ 0.1torb ∼ 20 Myr (see                              have mean values H = 81, 80, and 88 pc, ΣSFR = 1.5,
+middle row of Figure 1), and many subsequent events follow.                              1.5, and 1.7 × 10−3 M kpc−2 yr−1 , and Qg = 1.7, 1.8,
+The feedback events disperse cold cloudlets and swell the gas                            and 1.8 for QA10-3DF, QA10-3DS, and QA10-XZ models,
+disk vertically (see bottom row of Figure 1). Dispersed gas                              respectively. The angle brackets denote a time average over
+slows as it climbs vertically in the combined potential of stars                         t/torb = 1–2 (note that in Paper I, time averages are taken for
+and gas, and then falls back to the midplane. Gravitational                              t/torb = 2–3). Since QA10-3DS and QA10-XZ models adopt
+condensation of clouds into larger structures leads to new high-                         tbin = 0.5torb > tosc for the purpose of computing ΣSFR and
+density regions with subsequent star formation and feedback                              heating rates, the temporal fluctuation in ΣSFR is reduced for
+events. Driven by these processes, the gas disk undergoes a                              these models. Similarly, the spiky profiles shown in the QA10-
+quasi-periodic cycle of vertical “breathing” oscillations with                           3DS and QA10-XZ models are not seen in the QA10-3DF model
+period of tosc ∼ 0.5(π/Gρsd )1/2 (see Figure 2), equal to                                due to the larger spatial averaging volume.
+∼60 Myr for model QA10. This is half of the free-particle                                    Figure 3 plots the time histories at the midplane of (a) thermal
+vertical oscillation period because cloudlets collide at the                             and (b) turbulent pressure in all QA10 models. As demonstrated
+midplane.                                                                                in Paper I, the total pressure at the midplane, Ptot , is crucial
+   Figure 2 presents
+                     the time histories of (a) the disk scale                          because it must match the vertical weight of the ISM (i.e., dy-
+height H ≡ [ ρz2 dV / ρdV ]1/2 , (b) the SFR surface density                             namical equilibrium pressure), and because it is also directly
+                                                                                         related to ΣSFR via feedback. Since Ptot consists of both thermal
+8  Although the specific initial conditions affect the initial model evolution,
+                                                                                         and turbulent components, which are independently connected
+evolution at later stages and the resulting saturated-state statistical properties       to the SFR (see Section 3.3 and Paper I), it is useful to cal-
+are similar irrespective of the choice of initial conditions.                            culate the thermal and turbulent pressures separately by taking
+
+                                                                                     6
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                Kim, Ostriker, & Kim
+
+                                                                             Table 2
+                                                                         Disk Properties 1
+
+                      Model                  log ΣSFR              log Pth /kB         log Pturb /kB          n0               Hdiff
+                      (1)                       (2)                    (3)                  (4)               (5)              (6)
+                      QA02-3DF             −4.11 ± 0.32           2.23 ± 0.16          2.52 ± 0.35        0.19 ± 0.13       306 ± 111
+                      QA02-3DS             −4.04 ± 0.09           2.29 ± 0.23          2.56 ± 0.54        0.14 ± 0.11       337 ± 100
+                      QA02-XZ              −4.20 ± 0.23           1.94 ± 0.35          2.61 ± 1.51        0.05 ± 0.08       342 ± 111
+                      QA05-3DF             −3.43 ± 0.27           2.70 ± 0.15          3.19 ± 0.35        0.53 ± 0.34       160 ± 53
+                      QA05-3DS             −3.43 ± 0.06           2.69 ± 0.19          3.19 ± 0.38        0.35 ± 0.24       170 ± 29
+                      QA05-XZ              −3.52 ± 0.12           2.53 ± 0.22          3.03 ± 0.72        0.39 ± 0.30       174 ± 37
+                      QA10-3DF             −2.82 ± 0.12           3.23 ± 0.10          3.69 ± 0.15        1.46 ± 0.40         85 ± 13
+                      QA10-3DS             −2.84 ± 0.03           3.25 ± 0.11          3.86 ± 0.42        1.47 ± 0.55         84 ± 12
+                      QA10-XZ              −2.74 ± 0.11           3.24 ± 0.15          3.85 ± 0.60        1.12 ± 0.58         92 ± 18
+                      QA20-3DF             −2.18 ± 0.06           3.79 ± 0.04          4.20 ± 0.09        3.43 ± 0.58         47 ± 4
+                      QA20-3DS             −2.20 ± 0.02           3.86 ± 0.06          4.32 ± 0.23        3.83 ± 0.80         47 ± 5
+                      QA20-XZ              −2.06 ± 0.10           3.86 ± 0.07          4.19 ± 0.63        2.76 ± 0.70         51 ± 5
+                      R50-3DF              −3.02 ± 0.30           3.64 ± 0.19          3.60 ± 0.49        1.31 ± 0.88         99 ± 29
+                      R50-3DS              −3.05 ± 0.05           3.72 ± 0.09          3.82 ± 0.53        1.34 ± 0.46         92 ± 13
+                      R50-XZ               −2.96 ± 0.22           3.69 ± 0.16          3.31 ± 0.37        1.29 ± 0.58         97 ± 20
+
+                      Notes. The temporal averages and standard deviations are taken over t/torb = 1–2 for 3D models and t/torb = 2–3
+                      for XZ models. Column 2: logarithm of the SFR surface density (M kpc−2 yr−1 ). Columns 3 and 4: logarithm of the
+                      midplane thermal and turbulent pressures over kB (cm−3 K). Column 5: midplane number density of hydrogen (cm−3 ).
+                      Column 6: scale height of the diffuse component (pc). See Section 3.2 for definitions.
+
+
+volume-weighted horizontal averages as                                               can be directly observed, we use these velocities as observational
+                     z=+Δz/2                                                      proxies in our simulations. The mass-weighted thermal velocity
+                              P Θ(n < nGBC )dxdydz                                   dispersions are ∼4 km s−1 for all QA10 models, while the
+                 z=−Δz/2
+           Pth =  z=+Δz/2                       ,                     (11)        turbulent velocity is higher in model QA10-XZ ( vz,diff =
+                  z=−Δz/2      Θ(n < nGBC )dxdydz                                    7.2 ± 2.3 km s−1 ) than in models QA10-3DS ( vz,diff = 5.1 ±
+                                                                                     1.0 km s−1 ) and QA10-3DF ( vz,diff = 4.7 ± 0.5 km s−1 ).
+                  z=+Δz/2                                                            Since the midplane values of both thermal and turbulent
+                   z=−Δz/2      ρvz2 Θ(n < nGBC )dxdydz
+       Pturb =       z=+Δz/2                         .                (12)        pressures are in good agreement among all QA10 models, the
+                     z=−Δz/2      Θ(n  < nGBC )dxdydz                                differences of the mass-weighted turbulent velocity dispersions,
+                                                                                     which are averaged over the whole simulation domain, must
+Here, to average only over diffuse gas, Θ(X) is 1 if the                             arise from differences in the vertical profiles. To see this clearly,
+logical argument “X” is true and 0 otherwise. We choose                              we define the mass-weighted, horizontally averaged velocity
+nGBC ≡ 50 cm−3 as the minimum density for GBCs that are                              dispersions as functions of z:
+compressed by self-gravity to higher thermal pressure than their
+surroundings.9 In Figure 3, we have applied a boxcar aver-                                                                      1/2
+age with window size of Δt = 0.02torb to show time evo-                                                        P Θ(n < nGBC )dxdy
+                                                                                                   vth (z) =                          ,
+lution clearly. The mean thermal and turbulent pressures at                                                    ρΘ(n < nGBC )dxdy
+the midplane are quite similar among all QA10 models (see                                                    2                    1/2
+                                                                                                               ρvz Θ(n < nGBC )dxdy
+also Columns 3 and 4 of Table 2). Turbulent pressures in the                                       vz (z) =                             .             (14)
+QA10-3DS and QA10-XZ models fluctuate with larger ampli-                                                        ρΘ(n < nGBC )dxdy
+tude than in the QA10-3DF model because of their smaller
+averaging domains.                                                                   Figure 4 plots vertical profiles of (a) vth (z) and (b) vz (z)
+   Figures 3(c) and (d), respectively, show the mass-weighted                        based on time averages for the QA10-3DF (black), QA10-3DS
+thermal and turbulent vertical velocity dispersions of the diffuse                   (red), and QA10-XZ (blue) models. The vertical profiles of
+component, given by                                                                  thermal velocity dispersion vth (z) show similar trends for all
+                                                                                     QA10 models, increasing as |z| increases since the warm gas
+                                             1/2
+                          P Θ(n < nGBC )dxdydz                                       dominates at high-|z|. However, the vertical profiles of turbulent
+           vth,diff ≡                              ,                                velocity dispersion vz (z) in QA10-3D models are nearly flat or
+                          ρΘ(n < nGBC )dxdydz
+                                                                                     even decrease at high |z|, while vz (z) in the QA10-XZ model
+                       2                      1/2
+                          ρv Θ(n < nGBC )dxdydz                                      secularly increases with |z|. This is presumably because the total
+           vz,diff ≡      z                          .                  (13)        mass swept up by an expanding shell is larger in 3D models
+                           ρΘ(n < nGBC )dxdydz
+                                                                                     (spherical volume ∝ r 3 ) than in XZ models (cylindrical volume
+Since the mass-weighted velocity dispersions averaged over the                       ∝r 2 rsh for Ly = 2rsh ). Although the feedback is normalized for
+whole simulation volume relate most closely to quantities that                       the XZ models such that the injected momentum is the same as
+                                                                                     for 3D models (see Paper I), the resulting turbulent velocities at
+9  We have checked that the exact choice of nGBC does not significantly affect
+                                                                                     high |z| are smaller in 3D because the larger swept-up mass in
+our statistical results for diffuse gas provided it is high enough to safely         3D reduces the mean velocity at large |z|. Near the midplane,
+separate out high-pressure cold gas.                                                 at |z|  H (i.e., where density is within a factor ∼3 of the
+
+                                                                                 7
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                      Kim, Ostriker, & Kim
+
+                                                                                      height. Self-gravity then aids their mutual collection to create
+                                                                                      a larger structure. The successive snapshots shown in Figure 7
+                                                                                      illustrate the formation of a massive cloud by this process.
+                                                                                         Statistical distributions of the density, pressure, and tempera-
+                                                                                      ture provide a detailed picture of the thermodynamic state in our
+                                                                                      models. Figure 8 displays time-averaged probability distribution
+                                                                                      functions (PDFs) of the QA10-3DF model, based on time aver-
+                                                                                      ages over t/torb = 1–2. In Figure 8(a), the mass fraction of gas
+                                                                                      as a function of number density and thermal pressure is shown
+                                                                                      in logarithmic color scale. The majority of gas remains near
+                                                                                      the thermal equilibrium curve (solid line) defined by the time-
+                                                                                      averaged heating rate Γ = 0.61Γ0 . Figures 8(b)–(d) plot (b)
+                                                                                      thermal pressure, (c) number density, and (d) temperature PDFs
+                                                                                      by mass (solid lines) and volume (dotted lines). The dashed lines
+                                                                                      in Figures 8(b) and (c) show the mean midplane thermal pressure
+                                                                                       Pth /kB = 1.7 × 103 cm−3 K and the mean midplane number
+                                                                                      density n0 = 2.0 cm−3 for the QA10-3DF model. The thermal
+                                                                                      pressure lies mainly between the minimum value for cold gas
+                                                                                      in equilibrium, Pmin , and the maximum value for warm gas in
+                                                                                      equilibrium, Pmax , with a peak at the mean midplane pressure.
+                                                                                      However, a significant amount of gas (∼30%–35% by mass) has
+                                                                                      pressure higher and lower than Pmax and Pmin , respectively. The
+                                                                                      pressure distribution in our model is in part similar to that of
+Figure 4. Temporally and horizontally averaged velocity dispersion pro-               driven turbulence simulations in thermally bistable flows (e.g.,
+files (solid curves) in z (see Equation (14)) for (a) vertical turbulent and          Gazol et al. 2005, 2009; Gazol & Kim 2013; Saury et al. 2013).
+(b) thermal components. The mean standard deviations of temporal fluctua-             Unlike those models, however, our models also contain high-
+tions are indicated as errorbars in the bottom-right corner. In (a), the dashed       pressure cold gas confined by self-gravity, and low-pressure
+curves and right axis show the corresponding density profiles.
+                                                                                      warm gas found at high altitude. Shock-heated warm gas at
+(A color version of this figure is available in the online journal.)                  high pressure is observed in both our models and in the non-
+                                                                                      self-gravitating, unstratified simulations of other groups.
+                                                                                         The density and temperature PDFs show bimodal distribu-
+midplane value; see right axis in Figure 4(a)), turbulent velocity
+                                                                                      tions with cold, dense and warm, rarefied phases as expected
+dispersions for XZ models are similar to those for 3D models.
+                                                                                      in the classical two-phase ISM (e.g., Field et al. 1969; Piontek
+   Figure 5 shows slices through the volume for a snapshot
+                                                                                      & Ostriker 2004). However, unlike the classical picture, the
+(t/torb = 1.12) of model QA10-3DF after a quasi-steady
+                                                                                      distribution shows broadened peaks with a substantial fraction
+state is reached. The structure of the ISM is filamentary, with
+                                                                                      of gas out of equilibrium. These differences are due to sev-
+high porosity and relatively large-scale structures due to the
+                                                                                      eral factors: strong turbulence that compresses and rarefies the
+combined action of SN events and self-gravity. Some high-
+                                                                                      gas continuously, SN events that produce thermal transitions (in
+density cloudlets are located near SN shell boundaries, as
+                                                                                      part induced by expanding strong shocks), and a time-dependent
+shown in Paper I, although cloudlets are also present far from
+                                                                                      heating rate such that the thermal equilibrium curve itself fluc-
+these shells. In Figure 6, we show (a) the column density of
+                                                                                      tuates. Since the level of turbulence in our models is transonic
+gas projected onto the horizontal plane and (b) the volume
+                                                                                      or slightly subsonic for warm gas, the unimodal PDFs expected
+density averaged along the azimuthal (y) direction, for the
+                                                                                      in highly supersonic turbulent flows (Gazol et al. 2005) are not
+same snapshot. Although Figure 6(a) contains a large-scale
+                                                                                      found here. Although velocity dispersions are ∼20% higher in
+diagonal feature, examination of model animations over several
+                                                                                      the QA10-XZ model than in the 3D models, we find that the
+orbits shows that this kind of sheared structure grows and then
+                                                                                      PDFs for all QA10 models are very similar since the differences
+disperses before reaching very large amplitude. This is likely
+                                                                                      in turbulence are small within one scale height (|z|  80 pc)
+because continuous kinetic energy input from SN feedback
+                                                                                      where the bulk of mass is found (see Figure 4).
+keeps the turbulent velocity dispersion large enough to maintain
+                                                                                         In all our simulations, disk evolution at later times (t > torb )
+Qg within the range between 1.5 and 2 (see Figure 2(c)) in which
+                                                                                      is similar to that of the fiducial model. All models reach
+swing amplification is not strong (e.g., Kim & Ostriker 2001,
+                                                                                      a quasi-steady state that includes strong turbulence, cyclic
+2007; Kim et al. 2002).
+                                                                                      formation and destruction of GBCs, vigorous stirring of the
+   Even without large-scale swing amplification, self-gravity
+                                                                                      population of small cloudlets, and quasi-periodic vertical disk
+(together with the gravity of the stellar disk) plays an impor-
+                                                                                      oscillations. The vertical oscillations in our simulations are
+tant role in creating ISM structures. Based on inspection of
+                                                                                      correlated over the whole simulation domain. This is likely
+the evolving structure in our models, cold cloudlets are seen to
+                                                                                      because the initial collapse of non-turbulent, out-of-equilibrium
+be drawn together by gravity to create more massive clouds.
+                                                                                      gas to the midplane occurs simultaneously over the whole
+This process is possible only because the ISM is a two-phase
+                                                                                      region.10 Vertical oscillations would be present in reality, but
+cloud/intercloud medium. The thermal pressure of cold
+                                                                                      they would be correlated only over a smaller horizontal domain,
+cloudlets approximately matches that of the surrounding warm
+medium at their surfaces, but the density in the cold medium                          10 Real galactic disks span ∼10 kpc in radius, and any local vertical
+is two orders of magnitude higher than the warm medium. As                            oscillations over scales of a few hundred pc would be difficult to discern. In
+a consequence, cold cloudlets move freely through the warm                            addition, the presence of spiral arms, bars, minor mergers, etc. may limit the
+medium, falling toward the midplane after reaching a maximum                          development of local oscillations driven by feedback from star formation.
+
+                                                                                  8
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                        Kim, Ostriker, & Kim
+
+
+
+
+Figure 5. Density structure in solar-neighborhood model QA10-3DF at t/torb = 1.12, after a fully turbulent state is reached. The colorbar labels log n (cm−3 ) in five
+different planes (x = ±Lx /2, y = ±Ly /2, and z = 0). Cloudy/filamentary structure is evident, as well as dispersal of dense gas above and below the midplane by
+feedback-driven turbulence.
+(A color version of this figure is available in the online journal.)
+
+
+
+
+Figure 6. (a) Surface density projected on the horizontal plane for the same snapshot shown in Figure 5. The radial direction is along x, and the azimuthal direction is
+along y. The colorbar labels log Σ (M pc−2 ). (b) Radial-vertical density structure based on azimuthal (i.e., along y) average of the same snapshot shown in Figure 5.
+The colorbar labels log(n) (cm−3 ).
+(A color version of this figure is available in the online journal.)
+
+                                                                                   9
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                        Kim, Ostriker, & Kim
+
+
+
+
+Figure 7. Example of cloud growth by gravitationally driven accretion. The top and bottom rows show snapshots on the radial-vertical and horizontal planes,
+respectively, of the number density averaged over the region −85 pc ⩽ y ⩽ −35 pc (dotted lines in the bottom row) and −50 pc ⩽ z ⩽ 50 pc (dotted lines in the top
+row) at t/torb = 1.09 (left), 1.12 (center), and 1.15 (right). The mean perturbed gravitational potential ΔΦ ≡ Φ − Φ(z), where Φ denotes the horizontally averaged
+potential, in units of (km s−1 )2 is overlaid as contours. Cold cloudlets fall to the midplane, accrete surrounding gas, and merge together to grow into a massive cloud
+that dominates the gravitational potential.
+(A color version of this figure is available in the online journal.)
+
+
+comparable to the size that is affected by feedback from a                             number density, and (d) temperature PDFs of the R50-3DF
+given star-forming region. For all model series, ΣSFR and Ptot                         enhanced-heating model with frad = 5.0. While the ranges
+increase as the gas surface density (Σ) and/or the depth of the                        of pressure, density, and temperature are similar to the QA10
+gravitational potential well (depending on Σ and on the stellar                        frad = 1 model shown in Figure 8, this high-frad model shows
+density ρsd ) increase. The velocity dispersion vz,diff is more or                     higher mean thermal pressure, a lower fraction of cold, dense
+less constant independent of model parameters. Detailed scaling                        gas, and a broader peak in the pressure PDF. These differences
+relations and statistical properties will be addressed below.                          are a consequence of both the higher heating rate and increased
+   For models with low gas and stellar densities, the star                             stochasticity of this model. For the R50-3DF model, the time
+formation events become rare and stochastic, leading to large                          evolution of the SFR in Figure 9 shows two distinct levels of
+amplitude fluctuations in ΣSFR . In high-frad models, the heating                      ΣSFR rather than the moderate fluctuations about a mean value
+rate is highly sensitive to ΣSFR , again resulting in large temporal                   seen for model QA10-3DF. Since the gas is approximately in
+variation in ISM properties and ΣSFR . The XZ models in Paper I                        instantaneous thermal equilibrium at either the high or low ΣSFR
+were unable to fully address the effect of strong temporal                             state, with either a high or low heating rate and the correspond-
+fluctuation of the SFR in low-ΣSFR and high-frad models because                        ing equilibrium curve, traces of the two states are evident in
+it was necessary to adopt tbin much longer than the realistic                          the distributions shown in Figure 10(a). As a consequence of
+lifetime of massive stars (cf. Figure 2(b)). In the present 3DF                        the well-separated high and low states, the time-averaged pres-
+models with large azimuthal domains, we can adopt tbin close to                        sure PDF is quite broad. In spite of the two-state behavior of
+the FUV luminosity-weighted life time tFUV ∼ 10 Myr. Figure 9                          the R50-3DF model, the mean values of ΣSFR , Γ, Pth , and n0
+plots the time evolution of ΣSFR for all 3DF models. Relative to                       are quite similar (see Table 2) to those in the R50-3DS and
+torb , the fluctuation periods of ΣSFR are similar for all the models                  R50-XZ models, in which fluctuations are reduced by adopting
+shown since the ratio tosc /torb ≈ 0.25Ω/(4Gρsd )1/2 = 0.27 is                         tbin = 0.5 torb > tosc for computing the heating rate.
+constant. The low-density and high-frad models show order-of-                              Detailed examination of our low-density models (QA02-3DF
+magnitude fluctuations in ΣSFR , while fluctuations are only at a                      and QA05-3DF) shows that stochasticity similarly leads to
+factor of 2–3 level for models at higher density and frad = 1. In                      broadened distributions of Pth compared to the fiducial model. In
+the high-frad model, the large fluctuations of the SFR are self-                       real galaxies, regions with low gas and stellar densities also tend
+reinforcing because fluctuations of the heating rate follow the                        to have lower metallicity, such that frad increases, which could
+SFR as Γ ∝ frad ΣSFR and the resulting fluctuations in cold gas                        increase fluctuations even more compared to these models with
+content lead to varying ΣSFR .                                                         frad = 1. Even in highly stochastic 3DF models, however, we
+   Figure 10 displays (a) the gas mass fraction in the                                 find that the mean saturated-state properties are similar to those
+density–pressure phase plane, and (b) thermal pressure, (c)                            found from XZ models, confirming the results of Paper I.
+
+
+                                                                                  10
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                   Kim, Ostriker, & Kim
+
+
+
+
+Figure 8. Probability density distributions of gas properties for the QA10-3DF model. Time averages are taken after saturation, over t/torb = 1–2. (a) Logarithmic
+mass fractions of QA10-3DF model in the n–P plane. The solid curve indicates the locus of thermal equilibrium for the mean heating rate Γ = 0.61Γ0 . (b)–(d)
+Mass-weighted (solid) and volume-weighted (dotted) PDFs for (b) thermal pressure, (c) number density, and (d) temperature. The dashed lines in (b) and (c) denote
+the mean midplane thermal pressure Pth /kB = 1.7 × 103 cm−3 K and number density n0 = 2.0 cm−3 , respectively.
+(A color version of this figure is available in the online journal.)
+
+
+
+
+                                                                                                           3.2. Statistical Properties
+
+                                                                                       All our models reach a quasi-steady state after two or three
+                                                                                    vertical oscillation times (see Figure 9), which is <torb for our
+                                                                                    model parameters. We thus investigate statistical properties of
+                                                                                    3D models by averaging over t/torb = 1–2. Tables 2 and 3 list the
+                                                                                    mean values and standard deviations of key physical quantities
+                                                                                    used in Paper I to test the thermal/dynamical equilibrium model
+                                                                                    of OML10 and OS11. In the tables, we present the results for
+                                                                                    all 3DF models together with the corresponding 3DS and XZ
+                                                                                    counterparts. In Figures 11–17, we also include results from
+                                                                                    additional 3DS models without 3DF counterparts. Hereafter, in
+                                                                                    reporting properties of the models, we use time averages over
+                                                                                    t/torb = 1–2 for 3D models and t/torb = 2–3 for XZ models
+                                                                                    (as in Paper I), unless stated otherwise. Angle brackets will be
+                                                                                    omitted for convenience.
+                                                                                       Column 1 of Tables 2 and 3 gives the name of each model,
+                                                                                    consisting of the model name listed in Table 1 together with
+                                                                                    suffixes of 3DF, 3DS, and XZ to indicate the simulation domain
+                                                                                    size and geometry. In Table 2, Column 2 lists log ΣSFR in units
+                                                                                    of M kpc−2 yr−1 . We list in Columns 3 and 4 log(Pth /kB )
+                                                                                    and log(Pturb /kB ), respectively, in units of cm−3 K. Column 5
+                                                                                    gives the midplane hydrogen number density n0 of the diffuse
+Figure 9. Time evolution of the SFR surface density ΣSFR for all 3DF models.        component in units of cm−3 , defined in the same way with
+The amplitude of temporal fluctuations increases as ΣSFR decreases, because         Equation (11) but for number density n rather than thermal
+the system is more stochastic.
+                                                                                    pressure P in the integrand.   Similarly, the scale height of
+(A color version of this figure is available in the online journal.)
+                                                                                    the diffuse gas Hdiff ≡ [ ρz2 Θ(n < nGBC )dV / ρΘ(n <
+                                                                                    nGBC )dV ]1/2 is listed in Column 6 in units of pc.
+
+                                                                               11
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                            Kim, Ostriker, & Kim
+
+
+
+
+Figure 10. Same as Figure 8, but for model R50-3DF with high radiation feedback efficiency frad = 5.0. Comparing panel (a) to Figure 8(a), signatures of a “high”
+and a “low” state are evident in this time-averaged distribution. For these states, the thermal equilibrium curve lies either above (“high” state) or below (“low” state) the
+thermal equilibrium curve at the mean heating rate of Γ = 1.9Γ0 (heavy curve in panel (a)). The mean midplane thermal pressure is Pth /kB = 4.3 × 103 cm−3 K,
+and the mean midplane number density is n0 = 1.7 cm−3 , as indicated in panels (b) and (c).
+(A color version of this figure is available in the online journal.)
+
+                                                                                 Table 3
+                                                                             Disk Properties 2
+
+       Model                      vz,diff                 vth,diff                  αv                      αP                      fdiff                    f˜w
+       (1)                         (2)                      (3)                     (4)                     (5)                     (6)                      (7)
+       QA02-3DF                4.33 ± 1.07             4.07 ± 0.57             2.13 ± 0.64             2.95 ± 1.70              0.99 ± 0.01             0.21 ± 0.17
+       QA02-3DS                4.73 ± 1.75             4.22 ± 0.62             2.26 ± 1.00             2.86 ± 2.49              0.99 ± 0.02             0.34 ± 0.14
+       QA02-XZ                 6.20 ± 4.57             3.27 ± 0.78             4.59 ± 5.56             5.75 ± 16.94             0.92 ± 0.07             0.23 ± 0.12
+       QA05-3DF                5.03 ± 1.00             3.85 ± 0.78             2.71 ± 0.97             4.09 ± 2.73              0.95 ± 0.03             0.26 ± 0.16
+       QA05-3DS                5.11 ± 1.43             3.90 ± 0.26             2.72 ± 0.99             4.09 ± 3.02              0.96 ± 0.03             0.30 ± 0.05
+       QA05-XZ                 6.28 ± 2.95             3.25 ± 0.43             4.74 ± 3.65             4.16 ± 5.46              0.90 ± 0.06             0.25 ± 0.07
+       QA10-3DF                4.67 ± 0.47             4.11 ± 0.26             2.29 ± 0.31             3.88 ± 1.21              0.88 ± 0.03             0.34 ± 0.06
+       QA10-3DS                5.11 ± 1.01             3.88 ± 0.23             2.73 ± 0.71             5.08 ± 4.06              0.87 ± 0.05             0.32 ± 0.05
+       QA10-XZ                 7.23 ± 2.28             3.73 ± 0.42             4.75 ± 2.51             5.02 ± 5.73              0.77 ± 0.09             0.32 ± 0.07
+       QA20-3DF                5.05 ± 0.32             4.47 ± 0.22             2.27 ± 0.20             3.53 ± 0.58              0.72 ± 0.03             0.41 ± 0.05
+       QA20-3DS                5.71 ± 0.68             4.35 ± 0.18             2.72 ± 0.43             3.86 ± 1.55              0.71 ± 0.04             0.38 ± 0.04
+       QA20-XZ                 6.94 ± 1.67             4.59 ± 0.22             3.29 ± 1.12             3.17 ± 3.16              0.54 ± 0.06             0.46 ± 0.05
+       R50-3DF                 5.51 ± 1.18             5.35 ± 0.93             2.06 ± 0.59             1.92 ± 1.12              0.91 ± 0.07             0.61 ± 0.26
+       R50-3DS                 4.48 ± 1.18             5.77 ± 0.21             1.60 ± 0.32             2.25 ± 1.54              0.91 ± 0.03             0.74 ± 0.06
+       R50-XZ                  4.49 ± 1.85             5.70 ± 0.49             1.62 ± 0.52             1.42 ± 0.39              0.85 ± 0.07             0.73 ± 0.12
+
+       Notes. The temporal averages and standard deviations are taken over t/torb = 1–2 for 3D models and t/torb = 2–3 for XZ models. Columns 2
+       and 3: vertical turbulent and thermal velocity dispersions of the diffuse gas (km s−1 ). Columns 4 and 5: ratios of total pressure to thermal pressure
+       calculated from the mass-weighted velocity dispersions (αv ) and the midplane pressures (αP ). Columns 6 and 7: mass fraction of the diffuse gas (fdiff ),
+                                                                                    2
+       and the square of mass-weighted thermal to warm-medium thermal speed (vth,diff     2 = f˜ ) in the diffuse gas. See Section 3.2 for definitions.
+                                                                                        /cw      w
+
+
+   In Table 3, Columns 2 and 3 list, respectively, vz,diff and vth,diff                   Here, αv averages over the whole volume, while αP averages
+in units of km s−1 . In Columns 4 and 5, we list, respectively,                           only at the midplane. Column 6 gives fdiff , the mass fraction
+the ratios of total-to-thermal pressure defined in two different                          of the diffuse component (n < nGBC ), and Column 7 gives
+ways, αv ≡ (vth,diff                      and αP ≡ (Pth + Pturb )/Pth .                   f˜w ≡ vth,diff
+                2        2        2                                                               2
+                     + vz,diff )/vth,diff                                                                /cw2 , the ratio of the mass-weighted sound speed
+
+                                                                                    12
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                            Kim, Ostriker, & Kim
+
+
+
+
+                                                                                           Figure 12. (a) Ratio of total-to-thermal velocity dispersion for the diffuse gas
+Figure 11. (a) Vertical turbulent velocity dispersion of the diffuse gas vz,diff ,         αv ≡ 1 + vz,diff
+                                                                                                       2      2
+                                                                                                            /vth,diff  for the velocity dispersion weighted by mass over the
+(b) total (turbulent+thermal) velocity dispersion of the diffuse gas σz,diff , and         whole domain; (b) ratio of total-to-thermal pressure for gas at the midplane
+(c) total velocity dispersion of all the gas (diffuse + GBC) σz , as functions of          αP ≡ 1 + Pturb /Pth , and (c) ratio of mass-weighted thermal-to-warm-medium
+the SFR surface density ΣSFR . Results for all 3D models except the R series                                2
+                                                                                           thermal speed vth,diff /cw 2 = f˜ . Results for all 3D models except the R series
+                                                                                                                             w
+are shown; the thick large symbols denote the results from 3DF models, while               are shown. Symbols have the same meanings as in Figure 11. The dotted lines
+the thin small symbols denote the results from 3DS models. The points and                  in (a) and (b) are the mean values of all XZ models (Paper I), αv = 4.4 and
+errorbars give the mean values and standard deviations over t/torb = 1–2.                  αP = 4.5. For 3D models, αP is consistent with the value in XZ models, but
+Mean values from the 3D models are vz,diff = 5.6 ± 0.6 km s−1 , σz,diff =                  αv is smaller (see text). The quantity f˜w (essentially the warm mass fraction)
+6.9 ± 0.5 km s−1 , and σz = 6.5 ± 0.4 km s−1 . The horizontal dotted lines                 ranges over 0.2–0.5 as in Paper I.
+indicate the mean values (vz,diff = 6.8 ± 0.6 km s−1 , σz,diff = 7.7 ± 0.6 km s−1 ,        (A color version of this figure is available in the online journal.)
+and σz = 7.0 ± 0.4 km s−1 ) from all XZ models (Paper I) except the R series.
+Due to geometric effects, velocity dispersions from the XZ models are slightly
+larger than those from the 3D models.
+                                                                                           red lines in Figure 4). This results in differences between αv
+(A color version of this figure is available in the online journal.)                       and αP . Averaging over all models except the R series yields
+                                                                                           αv = 2.9 and αP = 4.2, showing that the turbulent component
+to the thermal velocity of warm gas (this is essentially equal to                          of the mass-weighted velocity dispersion underestimates the
+the warm gas fraction of mass in the diffuse component); these                             midplane value. In the remaining sections, we will use αP as
+parameters are used in the OML10 theory.                                                   a representative value, rather than αv . Figure 12(c) shows that
+   Figure 11 plots the mean values of (a) vz,diff , (b) σz,diff ≡                          the warm mass fraction f˜w remains in the range 0.2–0.5 for
+   2
+(vz,diff    2
+         + vth,diff )1/2 , and (c) the velocity dispersion of whole                        all models, as previously found in Paper I. The fiducial value
+                         1/2
+medium σz ∼ fdiff σz,diff , as functions of ΣSFR for all 3D                                f˜w ∼ 0.5 adopted in OML10 is consistent with the range of our
+models except the R series. The dotted horizontal line in                                  simulations.
+each panel denotes the mean value from all XZ models (the
+models of Paper I). The mean values of all 3D models give                                  3.3. Comparison with Thermal/Dynamical Equilibrium Model
+vz,diff = 5.6 ± 0.6 km s−1 , σz,diff = 6.9 ± 0.5 km s−1 , and                                 It is natural to expect that a disk system that reaches a
+σz = 6.5 ± 0.4 km s−1 . As in Paper I, we find that the velocity                           quasi-steady state satisfies vertical dynamical equilibrium in
+dispersion is more or less constant over two orders of magnitude                           an average sense. That is, the diffuse ISM must maintain force
+in ΣSFR . Due to geometrical effects in the expansion of SN                                balance between upward pressure forces (thermal and turbulent)
+remnants (see Section 3.1), turbulent velocity dispersions are                             and downward gravitational forces (arising from the diffuse gas
+slightly smaller (about 18%) in 3D models than in XZ models.                               itself as well as stars, dark matter, and GBCs; Piontek & Ostriker
+   Figure 12 plots the mean values of (a) αv , (b) αP , and (c) f˜w                        2007; Koyama & Ostriker 2009b; OML10; Paper I). By taking
+as functions of ΣSFR for all 3D models except the R series. The                            time and horizontal averages, the vertical momentum equation
+quantities αv and αP indicate whether the velocity dispersion                              in equilibrium can be written (OML10; Paper I) as Ptot = Ptot,DE
+and pressure in the ISM is thermally (α < 2) or dynamically                                for
+(α > 2) dominated. The dotted lines in (a) and (b) indicate the                                                                           
+mean values of αv = 4.4 and αP = 4.5 found from XZ models                                                            π GΣ2
+in Paper I. In XZ models, αv ∼ αP even though both vth (z)                                           Ptot,DE ≡ fdiff         (2 − fdiff ) + (2 − fdiff )2
+                                                                                                                       4
+and vz (z) vary significantly along the vertical direction since
+the profiles have similar shape (see blue lines in Figure 4). In                                                         2            1/2
+                                                                                                                      32σz,diff ρsd
+contrast, the vertical profiles of thermal and turbulent velocity                                                 +                         ,                         (15)
+dispersions have different shapes in 3D models (see black and                                                           π 2 GΣ2
+
+                                                                                      13
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                  Kim, Ostriker, & Kim
+
+                                                                                           results yields:
+                                                                                                                                                        1/2
+                                                                                                                               Σ                  ρsd
+                                                                                           Ptot = 9.6×103 kB cm−3 K                                               .
+                                                                                                                           10 M pc−2        0.1 M pc−3
+                                                                                                                                                          (17)
+                                                                                           In Figure 13, we overplot as a dotted line the best fit for the XZ
+                                                                                           models (Equation (37) in Paper I), which agrees very well with
+                                                                                           the dashed line and the 3D model results.
+                                                                                              In addition to the force balance between total pressure
+                                                                                           and gravity, individual balances between thermal cooling and
+                                                                                           heating, and between turbulence driving and dissipation, are
+                                                                                           expected for a quasi-steady state. The gas is heated by FUV
+                                                                                           radiation from newly formed massive stars, with a heating rate
+                                                                                           that varies in proportion to the SFR (see Equation (10)). Owing
+                                                                                           to the very short cooling time compared to the dynamical time,
+                                                                                           the gas generally resides near thermal equilibrium, although
+                                                                                           a non-negligible fraction deviates from thermal equilibrium
+                                                                                           due to strong turbulence and temporal heating fluctuations (see
+                                                                                           Figures 8 and 10). Near the midplane, where GBCs and stars
+                                                                                           form, a cold phase should coexist with the warm phase, such
+                                                                                           that the midplane thermal pressure Pth should lie between Pmin
+                                                                                           and Pmax . Figures 8 and 10 indeed show that the pressure lies
+                                                                                           in the neighborhood defined by Pmin and Pmax for the mean
+Figure 13. Top:√total pressure of the diffuse gas measured in the simulations as           heating rate.
+a function of Σ ρsd . The symbols denote the same meanings as in Figure 11.                   In OML10, the mean value of Pth at the midplane is
+The dashed and dotted lines show our best fit for all 3D models and XZ models,
+respectively. The good agreement between the two confirms the reliability of               assumed to approach the geometric-mean pressure Ptwo ≡
+XZ models from Paper I. Bottom: relative differences between the measured                  (Pmin Pmax )1/2 . The adopted cooling function and heating rate
+midplane pressure Ptot and the pressure predicted for dynamical equilibrium                given by Equations (6) and (10) yield Ptwo /kB = 3.1 ×
+Ptot,DE using Equation (15). The mean relative difference is only 12%, showing             103 cm−3 K(frad ΣSFR /ΣSFR,0 ), assuming that the contribution
+that vertical dynamical equilibrium indeed holds in an average sense.
+                                                                                           from the metagalactic FUV radiation is negligible. Our mea-
+(A color version of this figure is available in the online journal.)                       surements for the mean value of ΣSFR from the numerical sim-
+                                                                                           ulations give the mean values of Ptwo for each model, which
+where Ptot,DE represents the weight of the diffuse ISM.11 Note                             can be directly compared to the values of the measured mean
+                                                                                           midplane thermal pressure Pth . Figure 14 plots Pth /Ptwo as a
+that in OML10, cw2 f˜w α was used instead of σz,diff
+                                                  2
+                                                       , but here we                       function of ΣSFR for all 3D models. The errorbars denote the
+use the latter, as the total vertical velocity dispersion σz,diff is                       standard deviations of temporal fluctuation, which amount to
+directly measurable in our simulations. Since in Section 3.2 we                            ∼0.2–0.3 dex. Our best fit for 3D results,
+explicitly measure fdiff and σz,diff as well as Ptot for given input
+parameters (Σ, ρsd ), a direct comparison between Ptot,DE and Ptot                                                                       −0.14
+                                                                                                       Pth                   ΣSFR
+is possible.                                                                                                 = 1.09                               ,       (18)
+   Figure                                                                                             Ptwo            10−3 M kpc−2 yr−1
+      √ 13 gives measured total pressure Ptot as a function
+of Σ ρsd for all 3D models. The relative difference between                                is shown as the dashed line, while the dotted line denotes the best
+measured and predicted (dynamical equilibrium) total pressure,                             fit for XZ models from Paper I. We conclude that Pth is indeed
+Ptot /Ptot,DE − 1, is shown in the bottom panel. The mean                                  comparable to Ptwo , over two orders of magnitude variation in
+relative difference is only 12%, showing that vertical dynamical                           ΣSFR . Our results show that Pth ∼ Ptwo within 60%, supporting
+equilibrium indeed holds. For the models we consider here, in                              the approximation adopted in the analytic theory of OML10.
+which the external gravity exceeds the self-gravity of the diffuse                         The mean values of the midplane thermal pressure in 3D models
+gas, the last term in the square root of Equation (15) is dominant,                        are slightly higher (∼20%) than that of the XZ models, but the
+and we expect                                                                              difference is smaller than the temporal fluctuations. Significant
+                                                                                           warm gas in the R50-3DF model (big magenta asterisk) puts it
+                    Ptot,DE ≈ fdiff σz,diff Σ(2Gρsd )1/2 .                     (16)        at lower average pressure than the mean relation; as discussed
+                                                                                           in Section 3.1, there are also large fluctuations in this model.
+If fdiff σz,diff is insensitive to model parameters (as in Paper I)                            Dynamical energy injection through SN feedback connects
+and Ptot ≈ Ptot,DE ,√then the midplane total pressure is expected                          the turbulent pressure and the SFR, similar to the connection
+to correlate with Σ ρsd . This correlation is evident in the dashed                        between thermal pressure and the SFR from UV heating. Since
+line in Figure 13; the best fit coefficient for the 3D model                               the turbulent velocity dispersion does not evolve secularly (see
+                                                                                           Figure 3), the rate of turbulence driving must balance turbulent
+                                                                                           dissipation. The rate of turbulent driving per unit area per unit
+11 In observational estimates, it is often assumed that all of the gas is in               mass is expected to be ∝ (p∗ /m∗ )ΣSFR , where p∗ is the mean
+vertical equilibrium. Equation (15) instead represents the case in which all of            radial momentum injected to the ISM by an expanding SN
+the gas contributes to the vertical gravity, but only the diffuse gas (a fraction          remnant, and m∗ is the total mass in stars per SN (averaged
+fdiff of the total) is in vertical equilibrium. For outer disks (as studied here)
+most gas is diffuse (fdiff ∼ 1), but for inner disks an increasing fraction of the         over the stellar mass function). For spherical blasts centered on
+mass may be in GBCs that are at higher pressure than their surroundings.                   the midplane, the vertical momentum injection rate per unit area
+
+                                                                                      14
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                       Kim, Ostriker, & Kim
+
+
+
+
+Figure 14. Measured midplane thermal pressure of the diffuse gas Pth relative         Figure 15. Measured midplane turbulent pressure of the diffuse gas Pturb relative
+to the two-phase thermal equilibrium pressure Ptwo as a function of ΣSFR . The        to the characteristic vertical momentum flux injected by star formation feedback
+symbols have the same meanings as in Figure 11. The dashed and dotted lines           Pdriv (see text), as a function of ΣSFR . The symbols have the same meanings as in
+give the best fits for 3D and XZ models, respectively. The result from our            Figure 11. The dashed and dotted lines give the best fits for 3D and XZ models,
+simulations that Pth ∼ Ptwo ∝ ΣSFR over more than two orders of magnitude             respectively. The result that Pturb ∼ Pdriv ∝ ΣSFR from our simulations, over
+in ΣSFR implies that the radiative heating from star formation is balanced by         more than two orders of magnitude in ΣSFR , implies that the turbulent energy
+cooling within a local (vertical) dynamical time.                                     driving from star formation is balanced by dissipation within a local (vertical)
+(A color version of this figure is available in the online journal.)                  dynamical time.
+                                                                                      (A color version of this figure is available in the online journal.)
+
+to each side of the disk is Pdriv = 0.25(p∗ /m∗ )ΣSFR (Paper I,
+OS11, SO12). The turbulent momentum flux in the vertical
+                                                                                                     Pturb /kB            ΣSFR
+direction through the disk can be expressed as Pturb ≡ fp Pdriv ,                                              ≡ ηturb −3              ,                          (21)
+where fp ∼ 1 if dissipation balances driving within a dynamical
+                                                                                                      3
+                                                                                                    10 cm K −3
+                                                                                                                      10 M kpc−2 yr−1
+time scale.
+   Using the adopted value p∗ /m∗ = 3000 km s−1 , the fiducial                        such that the yield coefficients ηth and ηturb measure
+momentum injection rate varies with the SFR as Pdriv /kB =                            the thermal and turbulent efficacies of feedback, respec-
+3.6×103 cm−3 K(ΣSFR /10−3 M kpc−2 yr−1 ). We make a direct                           tively. In the analytic model for thermal/dynamical equi-
+comparison between the measured midplane turbulent pressure                           librium (OML10; OS11), ηth = 1.2frad , where frad =
+Pturb and Pdriv . Figure 15 plots the mean values of fp ≡                             [0.25 + 0.75Zd (Σ/10 M pc−2 )0.4 ]−1 using the heating/cooling
+Pturb /Pdriv as a function of ΣSFR for all 3D models. The errorbars                   model of Wolfire et al. (2003), and ηturb = 3.6fp for p∗ /m∗ =
+denote the standard deviations of temporal fluctuations, which                        3000 km s−1 . Our direct measurements fitting the simulation re-
+amount to ∼0.3–0.6 dex. The dashed line is our best fit omitting                      sults (Equations (18) and (19)) give
+the R series,                                                                                                                                   −0.14
+                                                                                                                             ΣSFR
+                                             −0.11                                              ηth = 1.3frad                                              ,    (22)
+            Pturb                ΣSFR                                                                                  10−3 M kpc−2 yr−1
+                  = 1.20                             ,                  (19)
+            Pdriv          10−3 M kpc−2 yr−1
+                                                                                                                                               −0.11
+                                                                                                                           ΣSFR
+while the fit for the XZ models (Paper I) is overplotted as a                                       ηturb = 4.3                                          .        (23)
+dotted line with slightly steeper slope of −0.17. The results                                                         10 M kpc−2 yr−1
+                                                                                                                        −3
+
+from the 3D models are in overall good agreement with our                             These results for yields are very close to those adopted in the
+previous XZ models of Paper I, confirming that fp is order-unity                      analytic model, and show quite weak dependence on the SFR.
+and approximately constant for a wide range of disk conditions                        For solar-neighborhood conditions, the yield coefficients are
+and SFRs (see also SO12, which shows that fp is similar in the                        ηth = 1.1 and ηturb = 3.9, remarkably close to the adopted
+starburst regime).                                                                    values in the analytic theory. The results from 3D models
+   Since Pth ∼ Ptwo and Pturb ∼ Pdriv , both thermal and turbulent                    are also close to the results from the XZ models in Paper I
+pressures at the midplane are nearly linearly proportional to                         (ηth = 0.9 and ηturb = 3.0 at ΣSFR = ΣSFR,0 ). In Equation (22),
+ΣSFR . Following Paper I, we define                                                   the control parameter for heating efficiency frad enters naturally
+                                                                                      into the thermal yield coefficient ηth since higher/lower heating
+                Pth /kB           ΣSFR                                                efficiency (or lower/higher shielding of FUV radiation) converts
+                         ≡ ηth −3              ,                        (20)
+              103 cm−3 K      10 M kpc−2 yr−1                                        more/less radiation energy from star formation feedback into
+
+                                                                                 15
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                         Kim, Ostriker, & Kim
+
+
+
+
+Figure 16. Measured SFR surface density ΣSFR as a function of (a) Σ/tff (n0 ) and (b) Σ/tver for all 3D models. The symbols have the same meanings as in Figure 11.
+The dashed lines in both panels are our best fits to all 3D models for an imposed unity slope, which give the coefficients of ff (n0 ) = 0.006 and ver = 0.002.
+(A color version of this figure is available in the online journal.)
+
+
+thermal energy in the diffuse ISM. Although we have not directly                     Figure 16(a) plots our measured values of ΣSFR as a function of
+explored variations in p∗ /m∗ in the present simulations (see                        Σ/tff (ρ0 ) for all 3D models. The best fit for an imposed linear
+SO12 for a study of this kind), the turbulent yield coefficient                      relation (dashed line) gives ΣSFR tff (ρ0 )/Σ ≡ ff (n0 ) = 0.006.
+ηturb would be expected to vary proportional to the momentum                         This value is close to typical values ff ∼ 0.01 inferred from
+feedback per stellar mass p∗ /m∗ , which would introduce an                          observations of molecular gas (Krumholz & Tan 2007), and
+additional factor (p∗ /m∗ )/3000 km s−1 to the right-hand side                       similar to the values for ff measured by SO12 in simulations of
+of Equation (23). In addition to SNe, other potential sources                        the starburst regime (ΣSFR up to a few × M kpc−2 yr−1 ).
+of momentum injection associated with star formation include                            Formation of GBCs from diffuse gas is the first step to
+radiation forces and cosmic rays (see OS11 for discussion and                        the star formation. As described in Section 3.1, in outer disk
+estimates).                                                                          regions where the vertical gravity from stars exceeds the (mean)
+   The ratio of total-to-thermal pressure α can be obtained from                     vertical gravity from the gas, the initial concentration of diffuse
+Equations (22) and (23) as                                                           cold cloudlets to make GBCs is primarily “falling” toward
+                                                             0.03                  the midplane of the stellar potential. Under this circumstance,
+              ηturb     3.1                 ΣSFR                                     the vertical dynamical time defined by tver ≡ Hdiff /σz,diff
+   α =1+            =1+                                               . (24)         may be more relevant for gathering diffuse gas to initiate
+               ηth      frad          10−3 M kpc−2 yr−1
+                                                                                     star formation than the free-fall time.12 Using the time- and
+As discussed above, specific feedback momentum different                             horizontally averaged values of Hdiff and σz,diff defined in
+from our chosen value would introduce an additional fac-                             Section 3.2, in Figure 16(b) we plot the measured ΣSFR as a
+tor (p∗ /m∗ )/3000 km s−1 in the second term above. For a                            function of Σ/tver for all 3D models. The dotted line denotes our
+fixed heating efficiency frad , α is nearly constant, as seen in                     best fit for an imposed unity slope, ΣSFR tver /Σ ≡ ver = 0.002.
+Figure 12(b). In the solar neighborhood (frad = 1), α ≈ 4 is                         The free-fall time and the vertical dynamical time prescriptions
+close to the fiducial value adopted by OML10 (α = 5).                                give rms fractional differences between measured and estimated
+                                                                                     ΣSFR of 24% and 17%, respectively.
+               3.4. Star Formation Scaling Relations                                    In the theory of self-regulated star formation (OML10; OS11;
+                                                                                     Paper I), the relationships among ΣSFR , Ptot , and Ptot,DE are key.
+  A common characterization of the SFR is in terms of a gas                          Star formation feedback replenishes the thermal and turbulent
+mass consumption efficiency within a relevant dynamical time                         pressures, and the total pressure supports the weight of the ISM.
+scale (e.g., Leroy et al. 2008 and references therein):                              Figure 17(a) shows ΣSFR as a function of Ptot for all 3D models.
+                                                                                     The dotted line is obtained from the sum of Equations (20)
+                                               Σ                                     and (21) with the yield coefficients from Equations (22) and (23)
+                            ΣSFR =      dyn          .                  (25)
+                                              tdyn
+                                                                                                                                                     √
+                                                                                                              ver ≡ Hdiff /σz,diff = Σdiff σz,diff /(
+                                                                                     12 Using Equation (15), t                                         2π Ptot ) in
+A natural dynamical time to consider in disk galaxies is the free-                   dynamical equilibrium. For diffuse-dominated regions, we therefore expect
+fall time at the mean midplane gas density (OS11), tff (ρ0 ) =                       tver ≈ [(π 3 /2)1/2 GΣ/σz + (4π Gρsd )1/2 ]−1 . In the limit that gas or stars
+[3π/(32Gρ0 )]1/2 , where ρ0 = 1.4mp n0 . Using the time and                          dominates the gravity, this becomes tver ≈ (π 2 Gρ0 )−1/2 or
+horizontally averaged values of ρ0 measured in our simulations,                      tver ≈ (4π Gρsd )−1/2 , respectively.
+
+                                                                               16
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                       Kim, Ostriker, & Kim
+
+
+
+
+Figure 17. Measured SFR surface density ΣSFR as a function of (a) the measured midplane total pressure Ptot and (b) the predicted midplane total pressure from
+vertical dynamical equilibrium Ptot,DE . The symbols have the same meanings as in Figure 11. In both panels, the dashed line denotes our best fit (Equation (26) in
+(a) and Equation (27) in (b)), and the dotted line plots the predicted thermal and turbulent pressures using Equations (20) and (21) with numerically calibrated yield
+coefficients ηth (using frad = 1) and ηturb from Equations (22) and (23). The higher heating efficiency frad in the R series results in lower ΣSFR for the same Ptot by
+increasing ηth , and hence η.
+(A color version of this figure is available in the online journal.)
+
+
+for frad = 1, while the dashed line plots our best fit omitting the                       We remark that the “dynamical time” formulation of the SFR
+R series:                                                                              is in fact related to the thermal/dynamical equilibrium formula-
+                                                      1.18                           tion (based on momentum flux matching), but the latter is more
+                    −3        −2    −1     Ptot /kB                                    fundamental. Considering the turbulence-dominated case, bal-
+  ΣSFR = 2.1 × 10 M kpc yr                                  . (26)
+                                         104 cm−3 K                                                                          2
+                                                                                       ancing momentum flux requires ρ0 vz,diff    ≈ (1/4)(p∗ /m∗ )ΣSFR .
+                                                                                                                                    √
+Since both thermal and turbulent pressures separately satisfy                          Using ρ0 vz,diff = vz,diff Σdiff × vz,diff /( 2π Hdiff ), this can
+                                                                                                     2
+
+nearly linear relationships with ΣSFR as shown in Section 3.3,                         be interpreted physically as the statement that the dissipa-
+the dotted and dashed lines agree very well with each other. Note                      tion of momentum on a vertical crossing time ∼vz,diff Σdiff ×
+that the proportionality constant in the above relation for ΣSFR                       (vz,diff /H ) must be balanced by injection of fresh momen-
+versus Ptot is roughly 4(p∗ /m∗ )−1 , showing that the specific                        tum by star formation ∼(p∗ /m∗ )ΣSFR . The momentum balance
+momentum injected by SNe determines the coefficient of the                             formula may √    be re-expressed as ΣSFR (Σdiff /tver )−1 ≡ ver =
+ΣSFR –Ptot relation.                                                                   vz,diff [(1/4)fp 2π p∗ /m∗ ]−1 . A relationship of the form in
+   From Equations (22) and (23), we obtain the total feedback                          Equation (25) for tdyn = tver then holds provided that vz,diff
+yield η ≡ ηth + ηturb , which includes the effect of frad . In regions                 is constant. From this point of view, the low rate of “gas con-
+of higher heating efficiency (or lower shielding), the thermal                         sumption” relative to the vertical dynamical time reflects the
+feedback yield (and hence total feedback yield) increases. The                         “inefficiency” of converting ordered feedback momentum in-
+points from the R series in Figure 17 (magenta asterisks) thus                         jected on a small scale to a pervasive turbulent velocity disper-
+spread vertically with respect to model QA10.                                          sion on scales comparable to the disk√thickness. That is, ver
+   In addition to the near-linear relationship between ΣSFR and                        (or ff ) is small because vz,diff [(1/4) 2π p∗ /m∗ ]−1 is small.
+Ptot arising from the balance between energy gains and losses,                         Alternatively, the kinetic energy injected to the ISM by each
+the separate relation Ptot = Ptot,DE holds due to vertical dy-                         feedback event, ∼p∗ vz,diff , is large compared to the kinetic
+namical equilibrium (Section 3.3). We thus can obtain a similar                        energy lost from the ISM, ∼vz,diff2
+                                                                                                                            m∗ , when gas is locked up
+relation between ΣSFR and Ptot,DE , as shown in Figure 17(b). Our                      in stars leading up to the feedback event. In contrast, the ef-
+best fit analogous to Equation (26) is                                                 ficiency of momentum replenishment per dynamical time is
+                                                                                     order-unity.
+                                          Ptot,DE /kB 1.13                                In conclusion, we find that a nearly linear relationship
+  ΣSFR = 1.8 × 10−3 M kpc−2 yr−1                               . (27)
+                                          104 cm−3 K                                   between ΣSFR and Ptot,DE is strongly supported by our numerical
+                                                                                       simulations. Depending on whether stars or gas dominate the
+This relation provides a prediction for ΣSFR in simultane-                             local vertical
+                                                                                                    √ potential well, this would lead to either a relation
+ous thermal and dynamical equilibrium, based only (via                                 ΣSFR ∝ Σ ρsd (typically outer disks, as modeled here and in
+Equation (15) with fdiff ∼ 1) on the total gas surface density                         Paper I) or ΣSFR ∝ Σ2 (typically starburst regions, as modeled
+and stellar/dark matter density present at a given location in a                       by OS11 and SO12). An increase in either the heating efficiency
+galactic disk.
+
+                                                                                 17
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                   Kim, Ostriker, & Kim
+
+or the turbulent driving efficiency would tend to lower ΣSFR for              unrealistically high ΣSFR (e.g., Dobbs et al. 2011; Hopkins
+given values of the gas and stellar disk parameters Σ and ρsd .               et al. 2011). In our simulations, star formation feedback
+                                                                              modeling SN explosions and photoelectric heating by FUV
+              4. SUMMARY AND DISCUSSION                                       radiation replenishes the turbulent and thermal energies at
+                                                                              a rate ∝ ΣSFR . For a given gas surface density Σ, the cooling
+   In this paper, we have carried out full 3D simulations of                  and turbulent dissipation rates per unit mass increase when
+the turbulent, multiphase ISM in galactic disks, including the                the gas disk’s scale height decreases, because the volume
+physical effects from galactic differential rotation, gaseous self-           density ρ increases. However, higher ρ also leads to more
+gravity, vertical gravity due to stars and dark matter, and cooling           rapid gravitational collapse and an increase in ΣSFR /Σ. The
+and heating as appropriate for atomic gas. We also incorporate                SFR can therefore adjust to meet the ISM’s demands for
+thermal and kinetic feedback tied to recent star formation, via               energy inputs.
+a time-dependent heating rate coefficient and turbulent driving
+from expanding SN remnants.                                                      In the OML10 theory, the demand to maintain thermal
+   We use our simulations to investigate the relationships be-                balance in multiphase atomic ISM translates to the require-
+tween ISM properties and SFRs, and we also compare our                        ment that the thermal pressure at the midplane Pth should
+numerical results to the predictions of a recent theory for                   lie between the maximum pressure of the warm phase Pmax
+thermal/dynamical equilibrium of the ISM and self-regulated                   and the minimum pressure of the cold phase Pmin (Field
+star formation (OML10; OS11). The theory posits that the                      et al. 1969; Wolfire et al. 1995, 2003). Here, we have com-
+rate of star formation adjusts until the total energy (in tur-                pared the measured Pth to the geometric-mean pressure
+bulent driving and thermal heating) supplied to the ISM by                    Ptwo ≡ (Pmin Pmax )1/2 ∝ ΣSFR , showing that Pth ≈ Ptwo
+star formation feedback matches the demand imposed by ISM                     indeed holds with weak decreasing trend toward increas-
+losses (turbulence dissipation and interstellar cooling). Force               ing ΣSFR . The variation of Pth /Ptwo is only ∼0.4 dex for
+balance must also hold: the momentum flux (thermal and tur-                   two orders of magnitude change in ΣSFR and the measured
+bulent) provided by feedback must match the vertical weight                   Pth . This confirms both the hypothesis of OML10 and our
+of the ISM in the total gravitational field (gas, stellar, and dark           previous numerical results from Paper I.
+matter gravity). Our simulations provide quantitative evidence                   In OS11 (see also Paper I and SO12), it is shown that
+in support of the theory. This confirms our previous results                  the demand to offset turbulent dissipation with turbulent
+(Paper I) based on radial-vertical simulations in the same                    driving from star formation feedback translates to the
+atomic-dominated regime, together with the simulations of                     requirement that Pturb = ρvz2 ∼ Σvz /tver is comparable
+SO12 for the molecular-dominated starburst regime.                            to Pdriv ≡ (1/4)(p∗ /m∗ )ΣSFR . Here, we have compared
+   Our main findings are summarized as follows.                               the measured Pturb to Pdriv , showing that Pturb ≈ Pdriv
+                                                                              holds, again with a weak decreasing trend as ΣSFR increases.
+ 1. Vertical support of the disk. Despite large amplitude tem-
+                                                                              Similar to Pth /Ptwo , Pturb /Pdriv varies only over ∼0.3 dex
+    poral fluctuations, we find that the mean total (ther-
+                                                                              for two orders of magnitude change in ΣSFR and the
+    mal plus turbulent) midplane pressure Ptot matches the
+                                                                              measured Pturb . This confirms the hypothesis of OS11 and
+    mean vertical weight of the gas (Ptot,DE , as defined in
+                                                                              our previous findings from XZ simulations (Paper I), as
+    Equation (15)) within 12%. Vertical dynamical equi-
+                                                                              well as numerical results of SO12 for the starburst regime,
+    librium in the highly turbulent, multiphase ISM has
+                                                                              in which turbulent pressure is completely dominant over
+    also previously been demonstrated in simulations with
+                                                                              other pressures.
+    a range of sources of turbulence: expansion of H ii re-
+    gions (Koyama & Ostriker 2009b), magnetorotational                     3. Thermal and turbulent energy yields. The equilibrium
+    instability (Piontek & Ostriker 2007), galactic spiral                    pressures depend on a balance between losses and
+    shocks (Kim et al. 2010), and SN feedback (Paper I;                       gains: Pturb /tver ∼ (turbulent energy driving/volume/time)
+    SO12; Hill et al. 2012). These numerical results support the              ∼ (vz /H )× (turbulent momentum driving/area/time) so
+    assumption of effective “hydrostatic” equilibrium that is of-             that Pturb = fp (1/4)(p∗ /m∗ )ΣSFR in equilibrium; and
+    ten utilized in observations to obtain an estimate of the mid-            Pth /tcool ∼ (thermal heating/volume/time) so that Pth =
+    plane pressure (Wong & Blitz 2002; Blitz & Rosolowsky                     ΓkB T /Λ(T ) ∝ frad ΣSFR in equilibrium. We quantify the
+    2004, 2006; Leroy et al. 2008). Equation (15) provides a                  results in terms of feedback yield parameters ηth and ηturb ,
+    general expression for the pressure under vertical dynami-                corresponding to the ratio Pth /ΣSFR and Pturb /ΣSFR , respec-
+    cal equilibrium. When the vertical gravity is dominated by                tively, in suitable units (see Equations (20) and (21)). We
+    stars and dark matter, as in the outer regions of disk galaxies
+                                                             √                find that ηth and ηturb are nearly constant (see Equations (22)
+    or dwarf galaxies, Equation (16) gives Ptot,DE ∝ Σ ρsd ,                  and (23)) in our models with frad = 1. Thus, even though
+    while Ptot,DE ∝ Σ2 if gaseous self-gravity dominates—                     ΣSFR and the individual thermal and turbulent pressures
+    typically in starbursts (OS11; SO12).                                     vary over two orders of magnitude, the ratio of the total-to-
+ 2. Thermal and turbulent energy replenishment from star                      thermal pressure α = 1 + ηturb /ηth ∼ 4–5 is nearly constant
+    formation feedback. Since turbulence decays within a flow                 (see Figure 12). From the above, the ratio Pturb /Pth is ap-
+    crossing time (Stone et al. 1998; Mac Low et al. 1998;                    proximately equal to the product of tver /tcool and Ėturb /Ėth .
+    comparable to the vertical dynamical time tver = H /vz for                Although the input rate of turbulent energy Ėturb is small
+    the neutral ISM disk) and the cooling time of the atomic                  compared to the input rate of thermal energy Ėth (∼4% for
+    gas is even shorter than this dynamical time, both turbulent              the solar neighborhood), tver is much larger than tcool (by a
+    driving and heating are required to maintain the quasi-                   factor ∼100 for the solar neighborhood), so that the result-
+    steady state over a few orbital times that appears to hold in             ing Pturb exceeds Pth . Since the dependence tver /tcool ∝ Σ
+    normal disk galaxies. Without continuous turbulent driving                is compensated by Ėturb /Ėth ∝ Σ−1 , the ratio Pturb /Pth can
+    and heating, the gas disk would rapidly collapse, leading to              remain roughly the same over a large range of radii in disks.
+
+                                                                      18
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                   Kim, Ostriker, & Kim
+
+       The feedback yield increases if either the parameters gov-             SFR is more fundamental and direct than these dynamical
+    erning gains increase or those governing losses decrease.                 time prescriptions. The relation ΣSFR ∝ Ptot,DE requires
+    The heating rate in our models is ∝ frad ΣSFR . Because                   that p∗ /m∗ is approximately constant, whereas ΣSFR ∝
+    Γ is expected to be proportional to dust abundance for                    Σ/tver requires that vz (p∗ /m∗ )−1 is approximately constant,
+    photoelectric heating and Λ is expected to be proportional                and ΣSFR ∝ Σ/tff requires that vz (gz /GΣ)1/2 (p∗ /m∗ )−1
+    to metal abundance for C or O cooling, these dependences                  is approximately constant. Our simulations (as well as
+    would roughly cancel in ηth if dust and metals vary together.             others; see below) do find approximately constant turbulent
+    However, the heating rate for a given ΣSFR is expected to in-             velocity dispersions vz . The family of simulations we
+    crease in low-AV regions of galaxies where FUV radiation                  conducted also happens to have gz /GΣ constant because
+    can propagate farther (see OML10); we explore this effect                 gz ∼ (Gρsd )1/2 vz and we adopted ρsd ∝ Σ2 . When gas
+    via varying frad . Our models show that ηth increases with                dominates the vertical gravity (as in starburst regions),
+    frad , consistent with expectations. As explicitly explored in            gz ∼ GΣ, which combined with constant vz results in
+    SO12 and expected from our result Pturb /Pdriv ∼ 1, ηturb                 ΣSFR ∝ Σ/tff as shown in SO12; however, this need not
+    depends nearly linearly on p∗ /m∗ . In the present simula-                be the case for galaxies in general.
+    tions, the value of p∗ /m∗ = 3000 km s−1 we adopt is based                   The present models focus on the ISM regime in which
+    on the value of p∗ for a radiative-stage spherical SN rem-                diffuse gas dominates—i.e., outer disks at low gas sur-
+    nant propagating into a uniform medium (Cioffi et al. 1988;               face density Σ. Moving to smaller radii and regions of
+    Blondin et al. 1998; Thornton et al. 1998). SNe are expected              higher surface density, observations (e.g., Bigiel et al. 2008;
+    to be the dominant source of turbulence in the diffuse ISM                Leroy et al. 2008) show that gas in gravitationally bound
+    in many cases (see Mac Low & Klessen 2004; OS11), but                     molecular clouds exceeds the diffuse atomic gas, and that
+    p∗ may still vary and it is important to calibrate this param-            ΣSFR ∝ Σ with little dependence on ρsd . One interpre-
+    eter via high-resolution simulations of a realistic (cloudy)              tation of the transition from outer disks to these mid-
+    ISM. Although ηturb exceeds ηth for the parameter sets we                 disk regions is that it represents an increase of tdest /tform
+    have explored, potentially the reverse situation could hold               from small to large values, where these timescales rep-
+    in some galactic environments.                                            resent formation and destruction timescales for GBCs. If
+ 4. A link between SFR and disk properties. Given basic disk                  formation and destruction are in balance, then we ex-
+    properties (the total gas surface density Σ and stellar+dark              pect fdiff = tform /(tform + tdest ). Dynamical equilibrium
+    matter density ρsd ), a theory of large-scale star formation              between pressure and gravity in the diffuse ISM requires
+    should be able to provide a prediction for ΣSFR . In the                  ηΣSFR ∼ fdiff Σgz ∼ Σgz tform /(tform + tdest ). If tform ∼ tver ,
+    OML10+OS11 model, this prediction is obtained by re-                      then gz tform ∼ vz . Furthermore, if vz and tdest are roughly
+    quiring that thermal and turbulent balance equations hold,                constant (and tform  tdest ), this would lead to fdiff  1
+    and also that vertical pressure/gravity balance holds. Si-                and ΣSFR ∝ Σ. Testing whether this or another interpre-
+    multaneous solution of these three balance equations leads                tation explains mid-disk observations will require detailed
+    to the result that ΣSFR varies nearly linearly with Ptot,DE (as           models of cloud destruction, carefully following feedback
+    defined in Equation (15); fdiff ∼ 1 for the regime studied                processes throughout the lives of massive stars.
+    here). We verify this result with our simulations, as seen             5. Velocity dispersion driven by star formation feedback. Bal-
+    in Figure 17 and Equation (27). Depending on whether                      ance between
+                                                                                         √ turbulent driving and dissipation leads to
+    the gas gravity or the gravity of the stars dominates in                  vz,diff = ( 2π /4)fp (p∗ /m∗ )ΣSFR (Σ/tver )−1 . If star forma-
+    Equation (15), this can lead to ΣSFR ∝ √ Σ for starburst sys-
+                                               2
+                                                                              tion scales as ΣSFR = ver Σ/tver (see Section 3.4), this
+    tems (OS11; SO12), or to ΣSFR ∝ Σ ρsd for normal outer                    yields vz,diff = 0.63fp ver (p∗ /m∗ ) ∼ 3.8–5.6 km s−1 for
+    disk regions (OML10; Paper I).                                                                                                         −1
+                                                                                ver = 0.2%, fp = 1–1.5, and p∗ /m∗ = 3000 km s ,
+       In recent local observations of the ΣSFR versus Σ relation,            insensitive to Σ, ρsd , and ΣSFR . The measured values
+    the low-Σ regime is characterized by large scatter of                     of turbulent velocity dispersion in our simulations are
+    composite data sets (Bigiel et al. 2008) and systematic                   more or less constant over the whole range of parame-
+    differences in power-law indices p in ΣSFR ∝ Σ1+p between                 ters (see Figure 11) since fp depends very weakly on ΣSFR
+    individual galaxies (Wong & Blitz 2002; Leroy et al. 2008).               (see Figure 15 and Equation (19)). Many other recent simu-
+    Our simulations suggest that this may, in part, be due                    lations have also found nearly constant velocity dispersions
+    to “projection” on the ΣSFR versus Σ plane that neglects                  with respect to the input SFR (e.g., Dib et al. 2006; Shetty
+    variations in the√gravity of the stellar disk (which would                & Ostriker 2008; Agertz et al. 2009; Joung et al. 2009;
+    lead to ΣSFR ∝ ρsd ). In fact, Blitz & Rosolowsky (2006)                  Dobbs et al. 2011; SO12). H i velocity dispersions reported
+    and Leroy et al. (2008) have demonstrated that molecular                  in observations of the Milky Way and nearby face-on galax-
+    content and the SFR increase with increasing stellar density.             ies (Dickey et al. 1990; van Zee & Bryant 1999; Heiles &
+    In Paper I (see Figure 13(a) there), we showed that ΣSFR at               Troland 2003; Petric & Rupen 2007; Kalberla & Kerp 2009)
+    a given Σ moves up or down when the ratio of external                     show comparable values and insensitivity to the ΣSFR . Vari-
+    (stellar) gravity to gas gravity (controlled by 1/s0 ) is                 ations in the turbulent velocity amplitude driven by feed-
+    varied. Our current simulations show the same effect. In                  back could arise, however, if p∗ /m∗ differs in more extreme
+    the particular case where stellar√ and gaseous Q values are               environments.
+    constant (QA and QB series), ρsd ∝ Σ, which would lead                       Although turbulence driven by feedback appears to be
+    to a steep relation ΣSFR ∝ Σ2 .                                           crucial in preventing runaway star formation, other mecha-
+       We show in Section 3.4 that dynamical time prescriptions               nisms can also help to drive ISM turbulence. These mech-
+    are also good descriptions of our numerical results; we                   anisms include unsteady galactic spiral shocks (Kim &
+    find ΣSFR = 0.006Σ/tff (ρ0 ) and ΣSFR = 0.002Σ/tver .                     Ostriker 2006; Kim et al. 2006, 2010; Dobbs & Bonnell
+    However, we argue that the relation between pressure and                  2006), magnetorotational instability (Kim et al. 2003;
+
+                                                                      19
+The Astrophysical Journal, 776:1 (20pp), 2013 October 10                                                                                      Kim, Ostriker, & Kim
+
+     Piontek & Ostriker 2005, 2007), large-scale gravitational                         Dobbs, C. L., Burkert, A., & Pringle, J. E. 2011, MNRAS, 417, 1318
+     instabilities (Wada & Norman 2002; Kim & Ostriker                                 Elmegreen, B. G., & Scalo, J. 2004, ARA&A, 42, 211
+                                                                                       Ferrière, K. M. 2001, RvMP, 73, 1031
+     2007; Agertz et al. 2009; Bournaud et al. 2010), and                              Field, G. B., Goldsmith, D. W., & Habing, H. J. 1969, ApJL, 155, L149
+     cosmic inflow (Klessen & Hennebelle 2010). Large-scale                            Fuchs, B., Jahreiß, H., & Flynn, C. 2009, AJ, 137, 266
+     gravitational instabilities may be particularly important                         Gammie, C. F. 2001, ApJ, 553, 174
+     in driving non-circular motions in ultraluminous infrared                         Gazol, A., & Kim, J. 2013, ApJ, 765, 49
+                                                                                       Gazol, A., Luis, L., & Kim, J. 2009, ApJ, 693, 656
+     galaxies and high-redshift galaxies, where measured veloc-                        Gazol, A., Vázquez-Semadeni, E., & Kim, J. 2005, ApJ, 630, 911
+     ity dispersions appear larger than in local disks (see, e.g.,                     Genzel, R., Newman, S., Jones, T., et al. 2011, ApJ, 733, 101
+     Figure 14 of Genzel et al. 2011). However, it is important                        Heiles, C., & Troland, T. H. 2003, ApJ, 586, 1067
+     to keep in mind that force balance in the vertical direction                      Hill, A. S., Joung, M. R., Mac Low, M.-M., et al. 2012, ApJ, 750, 104
+     depends on velocity dispersions at scales below the disk                          Hopkins, P. F., Quataert, E., & Murray, N. 2011, MNRAS, 417, 950
+                                                                                       Joung, M. R., Mac Low, M., & Bryan, G. L. 2009, ApJ, 704, 137
+     thickness (much smaller than has been resolved in external                        Kalberla, P. M. W., & Kerp, J. 2009, ARA&A, 47, 27
+     galaxies), whereas gravitational instabilities primarily drive                    Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2006, ApJL, 649, L13
+     turbulence at scales larger than the disk thickness. Turbu-                       Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2010, ApJ, 720, 1454
+     lence driven by any of these mechanisms at scales smaller                         Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2011, ApJ, 743, 25 (Paper I)
+                                                                                       Kim, W.-T., & Ostriker, E. C. 2001, ApJ, 559, 70
+     than the disk thickness would tend to reduce the SFR, since                       Kim, W.-T., & Ostriker, E. C. 2006, ApJ, 646, 213
+     it would partially offset the demand for star formation feed-                     Kim, W.-T., & Ostriker, E. C. 2007, ApJ, 660, 1232
+     back to match the required pressure. Magnetic fields also                         Kim, W.-T., Ostriker, E. C., & Stone, J. M. 2002, ApJ, 581, 1080
+     contribute pressure, but because the magnitude is smaller                         Kim, W.-T., Ostriker, E. C., & Stone, J. M. 2003, ApJ, 599, 1157
+     than turbulent pressure and the magnetic scale height is                          Klessen, R. S., & Hennebelle, P. 2010, A&A, 520, A17
+                                                                                       Koo, B., & Kang, J. 2004, MNRAS, 349, 983
+     large, the fractional contribution to offsetting the weight of                    Koyama, H., & Inutsuka, S. 2002, ApJL, 564, L97
+     the neutral ISM is small (OS11; Hill et al. 2012). In future                      Koyama, H., & Ostriker, E. C. 2009a, ApJ, 693, 1316
+     models, it will be interesting to quantify both how impor-                        Koyama, H., & Ostriker, E. C. 2009b, ApJ, 693, 1346
+     tant various sources (including diverse feedback processes)                       Kroupa, P. 2001, MNRAS, 322, 231
+                                                                                       Krumholz, M. R., Dekel, A., & McKee, C. F. 2012, ApJ, 745, 69
+     are for driving turbulent velocity dispersions in the ISM,                        Krumholz, M. R., & McKee, C. F. 2005, ApJ, 630, 250
+     and the corresponding effects on limiting star formation.                         Krumholz, M. R., & Tan, J. C. 2007, ApJ, 654, 304
+                                                                                       Leroy, A. K., Walter, F., Brinks, E., et al. 2008, AJ, 136, 2782
+   We are grateful to the referee for a helpful review. This                           Lockman, F. J., & Gehman, C. S. 1991, ApJ, 382, 182
+                                                                                       Mac Low, M., & Klessen, R. S. 2004, RvMP, 76, 125
+work was made possible by the facilities of the Shared Hierar-                         Mac Low, M., Klessen, R. S., Burkert, A., & Smith, M. D. 1998, PhRvL,
+chical Academic Research Computing Network (SHARCNET:                                     80, 2754
+www.sharcnet.ca) and Compute/Calcul Canada. Part of the nu-                            Mac Low, M.-M. 1999, ApJ, 524, 169
+merical simulations were performed by using a high perfor-                             McKee, C. F., & Ostriker, J. P. 1977, ApJ, 218, 148
+mance computing cluster in the Korea Astronomy and Space                               Ostriker, E. C., McKee, C. F., & Leroy, A. K. 2010, ApJ, 721, 975 (OML10)
+                                                                                       Ostriker, E. C., & Shetty, R. 2011, ApJ, 731, 41 (OS11)
+Science Institute. The work of C.-G.K. was supported in part by                        Parravano, A., Hollenbach, D. J., & McKee, C. F. 2003, ApJ, 584, 797
+a CITA National Fellowship. The work of E.C.O. was supported                           Petric, A. O., & Rupen, M. P. 2007, AJ, 134, 1952
+by grant AST0908185 from the National Science Foundation.                              Pineda, J. L., Langer, W. D., Velusamy, T., & Goldsmith, P. F. 2013, A&A,
+The work of W.-T.K. was supported by the National Research                                554, A103
+                                                                                       Piontek, R. A., & Ostriker, E. C. 2004, ApJ, 601, 905
+Foundation of Korea (NRF) grant funded by the Korean gov-                              Piontek, R. A., & Ostriker, E. C. 2005, ApJ, 629, 849
+ernment (MEST), No. 2010-0000712.                                                      Piontek, R. A., & Ostriker, E. C. 2007, ApJ, 663, 183
+                                                                                       Saury, E., Miville-Deschênes, M.-A., Hennebelle, P., Audit, E., & Schmidt, W.
+                             REFERENCES                                                   2013, arXiv:1301.3446
+                                                                                       Seo, W.-Y., & Kim, W.-T. 2013, ApJ, 769, 100
+Agertz, O., Kravtsov, A. V., Leitner, S. N., & Gnedin, N. Y. 2013, ApJ, 770, 25        Shetty, R., & Ostriker, E. C. 2008, ApJ, 684, 978
+Agertz, O., Lake, G., Teyssier, R., et al. 2009, MNRAS, 392, 294                       Shetty, R., & Ostriker, E. C. 2012, ApJ, 754, 2 (SO12)
+Bakes, E. L. O., & Tielens, A. G. G. M. 1994, ApJ, 427, 822                            Sternberg, A., McKee, C. F., & Wolfire, M. G. 2002, ApJS, 143, 419
+Bigiel, F., Leroy, A., Walter, F., et al. 2008, AJ, 136, 2846                          Stone, J. M., & Gardiner, T. 2009, NewA, 14, 139
+Blitz, L., & Rosolowsky, E. 2004, ApJL, 612, L29                                       Stone, J. M., & Gardiner, T. A. 2010, ApJS, 189, 142
+Blitz, L., & Rosolowsky, E. 2006, ApJ, 650, 933                                        Stone, J. M., Ostriker, E. C., & Gammie, C. F. 1998, ApJL, 508, L99
+Blondin, J. M., Wright, E. B., Borkowski, K. J., & Reynolds, S. P. 1998, ApJ,          Thornton, K., Gaudlitz, M., Janka, H.-T., & Steinmetz, M. 1998, ApJ,
+   500, 342                                                                               500, 95
+Bournaud, F., Elmegreen, B. G., Teyssier, R., Block, D. L., & Puerari, I.              Truelove, J. K., Klein, R. I., McKee, C. F., et al. 1997, ApJL, 489, L179
+   2010, MNRAS, 409, 1088                                                              van Zee, L., & Bryant, J. 1999, AJ, 118, 2172
+Cioffi, D. F., McKee, C. F., & Bertschinger, E. 1988, ApJ, 334, 252                    Wada, K., & Norman, C. A. 2002, ApJL, 566, L21
+Cox, D. P. 2005, ARA&A, 43, 337                                                        Wolfire, M. G., Hollenbach, D., McKee, C. F., Tielens, A. G. G. M., & Bakes,
+Dib, S., Bell, E., & Burkert, A. 2006, ApJ, 638, 797                                      E. L. O. 1995, ApJ, 443, 152
+Dickey, J. M., Hanson, M. M., & Helou, G. 1990, ApJ, 352, 522                          Wolfire, M. G., McKee, C. F., Hollenbach, D., & Tielens, A. G. G. M. 2003, ApJ,
+Dickey, J. M., Strasser, S., Gaensler, B. M., et al. 2009, ApJ, 693, 1250                 587, 278
+Dobbs, C. L., & Bonnell, I. A. 2006, MNRAS, 367, 873                                   Wong, T., & Blitz, L. 2002, ApJ, 569, 157
+
+
+
+
+                                                                                  20
+

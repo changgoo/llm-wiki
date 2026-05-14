@@ -1,0 +1,1440 @@
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                 https://doi.org/10.3847/1538-4357/ab989c
+© 2020. The American Astronomical Society. All rights reserved.
+
+
+
+
+Cloud Properties and Correlations with Star Formation in Self-consistent Simulations of
+                                the Multiphase ISM
+               1
+                                                   S. Alwin Mao1   , Eve C. Ostriker1     , and Chang-Goo Kim1,2
+                   Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544, USA; alwin@princeton.edu, eco@astro.princeton.edu,
+                                                                       cgkim@astro.princeton.edu
+                                        2
+                                          Center for Computational Astrophysics, Flatiron Institute, New York, NY 10010, USA
+                                  Received 2019 November 11; revised 2020 May 22; accepted 2020 May 31; published 2020 July 22
+
+                                                                              Abstract
+             We apply gravity- and density-based methods to identify clouds in self-consistent numerical simulations of the
+             star-forming, multiphase interstellar medium (ISM) and compare their properties and global correlation with the
+             star formation rate (SFR) over time. The gravity-based method identiﬁes bound objects, which have masses
+             M ~ 10 3–10 4 M at densities nH ~ 100 cm-3, and virial parameters αv∼0.5–5. For clouds deﬁned by a density
+             threshold nH,min , the average virial parameter decreases, and the fraction of material that is genuinely bound
+             increases, with increasing nH,min . Surprisingly, clouds deﬁned by density thresholds can be unbound even when
+             αv<2, and high-mass clouds (10 4–106 M) are generally unbound. This suggests that the traditional αv is at best
+             an approximate measure of boundedness in the ISM. All clouds have internal turbulent motions increasing with
+             size as s ~ 1 km s-1(R pc)1 2 , similar to observed relations. Bound structures comprise a small fraction of the
+             total simulation mass and have a star formation efﬁciency per freefall time eff ∼0.4. For nH,min = 10–100 cm-3,
+             eff ∼0.03–0.3, increasing with density threshold. A temporal correlation analysis between SFR (t ) and aggregate
+             mass M (nH,min ; t ) at varying nH,min shows that time delays to star formation are tdelay ~ tff (nH,min ). The correlation
+             between SFR (t ) and M (nH,min ; t ) systematically tightens at higher nH,min . Considering moderate-density gas,
+             selecting against high virial parameter clouds improves correlation with the SFR, consistent with previous work.
+             Even at high nH,min , the temporal dispersion in (SFR - eff M tff ) áSFRñ is ∼50%, due to the large-amplitude
+             variations and inherent stochasticity of the system.
+             Uniﬁed Astronomy Thesaurus concepts: Star formation (1569); Star forming regions (1565); Giant molecular
+             clouds (653); Interstellar medium (847)
+
+
+                                    1. Introduction                                    resolved GMCs in nearby galaxies are similar (Bolatto et al. 2008;
+                                                                                       Sun et al. 2018).
+   The interstellar medium (ISM) is hierarchically structured. The
+                                                                                          By combining an estimate of the mass, size, and velocity
+densest entities are individual prestellar cores, which generally are
+                                                                                       dispersion, an estimate of the virial parameter av º 2Ek ∣Eg∣
+found within ﬁlaments or clumps in giant molecular clouds
+                                                                                       (for kinetic energy Ek and gravitational energy Eg) can be
+(GMCs; André et al. 2014; Dobbs et al. 2014). The GMCs may be                          obtained (e.g., Heyer et al. 2009; Roman-Duval et al. 2010;
+part of molecular/atomic complexes and are typically found                             Kauffmann et al. 2013; Hernandez & Tan 2015; Traﬁcante et al.
+within spiral arms, arm spurs/feathers, or sheared ﬂocculent                           2018). Virial parameter estimates from observations typically
+features (Elmegreen 1980; la Vigne et al. 2006). At any given                          adopt ∣Eg∣ = 3GM 2 (5R) for the gravitational energy, as would
+time within a galaxy, a distribution of GMCs with various                              apply for an isolated, uniform-density sphere, where the effective
+properties exists, and each forms stars according to the distribution                  radius is empirically computed from the projected area as
+of clumps and cores within it. To understand the intermediate                          R=(A/π)1/2. Although the case of ellipsoidal structures has
+scale between parsecs and kiloparsecs, the properties of GMCs                          been considered (Bertoldi & McKee 1992), more general effects
+must be understood, and it is of particular interest to investigate                    from nonspherical cloud geometry are not generally taken into
+whether the characteristics of a GMC may be used to predict its                        account (even though the ﬁlamentary nature of the ISM makes
+star formation rate (SFR).                                                             many clouds quite elongated); nonsphericity tends to reduce
+   There is a long history of characterizing ISM structures in                         gravitational binding. Internal stratiﬁcation is sometimes taken
+observations. Molecular lines, dust extinction, and dust emission                      into account by assuming a power-law density proﬁle, which can
+maps are used to identify regions with high column density or                          increase the estimated ∣Eg∣ by up to a factor of ∼2 (Hernandez &
+number density. These density proxies are a convenient and readily                     Tan 2015).
+available way to identify structures and obtain distributions of                          Based on the simplest spherical estimate, clouds are traditionally
+cloud sizes and masses. In addition to measuring column densities                      considered “bound” if the estimated virial parameter av º
+from molecular or dust emission, line emission is used to trace                        5s 2R (GM ) is less than or equal to 2, where σ is the line-of-
+velocities of gas, and from this, the kinetic energy content of the                    sight velocity dispersion. However, these traditional estimates of
+structures can be estimated. For example, based on CO surveys,                         gravitational binding energy are problematic even beyond the
+GMCs in the Milky Way (with typical gas surface density                                assumptions of homogeneity and spherical geometry because the
+~30–100 M pc-2 ) have masses 10 4–106 M, radii between 10                            “isolated cloud” estimate of ∣Eg∣ does not take into account
+and 50 pc, velocity dispersion between 1 and 7 km s−1, and a line                      neighboring structures. For a given local gravitational potential
+width–size relationship of s1D = 0.9 km s-1(R pc)1 2 (Solomon                          minimum at the center of a cloud, tidal forces set the effective zero
+et al. 1987; Blitz 1993; Heyer & Dame 2015); the properties of                         of the gravitational potential not at an inﬁnite distance but along
+
+                                                                                   1
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                 Mao, Ostriker, & Kim
+
+the ﬁrst potential contour that has a saddle point—equivalent to the        Padoan et al. (2012) suggested that eff depends primarily on the
+Roche lobe for the case of two spherical bodies. As a result, tidal         ratio of ﬂow-crossing dynamical time as
+forces effectively decrease the gravitational binding energy ∣Eg∣ of
+                                                                                                   eff µ exp ( - 1.6tff tdyn) ,                            (3 )
+dense regions in close proximity to other dense regions, which is
+common because of the hierarchical structure of ISM density                 where tdyn = R s3D = R ( 3 s1D ) is the ﬂow-crossing time for
+variations. In addition to tidal forces from nearby gaseous                 system size 2R (=L, the simulation box size for Padoan et al.
+structures, tidal gravity from star clusters and the large-scale            2012). For a uniform spherical cloud, the timescale ratio can be
+galactic potential reduce the effective binding of a cloud                  related to the virial parameter by
+(e.g., Ballesteros-Paredes et al. 2009). More generally, tidal forces
+can have additional stabilizing effects, including preventing or                                       ⎛ t ⎞2   3p 2
+limiting fragmentation when collapse does occur such that                                              ⎜ ff ⎟ =      av ;                                  (4 )
+fragments are more massive (e.g., Sigalotti & Klapp 2000; Lee                                          ⎝ tdyn ⎠ 40
+& Hennebelle 2018). Simple virial parameter estimates also                  thus, these simulations suggest a strong suppression of star
+neglect magnetic contributions to support, which can signiﬁcantly
+                                                                            formation at high αv.
+add to the numerator (Heiles et al. 1993; McKee et al. 1993).
+                                                                               Idealized simulations have the advantage of carefully controlled
+Although simple virial parameter estimates are inexact, they are
+                                                                            conditions but the disadvantages that the turbulence is driven in an
+often used to assess whether a structure is a likely candidate for
+                                                                            artiﬁcially prescribed manner to maintain a ﬁxed overall turbulent
+star formation.
+                                                                            amplitude and the processes leading to cloud formation and
+   Star formation is observed to take place within the densest
+                                                                            destruction are not followed. In reality, GMCs form due to a
+structures at the smallest scale within the ISM hierarchy, and it is
+                                                                            combination of large-scale ISM ﬂows (including turbulence, shear,
+important to understand what dynamical processes lead to the
+                                                                            and epicyclic motion) and gravity (both stellar gravity and self-
+onset of gravitational collapse and what controls the rate of star
+                                                                            gravity) that lead to collection of material from a large volume, as
+formation within a given level of the hierarchy. More generally, it
+                                                                            mediated by thermal and magnetic pressure, and a change from the
+is of interest to understand how star formation timescales are
+                                                                            atomic to the molecular phase as the gas cools (e.g., McKee &
+related to the properties and corresponding timescales of gaseous
+                                                                            Ostriker 2007; Dobbs et al. 2014; Chevance et al. 2020).
+structures. Because star formation involves gravity, the most
+                                                                            Turbulence on scales less than the scale height of the warm–
+commonly invoked reference timescale is the freefall collapse time,
+                                                                            cold ISM likely originates primarily due to the feedback from
+                             ⎛ 3p ⎞1 2                                      young stars (Elmegreen & Scalo 2004; Mac Low & Klessen 2004;
+                       tff = ⎜      ⎟ ,                          (1 )       McKee & Ostriker 2007),3 whether inherited from a GMC’s
+                             ⎝ 32Gr ⎠                                       formation stage or produced internally. Considering that GMCs
+where ρ is the gas density. Perhaps the simplest way to                     live for at most a few turbulent crossing or freefall times
+characterize the relationship between star formation and gas                (Kawamura et al. 2009; Kruijssen et al. 2019), it is not clear
+properties is via the star formation efﬁciency per freefall time            that internal GMC conditions can control star formation in a
+                                                                            way that is entirely divorced from their formation and
+(Krumholz & McKee 2005; Krumholz & Tan 2007), deﬁned as
+                                                                            destruction processes.
+                                  M *                                         In recent years, (magneto)hydrodynamic simulations have
+                         eff º         ,                         (2 )       been used to follow the star-forming multiphase ISM in
+                                 M tff
+                                                                            kiloparsec-size regions at high resolution. In these simulations,
+where tff is the freefall time at the mean density of the gas               massive self-gravitating clouds naturally condense out of the
+contributing to M, and M * is the SFR. Other relevant timescales           diffuse gas, and within these clouds, localized collapse occurs
+include the ﬂow-crossing time across a structure that is                    that represents star cluster formation (Gatto et al. 2017; Iffrig &
+supported by turbulent stresses and the sound-crossing time                 Hennebelle 2017; Kim & Ostriker 2017; Colling et al. 2018;
+for a structure that is supported by thermal pressure. A class of           Kannan et al. 2020). In some cases, star-forming and feedback
+theoretical models for star formation proposes that in turbulent            processes have been followed to even smaller scales via
+                                                                            “zoom” simulations (e.g., Hennebelle 2018; Haid et al. 2019).
+clouds, there is a critical density ρcrit above which collapse
+                                                                            By modeling the return of energy (representing radiative
+occurs within a freefall time, with ρcrit depending on the ratios           heating and supernova explosions) from star clusters to their
+of kinetic to gravitational energy (virial parameter), turbulent to         surroundings, a self-consistent, self-regulated state can be
+thermal velocity (Mach number), and thermal to magnetic                     reached in which all thermal phases of the ISM are represented,
+pressure (plasma beta parameter; Krumholz & McKee 2005;                     and a hierarchy of structures is naturally created. While the
+Hennebelle & Chabrier 2011; Padoan & Nordlund 2011;                         large-scale time-averaged SFR adjusts such that feedback
+Federrath & Klessen 2012; Padoan et al. 2014). The underlying               provides the energy and momentum needed to maintain overall
+physical concept behind the idea of a critical density is that the
+                                                                            3
+density must be high enough that thermal pressure and                          Gravitational instabilities in the combined gas–stellar system (e.g., Jog &
+                                                                            Solomon 1984; Romeo 1992; Raﬁkov 2001; Kim & Ostriker 2007) can drive
+magnetic stresses cannot support against collapse, and that                 horizontal motions at very large scales, as seen in numerical simulations (e.g.,
+the collapse time is shorter than the timescale for shear to tear           Kim & Ostriker 2007; Shetty & Ostriker 2008; Agertz et al. 2009; Dobbs et al.
+                                                                            2011; Hopkins et al. 2012; Agertz & Kravtsov 2015, and citations within), but
+apart a structure.                                                          these motions generally do not reach supersonic amplitudes unless they are
+   In addition to theoretical models, direct numerical simulations          associated with gravitational collapse. In addition, turbulence at scales less than
+have been used to characterize the dependence of SFRs on gas                the disk scale height can be driven by spiral shocks and the magnetorotational
+properties. One idealized type of setup employs simulations with            instability, but numerical simulations show that the corresponding amplitudes
+                                                                            are relatively modest in cold gas (e.g., Wada & Koda 2004; Piontek &
+isothermal, self-gravitating gas, in which turbulence is driven in          Ostriker 2005, 2007; Kim et al. 2006, 2010; Dobbs & Bonnell 2007; Bonnell
+Fourier space. From a large set of driven-turbulence simulations,           et al. 2013, and citations within).
+
+                                                                        2
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                       Mao, Ostriker, & Kim
+
+equilibrium in the ISM as a whole (Ostriker et al. 2010; Kim                                            2. Methods
+et al. 2011, 2013; Ostriker & Shetty 2011), the collapse to
+                                                                               In this paper, we analyze the properties of dense and bound gas
+make individual star clusters depends on local conditions in                structures and investigate the relationship between the material in
+overdense clouds. Simulations of this kind present an                       these structures and the SFR, as applied to the ﬁducial TIGRESS
+opportunity to evaluate the role of gravity in binding ISM                  model described in Kim & Ostriker (2017), which has parameters
+structures that are part of a complex environment and to assess             similar to the conditions in the solar neighborhood (see
+common practices for estimating gravitational boundedness. In               Section 2.4). The methods we develop, described in some detail
+addition, simulations of this kind afford a realistic setting to test       here, are quite general and can be applied to other numerical
+theoretical ideas regarding the role of gravitational bounded-              simulation data. With some modiﬁcations to allow for projected
+ness in controlling SFRs.                                                   rather than fully 3D information, our methods can also be applied
+   In this paper, we use a large-scale ISM simulation produced in           to observed data sets.
+the TIGRESS framework (Kim & Ostriker 2017) to characterize                    We begin by describing methods for identifying objects
+the properties of dense structures and their relationship to star           based on the gravitational potential in comparison to the
+formation. Our structural decomposition analysis includes                   kinetic, thermal, and magnetic energy densities (Section 2.1);
+methods that are similar to typical observational practices, in             additional technical details of the algorithm are described in
+which objects are deﬁned based on density or column density.                Appendix A. We also identify objects based on density
+For sets of objects deﬁned by different density thresholds, we              thresholds; properties we quantify for both types of object
+compute statistics of mass, size, and velocity dispersion, which            include mass, size, velocity dispersion, and virial parameter
+allows us to compute “empirical” virial parameters and line                 (see Section 2.2). We then describe our use of time series to
+width–size relations. We compute both traditional virial                    compare the simulated SFR to the history of mass per freefall
+parameters (only kinetic energy) and virial parameters including            time for different categories of objects (Section 2.3); this
+thermal and magnetic energy. In addition, we apply another                  involves ﬁtting for optimal time delay and efﬁciency and
+method of deﬁning structures based on contours of the                       Bayesian inference to test models for the dependence on virial
+gravitational potential (rather than density contours). In this             parameter. Finally, in Section 2.4 we brieﬂy summarize the
+method, we identify bound objects as regions where the kinetic,             numerical implementation and parameters of the TIGRESS
+thermal, and magnetic energy are sufﬁciently low compared to                model to which we have applied our analysis.
+the gravitational energy (computed relative to a tidally deﬁned
+reference potential contour). The second method of identifying
+structures directly takes into account nonspherical geometry,                                       2.1. Bound Objects
+internal stratiﬁcation, and tidal forces in quantifying gravitational          We identify a hierarchy of structures in ISM simulations
+energy. By cross-correlating objects deﬁned via density thresh-             based on contours of the gravitational potential, which deﬁnes a
+olds and genuinely bound objects, we test the validity of the               structure tree. The ﬁrst level of the gravitational tree is
+virial parameter as a measure of gravitational binding. We shall            comprised of structures enclosed by isocontours that surround a
+show that traditional virial parameter estimates can signiﬁcantly           single minimum. Branches of the tree merge into a new object
+under- or overstate the true boundedness of ISM structures.                 at a higher level when their isocontours are in contact at a local
+   To study the relationship between gas and star formation, we             maximum. This means that objects in the structure tree can be
+use correlations between the temporal history of the SFR and the            uniquely identiﬁed with critical points in the gravitational
+mass of gas in different categories of objects, including objects           potential. We denote each object deﬁned by a closed potential
+deﬁned both by density thresholds and by being gravitationally              contour as a hierarchical binding parent (HBP). Figure 1
+bound. In this way, we are able to measure how eff varies as a              provides a schematic illustration of this procedure.
+function of density and what eff is for objects that are                       Within each HBP, we denote some subset of the gas as a
+gravitationally bound (also allowing for different treatments of            hierarchical bound region (HBR). The HBR is the set of cells for
+surface terms). We are also able to measure time delays between             which the total energy (kinetic, thermal, magnetic, gravitational)
+the availability of a mass reservoir and the star formation burst           of the region is zero. In this calculation, we assign a gravitational
+                                                                            binding energy to each cell based on the difference between its
+that it produces. We use correlation analysis to quantify the
+                                                                            gravitational potential (Φ) and the isocontour surface of the HBP
+relative predictive power of different star formation models that
+                                                                            (Φ0); i.e., the cell contribution to the gravitational energy of the
+depend on the traditional virial parameter and on our more
+                                                                            HBR is (F - F0 )rdx 3. For the contribution to kinetic energy, the
+sophisticated assessment of gravitational binding.                          center-of-mass velocity of the subset of cells is subtracted out ﬁrst.
+   The plan of this paper is as follows. In Section 2 we describe           Within a given HBP, the most massive bound subset of cells is
+our analysis methods, including how we identify bound objects               taken as the HBR; if no cells are bound, there is no HBR.
+(Section 2.1), the properties we measure for bound and density-                In the above deﬁnition, we have not considered any effects
+deﬁned objects (Section 2.2), and how we conduct time series                from thermal or turbulent stresses on the surface of objects.
+correlation analyses (Section 2.3); Section 2.4 describes the               Surface stresses could, in principle, act to either compress and
+TIGRESS simulation that we analyze. Section 3 presents an                   help bind structures (e.g., for a converging ﬂow) or disperse
+overview of ISM structure (Section 3.1) and the results of our              and unbind structures (e.g., for a shear ﬂow). While the
+analyses, including statistics of object properties (Section 3.2)           complex dynamics makes it impossible to decide between these
+and time series correlation studies (Section 3.3), with a                   alternatives in a general sense, we can still investigate the
+summary of trends in the values of eff and levels of correlations           potential magnitude of the effects that surface stresses may
+for various ways of selecting gas in Section 3.4. In Section 4              have. To do this, we begin by averaging the kinetic (k ),
+we summarize our results and discuss connections with other                 thermal ( th ), and magnetic (B) energy density over the surface
+current theory and observations.                                            Ω of the HBP (N cells) to compute the mean surface energy
+
+                                                                        3
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                    Mao, Ostriker, & Kim
+
+                                                                                               Subsequently, we will test the correlation of HBR and HBR
+                                                                                            ±1 objects with respect to the SFR; if surface terms play an
+                                                                                            important physical role, we expect this to be reﬂected in the
+                                                                                            relative correlations with SFRs that we measure.
+                                                                                               In the hierarchical contour tree, a nested sequence of HBPs is
+                                                                                            uniquely deﬁned by critical points in the equipotential; e.g., in
+                                                                                            Figure 1, “A” and “B” are nested within “AB.” At each level of
+                                                                                            the tree, HBRs can be identiﬁed with respect to the
+                                                                                            corresponding HBPs. An additional requirement for HBR
+                                                                                            (and HBR±1) objects to be considered valid is spatial
+                                                                                            compactness. Physically, we impose this requirement because
+                                                                                            a “divided” HBR within a single HBP could not be trusted to
+                                                                                            form a contiguous object.
+                                                                                               The case of a noncontiguous HBR occurs when the center-
+                                                                                            of-mass velocity of the HBP is signiﬁcantly different from that
+                                                                                            of its HBP branches, while the surface potential of the HBP is
+                                                                                            not signiﬁcantly higher than that of its branches (this difference
+                                                                                            is equivalent to the difference between the HBP surface and the
+Figure 1. Schematic of HBPs (upper case) and associated HBRs (lower case) as                HBP originating critical point). Then, in this scenario,
+level sets within gravitational wells, plotting gravitational energy against spatial
+coordinate. Each HBR is bound relative to its associated HBP. For example, “a”              considering the HBP as a whole increases the kinetic energy
+represents material interior to an isocontour of the gravitational well such that the       without sufﬁciently increasing the depth of the binding
+HBR has zero total energy, bound relative to the gravitational contour “A.” The             gravitational well, resulting in separate regions that are
+region “a” is therefore an HBR within the HBP “A.” On the left, we show an                  unbound relative to each other but may be individually self-
+example of a region “ab” within HBP “AB,” which is invalid as an HBR because it
+consists of two noncontiguous parts. On the right, we show an example of a                  bound. Figure 1 shows examples of noncontiguous (two parts
+contiguous HBR “cd” within HBP “CD,” which is valid. We are generally                       labeled “ab”) and contiguous (labeled “cd”) HBRs, which
+interested in only the largest HBRs in any hierarchy, so on the right, we would             respectively correspond to the merged HBPs labeled “AB”
+remove the objects “c” and “d” from further consideration, since they have been             and “CD.”
+replaced by “cd.” This schematic also illustrates that each HBP object can be
+identiﬁed by a critical point of the potential: “A” and “B” are associated with their          We have so far described a process of building a contour tree
+respective local minima, and “AB” is associated with the central local maximum.             of gravitational potential isocontours. Because HBPs and
+                                                                                            HBRs are nested, one can consider levels in the hierarchy
+density,                                                                                    separately (in which case, given ﬂuid elements are counted at
+                                                                                            each level they appear), or one may apply a merging or pruning
+                              1                                                             criterion to objects to “ﬂatten” the hierarchy, such that each
+                      W =      å (k,j +  th,j + B,j).
+                              N j ÎW
+                                                                                 (5 )       ﬂuid element appears in at most a single object.
+                                                                                               We are interested in regions self-bound on each scale. To
+Here k, j is the kinetic energy density computed relative to the                           enforce that every level of the hierarchy is self-bound, we build
+                                                                                            the HBR tree from the HBP tree from the bottom up, starting
+center-of-mass velocity of the surface cells.
+                                                                                            with leaf HBPs. Here a “leaf” is a structure that contains
+  We then deﬁne “HBR+1” and “HBR−1” objects, where the
+                                                                                            exactly one local minimum. The HBR of an HBP is only
+object HBR±1 is the set of cells satisfying
+                                                                                            computed if all of its branch HBPs were evaluated and host
+                                                                                            contiguous HBRs. If an HBR is evaluated and contiguous, it
+       å          k, i +  th, i + B, i <      å          (F0 - Fi ) ri   W, (6)
+                                                                                            replaces its branch HBRs, thus becoming a leaf node of the
+    i Î HBR  1                               i Î HBR  1
+                                                                                            subset of the full HBR tree.
+and now k, i is the kinetic energy density computed relative to                               This method naturally selects the largest-scale candidates for
+the center-of-mass velocity of the HBR±1 cells. Clearly, an                                 contiguous collapse, and hence star formation, and is robust to
+HBR+1 object will be more massive than the corresponding                                    small-scale ﬂuctuations in the gravitational potential. Leaf
+HBR object identiﬁed without the surface energy terms,                                      HBPs can be sensitive to such changes in the gravitational
+because the criterion for including cells becomes less restrictive                          structure, but contiguous HBRs are more robust. For example,
+                                                                                            a dispersing or merging object smoothly transitions to or from
+by adding W on the right-hand side. Similarly, an HBR−1
+                                                                                            being considered as multiple HBRs rather than a single HBR,
+object will be less massive than the corresponding HBR. We
+                                                                                            because the relevant parameter is the total energy content,
+can think of HBR+1 objects as structures in which surface                                   which (roughly) continuously changes.
+stresses are treated as helping to bind material; HBR−1 objects                                Even with the above deﬁnitions, additional choices can be
+are those where surface stresses are treated as reducing binding.                           made in computing contiguous HBRs. For the rest of this
+Physically, addition of W on the right-hand side in HBR+1 is                               paper, when we refer to “HBR,” the choices adopted are
+equivalent to only considering the excess of k ,  th , and B over                        building the HBR tree from the bottom up, excluding the star
+“ambient” values when computing total energy.4                                              particle potential, and ignoring surface stresses. We have found
+                                                                                            that considering surface stresses can have a large effect, and we
+4
+    We note that when using the virial theorem (e.g., McKee & Zweibel 1992),                report results separately for objects identiﬁed as HBR±1, as
+in the case of isotropic magnetic ﬁelds and a spherical cloud, the surface terms            above. Inclusion of surface stresses as HBR+1 can lead to an
+would enter in exactly the same way as in the HBR+1 deﬁnition. That is, the
+mean surface values of kinetic, thermal, and magnetic energy density would be               order of magnitude more mass being considered “bound.”
+subtracted from the mean values within the volume.                                          However, as we shall show, this does not have a strong effect
+
+                                                                                        4
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                    Mao, Ostriker, & Kim
+
+on the correlation between star formation and “bound” mass                          of gas being bound given the observation that it is of high
+over time.                                                                          density (P (bound∣dense)).
+
+               2.2. Object Deﬁnition and Properties                                                    2.3. Time Series Analysis
+    In addition to identifying structures based on potential                           A question of signiﬁcant interest is the detailed correlation in
+contours, there other means of identifying objects, e.g., volume                    time between the mass in identiﬁable star-forming structures
+and surface density thresholds. These are closer to traditional                     and the actual SFR. To investigate this question, we build a set
+observational methods using molecular tracers that may have a                       of time series of the mass per freefall time (M tff ) for selected
+characteristic threshold density or dust emission/extinction                        gas subsets, and for each one, we test the connection to the
+maps with a minimum column. Here we shall apply number                              time-dependent global SFR in the simulation. Gas subsets
+density thresholds (nH,min = 10 , 30, and 100 cm-3) to identify                     include each object type deﬁned in Sections 2.1 and 2.2; we
+contiguous regions where the number density nH > nH,min ,                           build time series by summing M tff over the objects. Gas
+referring to these regions as “nH,min objects.”5                                    subsets are also deﬁned by considering the collective material
+    We shall analyze HBRs, HBPs, and nH,min objects in similar                      above minimum gas surface density thresholds (Σ > 10, 30,
+ways in terms of both their properties and their relation to star                   and 100 M pc-2 ) and within logarithmic bins of number
+formation. For each set of object categories in any simulation                      density of half-decade width. For tff in most gas subsets, we use
+snapshot, we use member cells to calculate each object’s mass,                      the volume-weighted average density, either for tff in individual
+volume, freefall time from its mean (volume-weighted) density,                      objects or for the whole subset when individual objects are not
+and mass per freefall time.                                                         deﬁned. For the case of surface density thresholds, we instead
+    For HBRs and nH,min objects, we compute individual virial                       use a mass-weighted average density in tff , since many low-
+parameters αv. We compute the thermal energy density                                density cells (at large z in the simulation) contribute to the
+ th =  (g - 1) for pressure  using γ=5/3. With momen-                          surface density. For gas subsets where individual objects i are
+tum density p = rv and center-of-momentum velocity vCOM , the                       deﬁned, M tff represents a sum over Mi tff, i . For the case of
+kinetic energy density is k = (1 2)(∣ p∣2 r - rvCOM     2
+                                                            ). The                  number density bins (for which objects are not deﬁned), the
+magnetic energy density is B = ∣B∣ 8p for magnetic ﬁeld B.
+                                       2                                            average density for the whole population is close to the lower-
+These are multiplied by the cell volume and summed over cells                       density limit of the bin on the high-density side of the
+for each object to deﬁne the total kinetic, thermal, and magnetic                   distribution.
+energy Ek , Eth , and EB, respectively. The total kinetic energy of                    We compute the SFR at any given time t by taking the total
+an object is then Ek º (1 2) Ms 3D 2
+                                      = (3 2) Ms 2 for s3D and σ                    mass of all star particles whose age t* is less than some
+the 3D and equivalent 1D velocity dispersions, respectively. We                     maximum age t*,max and dividing by that age:
+deﬁne an effective object radius R from each object’s volume via
+V=(4π/3)R3 and then deﬁne an estimated gravitational self-                                       SFR (t ) =     å          M* t*,max.                  (10)
+binding energy as                                                                                               t*< t*,max
+
+                                   (3 5) GM 2
+                         Eg º                                            (7 )       This is observationally motivated but also naturally smooths
+                                       R                                            the SFR time series. This also introduces a delay shift of
+using the total object mass M. We note that this is not the true                    t*,max 2 in the time series because mass that forms stars at a
+gravitational binding energy, but we adopt this deﬁnition for                       given time t produces a response in our computed SFR that is
+the purpose of comparison with standard practices in the ﬁeld                       uniform between t and t + t*,max , with midpoint t + t*,max 2.
+that assume isolated objects. With the above deﬁnitions, we set                     As long as only young stars are considered and t*,max is small,
+                                                                                    these effects are not problematic. We adopt t*,max = 5 Myr for
+                                   Ek   5s 2R                                       the results shown in this paper.
+                       av º 2         =       ,                          (8 )
+                                   Eg   GM                                             We use time series comparisons to compute the star formation
+                                                                                    efﬁciency per freefall time (Equation (2)) for each subset of the
+                                   Ek + E th + EB                                   gas. For comparison to SFR (t ), we use the individual time series
+                   a v,total º 2                  ;                      (9 )       (M tff )(t ) from each deﬁned gas subset (e.g., HBRs, HBPs,
+                                        Eg
+                                                                                    nH,min objects, number density bins, and surface density thresh-
+while the former is used most often in the literature under the                     old). For each gas subset, we apply simple linear regression to
+assumption that kinetic energy dominates over both thermal                          estimate eff using the model SFRm = eff M tff . The error in the
+                                                                                    ﬁtted coefﬁcient is denoted Δeff , while we use a normalized
+and magnetic, the latter is more general. We also examine the
+                                                                                    (rather than dimensional) variance in the error of the “data” SFR
+separate energy components of objects.                                              compared to the “model” eff M/tff ,
+   For each nH,min object, we ﬁnd the mass fraction of cells that
+are also within HBRs. We refer to this as the “bound fraction.”                                   DSFR i = SFR i - eff (M tff )i ,                       (11)
+This allows us to examine the overlap between a method of
+identifying ISM structures (and possible star-forming regions)                                                       1 åN DSFR 2i
+that is simple but easily applied and a method that is                                          s 2DSFR áSFRñ =                   ,                      (12)
+sophisticated and physically motivated but less easily applic-                                                     N - 1 áSFRñ2
+able in observations. The bound fraction is also the probability
+                                                                                    to quantify the strength of the relationship between SFR and
+5
+   For this, we use the Python package scipy, speciﬁcally the function scipy.       M tff ; here angle brackets denote a temporal average. A
+ndimage.label, with a boundary correction for the shearing periodic box.            smaller sDSFR áSFRñ corresponds to a larger covariance or
+
+                                                                                5
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                           Mao, Ostriker, & Kim
+
+correlation coefﬁcient and demonstrates a stronger dependence                                               Table 1
+of SFR on M tff .                                                                                     Simulation Parameters
+   We also experimented with other methods of estimating eff and           Name          Resolution      tmin       tmax        S(tmin )    S(tmax )
+quantifying the connection between SFR and M tff , but we                                   (pc)        (Myr)      (Myr)       (M pc-2)   (M pc-2)
+concluded that the above method has the most statistical                   MHD-4pc           4           300        700             10         8
+simplicity, physical motivation, and consistent results. Other ways        MHD-2pc           2           351        421             10         9
+of estimating eff included á SFRñ á M tff ñ and á SFR (M tff )ñ.
+Other ways of quantifying the connection included the covariance,
+the Pearson correlation coefﬁcient, the standard deviation of              where eff,0 deﬁnes the normalization of this model and models
+[SFR (M tff )]i , and the rms ofSFR - eff M tff .
+                                                                           to follow.
+   In practice, we modify the above linear regression to
+                                                                              Our second model is a generalization of Equation (3), as
+consider the effect of time delays. First, as already alluded to,
+                                                                           proposed by Padoan et al. (2012):
+our deﬁnition and observable deﬁnitions of SFR are already
+shifted; since the SFR is based on the mass of stars formed over
+the previous t*,max = 5 Myr , SFR(t) is sensitive to conditions                      eff (a v) = eff,0 exp ( - b (3p 2 40)1 2 a1v 2).           (15)
+in the gas at a time ~t - t*,max 2. Furthermore, it is reasonable
+to expect that a given gaseous object might not be presently                 Our third model is a simple αv cutoff,
+forming stars but rather will form stars after a delay that scales                        eff (a v) = eff,0H (a v,cutoff - a v) ,               (16)
+with the freefall time. More speciﬁcally, we might expect that
+temporal peaks in the mass of low-density gas would lead to                where H is a step function equal to unity for positive argument
+temporal peaks in the mass of high-density gas after a delay               and zero for negative argument. This model includes only
+comparable to the low-density freefall time. Correspondingly,              objects with av < av,cutoff but weights them equally.
+temporal peaks in the mass of gas at yet higher density might                Since we are interested in comparing model SFRm (t ) to
+be expected after a subsequent shorter delay, comparable to the            simulation SFR (t ), we apply Bayes’s theorem,
+high-density freefall time.
+   To allow for temporal delays, we apply the linear regression                                              P (B∣A) P (A)
+to time-shifted sets of SFR and M tff , interpolating when                                       P (A∣B) =                 ,                    (17)
+                                                                                                                 P (B )
+necessary. For any time series, we identify the delay time tdelay
+that minimizes sDSFR áSFRñ, assuming that SFR lags behind                  where A represents the model SFRm (t ) given by Equation (13)
+M tff by tdelay. We present results for eff and sDSFR áSFRñ for            and B represents the simulated SFR (t ) given by Equation (10).
+this choice of tdelay. This allows for the maximum correlation                 In Appendix B, we describe the Bayesian inference
+between SFR and M tff , under the assumption that M tff                    procedure that we apply. For a given object class and model
+causes future SFR.                                                         eff (av ), we evaluate the likelihood P (B∣A) over the parameter
+                                                                           vector θ that includes time delay tdelay , eff,0 , additional model
+              2.3.1. Dependence on Virial Parameter                        parameters (β or av,cutoff , as appropriate), and the normalized
+   In varying galactic environments, gas at a given density may            variance σ2 between the data and the model. Beyond the single
+be in different dynamical states, in ways that would affect                value of σ, it is also interesting to compare the distributions in
+future star formation. For example, a higher contrast of the               DSFRi áSFRñ for different models and gas subsets. For the
+density in a cloud relative to its environment may reﬂect a more           constant eff model of Equation (14), inferring eff (and the other
+bound state, and clouds that are more bound might be more                  parameters) is equivalent to the simple linear regression
+susceptible to forming stars. Following typical practice in the            described above.
+ﬁeld, we can characterize the “boundedness” of individual
+structures based on their virial parameter.                                                      2.4. TIGRESS Simulations
+   We test the effect of the virial parameter on susceptibility to            Although our methods can be applied more broadly, we
+star formation using our time series, comparing the actual                 focus our tests on TIGRESS simulations. TIGRESS is a
+SFR (t ) (from star particles) with model predictions:                     framework for MHD simulations that self-consistently models
+                                      eff (a v, i ) Mi                     star formation and effects of feedback in the three-phase ISM at
+               SFR m(t ) =    å            tff, i
+                                                       .       (13)        parsec scales. Details of the TIGRESS numerical algorithms
+                             object i                                      are presented in Kim & Ostriker (2017), along with the results
+                                                                           of the basic properties (and a convergence study) of a model
+Generalizing the treatment of the previous section, in which all
+                                                                           with parameters representative of the solar neighborhood. We
+gas in a given gas subset was treated as contributing to star              use two runs of this model in the tests in the present paper, one
+formation with the same eff , here the star formation model                with 4 pc resolution and one with 2 pc resolution. Data dumps
+allows for different efﬁciencies eff (av, i ) in individual objects.       from the models that we use have a cadence of 1 Myr, with
+For each temporal snapshot, the right-hand side sums over all              different minimum and maximum times as indicated in Table 1.
+objects in a given category (either HBRs or nH,min objects) at             While the surface density declines over time, the typical value
+that time, and eff (α) is a speciﬁed model. For each object, av, i ,       is ~10 M pc-2 .
+Mi, and tff, i are the virial parameter, mass, and freefall time.             The features in TIGRESS include self-gravity, sink particles,
+   Our simplest model is to take a constant eff , that is,                 supernova explosions, far-UV (FUV) luminosity from a
+                                                                           population synthesis model, resolved supernova remnant
+                       eff (a v) = eff,0 ,                     (14)        evolution prior to cooling, FUV-dependent photoelectric
+
+
+                                                                       6
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                          Mao, Ostriker, & Kim
+
+heating, optically thin cooling, and galactic shear. TIGRESS                                                 3. Results
+uses shearing periodic boundaries in the galactic plane and
+                                                                                        3.1. Structure Geography and Object Dendograms
+outﬂow in the vertical direction. The shearing periodic
+boundaries affect the computation of gravitational potential                         Sample surface density snapshots from the MHD-2pc model
+isocontours. We use an algorithm wherein each cell only needs                     can be seen in Figure 2. Also shown (left panels) is a
+to know which cells are its immediate neighbors; so, to correct                   comparison between HBR and HBP objects, projected onto the
+for shearing periodic boundaries (or any other boundary), we                      horizontal plane. In the right panels, we similarly show
+simply correct the neighbor list of cells on the boundary. The                    projections of nH,min objects deﬁned by density thresholds
+shear velocity is included in computing the kinetic energy of                     nH,min = 10 and 100 cm–3. This comparison highlights the
+objects, but its effect is small in most clouds.                                  smoother and more selective nature of energy-identiﬁed
+   For the purposes of the current analysis, we note that star                    objects.
+cluster particles (numerical sink particles) are created when                        A sample dendogram visualization of the HBP and HBR
+three conditions are met (Gong & Ostriker 2013). The density                      objects identiﬁed in Figure 2(e) is shown in Figure 3. The
+in a cell must exceed a threshold set by the Larson–Penston                       gravitational potential range for each HBR is delimited by red
+collapse solution at the grid resolution                                          (bottom of vertical segment) and green (top of vertical segment)
+                                                                                  triangles, while the potential isocontour value of the corresp-
+                                       8.86 cs2                                   onding HBP is the next horizontal black line above. The
+               r LP (r = Dx 2) º                 ,                    (18)
+                                        p G Dx 2                                  dendrogram reveals several qualitative properties. For example,
+                                                                                  ISM turbulence is of the order v ~ 1–10 km s-1, so it is expected
+where Δx is the resolution and cs is the local sound speed.                       that bound material must be found in wells with depths of
+While the temperature and therefore sound speed vary slightly                     DF ~ 1–100 km2 s-2 . At a glance, this is apparent in Figure 3.
+within dense gas (due to variations in the heating rate), typical                 Most local minima and most of the regions represented by the tree
+values of the density thresholds for star cluster particle creation               do not host bound regions. The differences between the tops of
+are n = 304 cm-3 for Dx = 4 pc and n = 927 cm-3 for                               HBRs and the tops of HBPs roughly represents the total energy
+Dx = 2 pc. In addition to exceeding a density threshold, a                        and corresponds to v ~ 1 km s-1.
+                                                                                     Furthermore, we can see that the merging criterion described
+cell must be at a local minimum of the gravitational potential,
+                                                                                  in Section 2.1 usually prefers the smallest-scale isocontours at
+and the ﬂow must be converging along the three Cartesian                          this resolution, corresponding to (unmerged) HBRs containing
+directions. When all conditions are met, a particle is created,                   only one local minimum. A merged HBR would appear as a
+drawing a portion of the mass from a control volume of 33                         green upward triangle on a vertical line stemming above a
+cells. The density within the control volume is reset based on                    horizontal line. These do not appear in Figure 3. That is, no
+extrapolation from surrounding zones, with only the excess                        merging occurs to produce HBRs in the particular snapshot
+mass above the extrapolation deposited in the sink. We note                       represented by Figure 3, and in general snapshots, merging is
+that particle creation events are not subject to an efﬁciency                     rare. Qualitatively, this is because merging adds very little DF
+factor that translates to a probability less than 1 in a given                    for each merge, as evidenced by short vertical lines in Figure 3
+time step.                                                                        corresponding to DF ~ 1 km2 s-2 . At the same time, merging
+                                                                                  results in larger-scale objects with much higher velocity
+                          2.5. Dendrograms                                        dispersion.
+                                                                                     Note that Figures 2(e) and (f) show that the gas is mostly
+   We can use a dendrogram6 as a graphical representation of                      contained in a single large-scale region, which results in an
+the gravitational potential contour tree. A dendrogram                            overall potential well from the main sheared-spiral feature. This
+represents the structure of the gravitational potential and shows                 is represented in Figure 3 by the overall inverted pyramid shape
+where HBRs are relative to that structure. In constructing the                    of the dendogram, while the large isocontour at (−200 pc, 300
+dendrogram visualization, we space local minima in the                            pc) in Figure 2(e) corresponds to index 44 in the dendogram.
+gravitational potential evenly and order them so that two                         The densest gas and the bound gas in the hierarchy tend to be
+objects that intersect are nearby. The position of each local                     near the bottom of the overall well of the simulation.
+minimum in this ordering is the “tree index.” Then, the
+intersections can be represented by nonoverlapping horizontal
+lines, and distances in the tree index roughly encode 3D spatial                           3.2. Gas Distribution and Object Properties
+distances, since intersecting isocontours are obviously in
+contact with each other. We start with a list of all isocontours                                   3.2.1. Gas Density Distribution
+on top of the tree with no parents. Then, each member of the                         First, we summarize some of the basic properties of the gas in
+list is replaced with itself followed by its immediate children,                  the simulations. In Figure 4(a), we show the number density
+the isocontours that merged to form it. This repeats for each                     distribution in MHD-2pc and MHD-4pc, averaged over all times.
+new member of the list and is performed recursively. Then, the                    We show mass fractions of half-decade bins in number density for
+tree is plotted in reverse, since deeper descendents appear later                 MHD-4pc and normalize both the discrete and continuous
+in the list and need to be plotted ﬁrst, as the average of their tree             distributions so that the area under each is the same. In both
+index determines the tree index of their parents. Local minima                    simulations, the mass probability density functions (PDFs) are
+are plotted ﬁrst and given an integer tree index, which evenly                    centered near nH = 1–10 cm-3, with a maximum density of
+spaces them, as desired.                                                          10 2.5 cm-3 in MHD-4pc and 10 3 cm-3 in MHD-2pc. The mass-
+                                                                                  weighted mean densities are nH = 4.84 and 10.1 cm-3 for MHD-
+6
+   See Rosolowsky et al. (2008), Goodman et al. (2009), and Burkhart et al.       4pc and MHD-2pc, respectively. The modes of the distributions
+(2013) for previous dendrogram analyses.                                          are slightly lower, at densities of nH = 0.7 and 0.8 cm-3 for
+
+                                                                              7
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                  Mao, Ostriker, & Kim
+
+
+
+
+Figure 2. Progression of surface density snapshots from the MHD-2pc simulation at 370, 390, and 410 Myr (top to bottom) comparing HBP and HBR objects that are
+identiﬁed based on energy (left) to objects that are identiﬁed based on a minimum density, nH,min (right). Red contours show projections of HBR (left) and
+nH,min = 100 cm-3 objects (right). Black contours show HBP (left) and nH > 10 cm-3 objects (right).
+
+
+
+MHD-4pc and MHD-2pc, respectively. For each simulation, the                         In Figure 4(b), we show the mass fractions above number
+density distribution has a roughly lognormal central component,                   density thresholds. In MHD-2pc, roughly half of the mass is
+with a secondary cold dense component.                                            denser than nH = 1 cm-3, roughly a tenth of the mass is denser
+
+                                                                              8
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                           Mao, Ostriker, & Kim
+
+
+
+
+Figure 3. Dendogram representation of the contour tree, showing objects according to their gravitational potential value (Φ, in units of (km s−1)2) and relative position
+in the tree. This corresponds to the bottom left panel of Figure 2, from the MHD-2pc simulation at 410 Myr. Downward triangles (red and black) show local minima of
+the gravitational potential, with red triangles showing minima hosting HBRs. The bases of upward green triangles show the maximum Φ isocontour of each HBR,
+bound relative to a horizontal black line delineating the maximum Φ of its HBP. Regions between critical points are represented as vertical black lines, and critical
+points are horizontal black lines where those regions intersect and merge in this tree diagram.
+
+
+
+
+Figure 4. Left: hydrogen number density distributions of MHD-2pc (red) and MHD-4pc (black), taken at late times (t>300 Myr). Half-decade bins are shown for
+MHD-4pc, showing the fraction of the total mass in each bin. Right: cumulative distributions of the hydrogen number density, showing the fraction of the total mass in
+the simulation above nH,min .
+
+than 30 cm-3, and a few percent of the mass is denser than                              criteria for particle creation, gas in this cell and neighboring
+100 cm-3. The fractional differences between the MHD-4pc                                cells is partially removed and added into a sink particle. This
+and MHD-2pc model are modest for lower density thresholds.                              has the effect of reducing the amount of mass in the simulation
+These differences are the result of incomplete sampling in time                         at densities above and within a factor of 2 below the imposed
+in simulations with large-amplitude variations in the level of                          sink particle threshold. Thus, we expect the distribution to be
+vertical compression.7 At higher density thresholds, the                                strongly affected above n ~ 150 and 450 cm-3 for Dx = 4
+fractional differences between the two resolutions is much                              and 2 pc, respectively. This is evident at the high end of
+higher due to explicit numerical resolution–dependent effects.                          Figure 4(b), where there is negligible material in MHD-4pc
+In particular, sink particles are introduced when collapse                              above nH,min = 150 cm-3.
+becomes unresolved on the numerical grid, such that the
+Riemann solver would otherwise fail (see Gong & Ostriker                                                       3.2.2. Basic Object Statistics
+2013, for discussion of speciﬁc criteria). The thresholds are
+at n » 300 cm-3 for Dx = 4 pc and n » 900 cm-3 for                                         Next, we examine statistics and properties of different
+Dx = 2 pc. When a given cell meets density (and other)                                  categories of objects that are deﬁned based on the methods of
+                                                                                        Sections 2.1 and 2.2, i.e., HBRs, HBPs, and nH,min objects. We
+7
+   With “high” and “low” states of vertical compression, averages from a given
+                                                                                        only consider MHD-2pc so that objects are better resolved.
+simulation run will be biased above/below the fully sampled mean if the                    In Figure 5, we present number- and mass-weighted
+simulation duration includes more peaks/valleys.                                        distributions of mass, radius, density, and freefall time for
+
+                                                                                   9
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                        Mao, Ostriker, & Kim
+
+
+
+
+Figure 5. Number-weighted (blue; right axis) and mass-weighted (black; left axis) distributions of mass, radius, number density, and freefall time for objects deﬁned
+in MHD-2pc. The top two rows show distributions for HBP (Parent) and HBR (Bound) objects, and the bottom two rows show distributions for nH,min objects deﬁned
+by density thresholds of nH,min = 10 and 100 cm-3. The radii are computed from the volume as R = 3 3V 4p .
+
+HBR and HBP objects, as well as nH,min objects deﬁned by                             nH,min = 10 cm-3, typical (in a mass-weighted sense) objects
+number density thresholds nH,min = 10 and 100 cm-3. The                              are 10 5–106 M and 100 pc. For nH,min = 100 cm-3, typical
+shapes of the distributions, as well as characteristic values, are                   objects are 10 4–10 5 M and 10 pc. For reference, we note that
+different for different objects. In particular, the distributions of                 a barely resolved 43 region of cells would have a volume of
+HBRs and HBPs are roughly lognormal, while for the nH,min                            (8 pc)3 = 512 pc3. For number densities of 10, 30, and
+objects, number-weighted distributions increase toward low                           100 cm-3, such a region would have masses of 170, 500, and
+mass and size (where they are truncated by resolution).                              1700 M, respectively, assuming μ=1.4.
+   For HBR objects, the typical mass is 10 3–10 4 M, with very
+few above 10 4 M. The HBR objects are mostly dense, with nH                                     3.2.3. Virial Parameter and Object Boundedness
+a few 100 cm-3 (implying tff ~ 3 Myr). Hence, it is useful to                            Figure 6 shows the distribution of virial parameters and masses
+compare HBRs to nH,min objects with nH,min = 100 cm-3. The                            for HBR and nH,min objects via contours and scatter plots. In
+radii of HBR objects are typically several parsecs, which                             structures of moderate overdensity (nH,min = 10, 30 cm-3), there
+demonstrates that at least the most massive are well resolved                         is a general trend for αv and av,total to decrease with increasing
+with 2pc resolution.                                                                 mass; we return to the reason for this below. We ﬁnd that very
+   The HBP objects have larger sizes and masses than HBR                              few nH,min objects at the low-mass end (<10 3 M) have overlap
+objects, with lower characteristic densities (a few tens) and                         with HBRs, even if their kinetic virial parameter αv<2. Thus,
+freefall times of nearly 10 Myr. The distribution of HBPs is                          nH,min objects with negligible (less than 1%) overlap with HBRs
+much broader than that of HBRs.                                                       are represented by contours enclosing 20%, 40%, 60%, 80%, and
+   There are a large number of nH,min objects at small masses and                     90% of the objects. For scatter plots of individual nH,min objects,
+radii, since we place no lower cutoff on their size. However, most                    the color of each point indicates the fraction ( 1%) of its mass
+of the mass is in objects of large mass and radius. For                               that is bound, based on overlap with HBR objects.
+
+                                                                                10
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                           Mao, Ostriker, & Kim
+
+
+
+
+Figure 6. Distributions in virial parameters and mass of various deﬁned objects (as labeled above each panel) for MHD-2pc. In the top row (panels (a)–(d)), only
+kinetic energy is considered for αv (Equation (8)). In the bottom row (panels (e)–(h)), αv,total considers kinetic, thermal, and magnetic energy (Equation (9)). Dashed
+horizontal lines delineate αv=2 or av,total = 2 , corresponding to Ek = Eg in the top panels and Ek + EB + E th = Eg in the bottom panels. Vertical lines represent the
+minimum mass estimate from Equation (19). Contours show the distribution of nH,min objects whose mass has less than 1% overlap with HBRs. Scatter points are
+individual nH,min objects whose color reﬂects their mass fraction overlap with HBRs. Truly bound objects (red points) with order unity overlap with HBRs tend to be
+low mass (around 10 3 M) with virial parameters αv  2. Especially at high masses, many apparently “bound” objects based on αv<2 are not in fact HBR bound
+(i.e., they are colored blue–green–yellow). Additionally, many αv>2 and av,total > 2 objects at low and moderate density have signiﬁcant HBR overlap (red). These
+results show that the “observed” virial parameter is not a good indication of true gravitational binding.
+
+
+
+   The depth of a potential well behaves as GM R ~ GrR2 . At                            dispersion (Equation (8)), but in reality, this is not consistent with
+constant density, only a sufﬁciently large object will have a                           full gravitational potential structure. This is in part due to tidal
+well deep enough to bind material. A rough estimate comparing                           ﬁelds preferentially unbinding larger-scale objects and in part due
+GM R > v 2 with M = (4p 3) rR3 yields a minimum mass                                    to substructure. Substructure within an nH,min object manifests
+that follows                                                                            itself as multiple separate HBR objects that comprise a small
+                                                                                        fraction of the mass because most of the mass lies in
+                                          v6
+                            M 2 > 4p             .                         (19)         between HBRs.
+                                      3
+                                          G 3r                                             In Figure 7, we show the fraction of the mass above number
+                                                                                        density thresholds nH,min = 10, 30, and 100 cm-3 that is found in
+For v = 1 km s-1 and nH,min = 30 cm-3, this minimum mass is                             HBRs. This fraction is only a few percent for nH,min = 10 and
+2 ´ 10 3 M. The nH,min = 10 and 30 cm-3 objects overlapping                            30 cm-3, increasing to 10% for nH,min = 100 cm-3. The fraction
+HBRs lie above their respective minimum mass (for                                       roughly follows the power law µnH,min 0.80
+                                                                                                                                   . Since the gas in HBRs is
+v = 1 km s-1), whereas the nH,min = 100 cm-3 objects all lie                            mostly above nH = 100 cm         - 3  (see Figure 5), all of these
+above the resolution minimum mass (which is greater than the                            threshold sets contain nearly the same HBR mass, and the
+well minimum mass).                                                                     overlap fraction should nearly follow the reciprocal of the
+   For objects of mass ~10 3.5–10 4 M, those at the lower range                        threshold distribution shown in Figure 4(b). Indeed, the
+of av and av,total have the largest fraction of bound gas (i.e., red                    distribution of mass in Figure 4(b) at these number densities
+points), which is consistent with general expectations. How-                                       -0.87
+                                                                                        follows nH,min   , with a slope close to the negative of the slope in
+ever, the actual values of αv and av,total in the objects with
+>50% HBR overlap cover a wide range from αv∼0.6 to 6,                                 Figure 7. Although the nH,min = 100 cm-3 threshold is within an
+generally decreasing at higher density. This shows that the                             order of magnitude of the maximum density in the simulation, and
+“observed” virial parameter is not a very accurate quantitative                         the Larson–Penston density (see Equation (18)) is one of the
+measure of gravitational boundedness.                                                   criteria for star particle formation, we do not ﬁnd strong evidence
+   Furthermore, Figure 6 shows that unlike low-mass                                     for a critical density for boundedness within the range nH =
+(~10 3.5–10 4 M) nH,min objects with αv  2, which are                                 10–100 cm-3.
+generally bound, nH,min objects at the high-mass end (>104.5 M)                           In summary, we ﬁnd that overdense objects with av  2 are
+have very little overlap with HBRs, even at low virial parameter                        truly bound only if their masses are low; high-mass objects are
+(αv<2). That is, high-mass objects (106 M) can appear bound                          generally unbound even when a simple estimate suggests
+based on simple criteria using their mass, size, and velocity                           otherwise.
+
+                                                                                  11
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                               Mao, Ostriker, & Kim
+
+                                                                                      Moving to higher nH,min shifts this “self-gravitating” line
+                                                                                      upward, since s3D = (rG 8p 5)1 2 R. For a density threshold
+                                                                                      nH,min = 10, 30 cm-3, most objects lie above the marginally
+                                                                                      self-gravitating locus. For the nH,min = 100 cm-3 threshold, the
+                                                                                      median relationship follows the marginally bound relation quite
+                                                                                      well. These results are consistent with the results for the
+                                                                                      distributions of av shown in Figure 6, which shows that the
+                                                                                      typical αv decreases with nH,min . We again emphasize that even
+                                                                                      with αv of order unity, 90% of the material in objects above a
+                                                                                      density threshold nH,min = 100 cm-3 is not part of bound
+                                                                                      regions.
+
+                                                                                                              3.3. Time Series
+                                                                                         We now turn to our time series analysis, based on the
+                                                                                      methods described in Section 2.3. Brieﬂy, we use simple linear
+                                                                                      regression to ﬁt for parameters that relate the time series of the
+                                                                                      actual SFR in the simulation to the time series of the mass
+                                                                                      available to form stars. In this way, we are able to measure the
+                                                                                      efﬁciency per freefall time, eff , for gas in different categories,
+Figure 7. Probability that gas above a given density threshold is in bound
+structures (HBRs). For gas above thresholds of nH,min =10, 30, and 100 cm−3         including above density or surface density thresholds, within
+in MHD-2pc, symbols plot the conditional probability P (bound∣dense);                 density bins, and part of bound structures. In comparing time
+numbers give the corresponding mass fraction. The solid line ﬁt has a slope           series, we measure best-ﬁt time delays between the availability
+of 0.8. The probability of gas being bound increases with density, but even at        of gas and star formation. Results of the linear regression
+nH,min = 100 cm-3, only ∼10% of the mass is bound.
+                                                                                      analysis will be summarized in Section 3.4. There, we shall
+                                                                                      also summarize results from the application of Bayesian
+                                                                                      methods (see Appendix B) to test models with an explicit
+                    3.2.4. Line Width–Size Relations                                  dependence of eff on the virial parameter. Since a large number
+   In Figure 8, we show the line width–size relationships of                          of snapshots is necessary for this analysis, we primarily use
+nH,min , HBR, and HBP objects. Here the line width for an                             MHD-4pc, which was run for a longer time; we have also
+object is deﬁned as 2Ek M , where M is the mass and Ek is                             analyzed MHD-2pc, with both sets of results summarized in
+the kinetic energy in the object’s center-of-mass frame. The                          Section 3.4.
+size is computed from object volume V taking V = (4p 3) R3.                              In Figure 9, we show how the mass fractions of different
+Panels (a)–(e) of Figure 8 include both contours of each                              categories of material evolve over time. The top panel shows
+distribution and median relationships, with bins for the latter                       the mass fraction in all HBRs and HBPs, where HBRs are
+chosen to each contain 100 objects, except for the ﬁnal bin.                          bound objects and HBPs are their parents. We also show HBR
+While there are detailed differences among the median line                            ±1 objects and their parent HBR±1 objects; the deﬁnitions of
+width–size relationships for different object categories, panel                       HBR±1 allow for surface terms to help conﬁne or disperse
+(f) shows that the median relationships are in fact quite similar                     material (see Section 2.1). Each HBR+1 includes more mass
+                                                                                      than the corresponding HBR, while the corresponding HBR−1
+across all categories.
+   All panels of Figure 8 include a reference line with slope                         includes less mass. The total mass in each category therefore
+s µ R1 2 (dashed line) for comparison; the normalization is set                       follows the same ordering. The bottom panel shows the mass
+                                                                                      fractions of material in half-decade number density bins. Here
+by the large-scale turbulence in the simulation (a mean velocity
+                                                                                      there are clear quasi-periodic oscillations in all bins, which
+dispersion s3D = 16 km s-1, taken to apply at 2H for a gas
+                                                                                      reﬂects the natural vertical oscillation frequency in the overall
+scale height H = 240 pc). The s µ R1 2 scaling is what would
+                                                                                      gravitational potential, w 2 ~ (4pGrtot ) for ρtot, the total
+be expected if all of the objects simply sampled from the same
+                                                                                      midplane density of stars plus gas. These vertical oscillations
+power spectrum of highly compressible ISM turbulence with an                          are excited by the feedback from correlated star formation.
+outer scale much larger than typical object sizes. The objects                        Overall, the amplitude of ﬂuctuations increases for categories
+with the closest line width–size relation to s µ R1 2 are HBPs,                       with lower mean mass fractions. In addition, upward ﬂuctua-
+which are deﬁned by isocontours of the gravitational potential.                       tions in the mass fraction are successively delayed in time for
+The moderate-overdensity (nH,min = 10, 30 cm-3) objects have                          gas in high-nH bins relative to gas in low-nH bins; we discuss
+median slopes only slightly steeper than s µ R1 2 .                                   this effect further below.
+   A relation close to s µ R1 2 , as seen for the nH,min =                               Roughly 10% of the total simulation mass is in low density
+10, 30 cm-3 objects in Figure 8, would explain the overall                            bins and HBR+1/HBP+1 objects. The HBR+1 objects
+decrease of αv with M in Figure 6. For nH,min objects, M∝R3                         effectively subtract the surface value of kinetic, thermal, and
+and s µ R p would yield av µ R-2 (1 - p ) µ M-2 (1 - p ) 3. Thus,                     magnetic energy from each cell in the object, such that low-
+any line width–size slope p < 1 would yield a decrease in αv at                       density material in the shallower regions of a potential well is
+higher M.                                                                             considered bound. The HBR+1 mass is close to the HBP+1
+   For nH,min objects, in each panel of Figure 8, we also include                     mass because nearly all of the material within an isocontour is
+the “marginally bound” line corresponding to a spherical object                       considered bound. A few percent of the total mass is within
+with density equal to the threshold density and kinetic energy                        HBP−1 and HBP objects, which have relatively similar mass
+equal to the potential energy, which has the slope s µ RnH,min
+                                                            1 2
+                                                                .                     histories. Typically, only roughly 10−3 of all the material in the
+
+                                                                                 12
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                           Mao, Ostriker, & Kim
+
+
+
+
+Figure 8. Line width–size (s3D = 2Ek M for object mass M and object kinetic energy in the center-of-mass frame Ek and radius from V = (4p 3) R3 for object
+volume V ) relationship of various objects (nH,min , HBR, HBP) from MHD-2pc. In panels (a)–(e), the contours show the full distribution, and the blue line shows the
+median value of radius bins. The contours contain 20%, 40%, 60%, 80%, and 90% of the objects. For reference, the black dashed line represents s µ R1 2 with
+normalization set by the measured 3D velocity dispersion of T<2×104 K gas for R equal to twice the measured scale height in the simulation. In panels (a)–(c), the
+black dotted line represents spheres at the threshold density with equal kinetic and potential energy (s µ RnH,min
+                                                                                                             1 2
+                                                                                                                   ). The solid black line is s µ R1 2 with normalization
+similar to that of Milky Way GMCs s3D = 3 ´ 0.9 km s-1(R pc)1 2 (Heyer & Dame 2015). The median relations of all object types are stacked in the bottom right
+panel.
+
+
+
+simulation is in HBR and HBR−1 objects. Relative to HBR                                 amounts of high-density gas at this time. The visual
+objects, HBR−1 objects have slightly less mass because the                              impressions of these histories already suggest that gravitational
+surface energy terms are added to each cell, reducing the                               binding is not a guarantee that star formation will be successful;
+amount of material that is considered bound.                                            we return to this quantitatively below.
+   It is interesting to compare the SFR history with the                                   As described in Section 2.3, for each category of material,
+evolution of M/tff at lower and higher gas surface density Σ, at                        we apply linear regression to obtain (i) the optimal time delay
+lower- and higher-density nH , and for less and more bound                              to match the shape of its M/tff time series to the SFR times
+objects. Note that the typical density and freefall time of a                           series and (ii) the corresponding normalization amplitude eff ,
+given gas category do not signiﬁcantly change over time, so                             which measures the star formation efﬁciency per freefall time
+correlating SFR(t) with total mass per freefall time M tff is                           for gas in that category. Figure 11 shows the result of applying
+similar to correlating SFR(t) with the total mass M(t) in a                             this linear regression to categories of gas deﬁned by density
+deﬁned subset. By comparing the time series in Figure 10, it is                         bins. It is clear that gas in higher nH bins correlates more
+evident that more restrictive deﬁnitions have an improved                               strongly with the SFR and experiences a smaller time delay
+correlation with SFR. This holds for increasing threshold Σ, nH                         until star formation occurs, compared to gas in lower nH bins.
+threshold, nH bins, and boundedness from HBP to HBR.                                    For the nH = 100.5 – 1 cm-3 density bin (panel (c)), there is some
+Intriguingly, Figures 10(b) and (c) demonstrate that simple                             (delayed) temporal correlation with the SFR, but for even lower
+density criteria (high density threshold or bin) yield a better                         density bins (panels (a) and (b)), there is no clear correlation
+correlation with SFR than the more complex criteria based on                            (and “delayed” curves are not shown). The amount of gas in
+total energy in the full gravitational potential landscape that go                      low density bins (nH = 10-0.5–100.5) comprising the bulk of the
+into the deﬁnition of HBR, shown in Figure 10(d). For                                   ISM mass (see Figure 4) does vary in time (by several tens of
+example, near t=400 Myr, the HBR deﬁnition fails to predict                           percent) due to large-scale vertical and horizontal oscillations
+a star formation peak, while there are strong peaks in the                              that produce ISM compressions and rarefactions. However,
+
+                                                                                  13
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                      Mao, Ostriker, & Kim
+
+
+
+
+Figure 9. Time series of mass fractions for various categories of objects and density bins, as labeled, for the MHD-4pc simulation. The HBRs are bound objects, and
+the HBPs are their parents; see text in Section 2.1 for an explanation of the treatment of surface terms in HBR±1. The quasi-periodic variations in the nH bin time
+series reﬂect the natural ∼50 Myr vertical oscillation timescale in the galactic potential.
+
+
+
+only variations in the amount of denser, more strongly                                                   3.4. Star Formation Efﬁciency
+compressed gas appear to directly induce star formation.
+                                                                                        In this section, we present results on our inference for efﬁciency
+   In Figure 12, we show that the time delay inferred from the
+                                                                                     per freefall time eff for various subsets of gas, based on application
+ﬁt is comparable to the freefall time associated with the nH bin
+                                                                                     of the methods of Section 2.3. Having deﬁned various criteria for
+upper edge, tff,min = [3p (32GmnH,max )]1 2 , with nH,max =                          selecting different subsets of the gas, we study how measures of eff
+100.5nH,min . This is consistent with the idea that a variation in                   depend on those criteria. We also conduct a quantitative
+mass or M/tff at a given density can only lead to a variation in                     assessment of the relative performance for predicting SFR that is
+SFR after the gas is able to dynamically respond; the minimum                        obtained by applying different criteria. We include results from
+response time is the freefall collapse time at that density. This                    both the MHD-4pc time series, which, based on its larger number
+indeed appears to be the deﬁning timescale, even though the                          of snapshots, is advantageous in terms of sample size, and the
+efﬁciency of collapse is less than unity.                                            MHD-2pc time series, which allows us to test whether our results
+   In Figure 13, we compare histories of star formation with the                     are converged with respect to numerical resolution.
+time series of eff M tff , obtaining a best-ﬁt time delay and eff ,                     Figure 14 shows the values for eff and sDSFR áSFRñ for several
+for material deﬁned by surface density thresholds, number                            different categories of objects based on linear regression. The
+density thresholds, and HBR objects. For surface and number                          top two rows show results for gas subsets deﬁned by Σ and nH
+density, correlation with SFR improves with a higher threshold.                      thresholds and nH bins, also comparing to HBR results. For
+This correlation is visually similar for S > 30 M pc-2 ,                            both Σ and nH thresholds (Figures 14(a) and (c)), the total mass
+nH > 10, 30 cm-3. Although HBR and nH > 100 cm-3 both                                decreases faster than the freefall time as the threshold increases.
+follow SFR quite closely (and, in particular, follow deep dips                       As a result, M tff decreases at increasing density, leading to an
+much better than predictions based on lower density thresh-                          increase in eff with threshold level. At the same time,
+olds), in fact, the mass of HBR gas provides a slightly worse                        sDSFR áSFRñ mostly decreases with increasing threshold, imply-
+prediction of SFR than the mass of gas at nH > 100 cm-3. We                          ing better correlation of denser gas with SFR; this is consistent
+quantify this in the next subsection.                                                with the visual impression from previous plots. When we
+
+                                                                               14
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                     Mao, Ostriker, & Kim
+
+
+
+
+Figure 10. Comparison between SFR (normalized) and mass divided by freefall time M t ff (normalized) of various gas populations from t=300 to 700 Myr in
+MHD-4pc. The SFR shown is smoothed over 5 Myr (Equation (10)) and normalized to its time-averaged value. The M t ff time series are also normalized relative to
+their time-averaged values. Individual panels compare (a) surface density thresholds, (b) number density thresholds, (c) number density bins, and (d) HBP and HBR.
+In all cases, the higher density threshold or more restrictive energy criterion (HBR) leads to a qualitatively better match between SFR and M t ff .
+
+
+consider subsets of gas in density bins (Figures 14(b) and (d)),                    have slightly lower sDSFR áSFRñ. It is interesting that structures
+eff increases and sDSFR áSFRñ decreases at higher densities nH .                    deﬁned by isocontours of gravitational potential alone (HBP)
+However, at nH < 101.5 cm-3, eff is ﬂat at ∼0.06. The value                         provide a reasonable correlation to SFR, and that varying
+eff ∼0.01 for S > 10 M pc-2 represents the mean efﬁciency                        treatment of surface terms has little effect.
+for the bulk of the material in the simulation.                                        We can also consider combined criteria and test the
+    Interestingly, while the values of eff for high density                         correlation with SFR. We deﬁne the “j” time series, consisting
+thresholds are similar to the value of eff for gas in HBRs (a                       of material in nH,min objects that also overlaps with HBRs, and
+few tenths), the value of sDSFR áSFRñ is lower for density                          the “v” time series, consisting of material in nH,min objects that
+thresholds than for HBR gas. While HBR gas is mostly quite                          also satisﬁes αv<2 (kinetic energy only, excluding thermal
+dense, this says that the additional criterion of requiring that                    and magnetic, in the virial parameter). In Figures 14(e) and (g),
+every parcel of gas is bound within an HBR does not lead to                         we show results for the j and v series. The v series has similar
+better agreement in the histories.                                                  results to nH,min objects themselves but with slightly greater eff
+    Looking at HBP and HBR variants in Figures 14(f) and (h),                       and comparable sDSFR áSFRñ. In the v series, the value of eff
+higher-mass variants (all HBP and HBR+1) have lower eff                             doubles for nH,min = 10 cm-3 objects that also satisfy αv<2
+(∼0.1). The HBR has eff ≈0.4, and HBR−1 has eff ≈0.6; in                        but is only higher by 30% for nH,min = 100 pc objects that
+both cases, the efﬁciency is nearly order unity, as might be                        satisfy αv<2 (since this is already true for most high-density
+expected of truly collapsing objects. The variants of HBR and                       objects). Considering the virial parameter mainly affects lower-
+HBP have a similar correlation to SFR, but the HBR and HBP                          density gas. The j series over material overlapping between
+
+                                                                               15
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                                Mao, Ostriker, & Kim
+
+
+
+
+Figure 11. Comparison between SFR (orange) and eff M t ff for half-decade number density bins (blue); all time series are normalized by á SFRñ. For each density bin,
+the best-ﬁt eff is obtained via simple linear regression. For higher density bins, a best-ﬁt time delay tdelay is also inferred and used to offset the time series; offset time
+series are labeled as “delayed” (green). It is clear that the correlation between SFR and M t ff improves and tdelay decreases as density increases.
+
+
+
+HBR and nH,min objects is mostly similar to HBR because most                                 As a general remark, we note that our evaluations of eff do
+HBR mass also satisﬁes nH ~ 100 cm-3. The exception is                                     not enable us to distinguish between different dynamical
+nH,min = 100 cm-3 in MHD-4pc because 100 cm-3 is close to                                  scenarios. For example, if we ﬁnd a value eff for a given
+the maximum density of the simulation.                                                     category of objects, it could mean either that all of the objects
+
+                                                                                     16
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                 Mao, Ostriker, & Kim
+
+                                                                                      shift to the left, indicating that the predicted eff M tff exceeds the
+                                                                                      actual SFR. This is clearly evident in Figure 13; for low density
+                                                                                      thresholds, there is little predicted variation in the SFR about the
+                                                                                      mean, whereas the true star formation history is mostly below the
+                                                                                      mean level, with some sharp peaks. Figure 15 also shows that a
+                                                                                      worse correlation at a lower nH or Σ threshold is associated with a
+                                                                                      larger number of snapshots wherein DSFR áSFRñ ~ -1 to −0.5
+                                                                                      and DSFR áSFRñ > 1. Again, this is evident in the missed “long
+                                                                                      valleys” and “sharp peaks” for the prediction based on eff M tff
+                                                                                      in the S > 10 M pc-2 , nH > 10 cm-3 cases in Figure 13.
+                                                                                      Since missing sharp peaks occur during periods of high SFR,
+                                                                                      considering an alternative version of Equation (12) by weighting
+                                                                                      by SFR (ti ) would amplify the improvement of correlation with
+                                                                                      increasing density. Figures 15(e) and (f) also quantify the visual
+                                                                                      impression from Figure 13 that the restriction that gas be bound
+                                                                                      (HBR) does not offer better predictive power for SFR compared
+                                                                                      to a simple high density threshold. In particular, the HBR
+                                                                                      prediction misses a peak at t∼400 Myr, which accounts for the
+                                                                                      positive error tail in DSFR compared to nH > 100 cm-3.
+                                                                                         Counterintuitive to the immediate visual impression from
+                                                                                      Figure 13, the HBR has larger sDSFR áSFRñ than even the
+                                                                                      nH > 10 and 30 cm-3 for MHD-4pc, although for MHD-2pc,
+Figure 12. Delay time tdelay vs. lower-density edge of some of the half-decade
+                                                                                      the HBR performs better. The primary reason for this is the
+density bins shown in Figure 11. Lines for t ff = [3p (32GmnH )]1 2 are               overall much larger range of predicted SFR from the HBR;
+computed using the lower and upper number density edge, respectively                  since this has high peaks that can be slightly offset from the
+resulting in a maximum and minimum freefall time. For denser bins, the delay          peaks in the true SFR, this leads to a broader distribution of
+time roughly follows the minimum freefall time.                                       errors in Figure 15. A related issue is that HBRs (and HBPs)
+                                                                                      have a broad distribution of density and therefore tff , such that a
+                                                                                      constant time delay is not well justiﬁed. Another reason is that
+have (possibly long) collapse times of ∼tff /eff with no                              the HBR can be too selective, where there are snapshots with
+dispersal or that each object has a (possibly much shorter)                           high SFR but insufﬁcient corresponding HBR gas mass.
+lifetime ~tff , with a probability of collapse eff and probability
+of dispersal 1−eff over that lifetime.                                                            3.4.1. Dependence on Virial Parameter
+   Note that although eff for surface and number density
+thresholds are resolution-dependent (MHD-4pc and MHD-2pc                                 As discussed in Section 2.3.1 and Appendix B, we can apply
+points differ), the values of eff for low- and moderate-nH bins                       Bayesian inference to our time series to evaluate parameters
+are resolution-independent. With density thresholds for star                          and explore the relative goodness of ﬁt for different models that
+particle formation of ∼300 and ~900 cm-3, only the very                               have been proposed for the dependence of star formation on the
+highest density bin here is directly affected by resolution. In                       virial parameter. In our tests, we separately examine objects
+low- and moderate-nH bins, the small differences between                              deﬁned by number density thresholds with nH,min = 10, 30 ,
+MHD-4pc and MHD-2pc are due to stochastic variations and a                            and 100 cm-3, as well as HBR objects.
+limited sample. For low values of nH,min (both nH,min objects                            Figure 16 presents the results of our analyses. From left to
+and the v series), differences between the two resolutions are                        right, the panels show the results for objects deﬁned by
+primarily due to the lack of gas in high density bins (well above                     different density thresholds and the HBR criterion. Each row
+nH,min ) for lower-resolution simulations. Unlike the high-nH                         gives values of parameters obtained for the three models under
+series, the HBR and HBP series (and their variants) have                              consideration: constant eff (blue points; Equation (14),
+essentially the same values of eff at 4 and 2pc resolution,                          equivalent to the results presented in Figure 14), an exponential
+which is true for the j series.                                                       decrease with a1v 2 (orange points; Equation (15), generalizing
+   We do not explicitly show in Figure 14 the values of                               Padoan et al. 2012), and a cutoff in αv (green points;
+sDSFR áSFRñ for MHD-2pc in comparison with MHD-4pc.                                   Equation (16)).
+Because only 70 Myr of snapshots are available from MHD-                                 For all models, from lower to higher density thresholds, the
+2pc, whereas multiple cycles of star formation over 400 Myr                           inferred time delay decreases, consistent with Figure 11. At the
+are available in MHD-4pc, the difference in sDSFR áSFRñ for two                       same time, the inferred eff,0 increases with nH,min for both the
+models primarily reﬂects the different number of snapshots                            constant-eff and the virial-cutoff models. The inferred eff,0 does
+available. Therefore, we do not draw any conclusions from the                         not monotonically vary with nH,min for the exponential model.
+values of sDSFR áSFRñ for MHD-2pc.                                                    Going from nH,min = 30 to 100 cm-3, the rms error sDSFR áSFRñ
+   In Figure 15, we illustrate how the correlation between SFR                        decreases for both the exponential and cutoff models, similar to
+and M/tff changes for different gas selection criteria in further                     what was shown previously for the model with no av
+detail by providing histograms of the error DSFR áSFRñ                                dependence. Based on rms error levels for any given gas
+(Equation (11)), where a positive error means that the actual                         selection criterion, for most cases, there is no signiﬁcant
+SFR in the simulation is higher than the model SFR based on                           preference for the αv-dependent models compared to the
+M/tff for a single snapshot. For less restrictive selection criteria,                 αv-independent model. This can be understood considering
+such as lower nH or Σ, the mean and median in the distributions                       the inexact correspondence between apparent αv and true
+
+                                                                                 17
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                       Mao, Ostriker, & Kim
+
+
+
+
+Figure 13. Comparison of SFR and eff M/t ff as in Figure 11 for surface density thresholds (Σ=10 and 30 M pc−2), number density thresholds (nH,min = 10 , 30, and
+100 cm-3), and HBR (bound) objects, showing only the delayed time series.
+
+
+
+boundedness and the previously discussed limitations of                                 For the exponential model, the nH,min = 10 cm-3 case shows
+boundedness as a detailed predictor of the SFR. The exception                        a similar slope, β≈1.6, to that found by Padoan et al. (2012).
+is the lower-density nH,min = 10 cm-3 object class, in which                         In Padoan et al. (2012), the SFR was measured in small-box
+both models that account for the virial parameter perform better                     simulations of cold gas with turbulence driven to reach
+than the constant-eff model (see further discussion below).                          speciﬁed levels of tff tdyn º (3p 2 40)1 2 a1v 2 (integrated over
+
+                                                                                18
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                                Mao, Ostriker, & Kim
+
+
+
+
+Figure 14. Inferred eff (panels (a), (b), (e), and (f)) and rms error sDSFR áSFRñ (panels (c), (d), (g), and (h)) based on time series of SFR compared to time series of M/t ff
+for selected subsets of the gas, as labeled. Gas selection criteria include density (nH ) thresholds and bins, surface density (Σ) thresholds, and bound objects (HBR) and
+their parents (HBP). We also show results for the j (overlaps between density and HBR objects) and v (combined density and αv<2 criteria) series; see text for
+details. In each panel, results from MHD-4pc are shown with ﬁlled symbols, while results from MHD-2pc (eff only) are shown with open symbols. Symbol colors and
+shapes distinguish different ways of selecting gas. Error bars are not shown but would lie within the markers, decreasing with the number of time snapshots used.
+
+
+
+the whole simulation domain), and a relation between ln eff and                            β∼0 is preferred by the ﬁtting procedure. Weighting all
+tff /tdyn with slope −β was found. This contrasts with our                                 nH,min = 100 cm-3 material roughly equally provides the best
+method of identifying individual nH,min objects, which have                                correlation with SFR. We further note that at high nH,min , the
+varying αv, and ﬁnding the value of β such that the relation in                            values we ﬁnd for eff are quite similar to those from Padoan
+Equation (15) best predicts the global SFR. Considering the                                et al. (2012) at αv∼1, whereas at low nH,min , our normal-
+broad distribution of αv in the Padoan et al. (2012) simulations,                          ization is lower. We believe this is because high-contrast
+comparison between their work and our results for nH,min =                                structures are effectively separated from their environment,
+10 cm-3 objects is most meaningful, since av has a large                                   such that their internal conditions determine their destiny
+variation at low nH,min , as shown in Figure 6. At these low                               (analogous to idealized simulations), whereas low-contrast
+densities, we ﬁnd that using β close to 1.6 provides the best                              structures remain quite subject to environmental inﬂuences.
+match to the SFR. A value of β that is not near zero means that                               For a low density threshold nH,min = 10 cm-3, the αv cutoff
+any contribution of mass from high-αv objects is strongly                                  model prefers αv≈2, for similar reasons to the higher
+suppressed by a factor of exp (-0.86ba1v 2 ) in the prediction for                         preferred β in the exponential model. However, at
+the SFR. At low densities, high-αv objects correlate poorly with                           nH,min = 30 and 100 cm-3, the inferred cutoff αv values are
+the SFR, so a better ﬁt (better prediction for SFR) is obtained                            larger, demonstrating that the density threshold itself provides a
+by suppressing their contribution (with β∼1.6, rather than a                             good correlation with the SFR and that removing high-αv
+low β). When we instead select objects that are already quite                              material is not preferred. The ﬁt for HBR objects also does not
+overdense compared to the average (nH,min = 100 cm-3), the                                 beneﬁt from a virial parameter cutoff, as these objects are
+range of virial parameters is smaller (as seen in Figure 6). Then,                         already selected based on an energy criterion.
+
+
+                                                                                     19
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                       Mao, Ostriker, & Kim
+
+
+
+
+Figure 15. Comparison of the distribution of DSFR áSFRñ (see Equation (11)), the difference between actual and predicted SFR, using different categories of gas,
+based on (a)–(b) gas surface density threshold, (c)–(e) number density threshold, and (f) HBR objects, corresponding to the time series shown in Figure 13. The mean
+error is shown as a blue vertical line, and quartiles are shown with black lines (median solid, 25 and 75 dashed).
+
+
+                              4. Conclusion                                          considering kinetic, thermal, and magnetic energy). The former
+                                                                                     is more analogous to the deﬁnitions of ISM structure typically
+                              4.1. Summary
+                                                                                     used in observations (where boundaries are often deﬁned by
+   In this work, we have applied structure-ﬁnding techniques to                      observed intensity), whereas the latter more directly connects to
+the solar neighborhood TIGRESS model of the star-forming                             dynamics. The deﬁnitions and techniques used to identify
+ISM and characterized the properties of the objects we identify.                     structures are described in Sections 2.1 and 2.2.
+In addition, we have investigated families of relationships                             For both material deﬁned by density selection criteria and
+between the SFR and material that could be considered                                material deﬁned by energy selection criteria, we compare time
+“eligible” for star formation by being part of a subset of the                       series of M/tff to the SFR history. We use these comparisons to
+gas with deﬁned properties. For the latter, we consider both                         ﬁt for time delays (tdelay) and efﬁciencies per freefall time (eff ).
+collections of objects and more general gas subsets.                                 In addition, we apply Bayesian inference to compare three
+   Our primary comparison of structures is between those                             different models for star formation with different dependence
+deﬁned based on density or surface density (bins or thresholds)                      on the virial parameter.
+and those deﬁned based on the gravitational potential (also                             Key results are as follows.
+
+                                                                                20
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                            Mao, Ostriker, & Kim
+
+
+
+
+Figure 16. Comparison of inferred model parameters and goodness of ﬁt for three models of the dependence of SFR on αv as described in Section 2.3.1. Results are
+shown for a model with no αv dependence (blue points; Equation (14)), a model with an exponential dependence on a1v 2 (orange points; Equation (15)), and a model
+with an αv cutoff (green points; Equation (16)). Points and bars represent the mean (Equation (B5)) and standard deviation (from Equation (B6)) of marginalized
+distributions for time delay tdelay (in Myr), efﬁciency eff,0 , slope β for the exponential model, and cutoff αv. Standard deviations of normalized SFR errors sDSFR áSFRñ
+(inferred σ in Equation (B1)) are shown for all models. Reference values β=1.6 and αv=2 are shown with horizontal dashed lines. Columns left to right use
+thresholds nH,min = 10 , 30, and 100 cm-3 and energy-based criteria (HBR) to deﬁne objects.
+
+
+   1. Object properties. We compare basic statistics (mass,                                     HBRs are ∼103–104 Me, with nH ~ 100 cm-3. Thus, the
+      size, density, freefall time) of HBRs (bound objects) and                                 bound objects in our models are all dense. As in observed
+      HBPs (their parents) to statistics of objects deﬁned by                                   galaxies, most of the mass in overdense structures is in
+      density contours nH,min (Figure 5). Typical masses of                                     large clouds; typical values are R ~ 30–100 pc and
+
+
+                                                                                   21
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                       Mao, Ostriker, & Kim
+
+      M ~ 10 5–106 M for nH,min = 10 cm-3 and R ~ 10 pc                           in the mass of HBR gas imply that any “miss” is strongly
+      and M ~ 10 4 M for nH,min = 100 cm-3.                                       penalized.
+   2. Virial parameters and boundedness. For all of the                         6. Dependence of star formation on virial parameter. In
+      structures we identify, we measure (see Figure 6) the                        addition to considering the simplest star formation model
+      value of the virial parameter αv most commonly adopted                       prescription, in which eff is constant for all gas in a given
+      in observations, which compares kinetic energy with                          density bin, we test two models in which eff depends on the
+      gravitational energy, assuming an isolated sphere with the                   virial parameter αv of deﬁned density structures. For one
+      same mass and volume as a cloud to compute Eg . We also                      model, eff decreases exponentially with increasing a1v 2 , and
+      measure a variant av,total that includes thermal and                         for the other, eff is zero above some cutoff in αv. We use
+      magnetic energy (Equation (9)). Because magnetic and                         Bayesian inference to obtain marginalized model parameters
+      kinetic energy are comparable, we ﬁnd that neglect of                        and rms errors (Figure 16). We ﬁnd that allowing for a
+      magnetic energy in estimating the virial parameter is not                    dependence on αv improves the correlation with SFR for
+      justiﬁed. Interestingly, while HBR objects are deﬁned                        moderate-density gas (nH,min = 10 cm-3) but does not alter
+      based on bound material, they can naively appear                             the strength of the correlation for high-density gas
+      unbound, with a range of values for “observed”                               (nH,min = 30, 100 cm-3) or the energy-selected HBR
+      αv∼0.5–5 and av,total ~ 2–7. For objects deﬁned based                      objects.
+      on density thresholds, we also measure the fraction of gas
+      in each that is truly bound. Many objects that appear
+      bound based on αv in fact contain only a small fraction of                                      4.2. Discussion
+      bound gas. Even when the “observed” αv<2, moderate-                    4.2.1. Quantifying the Role of Self-gravity: Are GMCs Bound?
+      density massive (M∼104–106 Me) objects are not
+      bound by gravitational wells (Figures 6(b) and (c)). The                  There are a number of reasons why apparent virial
+      probability of gas being bound increases with nH,min                   parameters disagree with detailed measurements of bounded-
+      (Figure 7).                                                            ness. For example, αv or av,total could underestimate bounded-
+   3. Line width–size relations. We ﬁnd that the median line                 ness because a uniform cloud is assumed, but the actual
+      width–size relation for low-nH,min objects is fairly close to          gravitational potential can more strongly bind material in the
+                                                                             center of an object if it is stratiﬁed. Also, our HBR deﬁnition
+      the mean s µ R1 2 relation expected for supersonic
+                                                                             considers gravitational energy relative to a surrounding
+      turbulent gas with the outer scale exceeding the cloud
+                                                                             potential isocontour, where the potential considers all material
+      scale (Figure 8). The HBPs follow the same s µ R1 2
+                                                                             rather than just an isolated structure. Material in and beyond the
+      relation, and in both cases, the normalization is consistent
+                                                                             HBP surrounding an HBR contributes to deﬁning the bounding
+      with the large-scale velocity dispersion and overall scale             equipotential and determining how deep the potential well is.
+      height of the ISM in the simulation. At high nH,min , the              Thus, an HBR can be more bound than it would appear from
+      median line width follows the αv=2 line width–size                   using just an object’s own mass in αv or av,total (as in, e.g.,
+      relation s3D » (rG 8p 5)1 2 R for r = mnH,min .                        Figure 6(e)) because external mass contributes to deﬁning the
+   4. Temporal histories. From the time series, we ﬁnd that, on              equipotentials and containing the gas in a local region.
+      average, only a few tenths of a percent of the simulation                 At the same time, objects can also be less bound than would
+      mass is in bound structures (HBRs), while ∼10% is at                   be predicted based on the traditional virial ratio of Equation (8),
+      densities at least an order of magnitude above the median              because the assumption of an isolated object with vacuum
+      density (nH » 1 cm-3) in the simulation (Figure 9).                    boundary conditions overestimates ∣Eg∣ compared to the real
+      Fluctuations in the mass of gas at high densities                      case in which tidal forces limit the region that can be bound to a
+      nH > 100 cm-3 exceed an order of magnitude, and the                    given center. Considering the gravitational potential computed
+      same is true for the gas mass at high S > 100 M pc-2                  globally, including tidal forces, means that dense objects that
+      (Figure 10). In contrast, the mass of moderate-density gas             are near other dense objects will be less bound than the naive
+      ﬂuctuates only over a factor of ∼3 with a timescale                    estimates used in αv or av,total . This explains why many of the
+      comparable to large-scale galactic vertical and horizontal             moderate-nH,min objects with low apparent virial parameters in
+      oscillation times in the galactic potential. Generally,                Figures 6(b), (c), (f), and (g) mostly consist of unbound gas.
+      upward ﬂuctuations in any mass bin are delayed relative                Due to all of these effects, both HBR bound and unbound
+      to those in lower-density mass bins, and star formation                objects can appear bound or unbound according to αv and total
+      ﬂuctuations are delayed by ~tff (nH ) relative to the mass             αv.
+      of gas with density ~nH (Figures 11 and 12).                              All of the above effects will be an issue for real clouds, as
+   5. Star formation efﬁciency per freefall time. By correlating the         well as the structures in our simulations. Thus, we caution that
+      time history of M/tff in different gas subsets with the time           simple estimates of gravitational energy relative to kinetic
+      history of the SFR, we measure eff . While eff is fairly ﬂat in        energy are generally inadequate for assessing whether observed
+      density bins at nH  30 cm-3, it increases to a few tenths             GMCs are genuinely bound structures.
+      when nH > 100 cm-3. This is close to the value for bound                  To determine whether observed GMCs are genuinely bound,
+      objects (eff =0.4 for HBR gas). The degree of correlation            a similar procedure to what we have applied in this paper
+      between the detailed temporal history of eff M tff and SFR             would be required. That is, the ﬁrst step would be to compute
+      (t) secularly increases with increasing density (Figures 13            the gravitational potential from all relevant material. While the
+      and 14). Even though the time series of eff M tff for HBR              3D structure of clouds is not generally known, previous tests
+      gas mostly tracks SFR(t) quite closely, the rms error                  have shown that projected surface density combined with an
+      (deﬁning DSFR = SFR - eff M tff ) is worse than for                    estimated line-of-sight depth is sufﬁcient when clouds mutually
+      moderate-density gas because the large-amplitude variations            lie in a planar conﬁguration (Gong & Ostriker 2011). Inclusion
+
+                                                                        22
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                   Mao, Ostriker, & Kim
+
+of the gravitational potential from all surrounding material is           models covering SSFR ~ 10-4–10-2 M pc-2 Myr-1, and
+particularly important for GMCs that are found in spiral arms,            Braun et al. (2014) and Semenov et al. (2016) found an
+where the close proximity of clouds leads to signiﬁcant tidal             average eff ∼0.01–0.1 for their global simulations covering
+effects.                                                                  regimes extending to slightly larger ΣSFR. For (unmagnetized)
+    Our ﬁnding that the traditional virial parameter (Equation (8)        global simulations of GMCs, eff ∼0.03–0.3, decreasing at
+with Equation (7)) is at best an approximate measure of                   higher αv (e.g., Raskutti et al. 2016; Grudić et al. 2019); similar
+boundedness has implications for interpretations of αv in                 values and behavior for eff have also been found in zoom
+observations that are otherwise quite puzzling. For example,              simulations focusing on GMC scales within the larger ISM
+Roman-Duval et al. (2010) found that GMCs identiﬁed from                  (Haid et al. 2019), as well as periodic-box simulations for
+13
+   CO Galactic Ring Survey observations have a median                     GMC conditions (e.g., Federrath & Klessen 2012; Padoan et al.
+αv∼0.5, with mode ∼0.3. Other studies in a variety of object            2012; Federrath 2015).
+types have shown a systematic decrease of αv with mass                        Some observations have indicated an increase of eff with
+(Kauffmann et al. 2013; Traﬁcante et al. 2018), with a                    density of individual structures within given galaxies (e.g.,
+minimum αv well below unity. Because a very low level of                  Krumholz & Tan 2007; Vutisalchavakul et al. 2016), consistent
+kinetic energy would rapidly lead to collapse, it is difﬁcult to          with the trend we have identiﬁed. Since star formation is only
+understand how this situation could arise unless GMCs are                 occurring in the very densest regions, the variations of eff with
+strongly magnetically supported, which empirically does not               density threshold in a given environment, both in observations
+seem to be the case (e.g., Crutcher 2012; Thompson et al.                 and in our simulations, reﬂect the relative abundances of gas at
+2019). Indeed, in purely hydrodynamic simulations, isolated               different densities, i.e., the density PDF. Analyses of the
+clouds that are initiated with αv signiﬁcantly below 1 go                 power-law portion of PDFs in Milky Way molecular clouds
+through a stage of rapid contraction, such that αv≈1 by the             (e.g., Schneider et al. 2015a, 2015b) imply a decrease of M/tff
+time star formation commences (Raskutti et al. 2016). The low             at higher density, which is compatible with the increase of eff
+median αv in the Roman-Duval et al. (2010) GMC observations               with density that we have found (Figures 14(a) and (b)). The
+could be understood if ∣Eg∣ has been overestimated by, for                density PDF in turn reﬂects a “nested” dynamical evolution;
+example, neglecting tidal effects.                                        successively denser structures form in a hierarchical fashion,
+    Observational surveys of nearby galaxies at ∼50–100 pc                with only a fraction of the gas at a given density experiencing
+resolution ﬁnd values of the traditional αv∼1.5–3 for gas in            net compression by gravity and thermal, turbulent, and
+resolved structures (Sun et al. 2018). Taken at face value, this          magnetic pressure to attain a higher density. Our temporal
+would suggest that most clouds are bound, which, combined
+                                                                          analysis provides evidence for hierarchical dynamics at work,
+with the estimated completeness of >50%, would suggest that
+                                                                          in that mass histories at varying density are offset by time
+most molecular material is in bound clouds. However, in this
+                                                                          delays that scale with the gravitational freefall time.
+case, the low eff ∼0.01 observed for molecular gas (Utomo
+                                                                              Recent observations across varying galactic environments
+et al. 2018) would be in signiﬁcant tension with our ﬁnding that
+                                                                          have suggested that eff is not a function of absolute density but
+bound objects (HBRs) have eff ∼0.4. The driven-turbulence
+                                                                          rather of density contrast relative to ambient levels (e.g.,
+simulations of Padoan et al. (2012) have similarly found
+eff ∼0.2–0.5 when αv∼1. A possible resolution is again that           García-Burillo et al. 2012; Longmore et al. 2013; Usero et al.
+the αv as traditionally deﬁned in observations may overestimate           2015; Gallagher et al. 2018; Querejeta et al. 2019), although
+boundedness by treating each cloud as isolated.                           this interpretation is complicated by uncertainties in environ-
+    Finally, we note that the decreasing trend of αv at increasing        mental variation of conversion factors for dense gas tracers
+mass within nH,min = 10, 30 cm-3 objects seen in Figure 6 is              (Shimajiri et al. 2017). While our present analysis considers
+reminiscent of the same trend in observations, and as                     only a single galactic environment, we will be able to test the
+previously pointed out (Kauffmann et al. 2013), this simply               extent to which eff depends on relative versus absolute density
+reﬂects mass–size and line width–size relationships. Like the             via analysis of additional TIGRESS simulations that have been
+nH,min objects we identify, observed clouds typically have a              completed for inner galaxy and Galactic center environments.
+characteristic density (or column), which, in the case of                     In addition to systematically larger eff at higher density, our
+observations, is set by the tracer used for measuring line                analysis shows systematically better correlations of the
+widths. Except in the densest objects, Figure 8 shows that line           temporal histories of SFR and (time-offset) histories of
+width–size relations may primarily reﬂect ambient ISM                     eff M tff at higher density (Figures 11 and 13). This can be
+turbulence (which is driven by supernovae at large scales and             quantiﬁed by the systematic decrease in sDSFR áSFRñ for higher-
+cascades to small scales), and the same may be true for                   density gas, as shown in Figure 14. A simulation provides the
+observed structures.                                                      beneﬁt of being able to correct for the time delay between the
+                                                                          formation of a given deﬁned structure and the resulting star
+                                                                          formation. Since the SFR is highly variable, this time delay
+   4.2.2. Star Formation Efﬁciency: Variations and Correlations           produces deviations between the simultaneous eff M tff and
+   Our results regarding the low value eff ∼0.01 of the                 SFR on the order of tdelay d (SFR) dt . For lower-density gas, in
+efﬁciency per freefall time at “average” gas conditions is                which tdelay ~ tff is long, time delays inherently make SFRs in
+consistent with previous observational work across a range of             observations appear less correlated with the “simultaneous” gas
+galaxies (e.g., Evans et al. 2009, 2014; Krumholz et al. 2012;            mass than they really should be (as in Figure 10). The
+Lee et al. 2016; Ochsendorf et al. 2017; Utomo et al. 2018, and           combination of the stronger inherent correlation in amplitude
+citations within). Previous numerical simulations of galactic             variations and smaller time delays implies that there should be
+disks for normal galaxies have found comparable eff ; e.g., in            less scatter in the observed statistical correlations between the
+local disk simulations, Kim et al. (2013) found eff =0.006              SFR and the mass of high-density tracers in comparison to low-
+(using freefall times at the mean midplane density) for a set of          density tracers (assuming that the measurement of the SFR is
+
+                                                                     23
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                   Mao, Ostriker, & Kim
+
+based on a tracer with a short timescale that does not itself wash         bound and eff increasing with density (Figures 7 and 15 and).
+out the signal). While HBRs generally have high density,                   The present analysis does not provide information about
+adoption of a single time delay for the whole class does not               individual cloud lifetimes, however. For both large-scale
+properly reﬂect the broad distribution of HBR densities                    multiphase ISM simulations and smaller-scale simulations of
+(Figure 5) and may reduce correlation with SFR.                            star-forming clouds, numerical measurements of the lifetimes
+   With a sufﬁciently large sample of environments such that               of individual structures are needed in order to test theoretical
+galactic conditions can be controlled (e.g., specifying limited            concepts of gravoturbulent fragmentation and assess whether
+ranges of both total gas and stellar surface density) and all              simulations agree with observational constraints (e.g., Murray
+phases of the star formation cycle are well sampled for given              2011; Lee et al. 2016; Grudić et al. 2019). While some
+conditions, increasingly quantitative measures of the relation-            estimates of object lifetimes can be obtained via frame-to-frame
+ship between gas and star formation become possible. For                   differences in structural decompositions, the most direct way to
+example, full sampling over temporal history can minimize the              follow evolution is via Lagrangian tracer particles. Tracers are
+effects of time delays when evaluating the overall eff for low-            commonly implemented to follow baryon cycles of gravita-
+density gas. In addition, it will be possible to quantify increases        tional collapse and dispersal by feedback in cosmological
+in the correlation of SFR and M/tff with density (we measure               simulations of galaxy formation (e.g., Genel et al. 2013;
+this by a reduction in sDSFR áSFRñ) while controlling for                  Cadiou et al. 2019), and for the same reasons, they would be a
+environment; steps toward this have already been taken (e.g.,              valuable tool for future numerical studies of the star-
+Gallagher et al. 2018; Jiménez-Donaire et al. 2019). Given                 forming ISM.
+sufﬁciently high-resolution observations, it may also be
+possible to use the analysis of spatial correlations between                  We are grateful to the referee for the extremely careful
+high-density tracers and star formation (e.g., as in Kruijssen             reading of our manuscript and detailed suggestions for
+et al. 2019) as a proxy to measure temporal correlations                   revisions. This work was supported in part by the National
+between the SFR and dense gas mass that we have identiﬁed                  Science Foundation under grant AST-1713949 to E.C.O. and
+using simulations, thereby characterizing the bursty nature of             grant DGE-1148900 providing a Graduate Research Fellow-
+the SFR.                                                                   ship to S.A.M. Partial support for E.C.O. and C.G.K. was
+   Finally, we remark on the relation between our work and                 provided by NASA under grant NNX17AG26G, and C.G.K.
+other theoretical/computational studies that address the                   was supported in part by a grant from the Simons Foundation
+relationship between gas and star formation. Many studies                  (CCA 528307, E.C.O.). Resources supporting this work were
+have focused exclusively on the cold and dense ISM, because                provided in part by the NASA High-End Computing (HEC)
+                                                                           Program through the NASA Advanced Supercomputing (NAS)
+this is the material most proximate to star formation. With a
+                                                                           Division at Ames Research Center and in part by the Princeton
+narrower focus, it is also possible to deﬁne an idealized system
+                                                                           Institute for Computational Science and Engineering (PICSciE)
+with a reduced number of parameters; a minimal set of
+                                                                           and the Ofﬁce of Information Technology’s High Performance
+parameters to describe gas in molecular clouds would include
+                                                                           Computing Center.
+the turbulent Mach number, the ratio of the mean Alfvén speed
+                                                                              Software: Athena (Stone et al. 2008; Stone & Gardiner
+to the sound speed, and the ratio of the Jeans length to cloud             2009), astropy (Astropy Collaboration et al. 2013), scipy
+size (or, equivalently, freefall time to turbulent crossing time;          (Virtanen et al. 2020), numpy (van der Walt et al. 2011),
+Ostriker et al. 1999). Based on a set of idealized simulations of          IPython (Perez & Granger 2007), matplotlib (Hunter
+this kind, with turbulence driven to maintain a ﬁxed level,                2007).
+Padoan et al. (2012) proposed that eff exponentially declines
+with increasing virial parameter. As noted above, for a
+moderate density threshold (nH,min = 10 cm-3), our ﬁtted                                            Appendix A
+coefﬁcients are consistent with their results. However, this is                             Structure-ﬁnding Algorithm
+not the case when we consider gas at higher density thresholds.               As in the GRID-core ﬁnding algorithm (Gong & Ostriker
+This may be because of limited resolution at higher density                2011), each local minimum of the gravitational potential is
+thresholds in our simulations, or because physical feedback in             associated with a structure. The structure is composed of the
+our simulations differs from idealized turbulent driving, which            material within the largest closed isosurface containing it with a
+(together with the multiphase nature) means that all scales are            single local minimum. All such structures at the bottom of the
+not equivalent.                                                            hierarchy are unique. Material within a structure, if devoid of
+   A class of simple theoretical models for SFRs in turbulent              positive energy contributions, would collapse toward the local
+systems is predicated on the notion that there is a critical               potential minimum. For some material in the structure closest
+density rcrit , with structures at density above ρcrit collapsing          to the bounding equipotential, the thermal, kinetic, and
+before they can be torn apart by ambient turbulence (e.g.,                 magnetic energy might be large enough that it cannot be
+Krumholz & McKee 2005; Hennebelle & Chabrier 2011;                         considered bound to the potential minimum.
+Padoan & Nordlund 2011; Federrath & Klessen 2012). These                      Given a potential ﬁeld Φ, the GRID algorithm ﬁrst identiﬁes
+theoretical models are intended to represent idealized GMC                 local minima. From each local minimum, the algorithm
+conditions, with gas effectively isothermal and turbulence                 marches upward by step size ΔΦ until the contiguous region
+highly supersonic; they are therefore not immediately applic-              contains more than one minimum. The largest contour value
+able to the present multiphase ISM simulations. Still, it is               containing only one minimum determines the cells belonging
+interesting to note that our analysis does not provide evidence            to the structure associated with that local minimum.
+that there is a “point of no return” at any particular density.               Two limitations of the algorithm are that its speed and
+Rather, there is an order-of-magnitude variation in the density            accuracy depend on the resolution ΔΦ. A smaller ΔΦ ensures
+of bound clouds (Figure 5(g)), with the probability of gas being           that fewer cells are prematurely cut off from the structure being
+
+                                                                      24
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                       Mao, Ostriker, & Kim
+
+built but also increases the number of repeated calculations of              any structure in the hierarchy or all structures that a cell
+contiguous regions of cells. We address both limitations with                belongs to. This is how structures merge.
+an algorithm that computes structure membership cell by cell. It                In this last case, any structure connected to the cell is
+is then guaranteed that each cell is only compared with its                  complete, since all cells connected to the structure with Φ<Φi
+neighbors, so the algorithm depends on the number of                         were previously processed and added to the structure. No other
+neighbors. This algorithm also computes the full contour tree,               cells can be added to the structure without deﬁning a greater
+which can be processed afterward in various ways, resulting in               isocontour containing multiple structures, which would exactly
+merged objects as in our HBRs (Section 2.1) or unmerged                      be the new structure deﬁned from the critical point. This shows
+objects as in GRID.                                                          that our structures are complete and contain all viable cells, in a
+                                                                             way that is agnostic of choice of ΔΦ.
+                                                                                The computation ends when all cells are explored or all
+                    A.1. Algorithm Procedure                                 structures are deactivated (for example, due to a boundary
+                                                                             condition, or if merging structures is not allowed). It is possible
+   1. Every cell in the 3D data set is identiﬁed with a unique
+      positive integer “identity.”                                           for all structures to be deactivated before all cells are explored,
+                                                                             which further increases the efﬁciency of the algorithm, because
+   2. The identities corresponding to each cell’s neighbors are
+                                                                             many cells can be left uncomputed. A check to ensure active
+      computed and optionally stored. The integer assignment
+      is chosen so that this computation is simple.                          structures continue to exist can follow every structure
+                                                                             deactivation to minimize the number of checks.
+   3. The list of cell integers is sorted according to increasing Φ.
+   4. A list of “labels” corresponding to the integers is
+      initialized so that all cells are labeled as unprocessed                                         A.2. Strengths
+      (−1 can be used).
+                                                                                The algorithm is efﬁcient. For n cells, the algorithm requires
+   5. Local minima cells are labeled by their unique integer
+                                                                              (n log n ) operations to sort. For k neighbors,  (kn ) operations
+      (identity), hence becoming members of their own
+      structures, and cells in a given structure are labeled by              are needed to compute the neighbors. Strictly fewer than n
+                                                                             operations are required to assign a label to each cell, because
+      the seed critical point of that structure.
+                                                                             the algorithm terminates when no active structures remain. A
+   6. Iterating over the list in order of increasing Φ (step 3),
+      cells are labeled and assigned to structures according to              small amount of memory is used to keep track of the critical
+                                                                             point merger tree: at most  (n ). For memory, there can be at
+      rules (below) dependent only on the labels of their
+                                                                             most n labels, kn neighbors (each neighbor has a 1D index),
+      neighboring cells, which are easily accessed due to step 2.
+                                                                             and n values of Φ. Since each cell is only accessed one time
+   A structure is a closed isosurface containing a contiguous set            during iteration, it is difﬁcult to imagine a drastically different
+of cells with lesser Φ, so the structure membership of a given               scaling for the operation. A Python implementation of this
+cell only depends on “lesser neighbor” cells with lesser Φ. Any              algorithm can process roughly 8 million cells in a minute on a
+lesser neighbor is already labeled due to steps 3 and 6, so at any           modern CPU (2563 box in 2 minutes).
+given time, the labels of the neighboring cells contain all the                 In its current form, the user chooses no parameters. The
+information necessary to determine structure membership. Let                 algorithm works as a black box, converting a 2D or 3D ﬁeld
+the label set of a cell be the unique set of labels of its                   into a list of structures, their members, and their merger tree.
+neighboring cells, ignoring the unprocessed label.                              The algorithm can be generally used with various cell
+   A cell whose only lesser neighbors are members of only one                geometries, as long as each cell knows its neighbors.
+structure (the label set contains exactly one label) is also a
+member of that one structure and labeled accordingly. This is
+                                                                                                      A.3. Extensions
+how membership propagates.
+   A cell with no lesser neighbors (the label set is empty) must be             The algorithm is also relatively easy to understand, requiring
+a local minimum and labeled as such, as its neighbors are all                very little background, and hence is easy to extend and adopt.
+greater. If the cell is not accepted to be a structure for any reason        This is because it only aims to do a very simple task. We
+(e.g., boundary condition or special-use case), it can instead be            describe a few relevant extensions.
+assigned to a user-deﬁned label, which will propagate as above.                 The simplest extension is to apply the algorithm to the
+   A cell whose lesser neighbors are members of multiple                     negative of a ﬁeld to locate isocontours around maxima. This
+structures (the label set contains multiple elements) would                  could be useful for intensity maps or density ﬁelds.
+deﬁne an isocontour containing all enclosed structures. This                    To analyze grids with adaptive mesh reﬁnement, computing
+cell is a new critical point where multiple structures merge.                the neighbors of each cell is required to use the algorithm, but
+Hence, a new structure is deﬁned starting from this cell. All                otherwise, it can be directly used without subsampling or
+cells enclosed by the new structure should be relabeled to this              interpolation.
+cell’s identity.                                                                Another example is a box with sheared-periodic boundary
+   In practice, it is more efﬁcient to keep track of the merger              conditions, where the neighbors of boundary cells must be
+tree of the critical points, not changing previously processed               computed based upon the shear of the box.
+cell labels. The “local label” for a cell corresponds to the                    This should also be applicable to unstructured moving
+nearest (in the tree) lesser critical point, some of which have              meshes. The algorithm only needs to know which data points
+merged to critical points at larger Φ. The label used for                    are neighbors.
+computing label sets is found by looking up the largest critical                A minimum structure size can be deﬁned, and when two
+point in the merger tree corresponding to the “local label.” The             active structures meet, an active structure that is too small is
+combination of cell local labels and merger tree contains the                subsumed by the larger structure. This is useful if the data have
+necessary information to quickly access all cells belonging to               high-frequency noise.
+
+                                                                        25
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                          Mao, Ostriker, & Kim
+
+                            Appendix B                                                  Ballesteros-Paredes, J., Gómez, G. C., Loinard, L., Torres, R. M., &
+                       Bayesian Model Fitting                                               Pichardo, B. 2009, MNRAS, 395, L81
+                                                                                        Bertoldi, F., & McKee, C. F. 1992, ApJ, 395, 140
+   For the likelihood P (B∣A), we assume                                                Blitz, L. 1993, in Protostars and Planets III, ed. E. H. Levy & J. I. Lunine
+                                                                                            (Tucson, AZ: Univ. Arizona Press), 125
+                                      1           (DSFR (ti) áSFRñ) 2                   Bolatto, A. D., Leroy, A. K., Rosolowsky, E., Walter, F., & Blitz, L. 2008,
+             P (B∣A) =                      e-          2s 2           ,   (B1)            ApJ, 686, 948
+                              i      2ps 2                                              Bonnell, I. A., Dobbs, C. L., & Smith, R. J. 2013, MNRAS, 430, 1790
+                                                                                        Braun, H., Schmidt, W., Niemeyer, J. C., & Almgren, A. S. 2014, MNRAS,
+taking the product over discrete time samples ti, where                                     442, 3407
+                                                                                        Burkhart, B., Lazarian, A., Goodman, A., & Rosolowsky, E. 2013, ApJ,
+           DSFR (t ) = SFR (t ) - SFR m(t - tdelay).                        (B2)            770, 141
+                                                                                        Cadiou, C., Dubois, Y., & Pichon, C. 2019, A&A, 621, A96
+We select subsets of {ti} for each delay time tdelay so that the                        Chevance, M., Kruijssen, J. M. D., Vazquez-Semadeni, E., et al. 2020, SSRv,
+likelihood P (B∣A) is always computed using the same number                                 216, 50
+of samples/snapshots regardless of tdelay. We normalize by the                          Colling, C., Hennebelle, P., Geen, S., Iffrig, O., & Bournaud, F. 2018, A&A,
+                                                                                            620, A21
+time-averaged global SFR áSFRñ so that σ is dimensionless.                              Crutcher, R. M. 2012, ARA&A, 50, 29
+   For a given object class and model eff (αv), we evaluate the                         Dobbs, C. L., & Bonnell, I. A. 2007, MNRAS, 374, 1115
+likelihood P (B∣A) over the parameter vector θ that includes                            Dobbs, C. L., Burkert, A., & Pringle, J. E. 2011, MNRAS, 417, 1318
+time delay tdelay, eff,0 , additional model parameters (β or                            Dobbs, C. L., Krumholz, M. R., Ballesteros-Paredes, J., et al. 2014, in
+                                                                                            Protostars and Planets VI, ed. H. Beuther et al. (Tucson, AZ: Univ. Arizona
+av,cutoff , as appropriate), and σ. Since A represents SFRm and                             Press), 3
+depends only on the parameter vector θ, the posterior in                                Elmegreen, B. G., & Scalo, J. 2004, ARA&A, 42, 211
+Equation (17) is                                                                        Elmegreen, D. M. 1980, ApJ, 242, 528
+                                                                                        Evans, N. J., II, Dunham, M. M., Jørgensen, J. K., et al. 2009, ApJS, 181, 321
+                                      P (SFR∣q ) P (q )                                 Evans, N. J., II, Heiderman, A., & Vutisalchavakul, N. 2014, ApJ, 782, 114
+                  P (q∣SFR) =                           .                   (B3)        Federrath, C. 2015, MNRAS, 450, 4035
+                                          P (SFR)                                       Federrath, C., & Klessen, R. S. 2012, ApJ, 761, 156
+                                                                                        Gallagher, M. J., Leroy, A. K., Bigiel, F., et al. 2018, ApJ, 858, 90
+Note that P (q ) = i P (qi ), the product of priors, which we                          García-Burillo, S., Usero, A., Alonso-Herrero, A., et al. 2012, A&A, 539, A8
+brieﬂy describe. We use uniform linear priors for time delay                            Gatto, A., Walch, S., Naab, T., et al. 2017, MNRAS, 466, 1903
+tdelay and slope β (allowing negative values) and uniform                               Genel, S., Vogelsberger, M., Nelson, D., et al. 2013, MNRAS, 435, 1426
+                                                                                        Gong, H., & Ostriker, E. C. 2011, ApJ, 729, 120
+logarithmic priors for eff,0 , σ, and av,cutoff . Using uniform linear                  Gong, H., & Ostriker, E. C. 2013, ApJS, 204, 8
+priors instead of logarithmic does not substantially change our                         Goodman, A. A., Rosolowsky, E. W., Borkin, M. A., et al. 2009, Natur, 457, 63
+results.                                                                                Grudić, M. Y., Hopkins, P. F., Lee, E. J., et al. 2019, MNRAS, 488, 1501
+   Since P (SFR) does not vary with θ, we estimate the                                  Haid, S., Walch, S., Seifried, D., et al. 2019, MNRAS, 482, 4062
+                                                                                        Heiles, C., Goodman, A. A., McKee, C. F., & Zweibel, E. G. 1993, in
+marginalized distribution for parameter x by integrating over                               Protostars and Planets III, ed. E. H. Levy & J. I. Lunine (Tucson, AZ: Univ.
+other parameters Q = {y Î q∣ y ¹ x},                                                        Arizona Press), 279
+                                                                                        Hennebelle, P. 2018, A&A, 611, A24
+                   ò P (q∣SFR) d Q ò P (SFR∣q ) P (q ) d Q                              Hennebelle, P., & Chabrier, G. 2011, ApJL, 743, L29
+  P (x∣SFR) =                     =                        , (B4)                       Hernandez, A. K., & Tan, J. C. 2015, ApJ, 809, 154
+                   ò P (q∣SFR) dq   ò P (SFR∣q ) P (q ) dq                              Heyer, M., & Dame, T. M. 2015, ARA&A, 53, 583
+                                                                                        Heyer, M., Krawczyk, C., Duval, J., & Jackson, J. M. 2009, ApJ, 699, 1092
+thus inferring mean values of each parameter                                            Hopkins, P. F., Quataert, E., & Murray, N. 2012, MNRAS, 421, 3488
+                                                                                        Hunter, J. D. 2007, CSE, 9, 90
+                       xˆ =       ò xP (x∣SFR) dx                           (B5)        Iffrig, O., & Hennebelle, P. 2017, A&A, 604, A70
+                                                                                        Jiménez-Donaire, M. J., Bigiel, F., Leroy, A. K., et al. 2019, ApJ, 880, 127
+                                                                                        Jog, C. J., & Solomon, P. M. 1984, ApJ, 276, 114
+and variance from                                                                       Kannan, R., Marinacci, F., Simpson, C. M., Glover, S. C. O., & Hernquist, L.
+                                                                                            2020, MNRAS, 491, 2088
+                        Var (x ) = xˆ2 - xˆ2.                               (B6)        Kauffmann, J., Pillai, T., & Goldsmith, P. F. 2013, ApJ, 779, 185
+                                                                                        Kawamura, A., Mizuno, Y., Minamidani, T., et al. 2009, ApJS, 184, 1
+  From the deﬁnition of σ in Equation (B1), the inferred value                          Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2006, ApJL, 649, L13
+of σ is equivalent to sDSFR áSFRñ and is a measure of the                               Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2010, ApJ, 720, 1454
+                                                                                        Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2011, ApJ, 743, 25
+goodness of ﬁt of each model to the data for the inferred                               Kim, C.-G., & Ostriker, E. C. 2017, ApJ, 846, 133
+parameter values.                                                                       Kim, C.-G., Ostriker, E. C., & Kim, W.-T. 2013, ApJ, 776, 1
+                                                                                        Kim, W.-T., & Ostriker, E. C. 2007, ApJ, 660, 1232
+                                   ORCID iDs                                            Kruijssen, J. M. D., Schruba, A., Chevance, M., et al. 2019, Natur, 569, 519
+                                                                                        Krumholz, M. R., Dekel, A., & McKee, C. F. 2012, ApJ, 745, 69
+S. Alwin Mao https://orcid.org/0000-0002-2491-8700                                      Krumholz, M. R., & McKee, C. F. 2005, ApJ, 630, 250
+Eve C. Ostriker https://orcid.org/0000-0002-0509-9113                                   Krumholz, M. R., & Tan, J. C. 2007, ApJ, 654, 304
+                                                                                        la Vigne, M. A., Vogel, S. N., & Ostriker, E. C. 2006, ApJ, 650, 818
+Chang-Goo Kim https://orcid.org/0000-0003-2896-3725                                     Lee, E. J., Miville-Deschênes, M.-A., & Murray, N. W. 2016, ApJ, 833, 229
+                                                                                        Lee, Y.-N., & Hennebelle, P. 2018, A&A, 611, A89
+                                   References                                           Longmore, S. N., Bally, J., Testi, L., et al. 2013, MNRAS, 429, 987
+                                                                                        Mac Low, M.-M., & Klessen, R. S. 2004, RvMP, 76, 125
+Agertz, O., & Kravtsov, A. V. 2015, ApJ, 804, 18                                        McKee, C. F., & Ostriker, E. C. 2007, ARA&A, 45, 565
+Agertz, O., Lake, G., Teyssier, R., et al. 2009, MNRAS, 392, 294                        McKee, C. F., & Zweibel, E. G. 1992, ApJ, 399, 551
+André, P., di Francesco, J., Ward-Thompson, D., et al. 2014, in Protostars and          McKee, C. F., Zweibel, E. G., Goodman, A. A., & Heiles, C. 1993, in
+   Planets VI, ed. H. Beuther et al. (Tucson, AZ: Univ. Arizona Press), 27                  Protostars and Planets III, ed. E. H. Levy & J. I. Lunine (Tucson, AZ: Univ.
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J., et al. 2013, A&A,                Arizona Press), 327
+   558, A33                                                                             Murray, N. 2011, ApJ, 729, 133
+
+
+                                                                                   26
+The Astrophysical Journal, 898:52 (27pp), 2020 July 20                                                                                        Mao, Ostriker, & Kim
+
+Ochsendorf, B. B., Meixner, M., Roman-Duval, J., Rahman, M., &                         Schneider, N., Csengeri, T., Klessen, R. S., et al. 2015a, A&A, 578, A29
+   Evans, N. J., II 2017, ApJ, 841, 109                                                Schneider, N., Ossenkopf, V., Csengeri, T., et al. 2015b, A&A, 575, A79
+Ostriker, E. C., Gammie, C. F., & Stone, J. M. 1999, ApJ, 513, 259                     Semenov, V. A., Kravtsov, A. V., & Gnedin, N. Y. 2016, ApJ, 826, 200
+Ostriker, E. C., McKee, C. F., & Leroy, A. K. 2010, ApJ, 721, 975                      Shetty, R., & Ostriker, E. C. 2008, ApJ, 684, 978
+Ostriker, E. C., & Shetty, R. 2011, ApJ, 731, 41                                       Shimajiri, Y., André, P., Braine, J., et al. 2017, A&A, 604, A74
+Padoan, P., Federrath, C., Chabrier, G., et al. 2014, Protostars and Planets VI        Sigalotti, L. D. G., & Klapp, J. 2000, ApJ, 531, 1037
+   (Tucson, AZ: Univ. Arizona Press), 77                                               Solomon, P. M., Rivolo, A. R., Barrett, J., & Yahil, A. 1987, ApJ, 319, 730
+Padoan, P., Haugbølle, T., & Nordlund, Å. 2012, ApJL, 759, L27                         Stone, J. M., & Gardiner, T. 2009, NewA, 14, 139
+Padoan, P., & Nordlund, Å. 2011, ApJ, 730, 40                                          Stone, J. M., Gardiner, T. A., Teuben, P., Hawley, J. F., & Simon, J. B. 2008,
+Perez, F., & Granger, B. E. 2007, CSE, 9, 21                                              ApJS, 178, 137
+Piontek, R. A., & Ostriker, E. C. 2005, ApJ, 629, 849                                  Sun, J., Leroy, A. K., Schruba, A., et al. 2018, ApJ, 860, 172
+Piontek, R. A., & Ostriker, E. C. 2007, ApJ, 663, 183                                  Thompson, K. L., Troland, T. H., & Heiles, C. 2019, ApJ, 884, 49
+Querejeta, M., Schinnerer, E., Schruba, A., et al. 2019, A&A, 625, A19                 Traﬁcante, A., Duarte-Cabral, A., Elia, D., et al. 2018, MNRAS, 477, 2220
+Raﬁkov, R. R. 2001, MNRAS, 323, 445                                                    Usero, A., Leroy, A. K., Walter, F., et al. 2015, AJ, 150, 115
+Raskutti, S., Ostriker, E. C., & Skinner, M. A. 2016, ApJ, 829, 130                    Utomo, D., Sun, J., Leroy, A. K., et al. 2018, ApJL, 861, L18
+Roman-Duval, J., Jackson, J. M., Heyer, M., Rathborne, J., & Simon, R. 2010,           van der Walt, S., Colbert, S. C., & Varoquaux, G. 2011, CSE, 13, 22
+   ApJ, 723, 492                                                                       Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020, Nature Methods,
+Romeo, A. B. 1992, MNRAS, 256, 307                                                        17, 261
+Rosolowsky, E. W., Pineda, J. E., Kauffmann, J., & Goodman, A. A. 2008,                Vutisalchavakul, N., Evans, N. J. I., & Heyer, M. 2016, ApJ, 831, 73
+   ApJ, 679, 1338                                                                      Wada, K., & Koda, J. 2004, MNRAS, 349, 270
+
+
+
+
+                                                                                  27
+

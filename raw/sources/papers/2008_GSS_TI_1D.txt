@@ -1,0 +1,856 @@
+The Astrophysical Journal, 681:1148Y1162, 2008 July 10
+# 2008. The American Astronomical Society. All rights reserved. Printed in U.S.A.
+
+
+
+
+                                         GALACTIC SPIRAL SHOCKS WITH THERMAL INSTABILITY
+                                                     Chang-Goo Kim,1 Woong-Tae Kim,1 and Eve C. Ostriker 2
+                                                                  Received 2008 February 17; accepted 2008 April 1
+
+
+                                                                     ABSTRACT
+                Using one-dimensional hydrodynamic simulations including interstellar heating, cooling, and thermal conduction,
+             we investigate nonlinear evolution of gas flow across galactic spiral arms. We model the gas as a non-self-gravitating,
+             unmagnetized fluid and follow its interaction with a stellar spiral potential in a local frame comoving with the stellar pat-
+             tern. Initially uniform gas with density n 0 in the range 0:5 cm3  n 0  10 cm3 rapidly separates into warm and cold
+             phases as a result of thermal instability (TI) and also forms a quasi-steady shock that prompts phase transitions. After
+             saturation, the flow follows a recurring cycle: warm and cold phases in the interarm region are shocked and immediately
+             cool to become a denser cold medium in the arm; postshock expansion reduces the mean density to the unstable regime
+             in the transition zone and TI subsequently mediates evolution back into warm and cold interarm phases. For our stan-
+             dard model with n 0 ¼ 2 cm3 , the gas resides in the dense arm, thermally unstable transition zone, and interarm region
+             for 14%, 22%, and 64% of the arm-to-arm crossing time, respectively. These regions occupy 1%, 16%, and 83% of the
+             arm-to-arm distance, respectively. Gas at intermediate temperatures (i.e., neither warm stable nor cold states) represents
+             25%Y30% of the total mass, similar to the fractions estimated from H i observations (larger interarm distances could
+             reduce this mass fraction, whereas other physical processes associated with star formation could increase it). Despite
+             transient features and multiphase structure, the time-averaged shock profiles can be matched to that of a diffusive iso-
+             thermal medium with temperature 1000 K (which isTTwarm ) and a ‘‘particle’’ mean free path of l 0 ¼ 100 pc. Finally,
+             we quantify numerical conductivity associated with translational motion of phase-separated gas on the grid and show
+             that convergence of numerical results requires the numerical conductivity to be comparable to or smaller than the phys-
+             ical conductivity.
+             Subject headingg   s: galaxies: ISM — instabilities — ISM: kinematics and dynamics — methods: numerical —
+                                   stars: formation
+
+
+
+                              1. INTRODUCTION                                                    Studies of galactic spiral shocks date back to Roberts (1969),
+                                                                                              who used a semianalytic approach to obtain one-dimensional,
+   Spiral arms are the most prominent features in disk galaxies.
+                                                                                              stationary shock profiles as functions of the distance perpendic-
+As the interstellar medium ( ISM ) passes through the moderate
+                                                                                              ular to the shocks (see also Fujimoto 1968; Roberts & Yuan 1970;
+gravitational potential well of the stellar spiral arms, it is strongly
+                                                                                              Shu et al. 1973). Woodward (1975) used time-dependent calcula-
+compressed and shocked, producing narrow dust lanes in optical
+                                                                                              tions to show that spiral shocks in local models indeed develop
+images. Active star formation is subsequently triggered in high-
+                                                                                              within one or two crossings of the background arm potential. This
+density clouds inside the arms, resulting in downstream optical
+arms that contain OB associations and giant H ii regions distrib-                             and subsequent work (e.g., Kim & Ostriker 2002) suggests spiral
+                                                                                              arm shocks in the one-dimensional approximation are highly sta-
+uted in a ‘‘beads on a string’’ fashion (e.g., Baade 1963; Elmegreen
+                                                                                              ble for a range of the arm strength. On the other hand, spiral
+& Elmegreen 1983; Elmegreen et al. 2006; Shetty et al. 2007).
+                                                                                              shocks have been shown to be intrinsically unstable when the
+Other arm substructures include filamentary gaseous spurs (or
+                                                                                              vertical dimension is included ( Martos & Cox 1998; Gómez &
+feathers) seen in optical extinction, IR emission from dust, and H
+                                                                                              Cox 2002, 2004; Boley & Durisen 2006; Kim & Ostriker 2006).
+emission from star formation (e.g., Elmegreen 1980; Scoville &
+                                                                                              Since the arm-to-arm crossing periods are in general incommen-
+Rector 2001; Scoville et al. 2001; Kennicutt 2004; Willner et al.
+                                                                                              surable with the vertical oscillation periods, the gas streamlines
+2004; La Vigne et al. 2006; Gordon 2007) and giant molecular
+                                                                                              are not closed, giving rise to shock flapping motions that dump
+associations and atomic superclouds seen in CO and H i radio ob-
+                                                                                              a significant amount of random kinetic energy in the gas ( Kim
+servations (e.g., Elmegreen & Elmegreen 1983; Vogel et al. 1988;
+Rand & Kulkarni 1990; Knapen et al. 1993). The locations of                                   et al. 2006). Under certain (strong compression) conditions, two-
+                                                                                              dimensional in-plane spiral shocks can also become unstable due
+these arm substructures downstream from the primary dust lanes
+                                                                                              to strong shear within the arm (Wada & Koda 2004; Dobbs &
+indicate that the shock compression represents the first step in an
+evolutionary sequence that begins with diffuse ISM gas and ends                               Bonnell 2006). However, these in-plane modes are stabilized by
+                                                                                              moderate magnetic fields (Shetty & Ostriker 2006; Dobbs &
+with star formation (for strongly bound cores) and dispersal (for
+                                                                                              Price 2008) and suppressed in fully three-dimensional models due
+more weakly self-gravitating structures), although it is uncertain
+                                                                                              to vertical dynamics (Kim & Ostriker 2006).
+whether spiral arms actually enhance the star formation rate or just
+                                                                                                 Inclusion of gaseous self-gravity tends to enhance the arm re-
+organize it (e.g., Gerola & Seiden 1978; Elmegreen & Elmegreen
+                                                                                              sponse and symmetrize the density profile (Lubow et al. 1986)
+1986; Sleath & Alexander 1996; Seigar & James 2002).
+                                                                                              and causes the shock front to move downstream relative to the
+    1                                                                                         minimum in the potential (Kim & Ostriker 2002). High post-
+      Department of Physics and Astronomy, FPRD, Seoul National University,
+Seoul 151-742, Korea; kimcg@astro.snu.ac.kr, wkim@astro.snu.ac.kr.                            shock density enhances the growth of self-gravitating perturba-
+    2
+      Department of Astronomy, University of Maryland, College Park, MD 20742;                tions within spiral arms, although postshock flow expansion can
+ostriker@astro.umd.edu.                                                                       limit this growth ( Balbus & Cowie 1985; Balbus 1988). Using
+                                                                                       1148
+                                         SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                1149
+
+two-dimensional simulations with both self-gravity and magnetic         ies of these effects to future work. Our primary objectives are to
+fields, Kim & Ostriker (2002) demonstrated that magneto-Jeans           determine overall shock structures under TI, to explore where and
+instability (in which magnetic tension forces counterbalance the        how the transitions among the cold, warm, and unstable phases
+stabilizing Coriolis forces) leads to the formation of both arm         occur, and to find statistical properties such as temperature dis-
+spurs and giant molecular associations/giant molecular clouds           tributions, mass fractions, and velocity dispersions.
+with realistic properties (see also Lynden-Bell 1966; Elmegreen            The remainder of this paper is organized as follows. In x 2 we
+1994). Subsequent studies including three-dimensional effects           describe the basic equations we solve and present our model pa-
+( Kim & Ostriker 2006) and global spiral structure (Shetty &            rameters and numerical methods. In x 3 we test our numerical
+Ostriker 2006) have confirmed these findings.                           code and quantify the diffusion (due to translational motion over
+   While recent work has improved our understanding of galac-           the grid) in terms of a numerical conductivity. In x 4 we address
+tic spiral shocks and their larger substructures, these studies have    the evolution of cold and warm phases as they traverse spiral
+oversimplified the ISM thermodynamics, usually adopting an iso-         shocks, and provide statistical measures to quantify the exchange
+thermal equation of state. This ignores potential consequences of       cycle that develops. Finally, we summarize our results and discuss
+thermal instability (TI; Field 1965; see also Meerson 1996 for a re-    their implications in x 5.
+view), which changes an otherwise homogeneous ISM to clumpy,
+multiphase gas. (e.g., Field et al. 1969; Heiles 2001; Wolfire et al.                      2. NUMERICAL METHODS
+2003). In the classical two-phase picture of the ISM, cold dense                                2.1. Basic Equations
+clouds are in pressure equilibrium with the warm intercloud media
+that surround them (Field et al. 1969). Supernovae lead to a hot,          We study galactic gas flows and thermodynamic evolution in
+diffuse third phase (Cox & Smith 1974; McKee & Ostriker 1977),          response to an external stellar spiral potential, which is assumed
+but because massive star formation is spatially correlated and          to be tightly wound with a pitch angle iT1, and rotating at a
+much of the hot gas produced is vented away, most of the volume         constant pattern speed p with respect to an inertial frame. For
+                                                                        local simulations, it is advantageous to set up a frame corotating
+remains relatively unaffected (e.g., Ferriere 1998; de Avillez &
+Breitschwerdt 2004). Since the cold clouds and the warm inter-          with the spiral pattern, centered at the position (R; ) ¼ (R 0 ; p t).
+                                                                        The local frame is tilted by an angle i relative to the radial direc-
+cloud gas differ in density and temperature by about 2 orders of
+                                                                        tion in such a way that the two orthogonal axes correspond to the
+magnitudes, their respective responses to spiral shocks and down-
+                                                                        directions perpendicular (x-axis) and parallel ( y-axis) to the local
+stream expansion flows will be much different from the isothermal
+                                                                        arm segment (Roberts 1969). We assume that all physical varia-
+case. When realistic thermal processes are considered, for in-
+                                                                        bles depend only on the x-coordinate, while allowing nonzero ve-
+stance, warm rarefied gas in the interarm region can be converted
+                                                                        locity in the y-direction. Since the independent variable in our
+via shocks to cold dense gas in the arm regions. The reverse phase
+                                                                        local models is a projection of the position on a streamline in a
+transition can then occur downstream for some fraction of the
+                                                                        large-scale flow onto the x-axis, the distance on the x-axis divided
+mass, yielding a quasi-steady cyclic exchange.
+                                                                        by sin i represents the distance that the flow has traversed in the
+   Shu et al. (1972) were the first to study the effects of gas cool-
+ing and heating on spiral shocks. By considering a mixture of the       azimuthal direction along the streamline. Therefore, the temporal
+                                                                        interval between one arm crossing and the next crossing is the
+comoving two stable phases and allowing for phase transitions,
+                                                                        same as it would be for a global model.
+they calculated steady state shock profiles for both cold and warm
+phases. However, they employed a pressure-density relation, in-            In the local arm frame, the background velocity due to galactic
+                                                                        rotation is approximately given by
+stead of solving the time-dependent energy equation, based on the
+assumption of instantaneous thermal equilibrium; this precluded            v 0 ¼ R 0 ( 0  p ) sin i x̂ þ ½R 0 ( 0  p )  q0  0 x ŷ;    ð1Þ
+the possibility of unstable-phase gas in their calculations.
+   More recent years have seen a few numerical studies of spiral        where  0 is the angular velocity of the gas at R 0 in the inertial
+shocks with explicit heating and cooling, but most of these suffer      frame and q0  (d ln /d ln R)jR 0 is the local shear rate in the
+from strong numerical diffusion. Baker & Barker (1974) argued           background flow in the absence of the spiral potential ( Kim &
+that allowance for thermal phase changes produces ‘‘accretion           Ostriker 2002, 2006). Assuming that the motions induced by the
+fronts/waves’’ instead of spiral shocks, in which the inflowing         stellar potential are much smaller than R 0  0 , the basic equations
+material radiates its energy away. As they mentioned, however,          of ideal hydrodynamics expanded in the local frame read (see
+this result could be due to large numerical diffusion; we will in-      Roberts 1969; Shu et al. 1973; Balbus 1988; Kim & Ostriker
+deed show below that in a moving medium, numerical conduc-              2002; Piontek & Ostriker 2004)
+tivity can be large enough to suppress TI. On the other hand,
+Tubbs (1980) and Marochnik et al. (1983) have shown that                                     @
+some models develop spiral shocks in which phase transitions                                    þ : = (vT ) ¼ 0;                 ð2Þ
+                                                                                             @t
+from warm interarm gas to cold arm clouds occur, although in-
+sufficient resolution in their models made the cloud sizes and            @ vT                1
+                                                                               þ vT = :vT ¼  :P  q0  0 v 0x ŷ  260 < v  :ext ;
+separations significantly overestimated and prevented the tran-            @t                 
+sition regions from cold to warm phases from being resolved.                                                                      ð3Þ
+Very recently, Dobbs & Bonnell (2007) and Dobbs & Price (2008)
+studied the effects of the warm phase on a preexisting cold phase            @e                
+                                                                                þ vT = :e ¼      P: = vT  L þ : = (K:T );                    ð4Þ
+using particle simulations, but they did not allow for phase transi-         @t               1
+tions that are crucial in spiral shocks with TI.
+   In this paper we initiate a study of galactic spiral shocks sub-     where vT  v 0 þ v is the total velocity in the local frame, ext is
+ject to ISM heating and cooling, using very high resolution nu-         the external stellar spiral potential, L(; T ) is the net cooling
+merical hydrodynamic simulations. We consider one-dimensional           function, and K is the thermal conductivity. Other symbols have
+models that represent slices perpendicular to the arm. We ignore        their usual meanings. We adopt an ideal gas law P ¼ (  1)e
+the gaseous self-gravity and magnetic fields here, deferring stud-      with  ¼ 5/3.
+1150                                                               KIM, KIM, & OSTRIKER                                                                  Vol. 681
+
+  For the stellar spiral potential, we consider a simple sinusoidal                 are completely characterized by the arm-to-arm distance Lx and
+shape,                                                                              the flow speed v 0x relative to the perturbing stellar potential in
+                                                                                  the x-direction (as well as sin i, q0 , F, and p / 0 ). The azimuthal
+                                        2x                                         wavenumber m of spiral arms is arbitrary, and the box location
+                      ext ¼ sp cos         ;                  ð5Þ                 and the gaseous angular speed relative to the arms can then be
+                                         Lx
+                                                                                    specified as R 0 ¼ mLx /(2 sin i) and  0  p ¼ 2v 0x /(mLx ),
+analogous to a logarithmic potential of Roberts (1969) and Shu                      respectively. To achieve the numerical resolution sufficient to re-
+et al. (1973). In equation (5), sp denotes the amplitude of the                    solve the Field length, we consider a small box with Lx ¼ 628 pc.
+spiral potential, while Lx ¼ 2R 0 sin i/m is the arm-to-arm sep-                   For the relative velocity, we choose v 0x ¼ 13 km s1 correspond-
+aration for an m-armed spiral. We take the size of the simulation                   ing to the rotational velocity of R 0  0 ¼ 260 km s1 with a flat
+domain equal to Lx ; since x varies from Lx /2 to Lx /2 and                        rotation curve (q0 ¼ 1). The corresponding arm-to-arm crossing
+sp < 0, ext attains its minimum at the center (x ¼ 0). We pa-                     time is tcross  Lx /v 0x ¼ 4:7 ; 107 yr, which we choose as the fi-
+rameterize the spiral arm strength using                                            ducial time unit in our presentation. For spiral arm parameters,
+                                                                                    we take pattern speed p ¼  0 /2, pitch angle sin i ¼ 0:1, and
+                                           !                                        strength F ¼ 5% in all the models. We note that, driven by the
+                             m      jsp j                                          numerical requirement, spiral arms in our models have a small
+                      F                     ;                ð6Þ
+                            sin i R02 02                                           separation and thus a short dynamical time, so that some of our
+                                                                                    numerical results (e.g., mass fractions) that depend on the ratio
+which measures the maximum force due to the spiral potential                        of cooling time to dynamical time may not be applicable to spiral
+relative to the mean axisymmetric gravitational force ( Roberts                     arms with a much larger arm-to-arm crossing time.
+1969).                                                                                  To simulate spiral shocks with varying total gas contents, we
+   The net cooling function per unit volume is given by L                         consider 12 models that have the same initial thermal pressure
+n½n(T )  , where n ¼ /( mH ) is the gas number density and                    P0 /k B but differ in the initial density n 0 ; we adopt the solar neigh-
+ ¼ 1:27 is the mean molecular weight per particle. For the heat-                   borhood value at P0 /k B ¼ 3000 K cm3 based on the observa-
+ing and cooling rates of the atomic ISM, we take the fitting formulae               tional (e.g., Ferriere 2001; Heiles & Troland 2003; Jenkins &
+                                                                                    Tripp 2007) and theoretical (e.g., Wolfire et al. 2003) arguments.
+                      ¼ 2:0 ; 1026 erg s1 ;                              ð7Þ     Note that although some models are out of thermal equilibrium
+                                                                                  initially, they immediately tend toward equilibrium owing to rapid
+            (T )             1:184 ; 105                                          heating and cooling, with the equilibrium pressure depending on
+                  ¼ 107 exp                                                         n 0 . Table 1 lists the model parameters and simulation outcomes.
+                              T þ 1000
+                                                                                  Column (1) labels each run; while the models with the prefix SU
+                                 pﬃﬃﬃ     92
+                    þ 1:4 ; 102 T exp           cm 3 ;                     ð8Þ     rapidly undergo TI even with F ¼ 0, the SW and SC models
+                                            T                                       would stay warm or cold throughout were it not for the spiral per-
+                                                                                    turbations. Column (2) lists n 0 . Columns (3)Y(8) give the width
+suggested by Koyama & Inutsuka (2002; see also Vázquez-                            of, and time spent in, the arm, transition, and interarm regions,
+Semadeni et al. 2007). Under the adopted net cooling curve,                         respectively, in each model. The mass and volume fractions of
+the minimum and maximum pressures for the coexistence of the                        the cold, warm, and intermediate-temperature phases are given
+classical warm/cold phases in a static equilibrium are Pmin /k B ¼                  in columns (9)Y(14), respectively. We take model SU2 with n 0 ¼
+1600 K cm3 and Pmax /k B ¼ 5000 K cm3 . The corresponding                         2 cm3 as our fiducial model; at this density, the total surface
+transition temperatures Tmax ¼ 5012 K and Tmin ¼ 185 K define                       density would be 12 M pc2 for a vertical scale height of
+cold (T < Tmin ), warm (T > Tmax ), and intermediate-temperature                    100 pc.
+phases (Tmin < T < Tmax ). To resolve the length scales of TI nu-                       We integrate the time-dependent partial differential equa-
+merically (e.g., Koyama & Inutsuka 2004; Piontek & Ostriker                         tions (2) Y(4) using a modified version of the Athena code
+2004), we include a constant value of thermal conductivity K0 ¼                     (Gardiner & Stone 2005). Athena implements a single-step, di-
+10 5 erg s1 cm1 K1 .3 The associated Field length below which                    rectionally unsplit Godunov scheme for compressible hydrody-
+thermal conduction erases temperature perturbations completely is                   namics in multispatial dimensions and allows a variety of spatial
+defined by (Field 1965)                                                             reconstruction methods and approximate Riemann solvers; the
+                                                                                    version we use here employs the piecewise linear method ( PLM)
+                                        1=2
+                         2        @ ln                                           with the Roe Riemann solver.4 We implement the shearing-
+                kF ¼ 2        1                  :                        ð9Þ     periodic boundary condition at the x-boundaries ( Hawley et al.
+                        K0 T        @ ln T
+                                                                                    1995). Because of the very short cooling time, energy updates
+                                                                                    from net cooling are made implicitly based on Newton-Raphson
+In our models, kF typically amounts to 0.18 pc.                                    iteration, while the conduction term is solved fully explicitly. For
+                                                                                    stable and accurate results, we ensure the time step is kept smaller
+         2.2. Model Parameters and Numerical Methods                                than the CFL condition for thermal conduction as well as the
+  We consider a simulation box in which the gas is initially ho-                    cooling/heating time (see Piontek & Ostriker 2004). Our stan-
+mogeneous with density n 0 and pressure P0 when a spiral pertur-                    dard models employ N ¼ 16; 384 zones, corresponding to grid
+bation is absent. Other than thermal processes involving TI, the                    spacing of  x ¼ 0:04 pc, which satisfies the condition x <
+overall dynamics and structures of spiral shocks in our models                      kF /3 for the convergence of numerical results ( Koyama &
+
+    3                                                                                   4
+      While thermal conductivity is proportional to T 1/2 for neutral hydrogen at         Although the piecewise parabolic method ( PPM ) is known to provide, in
+kinetic temperatures below 4:5 ; 104 K ( Parker 1953), we choose for simplicity a   general, less diffusive spatial reconstruction than the PLM, our experiments have
+fixed value corresponding to thermal equilibrium at T ¼ 1500 K for our standard     shown that the PPM often produced negative internal energy in the presence of
+density n 0 ¼ 2 cm3.                                                               strong radiative cooling inside spiral shocks.
+No. 2, 2008                                               SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                1151
+                                                                                TABLE 1
+                                                            Summary of Model Parameters and Simulation Results
+
+                                                                                                             Mass Fractions                  Volume Fractions
+                                             Arm               Transition            Interarm                     (%)                              (%)
+
+       Model                 n0      L/Lx     t/tcross    L/Lx    t/tcross    L/Lx   t/tcross   Cold    Intermediate     Warm   Cold     Intermediate     Warm
+        (1)                  (2)     (3)         (4)         (5 )     (6 )        (7)       (8)        (9)        (10)         (11)   (12)         (13)         (14)
+
+SW0.1.................        0.1     ...           ...       ...       ...        ...       ...        0          0            100     0           0           100
+SW0.5.................        0.5    0.00          0.05      0.04      0.14       0.96      0.82       18         26             55     0          10            90
+SW1....................       1.0    0.00          0.10      0.10      0.21       0.89      0.69       43         25             31     2          16            83
+SU2 ....................      2.0    0.01          0.14      0.16      0.22       0.83      0.64       59         27             14     4          26            70
+SU3 ....................      3.0    0.01          0.16      0.22      0.24       0.77      0.60       62         30              8     7          35            58
+SU4 ....................      4.0    0.02          0.19      0.26      0.25       0.72      0.56       65         29              5    11          40            49
+SU5 ....................      5.0    0.03          0.20      0.28      0.25       0.69      0.54       66         30              3    14          43            43
+SU6 ....................      6.0    0.04          0.22      0.32      0.28       0.63      0.50       67         31              2    18          48            34
+SU7 ....................      7.0    0.05          0.23      0.35      0.30       0.60      0.47       70         29              2    23          47            30
+SU8 ....................      8.0    0.06          0.24      0.35      0.29       0.59      0.47       73         26              1    29          45            26
+SC10...................      10.0    0.08          0.27      0.40      0.32       0.52      0.41       76         24              1    37          46            17
+SC20...................      20.0     ...           ...       ...       ...        ...       ...      100          0              0   100           0             0
+
+  Note.—Col. (1): Model name; Col. (2): Initial number density in units of cm3; Cols. (3) Y(8): Width and duration of the arm, transition, and interarm regions;
+Cols. (9) Y (14): Mass and volume fractions of the cold, intermediate-temperature, and warm phases.
+
+
+Inutsuka 2004); we also ran models with different grid sizes in                           where ñ  n  ikv 0x is the Doppler-shifted growth rate,
+order to study the effects of numerical resolution.                                       a  (k B T /mH )1/2 is the adiabatic speed of sound,  
+                                                                                          ½R3 d(R 4  2 )/dRjR 0 1/2 ¼ (4  2q0 )1/2  0 is the local epicyclic
+   3. CODE TESTS AND NUMERICAL CONDUCTIVITY                                               frequency, and kT , k , and kK are the wavenumbers defined by
+                                                                                          (e.g., Field 1965)
+   The Athena code we use has been verified on a wide variety of                                                                                      
+test problems including hydrodynamic shock tubes, advection of                                      (  1)         @L                (  1)     @L
+a square box in a background shear flow, and one-dimensional                                  kT ¼                          ;  k  ¼                        ;
+                                                                                                        a3         @ ln T                a3       @ ln  T
+propagation of sound waves in a rotating, shearing medium. For
+simulations involving cooling/heating and conduction terms, it                                                                    a 3
+                                                                                                                       kK ¼              :                      ð11Þ
+is crucial to check if the numerical scheme employed can resolve                                                              (  1)KT
+the length scales and timescales of the fastest growing TI modes.
+This test is of particular importance for the current work since                          In the limit of q0 ¼ 0 and v 0x ¼ 0, equation (10) recovers the
+the gas in our models is nonstatic, moving in the x-direction at an                       dispersion relation given by Field (1965) for TI in a rigidly ro-
+average speed of v 0x ¼ 13 km s1 , so that numerical diffusion                           tating medium with no translational motion. The fact that v 0x
+associated with advection and zone averaging may reduce the                               occurs in the dispersion relation only through ñ implies that a
+growth rates of TI at small scales. In this section, we describe the                      constant translational motion does not change the growth rates
+test results of our numerical code on the development of TI in                            of TI if measured in a frame moving with v 0x , analogous to
+static, rotating, and moving media in the absence of spiral poten-                        Galilean invariance in mechanics.
+tial perturbations and provide a quantitative measure of the nu-                             For isobaric TI to occur, the term in the square brackets in equa-
+merical diffusion in terms of numerical conductivity.                                     tion (10) must be negative. This of course necessitates kT 
+                                                                                          k < 0, the Field criterion for isobaric TI ( Field 1965). Thermal
+                                                                                          conduction and rotation suppress short- and long-wavelength
+                           3.1. Linear Dispersion Relation                                perturbations against TI, respectively, reducing the unstable range
+   We test our code by comparing the numerical growth rate of a                           of wavelengths to k1 < k < k 2 , where k1 and k 2 are two positive
+particular TI mode with the corresponding analytic prediction.                            roots of k 4 þ ½kK (kT  k ) þ  2 /a 2 k 2 þ  2 kT kK /a 2 ¼ 0. One
+To this end, we derive a dispersion relation for local, axisym-                           can show that k 2 ! ½kK (k  kT )1/2 ¼ 2/kF for weakly rotating
+metric TI in a homogeneous medium that is rotating, shearing,                             or nonrotating systems ( ! 0), while k12 !  2 kT /½a 2 (k 
+and undergoing uniform translational motion with v 0 . We line-                           kT ) in the limit of vanishingly small conductivity (kK ! 1). Fig-
+arize equations (2)Y(4) (dropping the external potential), assum-                         ure 1 plots as various lines sample growth rates ñ of TI calculated
+ing plane-wave disturbances /e ntik x , where n and k are the growth                     from equation (10) for cases K ¼  0 ¼ 0 (dotted line), K ¼ K0
+rate and wavenumber of the disturbances in the x-direction, respec-                       with  0 ¼ 0 (solid line), and K ¼ K0 with  0 ¼ 130 km s1
+tively. We follow the same steps as in Field (1965), except that                          kpc1 (dashed line). The density, pressure, and shear parameter are
+we include the nonzero background motions and the indirect                                taken to be n 0 ¼ 2 cm3 , P0 /k B ¼ 3000 cm3 , and q0 ¼ 1, re-
+forces arising from galaxy rotation. The resulting dispersion                             spectively, corresponding to our fiducial model SU2. Stabiliza-
+relation for local disturbances is given by                                               tion of TI by rotation and conduction is apparent at large and small
+                                                                                        scales, causing the wavelengths of the most unstable disturbances
+      3    2         k2                                                                  to occur at k  3 pc in between the cutoff wavelengths.
+    ñ þ ñ a kT þ        þ ñ  2 þ k 2 a 2
+                     kK                                                                                       3.2. Numerical Conductivity
+         2 2                                    
+          a k               k2           2       k2
+     þa          kT  k þ        þ  kT þ              ¼ 0; ð10Þ                           For our code tests, we consider three kinds of models depend-
+                           kK                   kK                                       ing on  0 and p : (1) a static disk ( 0 ¼ p ¼ 0); (2) a rotating
+1152                                                                   KIM, KIM, & OSTRIKER                                                                      Vol. 681
+
+
+
+
+    Fig. 1.—Analytic growth rate of TI vs. perturbation wavelength (eq. [10]) for            Fig. 2.—Dependence of numerical conductivity Kn on the translational ve-
+cases K ¼  0 ¼ 0 (dotted line), K ¼ K0 with  0 ¼ 0 (solid line), and K ¼ K0            locity v 0x, the grid size x, and the perturbation wavelength k of TI, from the test
+with  0 ¼ 130 km s1 kpc1 (dashed line), showing that rotation and conduc-             simulations with physical conductivity K ¼ 0 (crosses), K ¼ K0 (diamonds),
+tion stabilize perturbations at large and small scales, respectively. Symbols indicate   and K ¼ 4K0 ( plus signs). Note that v 0x is expressed in units of km s1, while
+the numerical growth rates measured from test simulations, all with K ¼ K0 , for a        x and k are in parsecs. The solid line, represented by eq. (12), gives the best fit
+static medium (crosses), for a rotating medium without translational motion (dia-        to the test results based on the second-order PLM for spatial reconstruction in the
+monds), and for a medium with both rotational and translational motion ( plus            Athena code we use.
+signs). Note that numerical diffusion associated with translational motion over the
+grid reduces the growth rates at small scales significantly. See text for details.
+                                                                                         numerical growth rate is lower than the analytic value at the same
+disk without translational motion ( 0 ¼ p ¼ 130 km s1 kpc1 ,                         K by more than 1%. Figure 2 plots as various symbols the result-
+yielding v 0x ¼ 0 from eq. [1]); and (3) a rotating disk with trans-                     ing numerical conductivity based on the PLM scheme for spatial
+lational motion ( 0 ¼ 2p ¼ 130 km s1 kpc1 , so that v 0x ¼                           reconstruction, showing that Kn is well fitted by
+13 km s1 ). The same conductivity K ¼ K0 is adopted for all the
+                                                                                                                             
+models. Other parameters including n 0 , P0 , and q0 are the same as                                     v 0x      x 3 k 2
+in model SU2. In each model, we initialize an eigenmode of TI                             Kn ¼ 109:4                                  erg s1 cm1 K1 :
+                                                                                                      1 km s1 1 pc        1 pc
+with wavelength k and vary the box size to fit it in, while keeping
+the grid spacing x ¼ 0:04 pc fixed. We monitor the evolution                                                                                                           ð12Þ
+of the maximum density and measure its growth rate numerically
+in the linear regime. Figure 1 plots the resulting growth rates from                     This suggests that the numerical conductivity in a moving me-
+the runs as crosses, diamonds, and plus signs for the first, second,                     dium depends rather sensitively on the numerical resolution.
+and third types of models, respectively. Evidently, the numerical                        Equation (12) states that our models with x ¼ 0:04 pc have
+and analytic results are in good agreement for models without the                        numerical conductivity comparable to the physical conductiv-
+translational motion, confirming the performance of our imple-                           ity for the fastest growing modes, so that the effect of numerical
+mentation of the heating/cooling and conduction terms. While the                         diffusion on the results presented in this paper is not significant.
+translational motion of the gas at a level of v 0x ¼ 13 km s1 does                          We repeated the same calculations using the higher order
+not affect large-scale modes much, it significantly reduces the nu-                      piecewise parabolic method ( PPM ) reconstruction scheme and
+merical growth rates for small-scale modes with k < 2 pc. The                            found that the numerical conductivity is linearly proportional to
+discrepancy between the numerical and analytic results appear to                         v 0x  x 4 k3 . Generalizing these results, we rewrite equation (12)
+be due to numerical diffusion that causes the thermal energy to                          as Kn / v 0x x(x/k) p , where p is the order of the spatial re-
+spread out as cooling/heating regions are advected with the back-                        construction scheme ( p ¼ 2 and 3 for PLM and PPM, respec-
+ground flow.                                                                             tively). This implies that the numerical conductivity can be
+    To quantify the strength of numerical heat diffusion in our                          viewed as a diffusion coefficient (/v 0x  x) modified by the
+code, we solve the linear dispersion relation (10) for a given set                       accuracy of the interpolation scheme used in spatial reconstruc-
+of parameters to find the effective conductivity KeA that yields                         tion [/( x/k) p ].
+an analytic growth rate equal to the numerical value obtained from
+the model simulation with the same parameters except for the                                                4. NONLINEAR SIMULATIONS
+physical conductivity K ¼ K0. We then calculate the numerical
+                                                                                                                     4.1. Standard Model
+conductivity from Kn ¼ KeA  K. In the case of models with
+v 0x ¼ 13 km s1 and k ¼ 2:56 and 1.28 pc shown in Figure 1,                               We now study the nonlinear evolution of thermally unstable
+for instance, Kn ¼ 3:4 ; 105 and 1:2 ; 106 erg s1 cm1 K1 ,                            gas flows under an imposed spiral potential. In this subsection
+respectively, about 3.4 and 12 times larger than K0 .                                    we focus on model SU2 with n 0 ¼ 2 cm3 . We initially apply
+    In order to find the parametric dependences of Kn on the trans-                      density perturbations created by a Gaussian random field with a
+lational velocity, grid size, and perturbation wavelength, we ran                        power spectrum jk j 2 / k 5/3 for 1  2k/Lx  128 and zero
+a suite of models varying v 0x from 2.6 to 26 km s1 , x from                           power for 2k/Lx > 128 in the Fourier space, corresponding to a
+0.02 to 0.16 pc, and k from 0.32 to 10.2 pc. We also explored the                        one-dimensional Kolmogorov spectrum for sonic disturbances.
+cases with different levels of physical conductivity at K ¼ 0, K0 ,                      The standard deviation of the density perturbations is fixed to be
+or 4K0. The numerical conductivity is calculated only when the                           1% in physical space. In order to suppress rapid motions of the
+No. 2, 2008                                        SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                                1153
+
+
+
+
+    Fig. 3.—Left: Density snapshots at t/tcross ¼ 0:0, 1.0, 2.4, and 4.0 from model SU2. Dotted lines labeled by n max and n min demarcate the cold and warm phases. Right: Cor-
+responding scatter plots of n vs. P/k B together with the equilibrium cooling curve (solid lines). Dot-dashed lines marked by Tmax and Tmin divide the warm (T > Tmax ),
+intermediate-temperature (Tmin < T < Tmax ), and cold (T < Tmin ) phases.
+
+
+gas caused by an abrupt introduction of the spiral potential, we                           70 cold clouds with a mean cloud separation of 0.8 pc, which
+slowly turn it on, reaching the full level F ¼ 5% at t/tcross  2:4.                       are in rough pressure equilibrium with the surrounding warm gas
+   Figure 3 shows density distributions of model SU2 at t/tcross ¼                         at P/k B ¼ 1900 K cm3 (Fig. 3b). At this time, the spiral poten-
+0, 1, 2.4, and 4.0 together with scatter plots of pressure versus                          tial remains weak and most gas in the unstable temperature range
+density overlaid on the equilibrium cooling curve. The gas ini-                            corresponds to the boundaries of the cold clouds. As the ampli-
+tially has T ¼ 1500 K and is thus thermally unstable (Fig. 3a). It                         tude of the potential grows, the gas is gathered toward the po-
+evolves rapidly to cold (n > n max ¼ 8:6 cm3 and T < Tmin ¼                               tential minimum, forming a spiral shock near x ¼ 0. The shock
+185 K) and warm (n < n min ¼ 1 cm3 and T > Tmax ¼ 5012 K)                                 reaches maximum strength at around t/tcross ¼ 2:5 shortly after F
+phases within 0:5tcross . The TI soon saturates, and random cloud                          attains the full strength. Both cold and warm phases in the inter-
+motions aided by epicyclic shaking cause cold clouds to collide                            arm regions continually enter the shock front and are compressed
+and merge together, or split sometimes, resulting in, on average,                          to become cold gas with higher density. They subsequently expand
+1154                                                                    KIM, KIM, & OSTRIKER                                                                              Vol. 681
+
+
+
+
+    Fig. 4.—Profiles of number density, temperature, pressure, and perturbation components of the velocities perpendicular (v x ¼ vT; x  v 0x ) and parallel (v y ¼ vT ; y  v 0y ) to
+the arm, for model SU2 at t/tcross ¼ 4:0. In (aY c), dotted lines demark the transitions between the cold, intermediate-temperature, and warm phases. Dashed lines in (d ) and
+(e) show the time-averaged velocity (streaming) profiles over t/tcross ¼ 5Y8.
+
+
+and become thermally unstable as they leave the spiral arm regions,                            0.2) in Figure 4b, where most of the gas has temperatures in the
+returning back to the cold and warm interarm phases (see below).                               unstable range between Tmin and Tmax . The subscripts 1 and 2
+At about t/tcross ¼ 3, the overall shock structure reaches a quasi-                            denote the warm and cold phases, respectively, of interarm gas
+steady state in the sense that the mass and volume fractions of each                           and their respective immediate postshock counterparts.
+phase do not change appreciably with time, although the shock os-                                 In the interarm regions (either x/Lx < 0 or x/Lx > 0:2 in Fig. 4),
+cillates slightly around an equilibrium position and cold clouds shift                         warm (A1) and cold (A2) phases are in rough equilibrium in terms
+as they follow galaxy rotation (projected onto the x̂-direction).                              of the total (=thermal + ram) pressure. While the cold interarm
+   Figure 4 plots the distributions of physical variables in model                             clouds typically have slightly lower thermal pressure than the
+SU2 at t/tcross ¼ 4 after this quasi-steady state has been reached;                            warm interarm medium, their ram pressure is of comparable mag-
+many spikes and discontinuities in density as well as sawtooth-                                nitude, i.e., P/k B  2000Y 4000 K cm3 . Some of the cold inter-
+like velocity profiles are evident. Figure 5 schematically illus-                              arm clouds exhibit ‘‘double-horned’’ structure, a consequence
+trates the evolutionary tracks of the cold and warm phases in the                              of merging with neighbors or splitting into two pieces (see, e.g.,
+n-P plane. Regions marked with A, B, C, and D correspond to in-                                Fig. 4a). As the warm and cold interarm phases enter the shock
+terarm, immediate postshock, spiral arm, and thermally unstable                                front, they experience a strong compression, jumping to B1 and
+transition zones, respectively; the transition zone refers to the                              B2 , respectively. While the density jump is by a factor of 4 for
+window downstream from the arm ( between x/Lx  0:03 and                                       both cold and warm phases, the pressure jump for the cold phase is
+No. 2, 2008                                        SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                               1155
+
+
+
+
+                                                                                            Fig. 6.—Density profile averaged over t/tcross ¼ 5Y8 from model SU2 (solid
+    Fig. 5.—Schematic evolutionary track in the n-P plane (solid lines with arrows)     line), compared to stationary shock profiles for isothermal models, the
+of gas cycling through a spiral pattern with TI. The dotted line is the thermal equi-   T ¼ 1000 K nonviscous model (dotted line), the T ¼ 500 K viscous model with
+librium curve, while dot-dashed lines mark Tmax and Tmin . The warm and cold            l 0 ¼ 200 pc (dot-dashed line), and the T ¼ 1000 K viscous model with l 0 ¼
+phases in the interarm regions (A) are shocked ( B), undergo radiative cooling (C),     100 pc (dashed line).
+become thermally unstable due to postshock expansion ( D), and return to the in-
+terarm two-phase state again (A). See text for details.
+                                                                                        single-phase viscous counterpart, we take a temporal average
+                                                                                        over t/tcross ¼ 5Y8 of the density distributions in model SU2.
+about 10 times larger than in the warm phase since the former is                        We then take a boxcar average of the time-averaged profile, with a
+about 100 times colder.5 The shocked gas in states B1 and B 2 is not                    window of 8 pc. Figure 6 plots the resulting mean density profile
+in thermal balance and subsequently undergoes strong postshock                          as a solid line. For comparison, we have run isothermal models
+cooling (e.g., Mufson 1974), moving almost isobarically to C1 and                       that include an explicit viscosity term in the momentum equa-
+C 2. The transition from A to C is essentially instantaneous (cool-                     tion (3) in a manner similar to that in Lubow et al. (1986). Se-
+ing time 103 yr).6                                                                     lected results are shown in Figure 6. Evidently, larger viscosity
+   One of the characteristics of galactic spiral shocks is that gas                     tends to produce a weaker spiral shock, with a peak that is more
+accelerates after the maximum shock compression (e.g., Roberts                          symmetric and farther downstream. In terms of the strength and
+1969; Balbus 1988; Kim & Ostriker 2002). Because of this post-                          placement of the spiral arm, an isothermal model with T ¼
+shock expansion, the cold gas inside the arm (0 < x/Lx < 0:03)                          1000 K and l 0 ¼ 100 pc provides a fairly good match for the
+becomes progressively less dense, evolving from C to D. Since                           mean density profile when TI is included. The isothermal vis-
+the dynamical timescale is much longer than the cooling time (due                       cous model, however, has a slightly broader arm compared to
+to the reduced velocity inside the arm), the cold gas either at C1 or                   the time average of the multiphase model. Our results thus dem-
+C 2 moves all the way down to the transition zone D following                           onstrate that (for the purposes of obtaining a lower resolution
+the equilibrium curve in the n-P plane. When the expanding gas                          ‘‘beam-averaged’’ profile) the effects of clouds embedded in a
+reaches region D (0:03 < x/Lx < 0:2), it becomes thermally un-                          warm medium can be effectively modeled by viscosity (Cowie
+stable and turns back into either the warm (A1) or cold (A2) in-                        1980; Gammie 1996), but only if the medium’s temperature and
+terarm phase. For model SU2, it typically takes about 0:14tcross                       the mean free path are chosen appropriately. We note that if a tem-
+from C to D stages and 0:22tcross from D to A stages. Gas is in                        perature comparable to that of the warm medium were adopted for
+the interarm regime A for the balance of the cycle (0:64tcross ).                      an isothermal counterpart, the shock would generally be too weak.
+When averaged over t/tcross ¼ 5Y8, the arm, transition, and inter-
+arm regions in model SU2 occupy approximately 1%, 16%, and                                               4.2. Effects of Initial Number Density
+83% of the spatial domain, respectively.
+                                                                                           All the SU models we consider start from a thermally unstable
+   Our models, as well as the real ISM, contain many interarm
+                                                                                        initial state. Since the TI growth time is short compared to the
+clouds which would be too small to be detected individually in
+                                                                                        time over which we turn on the spiral potential, these models first
+extragalactic radio observations. In modeling gaseous spiral shocks,
+                                                                                        evolve into a thermally bistable state before developing shocks.
+Lubow et al. (1986) did not explicitly solve for the cloudy struc-
+                                                                                        Figure 7 plots a density profile at t/tcross ¼ 4 in model SU5 with
+ture. Instead, they adopted an isothermal equation of state and
+                                                                                        n 0 ¼ 5 cm3 . Comparing to model SU2 as shown in Figure 3,
+treated the effects of cold clouds (and their collisions) by includ-
+                                                                                        Figure 7 shows that the densities (and temperatures) of the cold
+ing a viscous term parameterized by a mean free path l 0 for the
+                                                                                        and warm phases after TI saturates are insensitive to the initial
+fluid. They found that viscosity renders arm profiles smoother
+                                                                                        gas density, although of course models with higher n 0 produce
+and more symmetric. In order to compare our models with a
+                                                                                        more cold clumps.7 The ensuing development of spiral shocks
+   5
+                                                                                        and evolutionary tracks in the n-P plane are also qualitatively
+     Strictly speaking, this holds true only for one-dimensional shocks. In two or      similar to those described in x 4.1.
+three dimensions, small clouds can experience enhanced compression as the
+shock wrapping around them is able to propagate toward the cloud centers. They
+                                                                                           7
+may also be subject to dynamical effects such as Kelvin-Helmholtz and Rayleigh-                Mass conservation requires the number of cold clouds Nc to be given ap-
+Taylor instabilities (e.g., Woodward 1976).                                             proximately by Nc  n 0 Lx /(lnc ), where l and nc are the mean size and number
+   6
+     Because of its very large postshock density, the transition from A2 to C 2 oc-     density of the clouds. From simulations with differing n 0 , we empirically found
+curs over an extremely short cooling scale (0.02 pc) that is not resolved in our       that l  0:8 pc (n 0 /2 cm3 )0:3 , i.e., the mean cloud size ( presumably set by merg-
+models.                                                                                 ing and splitting), depends only weakly on n 0 . This gives Nc / n0:7  0
+                                                                                                                                                                  .
+1156                                                              KIM, KIM, & OSTRIKER                                                                       Vol. 681
+
+                                                                                        expansion can still produce thermally unstable gas if the initial
+                                                                                        density is not far from the unstable range. For example, the shock
+                                                                                        in model SW0.5 drives the thermal pressure above Pmax , and the
+                                                                                        gas evolves rapidly via TI into a cold stable phase inside the arm.
+                                                                                        In model SC10, on the other hand, strong postshock expansion
+                                                                                        drives the pressure of the initially cold gas below Pmin , after which
+                                                                                        a fraction of the gas expands to become a warm phase. Conse-
+                                                                                        quently, the resulting structures at late times in models SW0.5
+                                                                                        and SC10 are similar to those in the SU models. In models with
+                                                                                        n 0 further away from the unstable values, however, changes in
+                                                                                        the gas pressure due to shock compression and postshock expan-
+                                                                                        sion are insufficient to trigger phase transitions. Figure 8 plots
+   Fig. 7.—Density profile of model SU5 with n 0 ¼ 5 cm3 at t/tcross ¼ 4. Note         equilibrium shock profiles in models SW0.1 and SC20, which
+that the postshock transition zone in model SU5 is wider than that of model SU2         start with n 0 ¼ 0:1 and 20 cm3, respectively. The gas in both of
+shown in Fig. 4.
+                                                                                        these models consists only of the warm or cold phase and the
+                                                                                        profiles are smooth everywhere except at the shock front.
+   Perhaps the most notable difference in the late-time states
+                                                                                                             4.3. Temperature Distribution
+with different n 0 is the size of the postshock transition zone. Col-
+umns (3)Y(8) of Table 1 show that the transition zone (and also                            Figure 9 plots the volume-weighted and mass-weighted tem-
+the arm region, to a lesser extent) widens with increasing n 0 . One                    perature probability distribution functions (PDFs) for models
+can easily see this by comparing Figures 4a and 7. This trend is                        SW0.5, SU2, SU5, and SC10, averaged over t/tcross ¼ 5Y 8. The
+of course because models with larger n 0 have a larger fraction of                      vertical dotted lines in each panel indicate Tmin and Tmax , mark-
+the total mass in the cold phase that evaporates to maintain an                         ing the cold, intermediate-temperature, and warm phases. For the
+unstable state. In addition, the mean separation of cold clouds                         standard model SU2, the mass-weighed temperature PDF is char-
+inside the arm is smaller in models with higher n 0, allowing for                       acterized by a broad cold peak at T  20 Y150 K and a narrow
+merging with neighboring clouds more often during the post-                             warm peak at T  6000 Y8000 K, although there also exists a
+shock expansion stage. This reduces the expansion rate effec-                           substantial amount of the intermediate-temperature gas. In the
+tively, thereby extending the size of zones with unstable density                       broad cold peak, the portion of gas with T P 50 K corresponds
+toward downstream.                                                                      to the very dense arm population immediately behind the shock,
+   Unlike the SU models, the SW and SC models initially have a                          while the portion with 50 K P T < Tmin includes both arm and
+low or high enough density that they are thermally stable and the                       interarm cold clouds. Since a larger initial density implies a larger
+early development of a spiral shock takes place in a single-phase                       initial cold fraction even before the spiral potential is applied, the
+medium. Nevertheless, the shock compression and/or postshock                            cold mass fractions in both arm and interarm regions increase in
+
+
+
+
+    Fig. 8.—Density profiles and scatter plots in the density-pressure plane of models SW0.1 with n 0 ¼ 0:1 cm3 (top) and SC20 with n 0 ¼ 20 cm3 (bottom) at
+t/tcross ¼ 2:4. Note that the spiral shocks in these models are smooth and each case contains only a single phase of gas. The shock compression is much stronger for all-
+cold than all-warm gas because of the higher Mach number.
+No. 2, 2008                                      SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                            1157
+
+
+
+
+    Fig. 9.—Mass-weighted (thick lines) and volume-weighted (thin lines) temperature PDFs averaged over t/tcross ¼ 5Y8 for models SW0.1, SU2, SU5, and SC10. In each
+panel, vertical dotted lines indicate Tmin and Tmax to demark the cold, intermediate-temperature, and warm phases. Of the cold component, the gas with T P 50 K is located
+in the arm region, while cold clouds with 50 K P T P Tmin are found in the interarm or transition zones.
+
+
+models with larger n 0. For model SW0.5, on the other hand,                             points N, the cold (intermediate-temperature) mass fraction
+introduction of the spiral potential allows only a small fraction of                    increases (decreases) with increasing resolution for N P 10 4.
+the gas to exceed Pmin and undergo TI, resulting in a lower cold                        This is mainly because of the numerical conductivity associated
+peak and a higher warm peak than in model SU2. For all the mod-                         with a large zone size for small N, as explained in x 3. When nu-
+els, the cold peak is fractionally much broader (i.e., larger T /T )                   merical conductivity is large, the boundary layers in between
+than the warm peak.                                                                     the cold and warm phases thicken in proportion to the Field
+   Of the total intermediate-temperature phase, about 70% is                            length. This increase in the intermediate-temperature mass (in
+found in the postshock transition zone for models with TI, while
+the remaining portion resides in boundary layers between the
+cold and warm phases in the interarm region. Figure 9 shows that
+the distribution of the intermediate phase is almost flat for model
+SU2 and increasingly favors lower temperature as n 0 increases.
+This is because models with larger n 0 have a slower postshock
+expansion rate and, thus, more gas near Tmin. The mean density
+and density-weighted mean temperature of the intermediate-
+temperature gas are found to scale as ni  0:41n 0 þ 1:29 and
+Ti  4458/(n 0 þ 1:81) K for 0:5 P n 0 P 10, where ni and n 0 are
+in units of cm3. For the cold and warm phases, the mean val-
+ues are nc  23 cm3 and Tc  86 K and n w  0:39 cm3 and
+Tw  6400 K, respectively, almost independent of n 0 . These
+points lie slightly above Pmin on the cold and warm branches of
+the thermal equilibrium curve.
+                   4.4. Mass and Volume Fractions
+   For models with TI, we calculate the mass and volume frac-
+tions of three phases averaged over t/tcross ¼ 5 Y8. Figure 10 plots
+                                                                                            Fig. 10.—Mass fractions of the cold, intermediate-temperature, and warm
+against numerical resolution the mean mass fractions in model                           phases in model SU2 vs. numerical resolution. The numerical results are not
+SU2, along with the standard deviations as error bars. While the                        affected by numerical conductivity as long as the number of zones is larger than
+warm mass fraction is fairly insensitive to the number of grid                          10 4.
+1158                                                              KIM, KIM, & OSTRIKER                                                                    Vol. 681
+
+the interarm) occurs primarily at the expense of the cold phase
+( Begelman & McKee 1990; Ferrara & Shchekinov 1993; Inoue
+et al. 2006). In addition, large numerical conductivity tends to
+suppress TI in the postshock transition zone, yielding less cold
+gas.
+    Overall, the broadening of interarm cloud interfaces in low-
+resolution models is responsible for 80% of the increase in the
+intermediate-temperature mass, while the remaining 20% is due
+to the suppression of TI in the postshock transition zone. There is
+no interarm cold gas in models with N P 512, while arm cold gas
+still exists in these lowest resolution models since the postshock
+regions are, when fully resolved, denser and broader than interarm
+clouds and, thus, are less affected by zone averaging. As long as
+N k 104 , the numerical conductivity becomes comparable to, or
+smaller than, the physical conductivity, and the results are nu-
+merically well resolved. Because most of the difference between
+moderate- and high-resolution models is at warm/cold interfaces,
+the extremely high resolutions that we find are needed for accurate
+measurement of the thermally unstable mass fraction would not
+be required for studies that focus primarily on shock dynamics.
+We find that the overall shock structures (in terms of the breadth of
+the transition zone and the time-averaged profiles) are comparable
+to those in the converged models provided N k 10 3 . At these
+moderate resolutions, edges of individual clouds are smeared out,                     Fig. 11.—Mass and volume fractions of the cold (squares), warm (triangles),
+but the physically important transition zone downstream from the                   and intermediate-temperature (diamonds) phases averaged over t/tcross ¼ 5 Y8, as
+arm is still recovered.                                                            functions of the initial number density n 0. Error bars indicate the standard devia-
+                                                                                   tions of the measurements. Dotted lines show the theoretical estimates computed
+    In the case of model SU2, the converged values of the                          by adopting a constant value fi ¼ 0:28 for the intermediate-temperature mass
+mass fractions are 59%, 14%, and 27% for the cold, warm, and                       fraction.
+intermediate-temperature phases, respectively. By volume the
+cold takes up 4% of the total, while the warm and intermediate-
+temperature media occupy 70% and 26%, respectively. Since                          needed in measuring the latter. In addition, while the overall
+these proportions are 80%, 10%, and 10% by mass and 10%,                           shock profiles reach a quasi-steady state after t/tcross ¼ 5, several
+80%, and 10% by volume when the spiral potential is weak or                        other effects make it difficult to measure turbulent amplitudes in
+absent (e.g., Fig. 3b), this implies that spiral shocks and sub-                   multiphase models: randomly placed cold clouds move with vary-
+sequent postshock expansion zone are important for populating                      ing speeds in the interarm region, new structures are continuously
+the intermediate-temperature portion of the phase plane.                           developing in the transition zone, and the spiral shocks themselves
+    Columns (9)Y(14) of Table 1 give the converged values of the                   undergo small-amplitude oscillations perpendicular to the shock
+mass and volume fractions of each phase in models with multi-                      front. To separate out the background streaming from the total
+ple phases. Figure 11 plots these proportions as functions of the                  velocity as cleanly as possible, we first construct velocity template
+initial number density n 0. Interestingly, the fraction of mass in                 profiles hv x i and hv y i for each model, where the angle brackets
+the intermediate-temperature phase has a substantial value of fi                  denote a time average over t/tcross ¼ 5 Y8. Dashed lines in Fig-
+0:28, almost independent of n 0 .8 The volume fraction of the in-                  ures 4d and 4e show sample hv x i and hv y i profiles in model SU2.
+termediate phase increases with n 0 P 6 cm3 and becomes flat                      We then R calculate the density-weighted
+                                                                                                                R             velocity dispersions using
+at large n 0 . Assuming that the cold, warm, and intermediate-                     i2  (vi hvi i) 2 dx/(  dx) (with i ¼ x or y) in the arm, inter-
+temperature phases in each model are represented by the char-                      arm, and postshock transition zones separately. Figure 12 plots
+acteristic densities nc , n w , and ni , respectively, mass conservation           i (t) for model SU2, while Figure 13 draws the mean values
+requires the mass fractions in the cold and warm phases to be                      ¯ i  hi2 i1/2 along with the standard deviations i for models
+ fc ¼ (1  n w /n 0 )  (1  n w /ni ) fi and fw ¼ n w /n 0  (n w /ni ) fi ,      with multiphase spiral shocks.
+respectively, where nc /n w 31 is assumed (cf. Piontek & Ostriker                       Figure 12 shows that the velocity dispersions of the cold phase
+2004). Dotted lines in Figure 11 plot these theoretical fc and fw                  in the arm region exhibit large-amplitude temporal fluctuations,
+using the empirical results fi ¼ 0:28, n w ¼ 0:39 cm3 , and ni ¼                  with characteristic periods of 0:4tcross and 0:2tcross for x and
+0:41n 0 þ 1:29 cm3 . These estimates are overall in good agree-                   y , respectively. These variations of x and y are due to small-
+ment with the simulation results.                                                  amplitude oscillations offsetting the spiral shock front from its
+                                                                                   mean position. Since streaming varies strongly within the arm
+                        4.5. Velocity Dispersions                                  (Figs. 4d and 4e), the offset of the shock position leads to large
+  Finally, we quantify the level of random gas motions driven in                   differences between instantaneous and mean streaming velocities
+our models due to TI and spiral potential perturbations. Spiral                    within the arm; these contaminate the measured velocity disper-
+arms produce gas streaming motions that are ordered but vary                       sion at locations near the shock front. During the quasi-periodic
+perpendicular to the shock front. Since streaming velocities are                   oscillations of the spiral shock front, x attains its minimum value
+much larger in amplitude than the true random motions, care is                     when the shock is maximally displaced upstream, while y is
+                                                                                   smallest when the instantaneous shock front coincides with its
+   8
+     By running models with differing F (not listed in Table 1), we found that
+                                                                                   mean position. Therefore, the local minima in the time series of
+fi  0:040 þ 0:045F ½% for 3%  F  7%, but is insensitive to n 0 for the fixed   x and y correspond to the upper limits to the level of random
+arm parameters.                                                                    gas motions inside the arm. For model SU2, the average values
+No. 2, 2008                                       SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                                              1159
+
+
+
+
+    Fig. 12.—Density-weighted velocity dispersions x and y , relative to time-averaged template values, of the gas in the arm (solid lines), transition (dotted lines), and
+interarm (dashed lines) regions of model SU2. The large-amplitude fluctuations of the velocity dispersions in the arm region are caused by incomplete subtraction of the
+arm streaming motions. The velocity dispersions in both unstable and interarm regions are not subject to this effect and have mean values of 1.3 km s1 and 0.8 km s1
+in the x- and y-directions, respectively.
+
+
+of the local minima in x (t) and y (t) are 2 and 3 km s1,                            from the background value q0  d ln  0 /d ln R due to the con-
+respectively, which roughly equals ¯ i  i . As Figure 13 shows,                       straint of potential vorticity conservation (Gammie 1996, 2001;
+¯ i  i does not vary much with n 0 , suggesting that the true                         Kim & Ostriker 2001, 2002). For a flat rotation curve (q0 ¼ 1),
+velocity dispersion within the arm is relatively independent of                           local shear is reversed inside the arm where the local density        pﬃﬃex-
+mean density.                                                                             ceeds 2n 0 ; this in turn increases ¯ y /¯ x  (n/2n 0 )1/2 above 1/ 2 ¼
+     Unlike their behavior in the arm region, the time-averaged ve-                       0:7. On the other hand, the whole interarm region and most of the
+locity profiles in the interarm and transition zones are relatively                       unstable region have n < n 0 , and thus, the ratio ¯ y /¯ x is smaller
+smooth, so that the velocity dispersions as calculated in these                           than the prediction for a disk without spiral structure.
+regions are relatively free of streaming motions. As Figures 12
+and 13 show, the velocity dispersions in the interarm and transi-                                          5. SUMMARY AND DISCUSSION
+tion zones are similar, amounting to ¯ x  1:3 km s1 and ¯ y 
+                                                                                                                          5.1. Summary
+0:8 km s1 for model SU2 and decreasing slowly with increasing
+n 0 . The ratios of the velocity dispersions in the x- to y-directions                       Galactic spiral shocks in disk galaxies play an important role
+for all regions are consistent with predictions from epicyclic anal-                      in structural and chemical evolution by forming spiral-arm sub-
+ysis (e.g., Binney & Tremaine 1987), ¯ y2 /¯ x2 ¼  2 /(402 ) ¼ 1                     structures and triggering star formation. Spiral shocks inherently
+q/2. Here, the local shear rate q  2  (2  q0 )n/n 0 is modified                        involve large variations in the background density, while cooling
+
+
+
+
+  Fig. 13.—Mean values (symbols) and standard deviations (error bars) of the density-weighted velocity dispersions of each phase during the time span t/tcross ¼ 5Y8 for
+models with multiphase spiral shocks.
+1160                                                    KIM, KIM, & OSTRIKER                                                       Vol. 681
+
+and heating processes that determine the ISM density and tem-          isothermal models. We find that a viscous isothermal model
+perature depend rather sensitively on the local state. The inter-      with T ¼ 1000 K and a mean free path of l 0 ¼ 100 pc yields a
+play between these processes may significantly alter the shock         similar peak density and arm width to the average profile from
+strengths and structures, compared to those computed under an          model SU2. This confirms the notion that for purposes where
+isothermal approximation. In particular, large-scale compressions      detailed ISM knowledge is not needed, multiphase effects on
+and expansions across spiral arms may trigger TI, thereby regulat-     shocks can be approximately treated via viscosity modeling ex-
+ing transitions among the different ISM phases. In this paper we       cursions and collisions of dense clouds, as suggested by Cowie
+have used high-resolution numerical simulations to investigate the     (1980) and Lubow et al. (1986). Simulations such as those we
+dynamics and thermodynamics of this highly nonlinear pro-              have performed are needed in order to calibrate the viscous/
+cess. Our models include heating and cooling terms appropri-           isothermal model parameters, however.
+ate for atomic gas explicitly in the energy equation and, thus,           4. For models with multiphase spiral shocks, intermediate-
+naturally allow for transitions among cold, warm, and intermediate-    temperature gas amounts to 0.25Y0.3 of the total by mass, in-
+temperature phases. The current investigation employs a one-           sensitive to n 0 . Of this, about 70% is found in the transition zone,
+dimensional model in which all the physical quantities vary only       while the remaining 30% lies at interfaces between the cold and
+in the in-plane direction perpendicular to a local segment of a spi-   warm media. This suggests that the postshock expanding flows,
+ral arm. We allow for gas motions parallel to the arm and include      an inherent feature of galactic spiral structure, are important
+galactic differential rotation. The effects of magnetic fields and     for producing intermediate-temperature gas. The mean density
+self-gravity are neglected in the present paper.                       and density-weighted mean temperature of the intermediate-
+   Our main results are summarized as follows.                         temperature phase are found to be ni ¼ 0:41n 0 þ 1:29 cm3 and
+                                                                       Ti ¼ 4458/½(n 0 /1 cm3 ) þ 1:81 K, respectively. The fractions
+   1. Background flow over the grid, represented by v 0x in our        of the cold and warm phases are 59% and 14% by mass and 4%
+models, may result in a significant level of numerical diffusion in    and 70% by volume for model SU2, respectively, and vary with
+finite-difference schemes dealing with the cooling/heating and         n 0 according to simple expectations based on mass conserva-
+conduction terms if the numerical resolution is not high enough.       tion with a prescribed density in each phase.
+We quantify the numerical diffusion of our implementation in              5. We find that one-dimensional spiral shocks with multi-
+terms of an effective numerical conductivity and measure it us-        phase gas produce nonnegligible random gas motions. At late
+ing growing modes of the TI. By comparing growth rates with            times, the gas in both interarm and transition zones has typical
+predictions from the linear dispersion relation including conduc-      density-weighted velocity dispersions of x  1:3 km s1 and
+tion, we find that the numerical diffusion in the Athena code we       y  0:8 km s1 in the directions perpendicular and parallel to
+use behaves as Kn / (v 0x  x)( x/k) p , where  x is the grid        the spiral arms, respectively. This is transonic with respect to the
+width, p is the order of spatial reconstruction method ( p ¼ 2         cold medium and subsonic with respect to the warm medium.
+for PLM and 3 for PPM ), and k is the spatial wavelength. For          The cold gas in the arms is estimated to have slightly larger val-
+typical values of v 0x ¼ 13 km s1 ,  x ¼ 0:04 pc, and k ¼            ues x  2 km s1 and y  3 km s1 , although true turbulence
+3:5 pc in our models, the numerical conductivity with the PLM          levels may be slightly lower, because it is difficult to fully sub-
+amounts to Kn  2:3 ; 105 erg s1 cm1 K1 , comparable to             tract streaming motions in the arm region.
+the physical conductivity K0 ¼ 105 erg s1 cm1 K1 adopted
+in the current work.
+                                                                                                 5.2. Discussion
+   2. Stellar spiral potential perturbations induce shocks that
+reach a quasi-steady state after a few orbits. The resulting flow         Since the growth rates of pure TI are maximized at the small-
+contains phase transitions provided the mean gas density is in         est available wavelengths, growth of grid scale noise dominates
+the range 0:5 cm3  n 0  10 cm3 , for the parameters con-           numerical simulations if it is not suppressed. To prevent this nu-
+sidered in the present work. Models with n 0  0:1 cm3 or             merical problem, it is customary to include thermal conduction
+n 0  20 cm3 yield single-phase spiral shock profiles. We di-         that preferentially stabilizes small-scale perturbations (e.g., Piontek
+vide the flow into three distinct zones based on thermal regime:       & Ostriker 2004, 2005) and also broadens the transition layer
+arm, interarm, and transition. The ‘‘arm’’ refers to the highly com-   between cold and warm phases (e.g., Begelman & McKee 1990).
+pressed postshock region filled with cold gas at T < Tmin ¼            Koyama & Inutsuka (2004) studied TI in an initially static me-
+185 K, while in the ‘‘interarm’’ region far from the shock most of     dium and showed that numerical results converge only if these
+the volume is occupied by warm gas with T > Tmax ¼ 5012 K.             conductive interfaces are well resolved. They found that this re-
+The ‘‘transition’’ zone corresponds to the expanding region down-      quires the cell size to be less than one-third of the Field length. In
+stream from the arm where intermediate-temperature gas (Tmin <         modeling systems with large turbulent (e.g., Gazol et al. 2005) or
+T < Tmax ) undergoes TI. Figure 5 summarizes the evolutionary          ordered (this work) velocity flows over the grid, numerical con-
+cycle in the density-pressure plane: the warm/cold interarm gas        ductivity may be considerable if resolution is inadequate. The
+(A1/A2) is shocked (B1/B2) and immediately cools to become the         convergence study presented in x 4.4 suggests that the conver-
+denser cold arm gas (C1/C 2); this subsequently enters the unstable    gence criterion of Koyama & Inutsuka (2004) is valid in a moving
+transition zone (D) and evolves back into the warm and cold in-        medium, too, with the condition that the grid spacing must be
+terarm phases. For our standard model SU2 with mean density            smaller than the effective Field length based on the total (physical +
+n 0 ¼ 2 cm3 , the duration of the arm, transition, and interarm       numerical) conductivity.
+stages are approximately 14%, 22%, and 64% of the cycle, re-              In earlier work, Tubbs (1980) and Marochnik et al. (1983) per-
+spectively, occupying roughly 1%, 16%, and 83% of the simu-            formed time-dependent simulations of galactic spiral shocks that
+lation domain.                                                         included cooling and heating, but their models appear to suffer
+   3. At late times, instantaneous profiles in models with TI show     from large numerical conductivity associated with insufficient
+many density spikes representing cold clouds. Time-averaged            resolution. While they showed that phase transitions from warm
+profiles are, however, relatively smooth, and the density peaks        gas to cold clouds do occur in some models at the shock loca-
+representing the arm are more symmetric than in nondiffusive,          tions, they were unable to resolve the postshock transition zone.
+No. 2, 2008                                       SPIRAL SHOCKS WITH THERMAL INSTABILITY                                                             1161
+
+In particular, the n 0 ¼ 0:5 cm3 model shown in Figure 7 of                          ature range 500Y5000 K. These fractions are also comparable to
+Marochnik et al. (1983) exhibits a smooth density profile with-                       what we find for n 0 ¼ 1 cm3. The presence of thermally unsta-
+out any indication of TI although much of the region is occupied                      ble gas has been interpreted as owing to dynamical effects which
+by gas with densities and temperatures in the unstable range.9                        act on timescales comparable to the heating and cooling times.
+This is presumably because large numerical conductivity (due to                       Dynamical processes that have been investigated include mag-
+low resolution) renders the time and/or length scales of TI in                        netorotational instability (Piontek & Ostriker 2004, 2005, 2007),
+their simulations longer than the duration and/or width of the                        colliding flows (Audit & Hennebelle 2005; Heitsch et al. 2005,
+postshock transition zone. Indeed, we find that when we run our                       2006; Vázquez-Semadeni et al. 2006), energy injection from
+own models at low resolution (e.g., with 512 zones or less for                        OB stars ( Vázquez-Semadeni et al. 2000; Gazol et al. 2001),
+model SC10), the numerical conductivity is large enough that                          and supernova explosions (Avillez & Breitschwerdt 2005; Mac
+the gas in the transition zone does not undergo TI and instead                        Low et al. 2005). Here, we have shown that even without these
+smoothly converts to the interarm warm phase.                                         additional small-scale energy sources, a significant amount of
+   In terms of their time-averaged properties, the overall dynamics                   intermediate-temperature gas forms as a natural product of large-
+and flow characteristics of spiral shocks with TI remain similar to                   scale spiral shocks with TI, primarily in the expanding region
+those of isothermal spiral shocks (e.g., Roberts 1969; Shu et al.                     downstream from the arm.
+1973; Woodward 1975; Kim & Ostriker 2002). The salient fea-                              Many numerical studies of TI have shown that turbulent am-
+tures of spiral shocks with thermal evolution include the facts that                  plitudes driven by ‘‘pure TI’’ alone are quite small. For example,
+they allow phase transitions at the shock front (from warm to cold)                   Piontek & Ostriker (2004) showed that pure TI in an initially
+and in the postshock transition zone (from cold to warm) and that                     static, uniform medium in thermal equilibrium produces only
+there are cold clumps in the interarm region. Given the very high                     a modest level of random gas motions,   0:2Y 0:3 km s1 .
+density and pressure within the arm, cold gas downstream from                         Kritsuk & Norman (2002a, 2002b) similarly found that TI of gas
+the shock front would transform to molecular clouds if self-                          starting from thermal equilibrium, or with time-dependent heat-
+gravity and chemical reactions for molecule formation were in-                        ing, results in only subsonic turbulence,   0:2 km s1 when
+cluded. By running smoothed particle hydrodynamics simulations                        the cold gas dominates. The velocity dispersions   1:5 km s1
+with separate cold and warm ‘‘particles,’’ Dobbs & Bonnell (2007)                     of the gas found in the interarm and transition zones in our one-
+indeed found that the density of the cold component inside arms is                    dimensional models are significantly larger than those from pure
+sufficient to form molecules (see also Dobbs & Price 2008).                           TI. These velocities are much lower than those we found in pre-
+These authors did not allow for phase transitions between the                         vious (isothermal) simulations (Kim & Ostriker 2006; Kim et al.
+cold and warm components, however, which is an essential as-                          2006) in which the vertical shock structure is resolved, however.
+pect of the evolution (cf. Shu et al. 1972).                                          Evidently, shock flapping offers a more effective means of con-
+   A postshock transition zone, where the gas is predominantly                        verting galactic rotation to turbulence than simple in-plane oscil-
+in the intermediate-temperature range, is a necessary feature of                      lations. Work is currently underway to see how TI interacts with
+any quasi-steady state. About 40% of the atomic gas in the local                      vertically resolved spiral shocks—and differential buoyancy of
+Milky Way is observed to be the cold neutral medium ( Heiles                          cold and warm gas—to generate turbulence and structure in the
+2001; Heiles & Troland 2003), which is consistent with our re-                        ISM.
+sults for mean density n 0 ¼ 1 cm3, similar to the local Milky
+Way value.10 Heiles & Troland (2003) also find that about half of
+the remaining atomic gas is consistent with being thermally stable
+warm neutral medium, while the balance is in the unstable temper-                        We thank A. Kritsuk for drawing our attention to earlier work
+                                                                                      of Marochnik et al. on spiral shocks with thermal instability. This
+    9
+       The heating and cooling functions adopted by Marochnik et al. (1983) have
+                                                                                      work was supported by the Korea Research Foundation Grant
+the critical densities demarcating the warm, intermediate-temperature, and cold       funded by the Koran Government (MOEHRD; KRF-2007-313-
+phases about 20 times smaller than those in the present work. Thus, their model       C00328). The work of E. C. O. on this project was supported by
+with n 0 ¼ 0:5 cm3 corresponds to our model SC10, which develops multiphase          the US National Science Foundation under grant AST 05-07315.
+structure.                                                                            The numerical computations presented in this work were per-
+    10
+        The value of n 0 that produces the numerical results consistent with obser-
+vations may differ in models with different Lx , since the fractional size of the     formed on the Linux cluster at KASI ( Korea Astronomy and
+transition region is likely to depend on the ratio of cooling time to arm-to-arm      Space Science Institute) built with funding from KASI and
+crossing time.                                                                        ARCSEC.
+
+                                                                           REFERENCES
+Audit, E., & Hennebelle, P. 2005, A&A, 433, 1                                     Elmegreen, B. G. 1994, ApJ, 433, 39
+Baade, W. 1963, in The Evolution of Stars and Galaxies, ed. C. Payne-Gaposchkin   Elmegreen, B. G., & Elmegreen, D. M. 1983, MNRAS, 203, 31
+  (Cambridge: Harvard Univ. Press), 218                                           ———. 1986, ApJ, 311, 554
+Baker, P. L., & Barker, P. K. 1974, A&A, 36, 179                                  Elmegreen, D. M. 1980, ApJ, 242, 528
+Balbus, S. A. 1988, ApJ, 324, 60                                                  Elmegreen, D. M., Elmegreen, B. G., Kaufman, M., Sheth, K., Struck, C.,
+Balbus, S. A., & Cowie, L. L. 1985, ApJ, 297, 61                                    Thomasson, M., & Brinks, E. 2006, ApJ, 642, 158
+Begelman, M. C., & McKee, C. F. 1990, ApJ, 358, 375                               Ferrara, A., & Shchekinov, Y. 1993, ApJ, 417, 595
+Binney, J., & Tremaine, S. 1987, Galactic Dynamics ( Princeton: Princeton Univ.   Ferriere, K. 1998, ApJ, 503, 700
+  Press)                                                                          ———. 2001, Rev. Mod. Phys., 73, 1031
+Boley, A. C., & Durisen, R. H. 2006, ApJ, 641, 534                                Field, G. B. 1965, ApJ, 142, 531
+Cowie, L. L. 1980, ApJ, 236, 868                                                  Field, G. B., Goldsmith, D. W., & Habing, H. J. 1969, ApJ, 155, L149
+Cox, D. P., & Smith, B. W. 1974, ApJ, 189, L105                                   Fujimoto, M. 1968, in IAU Symp. 29, Non-stable Phenomena in Galaxies, ed.
+de Avillez, M. A., & Breitschwerdt, D. 2004, A&A, 425, 899                          A. Arakelyan ( Yerevan: Armenian Acad. Sci.), 453
+———. 2005, A&A, 436, 585                                                          Gammie, C. F. 1996, ApJ, 462, 725
+Dobbs, C. L., & Bonnell, I. A. 2006, MNRAS, 367, 873                              ———. 2001, ApJ, 553, 174
+———. 2007, MNRAS, 376, 1747                                                       Gardiner, T. A., & Stone, J. M. 2005, J. Comput. Phys., 205, 509
+Dobbs, C. L., & Price, D. J. 2008, MNRAS, 383, 497                                Gazol, A., Vázquez-Semadeni, E., & Kim, J. 2005, ApJ, 630, 911
+1162                                                                KIM, KIM, & OSTRIKER
+Gazol, A., Vázquez-Semadeni, E., Sánchez-Salcedo, F. J., & Scalo, J. 2001,          Martos, M. A., & Cox, D. P. 1998, ApJ, 509, 703
+  ApJ, 557, L121                                                                      McKee, C. F., & Ostriker, J. P. 1977, ApJ, 218, 148
+Gerola, H., & Seiden, P. E. 1978, ApJ, 223, 129                                       Meerson, B. 1996, Rev. Mod. Phys., 68, 215
+Gómez, G. C., & Cox, D. P. 2002, ApJ, 580, 235                                       Mufson, S. L. 1974, ApJ, 193, 561
+———. 2004, ApJ, 615, 744                                                              Parker, E. N. 1953, ApJ, 117, 431
+Gordon, K. 2007, Spitzer Press Release ( Pasadena: Caltech), http://gallery.spitzer   Piontek, R. A., & Ostriker, E. C. 2004, ApJ, 601, 905
+  .caltech.edu/Imagegallery/image.php?imagename=sig07-025                             ———. 2005, ApJ, 629, 849
+Hawley, J. F., Gammie, C. F., & Balbus, S. A. 1995, ApJ, 440, 742                     ———. 2007, ApJ, 663, 183
+Heiles, C. 2001, ApJ, 551, L105                                                       Rand, R. J., & Kulkarni, S. R. 1990, ApJ, 349, L43
+Heiles, C., & Troland, T. H. 2003, ApJ, 586, 1067                                     Roberts, W. W. 1969, ApJ, 158, 123
+Heitsch, F., Burkert, A., Hartmann, L. W., Slyz, A. D., & Devriendt, J. E. G.         Roberts, W. W., & Yuan, C. 1970, ApJ, 161, 887
+  2005, ApJ, 633, L113                                                                Scoville, N. Z., Polletta, M., Ewald, S., Stolovy, S. R., Thompson, R., & Rieke,
+Heitsch, F., Slyz, A. D., Devriendt, J. E. G., Hartmann, L. W., & Burkert, A.            M. 2001, AJ, 122, 3017
+  2006, ApJ, 648, 1052                                                                Scoville, N., & Rector, T. 2001, HST Press Release ( Baltimore: STScI ), http://
+Inoue, T., Inutsuka, S., & Koyama, H. 2006, ApJ, 652, 1331                               oposite.stsci.edu/pubinfo/PR/2001/10/index.html
+Jenkins, E. B., & Tripp, T. M. 2007, in IAU Symp. 237, Triggered Star Formation       Seigar, M. S., & James, P. A. 2002, MNRAS, 337, 1113
+  in a Turbulent ISM, ed. B. G. Elmegreen & J. Palous (Cambridge: Cambridge           Shetty, R., & Ostriker, E. C. 2006, ApJ, 647, 997
+  Univ. Press), 53                                                                    Shetty, R., Vogel, S. N., & Ostriker, E. C., & Teuben, P. T. 2007, ApJ, 665,
+Kennicutt, R. C. 2004, Spitzer Press Release ( Pasadena: Caltech), http://www            1138
+  .spitzer.caltech.edu/Media/releases/ssc2004 -19/ssc2004 -19a.shtml                  Shu, F. H., Milione, V., Gebel, W., Yuan, C., Goldsmith, D. W., & Roberts, W. W.
+Kim, C.-G., Kim, W.-T., & Ostriker, E. C. 2006, ApJ, 649, L13                            1972, ApJ, 173, 557
+Kim, W.-T., & Ostriker, E. C. 2001, ApJ, 559, 70                                      Shu, F. H., Milione, V., & Roberts, W. W. 1973, ApJ, 183, 819
+———. 2002, ApJ, 570, 132                                                              Sleath, J. P., & Alexander, P. 1996, MNRAS, 283, 358
+———. 2006, ApJ, 646, 213                                                              Tubbs, A. D. 1980, ApJ, 239, 882
+Knapen, J. H., Cepa, J., Beckman, J. E., Soledad del Rio, M., & Pedlar, A.            Vázquez-Semadeni, E., Gazol, A., & Scalo, J. 2000, ApJ, 540, 271
+  1993, ApJ, 416, 563                                                                 Vázquez-Semadeni, Gómez, G. C., Jappsen, A.-K., Ballesteros-Paredes, J., González,
+Koyama, H., & Inutsuka, S. 2002, ApJ, 564, L97                                           R. F., & Klessen, R. S. 2007, ApJ, 657, 870
+———. 2004, ApJ, 602, L25                                                              Vázquez-Semadeni, E., Ryu, D., Passot, T., González, R. F., & Gazol, A. 2006,
+Kritsuk, A. G., & Norman, M. L. 2002a, ApJ, 569, L127                                    ApJ, 643, 245
+———. 2002b, ApJ, 580, L51                                                             Vogel, S. N., Kulkarni, S. R., & Scoville, N. Z. 1988, Nature, 334, 402
+La Vigne, M. A., Vogel, S. N., & Ostriker, E. C. 2006, ApJ, 650, 818                  Wada, K., & Koda, J. 2004, MNRAS, 349, 270
+Lubow, S. H., Balbus, S. A., & Cowie, L. L. 1986, ApJ, 309, 496                       Willner, S. P., et al. 2004, ApJS, 154, 222
+Lynden-Bell, D. 1966, Observatory, 86, 57                                             Wolfire, M. G., McKee, C. F., Hollenbach, D., & Tielens, A. G. G. M. 2003,
+Mac Low, M.-M., Balsara, D. S., Kim, J., & Avillez, M. A. 2005, ApJ, 626, 864            ApJ, 587, 278
+Marochnik, L. S., Berman, B. G., Mishurov, Yu. N., & Suchkov, A. A. 1983,             Woodward, P. R. 1975, ApJ, 195, 61
+  Ap&SS, 89, 177                                                                      ———. 1976, ApJ, 207, 484
+
