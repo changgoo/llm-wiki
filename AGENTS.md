@@ -60,6 +60,13 @@ For source summary pages, include the raw source path:
 raw_source: raw/sources/example.md
 ```
 
+For PDF sources, always create a text companion first using `pdftotext -layout` and save it next to the PDF in `raw/sources/`. Read the `.txt` file for the main ingest pass, and use the PDF directly only when layout, figures, page images, or metadata matter.
+
+```yaml
+raw_source: raw/sources/example.pdf
+text_source: raw/sources/example.txt
+```
+
 ## Source Summary Template
 
 ```markdown
@@ -241,14 +248,15 @@ The current best synthesis.
 When the user asks to ingest a source:
 
 1. Read the raw source from `raw/sources/`.
-2. Read `wiki/index.md`, `wiki/overview.md`, and any obviously related wiki pages.
-3. Create or update a source summary page in `wiki/sources/`.
-4. Create or update relevant entity, concept, question, or synthesis pages.
-5. Add cross-links between affected pages.
-6. Update `wiki/index.md`.
-7. Update `wiki/overview.md` if the source changes the high-level understanding.
-8. Append an entry to `wiki/log.md`.
-9. Report which pages changed and call out unresolved questions or contradictions.
+2. If the source is a PDF, run `pdftotext -layout raw/sources/source.pdf raw/sources/source.txt` before ingesting. Use the text file as the primary ingest input.
+3. Read `wiki/index.md`, `wiki/overview.md`, and any obviously related wiki pages.
+4. Create or update a source summary page in `wiki/sources/`.
+5. Create or update relevant entity, concept, question, or synthesis pages.
+6. Add cross-links between affected pages.
+7. Update `wiki/index.md`.
+8. Update `wiki/overview.md` if the source changes the high-level understanding.
+9. Append an entry to `wiki/log.md`.
+10. Report which pages changed and call out unresolved questions or contradictions.
 
 ## Query Workflow
 
@@ -297,4 +305,3 @@ Update it whenever pages are added, removed, renamed, or materially changed.
 ```
 
 Each entry should briefly list changed pages and key outcomes.
-

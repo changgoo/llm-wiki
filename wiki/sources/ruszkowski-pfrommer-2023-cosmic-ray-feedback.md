@@ -3,7 +3,8 @@ type: source
 status: active
 created: 2026-05-14
 updated: 2026-05-14
-raw_source: raw/sources/Ruszkowski and Pfrommer - 2023 - Cosmic ray feedback in galaxies and galaxy clusters.pdf
+raw_source: raw/sources/papers/Ruszkowski and Pfrommer - 2023 - Cosmic ray feedback in galaxies and galaxy clusters.pdf
+text_source: raw/sources/papers/Ruszkowski and Pfrommer - 2023 - Cosmic ray feedback in galaxies and galaxy clusters.txt
 tags:
   - astrophysics
   - cosmic-rays
@@ -27,6 +28,7 @@ The review is both pedagogical and synthetic. It first develops the plasma physi
 - Published: 2023-12-05
 - DOI: https://doi.org/10.1007/s00159-023-00149-2
 - Length: 237 PDF pages
+- Extracted text: `raw/sources/papers/Ruszkowski and Pfrommer - 2023 - Cosmic ray feedback in galaxies and galaxy clusters.txt`
 
 ## Key Claims
 
@@ -76,4 +78,3 @@ The review is both pedagogical and synthetic. It first develops the plasma physi
 - How much cosmic ray pressure support exists in the circumgalactic medium?
 - Can active galactic nucleus injected cosmic rays offset cooling in cluster cores while satisfying radio, millimeter, optical, X-ray, and gamma-ray constraints?
 - How should future simulations couple cosmic ray hydrodynamics, spectral transport, magnetohydrodynamics, and radiation hydrodynamics?
-
