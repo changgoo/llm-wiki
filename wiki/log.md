@@ -29,3 +29,24 @@ Created the initial LLM Wiki operating structure:
 - `wiki/syntheses/`
 - `tools/`
 
+## [2026-05-14] ingest | Ruszkowski and Pfrommer 2023 cosmic ray feedback
+
+Ingested `raw/sources/Ruszkowski and Pfrommer - 2023 - Cosmic ray feedback in galaxies and galaxy clusters.pdf`.
+
+Created:
+
+- [[ruszkowski-pfrommer-2023-cosmic-ray-feedback]]
+- [[cosmic-rays]]
+- [[cosmic-ray-feedback]]
+- [[cosmic-ray-transport]]
+- [[galactic-winds]]
+- [[circumgalactic-medium]]
+- [[agn-feedback]]
+
+Updated:
+
+- [[index]]
+- [[overview]]
+
+Key outcome: the wiki scope is now seeded around cosmic ray feedback in galaxies and galaxy clusters, with cosmic ray transport identified as the central uncertainty.
+
